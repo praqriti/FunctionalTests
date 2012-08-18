@@ -1,7 +1,6 @@
 Then /^I am on the 'Sign In' page$/ do
   @signin_page = SignIn.new
   @signin_page.load
-  p @signin_page.current_url
   @signin_page.wait_until_sign_in_button_visible
   @signin_page.should be_displayed
   
