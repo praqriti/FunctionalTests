@@ -1,0 +1,2 @@
+default:
+ { id: , name: default_user, password: password, login_id: user_new@user_new.com, account_id: 1 }
