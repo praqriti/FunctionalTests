@@ -3,6 +3,15 @@ Given /^I am an existing user of canvas$/ do
 end
 
 Given /^I make a login request$/ do
+  @last_response = JSONSpecInterface.get("/authentication/new.json",
+  :body => { :ussd_request => { :session_id => '1', :service_type => 'new' }}.to_json,
+  :headers => { "Content-Type" => "application/json"})
+  
+  steps %{
+     Then the JSON at "display_text" should be "Enter your username"
+     Then the JSON at "session_id" should be "1"
+   }
+    
 end
 
 When /^I enter the correct login credentials$/ do

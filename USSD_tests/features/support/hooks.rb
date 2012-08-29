@@ -9,7 +9,6 @@
 #   #this code is run after each scenario
 # end
 # 
-# At_exit do
-#   #this code is run at the end
-# end
-
+at_exit do
+   UserInterface.delete_user()
+end

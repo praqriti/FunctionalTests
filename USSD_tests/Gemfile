@@ -4,13 +4,7 @@ source 'http://production.cf.rubygems.org'
 group :test do
  
   gem "httparty"
-  # gem 'capybara'
-  # gem 'capybara-webkit'
   gem 'database_cleaner'
-  # gem 'cucumber-rails'
   gem 'cucumber'
   gem "json_spec"
-  # gem 'spork'
-  # gem 'launchy'    # So you can do Then show me the page
-  # gem 'site_prism'
-end
+ end

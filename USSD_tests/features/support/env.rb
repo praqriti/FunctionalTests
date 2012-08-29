@@ -5,13 +5,7 @@
    
    USER = YAML.load(File.read("features/support/user_data.yml"))
    
-   
-   at_exit do
-     UserInterface.delete_user()
-   end
-   
-  #  
-# require File.dirname(__FILE__) + '/JSONSpecInterface'
+  require File.dirname(__FILE__) + '/hooks.rb'
 
 
 
