@@ -1,5 +1,0 @@
-default: --format pretty
-
-test: PROFILE=test --format pretty
-
-stage: PROFILE=stage --format pretty

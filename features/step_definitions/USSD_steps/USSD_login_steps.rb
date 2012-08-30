@@ -3,8 +3,13 @@ Given /^I am an existing user of canvas$/ do
 end
 
 Given /^I make a login request$/ do
-  @last_response = JSONSpecInterface.get("/authentication/new.json",
-  :body => { :ussd_request => { :session_id => '1', :service_type => 'new' }}.to_json,
+  @last_response = JSONSpecInterface.post("/ussd/index.json",
+  :body => {
+      :session_id => "session id",
+      :session_type => "NEW",
+      :message => "1",
+      }.to_json,
+   # { :session_id =>"1", :session_type =>"NEW", :message =>"123",:response_map => {"1" => "action1","2" => "action2"}}.to_json,
   :headers => { "Content-Type" => "application/json"})
   
   steps %{
@@ -23,7 +28,7 @@ end
 
 When /^I enter the correct username$/ do
  
-  @last_response = JSONSpecInterface.post("/authentication/username.json",
+  @last_response = JSONSpecInterface.post("/ussd/index.json",
   :body => { :ussd_request => { :message => "#{USER["default"]["login_id"]}" ,:session_id => '1', :service_type => 'session' } }.to_json, 
   :headers => { "Content-Type" => "application/json"})
     
@@ -34,7 +39,7 @@ When /^I enter the correct username$/ do
 end   
 
 And /^I give the correct password$/ do
-  @last_response = JSONSpecInterface.post("/authentication/login.json",
+  @last_response = JSONSpecInterface.post("/ussd/index.json",
   :body => { :ussd_request =>
                 {:message => "#{USER["default"]["password"]}",
                     :session_id => '1',

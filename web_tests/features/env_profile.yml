@@ -1,5 +1,0 @@
-default:
-    base_url: http://www.localhost:3000/    
-    
-test:
-    base_url: http://www.google.com/
