@@ -5,21 +5,27 @@ require 'rubygems'
 module UserInterface
 
   @canvas_api_url= "http://localhost:3000"
-  @account_id = USER["default"]["account_id"]
-  @login_id = USER["default"]["login_id"]
+  @account_id = 1
   @user_id
   
-  def self.create_user  
+  def self.create_user(login_id,password)
   @last_response =
   JSONSpecInterface.post("#{@canvas_api_url}/api/v1/accounts/#{@account_id}/users",
-  :body => {  "user[name]" => "dummy",
-              "pseudonym[unique_id]" => "#{@login_id}",
-              "pseudonym[password]" => "password"                
+  :body => {  "user[name]" => "username",
+              "pseudonym[unique_id]" => "#{login_id}",
+              "pseudonym[password]" => "#{password}"                
               },
   :headers => { "Authorization" => "Bearer 7sebC7aEqJsX4wK5oUf11KLtY4fZxyBokkNowYOR4La62RjYiUL3q0MotvtZZxor"})
   @user_id = @last_response.parsed_response["id"]
-  
-  p "user created" if @last_response.code == 200
+        
+  p "user created" if @last_response.parsed_response["id"]
+end
+
+def self.get_user
+  if(@user_id) 
+    p "*************"
+    return @user_id
+  end
 end
 
 def self.delete_user

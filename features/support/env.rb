@@ -5,7 +5,6 @@
   require 'yaml'
   
 require File.dirname(__FILE__) + '/hooks.rb'
-USER = YAML.load(File.read("features/support/user_data.yml"))
   
 Capybara.default_selector = :css
 Capybara.default_driver = :selenium_firefox 

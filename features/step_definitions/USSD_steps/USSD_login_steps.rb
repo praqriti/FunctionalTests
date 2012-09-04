@@ -1,65 +1,98 @@
-Given /^I am an existing user of canvas$/ do
-  UserInterface.create_user()
+USER = YAML.load(File.read("features/support/user_data.yml"))
+
+ Given /^the following user exists in canvas:$/ do |users_table|
+  users_table.hashes.each do |hash|  
+     UserInterface.create_user("#{hash["login_id"]}","#{hash["password"]}")
+  end
 end
 
-Given /^I make a login request$/ do
-  @last_response = JSONSpecInterface.post("/ussd/index.json",
+Given /^I make a new login request$/ do
+  @last_response = JSONSpecInterface.post("/ussd/index",
   :body => {
       :session_id => "session id",
       :session_type => "NEW",
       :message => "1",
       }.to_json,
-   # { :session_id =>"1", :session_type =>"NEW", :message =>"123",:response_map => {"1" => "action1","2" => "action2"}}.to_json,
   :headers => { "Content-Type" => "application/json"})
   
   steps %{
-     Then the JSON at "display_text" should be "Enter your username"
-     Then the JSON at "session_id" should be "1"
+     Then the JSON at "message" should be "Enter your username"
+     Then the JSON at "session_id" should be "session id"
+     Then the JSON at "session_type" should be "SESSION"
    }
-    
+       
 end
 
-When /^I enter the correct login credentials$/ do
+When /^I enter the login credentials as "([^\"]*)" with password "([^\"]*)"$/ do |login_id,password|
   steps %{
-    When I enter the correct username
-    And I give the correct password
+    When I enter the username "#{login_id}"
+    And I enter the password "#{password}" for user "#{login_id}"
   }
 end
 
-When /^I enter the correct username$/ do
+When /^I enter the username "([^\"]*)"$/ do |login_id|
  
-  @last_response = JSONSpecInterface.post("/ussd/index.json",
-  :body => { :ussd_request => { :message => "#{USER["default"]["login_id"]}" ,:session_id => '1', :service_type => 'session' } }.to_json, 
-  :headers => { "Content-Type" => "application/json"})
+  @last_response = JSONSpecInterface.post("/ussd/index",
+  :body => {
+       :session_id => "session id",
+       :session_type => "SESSION",
+       :message => "#{login_id}",
+       :response_map => {"$"=>"sen/users"},
+       }.to_json,
+   :headers => { "Content-Type" => "application/json"})
     
   steps %{
-    And the JSON should include {"username":"#{USER["default"]["login_id"]}"}
-    Then the JSON at "display_text" should be "Enter your password"
+    And the JSON should include {"username":"#{login_id}"}
+    Then the JSON at "message" should be "Enter your password"
+    Then the JSON at "session_id" should be "session id"
+    Then the JSON at "session_type" should be "SESSION"
   }  
+  
 end   
 
-And /^I give the correct password$/ do
-  @last_response = JSONSpecInterface.post("/ussd/index.json",
-  :body => { :ussd_request =>
-                {:message => "#{USER["default"]["password"]}",
-                    :session_id => '1',
-                    :service_type => 'session',
-                    :return_data => {
-                        :username => "#{USER["default"]["login_id"]}"
-                                    }
-                 } 
+And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_id|
+  @last_response = JSONSpecInterface.post("/ussd/index",
+  :body => {                                
+         :session_id => "session id",
+         :session_type => "SESSION",
+         :params => {"username" => "#{login_id}"},
+         :message => "#{password}",
+         :response_map => {"$"=>"sen/users/password"},
               }.to_json, 
 
   :headers => { "Content-Type" => "application/json"})
-    
-  # {"service_type"=>"session", "display_text"=>"Home", "return_data"=>{"access_token"=>"qhe5q5osg2omrOaH9MR0lPfpPN4F02ozEkK8PHx53ydVCihfvh00AC8QyB1mgMuv", "user_id"=>30, "account_id"=>1}, "session_id"=>"1"} 
-    
+        
 end
 
-Then /^I successfully login$/ do
+Then /^I should see the correct authorisation message "([^\"]*)"$/ do |auth_message|
   steps %{
-   Then the JSON at "display_text" should be "Home"
-   Then the JSON at "session_id" should be "1"
+   
+   Then the JSON at "message" should be "#{auth_message}"
+   Then the JSON at "session_id" should be "session id"   
+  }
+  
+  if auth_message != "Home"
+    steps %{Then the JSON at "session_type" should be "END"}
+  else
+    steps %{Then the JSON at "session_type" should be "SESSION"
+            Then the JSON should have "access_token"}
+  end 
+  
+end
+
+Then /^I should be able to see the home page options correctly$/ do
+  user_id = UserInterface.get_user
+  steps %{
+    Then the JSON at "response_map" should be:
+    """
+    {
+     "5"=>{"url"=>"sen/users/#{user_id}/courses", "text"=>"Courses"},
+     "4"=>{"url"=>"sen/users/#{user_id}/groups", "text"=>"Groups"},
+     "3"=>{"url"=>"sen/users/#{user_id}/profile", "text"=>"My Profile"},
+     "2"=>{"url"=>"sen/users/#{user_id}/status", "text"=>"Update Status"},
+     "1"=>{"url"=>"sen/users/#{user_id}/notifications", "text"=>"Notifications"}
+    }.to_json
+    """
   }
 end
 
