@@ -16,10 +16,11 @@ Then I should see the correct authorisation message "<authorisation message>"
 
 Examples:
 | login_id | password | authorisation message |
-| user_one@test.com | password_two | Incorrect Username/ Password|
 | user_one@test.com | password_one | Home                        |
-| '!@#?><*()@gmail.com'| password_one |Incorrect Username/ Password |
+| user_one@test.com | password_two |Incorrect Username/ Password |
+|'!@#?><*()@gmail.com'|password_one|Incorrect Username/ Password |
 | user_one@test.com |              |Incorrect Username/ Password |
+|                   | password_two |Incorrect Username/ Password |
 |                   |              |Incorrect Username/ Password |
 | user_two@test.com | password_two |Incorrect Username/ Password |
 

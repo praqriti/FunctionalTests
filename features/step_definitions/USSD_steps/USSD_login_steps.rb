@@ -72,7 +72,8 @@ Then /^I should see the correct authorisation message "([^\"]*)"$/ do |auth_mess
   }
   
   if auth_message != "Home"
-    steps %{Then the JSON at "session_type" should be "END"}
+    steps %{Then the JSON at "session_type" should be "END"
+            Then the JSON should not have "access_token"}
   else
     steps %{Then the JSON at "session_type" should be "SESSION"
             Then the JSON should have "access_token"}
