@@ -1,13 +1,19 @@
-USER = YAML.load(File.read("features/support/user_data.yml"))
+# USER = YAML.load(File.read("features/support/user_data.yml"))
 
- Given /^the following user exists in canvas:$/ do |users_table|
+Given /^the following user exists in canvas:$/ do |users_table|
   users_table.hashes.each do |hash|  
-     UserInterface.create_user("#{hash["login_id"]}","#{hash["password"]}")
+     CanvasUserInterface.create_user("#{hash["login_id"]}","#{hash["password"]}")
+  end
+end
+
+Then /^the following users are removed from canvas:$/ do |users_table|
+   users_table.hashes.each do |hash|
+     CanvasUserInterface.delete_user("#{hash["login_id"]}")
   end
 end
 
 Given /^I make a new login request$/ do
-  @last_response = JSONSpecInterface.post("/ussd/index",
+  @last_response = JSONSpecInterface.post("#{SEN_URL}",
   :body => {
       :session_id => "session id",
       :session_type => "NEW",
@@ -32,7 +38,7 @@ end
 
 When /^I enter the username "([^\"]*)"$/ do |login_id|
  
-  @last_response = JSONSpecInterface.post("/ussd/index",
+  @last_response = JSONSpecInterface.post("#{SEN_URL}",
   :body => {
        :session_id => "session id",
        :session_type => "SESSION",
@@ -51,7 +57,7 @@ When /^I enter the username "([^\"]*)"$/ do |login_id|
 end   
 
 And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_id|
-  @last_response = JSONSpecInterface.post("/ussd/index",
+  @last_response = JSONSpecInterface.post("#{SEN_URL}",
   :body => {                                
          :session_id => "session id",
          :session_type => "SESSION",

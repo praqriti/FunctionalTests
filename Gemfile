@@ -14,4 +14,5 @@ group :test do
   gem "httparty"
   gem 'cucumber'
   gem "json_spec"
+  gem "pry"
 end

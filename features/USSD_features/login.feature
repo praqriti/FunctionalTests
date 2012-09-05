@@ -4,11 +4,6 @@ Feature:
   As an user
   I want to login to the system using my mobile device
   
-Background:
- Given the following user exists in canvas:
- | login_id          | password      | 
- | user_one@test.com     | password_one  | 
-   
 Scenario Outline: Verify login from USSD
 Given I make a new login request
 And I enter the login credentials as "<login_id>" with password "<password>"

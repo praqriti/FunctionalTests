@@ -6,8 +6,7 @@ module JSONSpecInterface
   
   include HTTParty
    
-   base_uri "http://localhost:3001"
-   default_params :output => 'json'
+   # :output => 'json'
    format :json
   
   def last_json

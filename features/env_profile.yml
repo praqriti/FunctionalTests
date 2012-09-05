@@ -1,5 +1,8 @@
 default:
-    base_url: http://localhost:3000/    
+    canvas_url: http://localhost:3000/
+    sen_url: http://localhost:3001/    
     
 test:
-    base_url: http://www.google.com/
+    canvas_url: http://localhost:3000/
+    sen_url: http://localhost:3001/    
+    
