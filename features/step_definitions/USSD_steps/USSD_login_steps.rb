@@ -67,6 +67,8 @@ And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_i
               }.to_json, 
 
   :headers => { "Content-Type" => "application/json"})
+  
+  p @last_response
         
 end
 
@@ -77,29 +79,21 @@ Then /^I should see the correct authorisation message "([^\"]*)"$/ do |auth_mess
    Then the JSON at "session_id" should be "session id"   
   }
   
-  if auth_message != "Home"
-    steps %{Then the JSON at "session_type" should be "END"
-            Then the JSON should not have "access_token"}
-  else
-    steps %{Then the JSON at "session_type" should be "SESSION"
-            Then the JSON should have "access_token"}
-  end 
+    if auth_message == "Incorrect Username/ Password"
+                steps %{Then the JSON at "session_type" should be "END"
+                        Then the JSON should not have "access_token"}
+    else
+                steps %{Then the JSON at "session_type" should be "SESSION"
+                        Then the JSON should have "access_token"}
+    end 
   
 end
 
-Then /^I should be able to see the home page options correctly$/ do
-  user_id = UserInterface.get_user
+Then /^I should see the home page for user "([^\"]*)"$/ do |login_id|
+  user_id = CanvasUserInterface.find_user(login_id)["id"]
+  p user_id
   steps %{
-    Then the JSON at "response_map" should be:
-    """
-    {
-     "5"=>{"url"=>"sen/users/#{user_id}/courses", "text"=>"Courses"},
-     "4"=>{"url"=>"sen/users/#{user_id}/groups", "text"=>"Groups"},
-     "3"=>{"url"=>"sen/users/#{user_id}/profile", "text"=>"My Profile"},
-     "2"=>{"url"=>"sen/users/#{user_id}/status", "text"=>"Update Status"},
-     "1"=>{"url"=>"sen/users/#{user_id}/notifications", "text"=>"Notifications"}
-    }.to_json
-    """
+   Then the JSON should have "access_token"
   }
 end
 
