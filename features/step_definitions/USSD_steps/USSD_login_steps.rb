@@ -67,33 +67,36 @@ And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_i
               }.to_json, 
 
   :headers => { "Content-Type" => "application/json"})
-  
-  p @last_response
-        
+          
 end
 
-Then /^I should see the correct authorisation message "([^\"]*)"$/ do |auth_message|
+Then /^I should be informed that my username and password is incorrect$/ do 
+auth_message = "Incorrect Username/ Password"
   steps %{
-   
-   Then the JSON at "message" should be "#{auth_message}"
-   Then the JSON at "session_id" should be "session id"   
+    Then the JSON at "message" should be "#{auth_message}"
+    Then the JSON at "session_id" should be "session id"   
+    Then the JSON at "session_type" should be "END"
+    Then the JSON should not have "access_token"
   }
-  
-    if auth_message == "Incorrect Username/ Password"
-                steps %{Then the JSON at "session_type" should be "END"
-                        Then the JSON should not have "access_token"}
-    else
-                steps %{Then the JSON at "session_type" should be "SESSION"
-                        Then the JSON should have "access_token"}
-    end 
-  
 end
+
+Then /^I should be able to see the home page$/ do 
+  auth_message = "Welcome to SEN!\\n"
+  steps %{
+     Then the JSON at "message" should be "#{auth_message}"
+     Then the JSON at "session_id" should be "session id"   
+     Then the JSON at "session_type" should be "SESSION"
+     Then the JSON should have "access_token"
+   }
+end
+
+
 
 Then /^I should see the home page for user "([^\"]*)"$/ do |login_id|
   user_id = CanvasUserInterface.find_user(login_id)["id"]
   p user_id
   steps %{
-   Then the JSON should have "access_token"
+   Then the JSON should have "response_map"
   }
 end
 

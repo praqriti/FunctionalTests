@@ -10,26 +10,26 @@ module CanvasUserInterface
     
   delete_user(login_id)
   
+  
   @last_response =
   JSONSpecInterface.post("#{CANVAS_API}/accounts/#{@account_id}/users",
   :body => {  "user[name]" => "username",
               "pseudonym[unique_id]" => "#{login_id}",
               "pseudonym[password]" => "#{password}"                
               },
-  :headers => { "Authorization" => "Bearer 7sebC7aEqJsX4wK5oUf11KLtY4fZxyBokkNowYOR4La62RjYiUL3q0MotvtZZxor"})
- 
+  :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 end
 
 
 def self.delete_user(login_id)
   user = CanvasUserInterface.find_user(login_id)
         JSONSpecInterface.delete("#{CANVAS_API}/accounts/#{@account_id}/users/#{user["id"]}",
-        :headers => { "Authorization" => "Bearer 7sebC7aEqJsX4wK5oUf11KLtY4fZxyBokkNowYOR4La62RjYiUL3q0MotvtZZxor"})     
+        :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 end
 
 def self.find_user(login_id)
      @users_list = JSONSpecInterface.get("#{CANVAS_API}/accounts/#{@account_id}/users",
-     :headers => { "Authorization" => "Bearer 7sebC7aEqJsX4wK5oUf11KLtY4fZxyBokkNowYOR4La62RjYiUL3q0MotvtZZxor"})
+     :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
      @users_list.parsed_response.each do |user|
         if(user["login_id"]==login_id)
             return user
