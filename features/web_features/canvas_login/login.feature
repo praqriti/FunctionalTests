@@ -4,8 +4,8 @@ Feature:
   As an admin
   I want to login to the system
   
-Scenario: signin test 
+  Scenario: login to canvas as a user using CAS 
 
-Given I am on the 'Sign In' page
-And enter the 'Sign In' details
-Then I should be 'logged in'
+  Given I am on the 'Sign In' page
+  When I enter my login_id "user_one" and password "user_one"
+  Then "user_one" should be successfully logged into canvas

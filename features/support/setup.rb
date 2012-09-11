@@ -1,3 +1,5 @@
+$: << File.join(File.dirname(__FILE__), '../..')
+
 profile = ENV['RAILS_ENV'] || 'default'
 
 ENV_CONFIG = YAML.load(File.read("features/env_profile.yml"))[profile]
@@ -12,7 +14,10 @@ CANVAS_ACCESS_TOKEN = "#{ENV_CONFIG['access_token']}"
 
 ACCOUNT_ID = 1
 
-DEFAULT_CANVAS_USER = CanvasUserInterface.create_user("user_one@test.com","password_one")
+DEFAULT_CANVAS_USER = CanvasUserInterface.create_user("user_one","password_one")
+
+ACCOUNT_ADMIN = YAML.load(File.read("features/support/user_data.yml"))[profile]
+
 
 Capybara.app_host = CANVAS_URL
 Capybara.default_selector = :css
