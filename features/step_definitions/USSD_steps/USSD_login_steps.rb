@@ -20,13 +20,12 @@ Given /^I make a new login request$/ do
       :message => "1",
       }.to_json,
   :headers => { "Content-Type" => "application/json"})
-  
-  steps %{
-     Then the JSON at "message" should be "Enter your username"
-     Then the JSON at "session_id" should be "session id"
-     Then the JSON at "session_type" should be "SESSION"
-   }
-       
+   steps %{
+   Then the JSON at "message" should be "Enter your username"
+   Then the JSON at "session_id" should be "session id"
+   Then the JSON at "session_type" should be "SESSION"
+   Then the JSON should include {"$":"sen/users"}       
+ }
 end
 
 When /^I enter the login credentials as "([^\"]*)" with password "([^\"]*)"$/ do |login_id,password|
@@ -52,6 +51,7 @@ When /^I enter the username "([^\"]*)"$/ do |login_id|
     Then the JSON at "message" should be "Enter your password"
     Then the JSON at "session_id" should be "session id"
     Then the JSON at "session_type" should be "SESSION"
+    Then the JSON should include {"$":"/sen/users/password"}
   }  
   
 end   
@@ -67,7 +67,7 @@ And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_i
               }.to_json, 
 
   :headers => { "Content-Type" => "application/json"})
-          
+            
 end
 
 Then /^I should be informed that my username and password is incorrect$/ do 
@@ -77,26 +77,45 @@ auth_message = "Incorrect Username/ Password"
     Then the JSON at "session_id" should be "session id"   
     Then the JSON at "session_type" should be "END"
     Then the JSON should not have "access_token"
+    Then the JSON should not have "response_map"
   }
 end
-
-Then /^I should be able to see the home page$/ do 
-  auth_message = "Welcome to SEN!\\n"
-  steps %{
-     Then the JSON at "message" should be "#{auth_message}"
-     Then the JSON at "session_id" should be "session id"   
-     Then the JSON at "session_type" should be "SESSION"
-     Then the JSON should have "access_token"
-   }
-end
-
 
 
 Then /^I should see the home page for user "([^\"]*)"$/ do |login_id|
   user_id = CanvasUserInterface.find_user(login_id)["id"]
-  p user_id
-  steps %{
-   Then the JSON should have "response_map"
-  }
+   auth_message = "Welcome to SEN!\\n"
+   steps %{
+      Then the JSON at "message" should be "#{auth_message}"
+      Then the JSON at "session_id" should be "session id"   
+      Then the JSON at "session_type" should be "SESSION"
+      Then the JSON should have "access_token"
+      Then the JSON at "response_map" should be: 
+      """
+      {
+            "5": {
+               "text": "Courses",
+                "url": "sen/users/#{user_id}/courses"
+              },
+              "4": {
+                "text": "Groups",
+                "url": "sen/users/#{user_id}/groups"
+              },
+              "3": {
+                "text": "My Profile",
+                "url": "sen/users/#{user_id}/profile"
+              },
+              "2": {
+                "text": "Update Status",
+                "url": "sen/users/#{user_id}/status"
+              },
+              "1": {
+                "text": "Notifications",
+                "url": "sen/users/#{user_id}/notifications"
+              }
+        }
+      
+      """
+    }
 end
 

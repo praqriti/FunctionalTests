@@ -5,8 +5,6 @@ require 'rubygems'
 module JSONSpecInterface
   
   include HTTParty
-   
-   # :output => 'json'
    format :json
   
   def last_json

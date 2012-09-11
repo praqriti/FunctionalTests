@@ -10,13 +10,9 @@ require 'pry'
 
 $: << File.join(File.dirname(__FILE__), '../..')
 
-require 'features/support/setup'
-
-require 'features/support/json_spec_interface'
-
-require 'features/support/canvas_user_interface'
-
-
-DEFAULT_CANVAS_USER = CanvasUserInterface.create_user("user_one@test.com","password_one")
-
-  
+# require 'features/support/setup'
+# 
+# require 'features/support/json_spec_interface'
+# 
+# require 'features/support/canvas_user_interface'
+#   

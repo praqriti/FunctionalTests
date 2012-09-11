@@ -10,6 +10,10 @@ SEN_URL = "#{ENV_CONFIG['sen_url']}/ussd/index"
 
 CANVAS_ACCESS_TOKEN = "#{ENV_CONFIG['access_token']}"
 
+ACCOUNT_ID = 1
+
+DEFAULT_CANVAS_USER = CanvasUserInterface.create_user("user_one@test.com","password_one")
+
 Capybara.app_host = CANVAS_URL
 Capybara.default_selector = :css
 Capybara.default_driver = :selenium_firefox 
