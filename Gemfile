@@ -15,4 +15,5 @@ group :test do
   gem 'cucumber'
   gem "json_spec"
   gem "pry"
+  gem "capybara-webkit"
 end

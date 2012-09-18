@@ -12,11 +12,12 @@ module CanvasUserInterface
      JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users",
      :body =>  {:pseudonym =>
                {
-                 :unique_id => "user_one",
-                 :password => "password_one"
+                 :unique_id => "#{login_id}",
+                 :password => "#{password}"
                }
                },
      :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"}).to_json
+   p @last_response  
 end
 
 

@@ -14,7 +14,7 @@ CANVAS_ACCESS_TOKEN = "#{ENV_CONFIG['access_token']}"
 
 ACCOUNT_ID = 1
 
-DEFAULT_CANVAS_USER = CanvasUserInterface.create_user("user_one","password_one")
+DEFAULT_CANVAS_USER = CanvasUserInterface.create_user("test_camfed","password_one")
 
 ACCOUNT_ADMIN = YAML.load(File.read("features/support/user_data.yml"))[profile]
 
@@ -24,6 +24,7 @@ Capybara.default_selector = :css
 Capybara.default_driver = :selenium_firefox 
 # Capybara.javascript_driver = :selenium_chrome
 Capybara.javascript_driver = :webkit
+Capybara.default_wait_time = 10
 
 
 

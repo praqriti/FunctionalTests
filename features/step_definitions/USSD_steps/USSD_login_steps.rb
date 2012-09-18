@@ -24,8 +24,9 @@ Given /^I make a new login request$/ do
    Then the JSON at "message" should be "Enter your username"
    Then the JSON at "session_id" should be "session id"
    Then the JSON at "session_type" should be "SESSION"
-   Then the JSON should include {"$":"sen/users"}       
  }
+ # Then the JSON should include {"url"=>"sen/users"}
+ 
 end
 
 When /^I enter the login credentials as "([^\"]*)" with password "([^\"]*)"$/ do |login_id,password|
@@ -42,7 +43,7 @@ When /^I enter the username "([^\"]*)"$/ do |login_id|
        :session_id => "session id",
        :session_type => "SESSION",
        :message => "#{login_id}",
-       :response_map => {"$"=>"sen/users"},
+       :response_map => {"$"=>{"url"=>"sen/users"}},
        }.to_json,
    :headers => { "Content-Type" => "application/json"})
     
@@ -51,9 +52,8 @@ When /^I enter the username "([^\"]*)"$/ do |login_id|
     Then the JSON at "message" should be "Enter your password"
     Then the JSON at "session_id" should be "session id"
     Then the JSON at "session_type" should be "SESSION"
-    Then the JSON should include {"$":"/sen/users/password"}
   }  
-  
+  # Then the JSON should include {"$":"/sen/users/password"}
 end   
 
 And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_id|
@@ -63,10 +63,11 @@ And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_i
          :session_type => "SESSION",
          :params => {"username" => "#{login_id}"},
          :message => "#{password}",
-         :response_map => {"$"=>"sen/users/password"},
+         :response_map => {"$"=>{"url"=>"sen/users/password"}},
               }.to_json, 
 
   :headers => { "Content-Type" => "application/json"})
+    
             
 end
 
