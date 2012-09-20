@@ -63,7 +63,7 @@ When /^User "([^\"]*)" replies with new status message "([^\"]*)"$/ do |login_id
         :access_token =>"#{@last_response.parsed_response["access_token"]}",
         :response_map => 
          { "$"=>
-            {"url"=>"sen/users/1/status/create"},
+            {"url"=>"sen/users/#{user_id}/status/create"},
            "#"=>
             {"text"=>"Back","url"=>"sen/users/#{user_id}"}
          }
@@ -71,6 +71,47 @@ When /^User "([^\"]*)" replies with new status message "([^\"]*)"$/ do |login_id
     :headers => { "Content-Type" => "application/json"})
   
 end
+
+When /^User "([^\"]*)" replies with a new status message:$/ do |login_id,string|
+  user_id = CanvasUserInterface.find_user(login_id)["id"]
+  
+  @last_response = JSONSpecInterface.post("#{SEN_URL}",
+    :body => {
+        :session_id => "session id",
+        :session_type => "SESSION",
+        :message => "#{string}",
+        :access_token =>"#{@last_response.parsed_response["access_token"]}",
+        :response_map => 
+         { "$"=>
+            {"url"=>"sen/users/#{user_id}/status/create"},
+           "#"=>
+            {"text"=>"Back","url"=>"sen/users/#{user_id}"}
+         }
+        }.to_json,
+    :headers => { "Content-Type" => "application/json"})
+  
+end
+
+When /^User "([^\"]*)" replies "#" to go back to home page$/ do |login_id|
+  user_id = CanvasUserInterface.find_user(login_id)["id"]
+  
+  @last_response = JSONSpecInterface.post("#{SEN_URL}",
+    :body => {
+        :session_id => "session id",
+        :session_type => "SESSION",
+        :message => "#",
+        :access_token =>"#{@last_response.parsed_response["access_token"]}",
+        :response_map => 
+         { "$"=>
+            {"url"=>"sen/users/#{user_id}/status/create"},
+           "#"=>
+            {"text"=>"Back","url"=>"sen/users/#{user_id}"}
+         }
+        }.to_json,
+    :headers => { "Content-Type" => "application/json"})
+  
+end
+
 
 
 Then /^User "([^\"]*)" should get a confirmation that the status was updated successfully$/ do |login_id|
