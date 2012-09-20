@@ -25,7 +25,6 @@ Given /^I make a new login request$/ do
    Then the JSON at "session_id" should be "session id"
    Then the JSON at "session_type" should be "SESSION"
  }
- # Then the JSON should include {"url"=>"sen/users"}
  
 end
 
@@ -53,7 +52,6 @@ When /^I enter the username "([^\"]*)"$/ do |login_id|
     Then the JSON at "session_id" should be "session id"
     Then the JSON at "session_type" should be "SESSION"
   }  
-  # Then the JSON should include {"$":"/sen/users/password"}
 end   
 
 And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_id|

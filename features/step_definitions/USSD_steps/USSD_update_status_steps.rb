@@ -32,11 +32,12 @@ And /^User "([^\"]*)" chooses the option to "update status"$/ do |login_id|
            }     
        }.to_json,
    :headers => { "Content-Type" => "application/json"})
-   
+      
     steps %{
     Then the JSON at "session_id" should be "session id"
     Then the JSON at "session_type" should be "SESSION"
     Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
+    
     Then the JSON at "response_map" should be: 
       """
            {
@@ -48,7 +49,7 @@ And /^User "([^\"]*)" chooses the option to "update status"$/ do |login_id|
       
       """  
       }  
-      # Then the JSON at "message" should include "Enter your new status"
+      
     
 end
 
@@ -112,6 +113,17 @@ When /^User "([^\"]*)" replies "#" to go back to home page$/ do |login_id|
   
 end
 
+Then /^User "([^\"]*)" should see his previously updated message "([^\"]*)"$/ do |login_id,message|
+  steps %{
+      Then the JSON at "message" should be "#{message}\\n\\nEnter your new status"
+    }
+end
+
+Then /^User "([^\"]*)" should see his previously updated message:$/ do |login_id,string|
+  steps %{
+      Then the JSON at "message" should be "#{string}\\n\\nEnter your new status"
+    }
+end
 
 
 Then /^User "([^\"]*)" should get a confirmation that the status was updated successfully$/ do |login_id|
