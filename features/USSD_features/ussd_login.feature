@@ -3,6 +3,11 @@ Feature:
   In order to access my profile 
   As an user
   I want to login to the system using my mobile device
+
+Background:
+Given the following user exists in canvas:
+|LOGIN_ID|PASSWORD|
+|test_camfed|password_one|
   
 
 Scenario: Verify login from USSD
@@ -17,12 +22,13 @@ And I enter the login credentials as "<LOGIN_ID>" with password "<PASSWORD>"
 Then I should be informed that my username and password is incorrect
 
 Examples:
-| LOGIN_ID | PASSWORD     | 
-| user_one | password_two | 
-| user_one |              |
-|          | password_two |
-|          |              |
-| user_two | password_two |
+| LOGIN_ID    | PASSWORD     | 
+| test_camfed | password_two | 
+| test_camfed |              |
+|             | password_two |
+|             |              |
+| test_camfed1| password_two |
+
 
 
 

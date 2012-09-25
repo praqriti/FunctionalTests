@@ -1,14 +1,12 @@
-# USER = YAML.load(File.read("features/support/user_data.yml"))
-
 Given /^the following user exists in canvas:$/ do |users_table|
   users_table.hashes.each do |hash|  
-     CanvasUserInterface.create_user("#{hash["login_id"]}","#{hash["password"]}")
+     CanvasUserInterface.create_user("#{hash["LOGIN_ID"]}","#{hash["PASSWORD"]}")
   end
 end
 
 Then /^the following users are removed from canvas:$/ do |users_table|
    users_table.hashes.each do |hash|
-     CanvasUserInterface.delete_user("#{hash["login_id"]}")
+     CanvasUserInterface.delete_user("#{hash["LOGIN_ID"]}")
   end
 end
 
@@ -25,7 +23,7 @@ Given /^I make a new login request$/ do
    Then the JSON at "session_id" should be "session id"
    Then the JSON at "session_type" should be "SESSION"
  }
- 
+  
 end
 
 When /^I enter the login credentials as "([^\"]*)" with password "([^\"]*)"$/ do |login_id,password|
@@ -65,8 +63,7 @@ And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_i
               }.to_json, 
 
   :headers => { "Content-Type" => "application/json"})
-    
-            
+         
 end
 
 Then /^I should be informed that my username and password is incorrect$/ do 

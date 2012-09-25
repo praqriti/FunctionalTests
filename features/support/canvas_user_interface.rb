@@ -7,17 +7,18 @@ module CanvasUserInterface
   
   def self.create_user(login_id,password)
   delete_user(login_id)  
-  
-  @last_response =
-     JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users",
-     :body =>  {:pseudonym =>
-               {
-                 :unique_id => "#{login_id}",
-                 :password => "#{password}"
-               }
-               },
-     :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"}).to_json
-   p @last_response  
+    
+     @last_response =
+        JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users",
+        :body =>  {:pseudonym =>
+                  {
+                    :unique_id => "#{login_id}",
+                    :password => "#{password}"
+                  }
+                  },
+        :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"}) 
+        
+     @user_id = @last_response.parsed_response["id"]
 end
 
 
@@ -27,9 +28,7 @@ def self.delete_user(login_id)
         @delete_response = JSONSpecInterface.delete("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users/#{user["id"]}",
         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
         p "user deleted"
-  else
-        p "could not delete user"
-  end
+      end
 end
 
 def self.find_user(login_id)

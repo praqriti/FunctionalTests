@@ -12,12 +12,9 @@ SEN_URL = "#{ENV_CONFIG['sen_url']}/ussd/index"
 
 CANVAS_ACCESS_TOKEN = "#{ENV_CONFIG['access_token']}"
 
-ACCOUNT_ID = 1
-
-DEFAULT_CANVAS_USER = CanvasUserInterface.create_user("test_camfed","password_one")
+ACCOUNT_ID = 2
 
 ACCOUNT_ADMIN = YAML.load(File.read("features/support/user_data.yml"))[profile]
-
 
 Capybara.app_host = CANVAS_URL
 Capybara.default_selector = :css
