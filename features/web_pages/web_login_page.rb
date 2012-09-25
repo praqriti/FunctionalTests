@@ -1,4 +1,4 @@
-class SignIn < SitePrism::Page
+class Login < SitePrism::Page
   set_url "/login"
   set_url_matcher /login/
   
