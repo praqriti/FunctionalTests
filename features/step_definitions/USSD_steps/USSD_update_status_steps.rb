@@ -49,7 +49,7 @@ Then /^User "([^\"]*)" is given the option to update status or navigate back to 
             {
               "$":
               {"url":"sen/users/#{user_id}/status/create"},
-              "#":
+              "0":
               {"text":"Back","url":"sen/users/#{user_id}"}
            }
 
