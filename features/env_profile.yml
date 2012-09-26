@@ -1,6 +1,6 @@
 default:
     canvas_url: http://localhost:3000
-    sen_url: http://localhost:3001
+    sen_url: http://localhost:3003
     access_token: Bearer mfEHJEYcKreM9bbijrS3oObVUKu0iFI7rk7SNfoIRYlRBhUrBWf3fY0puuNisbLD
     
 test:
