@@ -1,0 +1,6 @@
+default:
+ { id: , name: local_admin, password: password, login_id: anujjam@thoughtworks.com }
+ 
+test:
+ { id: , name: test_admin, password: camfed, login_id: camfed@thoughtworks.com } 
+

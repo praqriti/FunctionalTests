@@ -1,0 +1,10 @@
+default:
+    canvas_url: http://localhost
+    sen_url: http://localhost:3002
+    access_token: Bearer obbSivMVhix83xUSXVZ0xe76kT3Wa8193oaIalHhxboJ5AlnxqIplShd1TBiAWYj    
+    
+test:
+    canvas_url: http://localhost
+    sen_url: http://localhost:3002
+    access_token: Bearer obbSivMVhix83xUSXVZ0xe76kT3Wa8193oaIalHhxboJ5AlnxqIplShd1TBiAWYj   
+    

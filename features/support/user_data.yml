@@ -1,6 +1,0 @@
-default:
- { name: local_admin, password: password, login_id: psingh@thoughtworks.com }
- 
-test:
- { name: camfed_admin, password: camfed, login_id: camfed@thoughtworks.com } 
-
