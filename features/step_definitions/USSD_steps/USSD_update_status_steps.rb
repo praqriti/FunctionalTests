@@ -37,7 +37,6 @@ And /^User "([^\"]*)" chooses the option to "update status"$/ do |login_id|
 end
 
 Then /^User "([^\"]*)" is given the option to update status or navigate back to home page$/ do |login_id|
-  p @last_response
   user_id = CanvasUserInterface.find_user(login_id)["id"]
      steps %{
      Then the JSON at "session_id" should be "session id"
@@ -70,7 +69,7 @@ When /^User "([^\"]*)" replies with new status message "([^\"]*)"$/ do |login_id
         :response_map => 
          { "$"=>
             {"url"=>"sen/users/#{user_id}/status/create"},
-           "#"=>
+           "0"=>
             {"text"=>"Back","url"=>"sen/users/#{user_id}"}
          }
         }.to_json,
@@ -90,7 +89,7 @@ When /^User "([^\"]*)" replies with a new status message:$/ do |login_id,string|
         :response_map => 
          { "$"=>
             {"url"=>"sen/users/#{user_id}/status/create"},
-           "#"=>
+           "0"=>
             {"text"=>"Back","url"=>"sen/users/#{user_id}"}
          }
         }.to_json,

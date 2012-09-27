@@ -20,10 +20,10 @@ Then User "test_camfed" should see his previously updated message "new status"
 
 Scenario: Verify blank status update from USSD
 Given User "test_camfed" chooses the option to "update status"
-When User "test_camfed" replies with new status message ""
+When User "test_camfed" replies with new status message " "
 And User "test_camfed" should get a confirmation that the status was updated successfully
 And User "test_camfed" chooses the option to "update status"
-Then User "test_camfed" should see his previously updated message ""
+Then User "test_camfed" should see his previously updated message " "
 
 
 Scenario: Verify back from update page from USSD
@@ -31,7 +31,7 @@ Given User "test_camfed" replies "#" to go back to home page
 Then I should see the home page for user "test_camfed"
 
 
-Scenario: Verify no error on status update longer than max alllowed length from USSD
+Scenario: Verify no error on status update longer than max allowed length from USSD
 Given User "test_camfed" chooses the option to "update status"
 When User "test_camfed" replies with a new status message: 
 """
