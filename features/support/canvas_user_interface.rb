@@ -6,7 +6,7 @@ module CanvasUserInterface
 
   
   def self.create_user(login_id,password)
-  delete_user(login_id)  
+  # delete_user(login_id)  
     # for i in (0..400).step(1)
      @last_response =
         JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users",

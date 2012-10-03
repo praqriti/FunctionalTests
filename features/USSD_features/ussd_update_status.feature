@@ -5,50 +5,54 @@ Feature:
   I want to update my status using my mobile device
   
 Background:
+Given the following user exists in canvas:
+|LOGIN_ID|PASSWORD|
+|test_ussd_login|password|
+
 Given I make a new login request
-When I enter the login credentials as "test_camfed" with password "password_one"
-And I should see the home page for user "test_camfed"
+When I enter the login credentials as "test_ussd_login" with password "password"
+And I should see the home page for user "test_ussd_login"
   
 
 Scenario: Update and view new status update from USSD
-Given User "test_camfed" chooses the option to "update status"
-When User "test_camfed" is given the option to update status or navigate back to home page
-And User "test_camfed" replies with new status message "new status"
-And User "test_camfed" should get a confirmation that the status was updated successfully
-And User "test_camfed" chooses the option to "update status"
-Then User "test_camfed" should see his previously updated message "new status"
+Given User "test_ussd_login" chooses the option to "update status"
+When User "test_ussd_login" is given the option to update status or navigate back to home page
+And User "test_ussd_login" replies with new status message "new status"
+And User "test_ussd_login" should get a confirmation that the status was updated successfully
+And User "test_ussd_login" chooses the option to "update status"
+Then User "test_ussd_login" should see his previously updated message "new status"
 
 Scenario: Verify blank status update from USSD
-Given User "test_camfed" chooses the option to "update status"
-When User "test_camfed" replies with new status message " "
-And User "test_camfed" should get a confirmation that the status was updated successfully
-And User "test_camfed" chooses the option to "update status"
-Then User "test_camfed" should see his previously updated message " "
+Given User "test_ussd_login" chooses the option to "update status"
+When User "test_ussd_login" replies with new status message " "
+And User "test_ussd_login" should get a confirmation that the status was updated successfully
+And User "test_ussd_login" chooses the option to "update status"
+Then User "test_ussd_login" should see his previously updated message " "
 
 
 Scenario: Verify back from update page from USSD
-Given User "test_camfed" replies "#" to go back to home page
-Then I should see the home page for user "test_camfed"
+Given User "test_ussd_login" replies "#" to go back to home page
+Then I should see the home page for user "test_ussd_login"
 
 
 Scenario: Verify no error on status update longer than max alllowed length from USSD
-Given User "test_camfed" chooses the option to "update status"
-When User "test_camfed" replies with a new status message: 
+Given User "test_ussd_login" chooses the option to "update status"
+When User "test_ussd_login" replies with a new status message: 
 """
 12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 """
-Then User "test_camfed" should get a confirmation that the status was updated successfully
-And User "test_camfed" chooses the option to "update status"
-Then User "test_camfed" should see his previously updated message:
+Then User "test_ussd_login" should get a confirmation that the status was updated successfully
+And User "test_ussd_login" chooses the option to "update status"
+Then User "test_ussd_login" should see his previously updated message:
 """
 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567...
 """
 
 Scenario: Verify user not allowed to continue with incorrect access token
 
-Given User "test_camfed" chooses the option to "update status" with incorrect access_token
+Given User "test_ussd_login" chooses the option to "update status" with incorrect access_token
 Then User recieves an error and the session is ended
-# And User "test_camfed" is not allowed to "update status" after the session has ended
+# And User "test_ussd_login" is not allowed to "update status" after the session has ended
 
 @wip @manual
 Scenario: Verify one user cannot use another users access token
@@ -68,7 +72,7 @@ Scenario: One user cannot continue with other users access token
 
 @wip
 Scenario: Verify that error is given to the user when she enters an invalid option
-Given User "test_camfed" sends an invalid option "9" from "home" page
+Given User "test_ussd_login" sends an invalid option "9" from "home" page
 Then User is given an error message
 
 

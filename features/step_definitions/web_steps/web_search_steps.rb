@@ -4,8 +4,9 @@ Given /^User lands on the search page$/ do
   @app.search.all_there?
 end
 
-When /^User clicks on "([^\"]*)" under connections tab$/ do
-  
+When /^User clicks on "search user" under connections tab$/ do
+ page.find("#{@app.home.menu.connections}").trigger(:mouseover)
+ # @app.home.menu.connections.search_users_link.click
 end
 
 

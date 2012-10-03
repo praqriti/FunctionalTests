@@ -7,8 +7,8 @@ default:
 test:
     canvas_url: http://192.168.31.7
     sen_url: http://192.168.31.7:3001
-    access_token: Bearer ze7GduXcM5fLl4d643PtPf4nQ3WK29CTNzeFxPsV861JtXIZgwbAilwtwCOafr5S  
-    account_id: 1 
+    access_token: Bearer Jpa3ZkP3AX2Tdo7PIPCqKWChQmjtlEopdhaWx77VDo1Tlr9dzYSHN6yuu2EishYS  
+    account_id: 2
 
 int:
     canvas_url: http://192.168.31.6

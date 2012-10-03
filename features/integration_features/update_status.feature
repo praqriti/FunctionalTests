@@ -4,9 +4,9 @@ Feature:
   As an user
   I should be able to see my changes from both mobile and web
   
-  @manual
+  @wip
   Scenario: Update status should be reflected on both canvas and ussd app
   
-  @manual
+  @wip
   Scenario: View status should be reflected on both canvas and ussd app
   
