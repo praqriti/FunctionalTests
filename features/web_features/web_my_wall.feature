@@ -8,11 +8,11 @@ Feature:
   Background:
    Given the following user exists in canvas:
     |LOGIN_ID|PASSWORD|
-    |web_test_user|password|
+    |camfed_web_user|password|
 
   When I am on the Sign In page
-  And I enter my login_id "web_test_user" and password "web_test_user"
-  And "web_test_user" should be successfully logged into canvas
+  And I enter my login_id "camfed_web_user" and password "camfed_web_user"
+  And "camfed_web_user" should be successfully logged into canvas
   When User "updates" the status message as "status message"
   Then User status "status message" is updated successfully
   
