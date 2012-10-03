@@ -7,7 +7,7 @@ module CanvasUserInterface
   
   def self.create_user(login_id,password)
   delete_user(login_id)  
-    
+    # for i in (0..400).step(1)
      @last_response =
         JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users",
         :body =>  {:pseudonym =>
@@ -16,9 +16,8 @@ module CanvasUserInterface
                     :password => "#{password}"
                   }
                   },
-        :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"}) 
-        
-     @user_id = @last_response.parsed_response["id"]
+        :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})         
+      # end
 end
 
 
@@ -32,6 +31,7 @@ def self.delete_user(login_id)
 end
 
 def self.find_user(login_id)
+  @users_exist=false
      @users_list = JSONSpecInterface.get("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users",
      :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
      @users_list.parsed_response.each do |user|
@@ -39,13 +39,11 @@ def self.find_user(login_id)
           @user_exists=true 
             return user
             p user
-        else
-          @user_exists=false      
-        end  
+        end
+      end
       end  
-    end
-    
 end
+
 World(CanvasUserInterface)
 
 #handle failure

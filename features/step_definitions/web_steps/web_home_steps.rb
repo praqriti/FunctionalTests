@@ -1,4 +1,7 @@
 Given /^User lands on the home page$/ do
+  steps %{
+    And I wait 10 seconds
+  }
    @app.redirect.load
    @app.home.load
    @app.home.wait_until_status_message_visible

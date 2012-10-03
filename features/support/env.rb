@@ -17,4 +17,8 @@ After('@leave_the_window_open') do |scenario|
   end
 end
 
+After do 
+  Capybara.reset_sessions!
+end
+
 

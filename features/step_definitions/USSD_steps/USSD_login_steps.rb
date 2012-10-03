@@ -26,6 +26,10 @@ Given /^I make a new login request$/ do
   
 end
 
+Given /^create users$/ do
+  CanvasUserInterface.create_user("","")
+end
+
 When /^I enter the login credentials as "([^\"]*)" with password "([^\"]*)"$/ do |login_id,password|
   steps %{
     When I enter the username "#{login_id}"
@@ -80,6 +84,7 @@ end
 
 Then /^I should see the home page for user "([^\"]*)"$/ do |login_id|
   user_id = CanvasUserInterface.find_user(login_id)["id"]
+  p user_id
    auth_message = "Welcome to SEN!\\n"
    steps %{
       Then the JSON at "message" should be "#{auth_message}"
