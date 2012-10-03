@@ -1,6 +1,6 @@
 class Login < SitePrism::Page
   set_url "/login"
-  set_url_matcher /login/
+  set_url_matcher /cas\/login/
   
   element :forgot_password, "login_forgot_password.forgot_password_link"
   element :email, "input#username"

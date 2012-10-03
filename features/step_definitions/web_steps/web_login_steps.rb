@@ -1,10 +1,8 @@
 Then /^I am on the Sign In page$/ do
   @app = App.new
-  
-  @app.login.load
+  @app.home.load
   @app.login.wait_until_sign_in_button_visible
   @app.login.should be_displayed
-  @app.login.current_url.should include "/cas/login?service"
 end
 
 
@@ -20,9 +18,14 @@ Then /^I am given an appropriate error$/ do
 end
 
 Then /^"([^\"]*)" should be successfully logged into canvas$/ do |login_id|
+  
   steps %{
     Then User lands on the home page
   }   
   @app.home.about_page_link.text.should == login_id
+end
+
+When /^I wait (\d+) seconds?$/ do |seconds|
+  sleep seconds.to_i
 end
 
