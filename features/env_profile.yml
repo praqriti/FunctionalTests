@@ -2,9 +2,11 @@ default:
     canvas_url: http://localhost:3000
     sen_url: http://localhost:3003
     access_token: Bearer mfEHJEYcKreM9bbijrS3oObVUKu0iFI7rk7SNfoIRYlRBhUrBWf3fY0puuNisbLD
+    account_id: 2
     
 test:
     canvas_url: http://192.168.31.7
     sen_url: http://192.168.31.7:3001
-    access_token: Bearer bPcKwdHT9E0hZlGlbgy3tZE7Z1aMYw4hUJId8Jm642XUXuuoRHkRlndGS8OCXHb8   
+    access_token: Bearer ze7GduXcM5fLl4d643PtPf4nQ3WK29CTNzeFxPsV861JtXIZgwbAilwtwCOafr5S
+    account_id: 1
     
