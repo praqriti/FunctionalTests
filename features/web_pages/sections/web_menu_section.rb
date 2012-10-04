@@ -5,7 +5,6 @@ class MenuSection < SitePrism::Section
   element :grades, "li#grades_menu_item.menu-item a.menu-item-no-drop"
   element :assignments, "li#assignments_menu_item.menu-item a.menu-item-no-drop"
   element :calendar, "li#calendar_menu_item.menu-item a.menu-item-no-drop"
-  
-  section :connections, ConnectionsSection, "li#connections_menu_item.menu-item a"
+  section :connections, ConnectionsSection, "ul#menu li#connections_menu_item.menu-item a.menu-item-title"
   
 end

@@ -1,4 +1,4 @@
-@javascript
+@wip
 Feature:
 
   In order to view my comments
@@ -8,11 +8,11 @@ Feature:
   Background:
    Given the following user exists in canvas:
     |LOGIN_ID|PASSWORD|
-    |web_test_user|web_test_user|
+    |camfed_web_user|password|
 
   When I am on the Sign In page
-  And I enter my login_id "rrastogi" and password "rrastogi"
-  And "rrastogi" should be successfully logged into canvas
+  And I enter my login_id "camfed_web_user" and password "camfed_web_user"
+  And "camfed_web_user" should be successfully logged into canvas
   When User "updates" the status message as "status message"
   Then User status "status message" is updated successfully
   
@@ -22,7 +22,6 @@ Feature:
   And User can view her latest status message "status message"
   And User can view the comments attached to the status message
   And User can view the information of the user who has commented on the status message
-  
   
    Scenario: Verify user can comment on her status message
    Given User clicks on My Wall
