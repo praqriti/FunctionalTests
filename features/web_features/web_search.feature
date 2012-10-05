@@ -8,14 +8,14 @@ Feature:
   Background:
   Given the following user exists in canvas:
        |LOGIN_ID|PASSWORD|
-       |camfed_web_user|password|
+       |camfed_webtest_user|password|
        |search_user_1|password|
        |search_user_2|password|
      
    
   When I am on the Sign In page
-  And I enter my login_id "camfed_web_user" and password "camfed_web_user"
-  And "camfed_web_user" should be successfully logged into canvas
+  And I enter my login_id "camfed_webtest_user" and password "camfed_webtest_user"
+  And "camfed_webtest_user" should be successfully logged into canvas
   And User clicks on "search user" under connections tab
   
   Scenario: Verify User can make a blank search   
