@@ -77,7 +77,7 @@ When /^User "([^\"]*)" replies with new status message "([^\"]*)"$/ do |login_id
   
 end
 
-When /^User "([^\"]*)" replies with a new status message:$/ do |login_id,string|
+When /^User "([^\"]*)" replies with new status message:$/ do |login_id,string|
   user_id = CanvasUserInterface.find_user(login_id)["id"]
   
   @last_response = JSONSpecInterface.post("#{SEN_URL}",

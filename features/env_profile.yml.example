@@ -7,11 +7,11 @@ default:
 test:
     canvas_url: http://192.168.31.7
     sen_url: http://192.168.31.7:3001
-    access_token: Bearer Jpa3ZkP3AX2Tdo7PIPCqKWChQmjtlEopdhaWx77VDo1Tlr9dzYSHN6yuu2EishYS  
+    access_token: Bearer Uw9flvBP5j8l7Vd4ABztVVLB8e4yJx2A5g6EGI7j58Yd2ySJs7qWqliltROUsKcB  
     account_id: 2
 
 int:
     canvas_url: http://192.168.31.6
     sen_url: http://192.168.31.6:8383
-    access_token: Bearer Bav7rm5WtZ2SkP1fPXAE4tirBAHWu0KauzsDng8POyFg1N63010v6ZhcMx0dN8Vk
+    access_token: Bearer D9x69VKSnKAwFHciedUyuo1f5e7fktn0ZD9sJ1FPmMNzoaDwaxZs4NQaZwBF0tbo
     account_id: 2

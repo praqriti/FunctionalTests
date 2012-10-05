@@ -38,7 +38,6 @@ def self.find_user(login_id)
         if(user["login_id"]==login_id)
           @user_exists=true 
             return user
-            p user
         end
       end
       end  

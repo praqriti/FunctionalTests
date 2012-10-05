@@ -32,13 +32,13 @@ Feature:
    |search user 1|
    |search user 2|
    
-   Scenario: Verify User can make a successful search 
-    Given User searches for "user 1" and clicks search
-    When User should see the users:
-    |LOGIN_ID|
-    |search user 1|
-    |search user 2|
-    Then User must be able to navigate to the wall of  "search user 1"
+  Scenario: Verify User can make a successful search 
+  Given User searches for "user 1" and clicks search
+  When User should see the users:
+  |LOGIN_ID|
+  |search user 1|
+  |search user 2|
+  Then User must be able to navigate to the wall of  "search user 1"
     
     
     
