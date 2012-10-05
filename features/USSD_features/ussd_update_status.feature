@@ -1,3 +1,4 @@
+@wip
 Feature:
 
   In order utilise the social aspect of canvas
@@ -35,7 +36,7 @@ Given User "test_ussd_login" replies "#" to go back to home page
 Then I should see the home page for user "test_ussd_login"
 
 
-Scenario: Verify no error on status update longer than max alllowed length from USSD
+Scenario: Verify no error on status update longer than max allowed length from USSD
 Given User "test_ussd_login" chooses the option to "update status"
 When User "test_ussd_login" replies with new status message: 
 """
