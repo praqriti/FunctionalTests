@@ -26,5 +26,10 @@ Capybara.default_wait_time = 10
 Capybara.server_boot_timeout = 50
 # Capybara.reset
 
+if (ENV['RAILS_ENV'] == 'integration')
+    @headless = Headless.new
+    @headless.start
+end
+
 
 

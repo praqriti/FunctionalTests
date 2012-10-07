@@ -10,7 +10,7 @@ test:
     access_token: Bearer Uw9flvBP5j8l7Vd4ABztVVLB8e4yJx2A5g6EGI7j58Yd2ySJs7qWqliltROUsKcB  
     account_id: 2
 
-int:
+integration:
     canvas_url: http://192.168.31.6
     sen_url: http://192.168.31.6:8383
     access_token: Bearer D9x69VKSnKAwFHciedUyuo1f5e7fktn0ZD9sJ1FPmMNzoaDwaxZs4NQaZwBF0tbo
