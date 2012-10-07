@@ -10,12 +10,14 @@ require 'pry'
 require 'selenium-webdriver'
 # ENVIRONMENT = YAML.load(File.read("features/env_profile.yml"))['default']
 
-# if Capybara.current_driver == :selenium
-#   require 'headless'
-#  p "using headless"
-#   headless = Headless.new
-#   headless.start
-# end
+if Capybara.current_driver == :selenium
+  require 'headless'
+ p "using headless"
+  headless = Headless.new
+  headless.start
+end
+
+# @headless.destroy
 
 After('@leave_the_window_open') do |scenario|
   if scenario.respond_to?(:status) && scenario.status == :failed

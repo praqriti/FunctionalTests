@@ -26,6 +26,7 @@ GEM
     ffi (1.1.5)
     gherkin (2.11.2)
       json (>= 1.4.6)
+    headless (0.3.1)
     httparty (0.9.0)
       multi_json (~> 1.0)
       multi_xml
@@ -80,6 +81,7 @@ DEPENDENCIES
   capybara-webkit
   cucumber
   database_cleaner
+  headless
   httparty
   json_spec
   launchy
