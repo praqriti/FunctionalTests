@@ -7,13 +7,13 @@ Feature:
 Background:
 Given the following user exists in canvas:
 |LOGIN_ID|PASSWORD|
-|camfed_test|password_one|
+|camfed_ussd_test|password_one|
   
 
 Scenario: Verify login from USSD
 Given I make a new login request
-When I enter the login credentials as "camfed_test" with password "password_one"
-Then I should see the home page for user "camfed_test"
+When I enter the login credentials as "camfed_ussd_test" with password "password_one"
+Then I should see the home page for user "camfed_ussd_test"
 
   
 Scenario Outline: Verify Incorrect login details

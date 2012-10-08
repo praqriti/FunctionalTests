@@ -8,7 +8,6 @@ require 'site_prism'
 require 'yaml'
 require 'pry'
 require 'selenium-webdriver'
-require 'headless'
 
 # ENVIRONMENT = YAML.load(File.read("features/env_profile.yml"))['default']
 
@@ -19,9 +18,10 @@ After('@leave_the_window_open') do |scenario|
   end
 end
 
-After do 
-  Capybara.reset_sessions!
-  @headless.destroy 
-end
+# After do 
+#   if Capybara.current_driver == :webkit
+#   @headless.destroy 
+# end
+# end
 
 
