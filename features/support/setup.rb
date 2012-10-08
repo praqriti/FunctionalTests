@@ -26,11 +26,4 @@ Capybara.default_wait_time = 10
 Capybara.server_boot_timeout = 50
 # Capybara.reset
 
-if Capybara.current_driver == :webkit
-  require 'headless'
-
-  headless = Headless.new
-  headless.start
-end
-
 

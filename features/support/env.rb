@@ -17,11 +17,3 @@ After('@leave_the_window_open') do |scenario|
     STDIN.getc
   end
 end
-
-# After do 
-#   if Capybara.current_driver == :webkit
-#   @headless.destroy 
-# end
-# end
-
-
