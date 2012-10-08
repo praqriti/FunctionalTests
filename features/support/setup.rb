@@ -18,7 +18,7 @@ ACCOUNT_ADMIN = YAML.load(File.read("features/support/user_data.yml"))[profile]
 
 Capybara.app_host = CANVAS_URL
 Capybara.default_selector = :css
-Capybara.default_driver = :webkit
+Capybara.default_driver = :selenium_firefox
 Capybara.run_server = false
 # Capybara.javascript_driver = :selenium_chrome
 Capybara.javascript_driver = :webkit
