@@ -31,7 +31,9 @@ Then User "camfed_ussd_test" should see his previously updated message " "
 
 
 Scenario: Verify back from update page from USSD
-Given User "camfed_ussd_test" replies "#" to go back to home page
+Given User "camfed_ussd_test" chooses the option to "update status"
+When User "camfed_ussd_test" is given the option to update status or navigate back to home page
+Given User "camfed_ussd_test" replies "0" from update status page to go back to home page
 Then I should see the home page for user "camfed_ussd_test"
 
 

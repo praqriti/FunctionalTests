@@ -97,19 +97,19 @@ When /^User "([^\"]*)" replies with new status message:$/ do |login_id,string|
   
 end
 
-When /^User "([^\"]*)" replies "#" to go back to home page$/ do |login_id|
+When /^User "([^\"]*)" replies "0" from update status page to go back to home page$/ do |login_id|
   user_id = CanvasUserInterface.find_user(login_id)["id"]
   
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
     :body => {
         :session_id => "session id",
         :session_type => "SESSION",
-        :message => "#",
+        :message => "0",
         :access_token =>"#{@last_response.parsed_response["access_token"]}",
         :response_map => 
          { "$"=>
             {"url"=>"sen/users/#{user_id}/status/create"},
-           "#"=>
+           "0"=>
             {"text"=>"Back","url"=>"sen/users/#{user_id}"}
          }
         }.to_json,
