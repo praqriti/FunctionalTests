@@ -6,13 +6,12 @@ Feature:
   I want to login to the system
   
   Scenario: login to canvas as a user using CAS
-  
   Given the following user exists in canvas:
-  |LOGIN_ID|PASSWORD|
-  |camfed_webtest_user|password| 
-  
+  |USER|
+  |rocket|
+
   When I am on the Sign In page
-  And I enter my login_id "camfed_webtest_user" and password "camfed_webtest_user"
-  Then "camfed_webtest_user" should be successfully logged into canvas
+  And User "rocket" logs into Canvas with her credentials
+  Then "rocket" should see the Canvas home page
   Then User logs out
   

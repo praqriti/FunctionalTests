@@ -5,10 +5,11 @@ Then /^I am on the Sign In page$/ do
   @app.login.should be_displayed
 end
 
+When /^User "([^\"]*)" logs into Canvas with her credentials$/ do |user|
+  user = CanvasUserInterface.get_user
 
-When /^I enter my login_id "([^\"]*)" and password "([^\"]*)"$/ do |login_id,password|
-  @app.login.email.set "#{login_id}"
-  @app.login.password.set "#{password}"
+  @app.login.email.set "#{user.login_id}"
+  @app.login.password.set "#{user.password}"
   @app.login.sign_in_button.click
 end 
   
@@ -17,7 +18,8 @@ Then /^I am given an appropriate error$/ do
   @app.login.message_box.text.should == "Incorrect username or password."
 end
 
-Then /^"([^\"]*)" should be successfully logged into canvas$/ do |login_id|
+Then /^"([^\"]*)" should see the Canvas home page$/ do |user|
+  login_id = CanvasUserInterface.get_user.login_id
   
   steps %{
     Then User lands on the home page

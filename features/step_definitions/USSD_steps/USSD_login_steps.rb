@@ -1,16 +1,17 @@
 Given /^the following user exists in canvas:$/ do |users_table|
   users_table.hashes.each do |hash|  
-     CanvasUserInterface.create_user("#{hash["LOGIN_ID"]}","#{hash["PASSWORD"]}")
+     CanvasUserInterface.create_user("#{hash["USER"]}")
   end
 end
 
-Then /^the following users are removed from canvas:$/ do |users_table|
-   users_table.hashes.each do |hash|
-     CanvasUserInterface.delete_user("#{hash["LOGIN_ID"]}")
-  end
-end
+# Then /^the following users are removed from canvas:$/ do |users_table|
+#    users_table.hashes.each do |hash|
+#      CanvasUserInterface.delete_user("#{hash["LOGIN_ID"]}")
+#   end
+# end
 
-Given /^I make a new login request$/ do
+
+Given /^I make a new USSD login request$/ do
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
   :body => {
       :session_id => "session id",
@@ -26,18 +27,28 @@ Given /^I make a new login request$/ do
   
 end
 
-Given /^create users$/ do
-  CanvasUserInterface.create_user("","")
-end
+# Given /^create users$/ do
+#   CanvasUserInterface.create_user("","")
+# end
 
-When /^I enter the login credentials as "([^\"]*)" with password "([^\"]*)"$/ do |login_id,password|
+When /^User "([^\"]*)" logs in with "([^\"]*)"$/ do |user,password|
+  user = CanvasUserInterface.get_user
   steps %{
-    When I enter the username "#{login_id}"
-    And I enter the password "#{password}" for user "#{login_id}"
+    When User enters the username "#{user.login_id}"
+    And User enters the password "#{password}" for user "#{user.login_id}"
   }
 end
 
-When /^I enter the username "([^\"]*)"$/ do |login_id|
+
+When /^User "([^\"]*)" logs into USSD with her credentials$/ do |user|
+  user = CanvasUserInterface.get_user
+  steps %{
+    When User enters the username "#{user.login_id}"
+    And User enters the password "#{user.password}" for user "#{user.login_id}"
+  }
+end
+
+When /^User enters the username "([^\"]*)"$/ do |login_id|
  
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
   :body => {
@@ -56,7 +67,7 @@ When /^I enter the username "([^\"]*)"$/ do |login_id|
   }  
 end   
 
-And /^I enter the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_id|
+And /^User enters the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_id|
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
   :body => {                                
          :session_id => "session id",
@@ -82,12 +93,12 @@ auth_message = "Incorrect Username/ Password"
 end
 
 
-Then /^I should see the home page for user "([^\"]*)"$/ do |login_id|
-  user_id = CanvasUserInterface.find_user(login_id)["id"]
-  p user_id
-   auth_message = "Welcome to SEN!\\n"
+Then /^"([^\"]*)" should see the USSD home page$/ do |user|
+  user = CanvasUserInterface.get_user
+  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
+  message = "Welcome to SEN!\\n"
    steps %{
-      Then the JSON at "message" should be "#{auth_message}"
+      Then the JSON at "message" should be "#{message}"
       Then the JSON at "session_id" should be "session id"   
       Then the JSON at "session_type" should be "SESSION"
       Then the JSON should have "access_token"

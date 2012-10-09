@@ -6,28 +6,27 @@ Feature:
 
 Background:
 Given the following user exists in canvas:
-|LOGIN_ID|PASSWORD|
-|camfed_ussd_test|password_one|
+|USER|
+|rocket|
   
-
 Scenario: Verify login from USSD
-Given I make a new login request
-When I enter the login credentials as "camfed_ussd_test" with password "password_one"
-Then I should see the home page for user "camfed_ussd_test"
+Given I make a new USSD login request
+When User "rocket" logs into USSD with her credentials
+Then "rocket" should see the USSD home page
 
   
 Scenario Outline: Verify Incorrect login details
 Given I make a new login request
-And I enter the login credentials as "<LOGIN_ID>" with password "<PASSWORD>"
+When User "<USER>" logs in with "<PASSWORD>"
 Then I should be informed that my username and password is incorrect
 
 Examples:
-| LOGIN_ID    | PASSWORD     | 
-| camfed_test | password_two | 
-| camfed_test |              |
-|             | password_two |
-|             |              |
-| test_camfed1| password_two |
+| USER         | PASSWORD     | 
+| camfed_today | password_two | 
+| camfed_today |              |
+|              | password_two |
+|              |              |
+| camfed_today | password_two |
 
 
 

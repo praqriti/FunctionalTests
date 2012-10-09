@@ -14,7 +14,8 @@ CANVAS_ACCESS_TOKEN = "#{ENV_CONFIG['access_token']}"
 
 ACCOUNT_ID = "#{ENV_CONFIG['account_id']}"
 
-ACCOUNT_ADMIN = YAML.load(File.read("features/support/user_data.yml"))[profile]
+
+# ACCOUNT_ADMIN = YAML.load(File.read("features/support/user_data.yml"))[profile]
 
 Capybara.app_host = CANVAS_URL
 Capybara.default_selector = :css

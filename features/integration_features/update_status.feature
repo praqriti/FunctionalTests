@@ -7,23 +7,25 @@ Feature:
   
   Scenario: Status updated on web must be reflected on my mobile device
   Given the following user exists in canvas:
-   |LOGIN_ID|PASSWORD|
-   |camfed_webtest_user|password|
+  |USER|
+  |rocket|
+
   When I am on the Sign In page
-  And I enter my login_id "camfed_webtest_user" and password "camfed_webtest_user"
-  And "camfed_webtest_user" should be successfully logged into canvas
+  And User "rocket" logs into Canvas with her credentials
+  Then "rocket" should see the Canvas home page
   When User "updates" the status message as "status message"
   Then User status "status message" is updated successfully
  
  # log-in to ussd and verify  
-  Given I make a new login request
-  When I enter the login credentials as "camfed_webtest_user" with password "password"
-  And I should see the home page for user "camfed_webtest_user"
-  And User "camfed_webtest_user" chooses the option to "update status"
-  And User "camfed_webtest_user" should see his previously updated message "status message"
-  And User "camfed_webtest_user" chooses the option to "update status"
-  And User "camfed_webtest_user" replies with new status message "new status message" 
-  Then User "camfed_webtest_user" should get a confirmation that the status was updated successfully
+  Given I make a new USSD login request
+  When User "rocket" logs into USSD with her credentials
+  Then "rocket" should see the USSD home page
+  
+  And User chooses the option to "update status"
+  And User should see his previously updated message "status message"
+  And User chooses the option to "update status"
+  And User replies with new status message "new status message" 
+  Then User should get a confirmation that the status was updated successfully
   
   @wip
   Scenario: View status should be reflected on both canvas and ussd app
