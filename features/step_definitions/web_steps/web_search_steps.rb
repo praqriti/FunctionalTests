@@ -1,5 +1,7 @@
 Given /^User lands on the search page$/ do
-  @app.search = Search.new
+  steps %{
+  Then User navigates to search page
+        }
   @app.search.wait_until_search_box_visible
   @app.search.all_there?
 end
@@ -17,3 +19,8 @@ end
 When /^User should see the users:$/ do |table|
   # table is a Cucumber::Ast::Table
 end
+
+When /^User navigates to search page$/ do
+  @app.search.load
+end
+
