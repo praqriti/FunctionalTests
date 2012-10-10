@@ -4,11 +4,11 @@ Given /^the following user exists in canvas:$/ do |users_table|
   end
 end
 
-# Then /^the following users are removed from canvas:$/ do |users_table|
-#    users_table.hashes.each do |hash|
-#      CanvasUserInterface.delete_user("#{hash["LOGIN_ID"]}")
-#   end
-# end
+Then /^the following users are removed from canvas:$/ do |users_table|
+   users_table.hashes.each do |hash|
+     CanvasUserInterface.delete_user("#{hash["USER"]}")
+  end
+end
 
 
 Given /^I make a new USSD login request$/ do

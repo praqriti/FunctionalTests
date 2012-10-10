@@ -1,5 +1,6 @@
-And /^User "([^\"]*)" chooses the option to "update status"$/ do |login_id|
-  user_id = CanvasUserInterface.find_user(login_id)["id"]
+And /^User chooses the option to "update status"$/ do
+  user = CanvasUserInterface.get_user
+  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
     
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
    :body => {
@@ -36,8 +37,9 @@ And /^User "([^\"]*)" chooses the option to "update status"$/ do |login_id|
     
 end
 
-Then /^User "([^\"]*)" is given the option to update status or navigate back to home page$/ do |login_id|
-  user_id = CanvasUserInterface.find_user(login_id)["id"]
+Then /^User is given the option to update status or navigate back to home page$/ do
+  user = CanvasUserInterface.get_user
+  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
      steps %{
      Then the JSON at "session_id" should be "session id"
      Then the JSON at "session_type" should be "SESSION"
@@ -57,8 +59,9 @@ Then /^User "([^\"]*)" is given the option to update status or navigate back to 
 
 end 
 
-When /^User "([^\"]*)" replies with new status message "([^\"]*)"$/ do |login_id,message|
-  user_id = CanvasUserInterface.find_user(login_id)["id"]
+When /^User replies with new status message "([^\"]*)"$/ do |message|
+  user = CanvasUserInterface.get_user
+  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
   
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
     :body => {
@@ -77,8 +80,9 @@ When /^User "([^\"]*)" replies with new status message "([^\"]*)"$/ do |login_id
   
 end
 
-When /^User "([^\"]*)" replies with new status message:$/ do |login_id,string|
-  user_id = CanvasUserInterface.find_user(login_id)["id"]
+When /^User replies with new status message:$/ do |string|
+  user = CanvasUserInterface.get_user
+  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
   
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
     :body => {
@@ -97,8 +101,9 @@ When /^User "([^\"]*)" replies with new status message:$/ do |login_id,string|
   
 end
 
-When /^User "([^\"]*)" replies "0" from update status page to go back to home page$/ do |login_id|
-  user_id = CanvasUserInterface.find_user(login_id)["id"]
+When /^User replies "0" from update status page to go back to home page$/ do
+  user = CanvasUserInterface.get_user
+  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
   
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
     :body => {
@@ -117,22 +122,22 @@ When /^User "([^\"]*)" replies "0" from update status page to go back to home pa
   
 end
 
-Then /^User "([^\"]*)" should see his previously updated message "([^\"]*)"$/ do |login_id,message|
+Then /^User should see his previously updated message "([^\"]*)"$/ do |message|
   steps %{
       Then the JSON at "message" should be "#{message}\\n\\nEnter your new status"
     }
 end
 
-Then /^User "([^\"]*)" should see his previously updated message:$/ do |login_id,string|
+Then /^User should see his previously updated message:$/ do |string|
   steps %{
       Then the JSON at "message" should be "#{string}\\n\\nEnter your new status"
     }
 end
 
 
-Then /^User "([^\"]*)" should get a confirmation that the status was updated successfully$/ do |login_id|
-    user_id = CanvasUserInterface.find_user(login_id)["id"]
-    
+Then /^User should get a confirmation that the status was updated successfully$/ do
+  user = CanvasUserInterface.get_user
+  user_id = CanvasUserInterface.find_user(user.login_id)["id"]    
      steps %{
         Then the JSON at "message" should be "Status Updated"
         Then the JSON at "session_id" should be "session id"   
@@ -167,8 +172,9 @@ Then /^User "([^\"]*)" should get a confirmation that the status was updated suc
       } 
 end
 
-And /^User "([^\"]*)" chooses the option to "update status" with incorrect access_token$/ do |login_id|
-  user_id = CanvasUserInterface.find_user(login_id)["id"]
+And /^User chooses the option to "update status" with incorrect access_token$/ do
+  user = CanvasUserInterface.get_user
+  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
   access_token = "#{@last_response.parsed_response["access_token"]}" + "A"
 
    @last_response = JSONSpecInterface.post("#{SEN_URL}",

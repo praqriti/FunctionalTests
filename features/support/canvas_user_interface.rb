@@ -15,6 +15,11 @@ class CanvasUserInterface
                     :unique_id => "#{@user.login_id}",
                     :password => "#{@user.password}"
                   },
+          :user =>
+                  {
+                    :name => "#{@user.name}",
+                    # :short_name => "#{user}"
+                  }
                   },
         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})         
       # end
@@ -25,6 +30,7 @@ def self.delete_user(user)
   user = CanvasUserInterface.get_user
   user = CanvasUserInterface.find_user(user.login_id)
   if(@user_exists)
+    p user
         @delete_response = JSONSpecInterface.delete("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users/#{user["id"]}",
         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
         p "user deleted"
@@ -36,7 +42,7 @@ def self.find_user(login_id)
      @users_list = JSONSpecInterface.get("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users",
      :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
      @users_list.parsed_response.each do |user|
-        if(user["name"]==login_id)
+        if(user["login_id"]==login_id)
           @user_exists=true 
             return user
         end

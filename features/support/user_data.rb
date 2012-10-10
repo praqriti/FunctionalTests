@@ -8,17 +8,17 @@ class Users
   end
   
   def create_unique_login(user)  
-    date = Date.new
-    time = Time.new
-    login_id = "test_login"+"#{date}-"+"#{time.sec}"  
+    # date = Date.new
+    time = Time.now.to_i
+    login_id = "test_login"+"#{time}"  
     return login_id
   end
   
   def create_unique_name(user)  
-    date = Date.new
-    time = Time.new
-    name = "test_name"+"#{date}-"+"#{time.sec}"  
-    return login_id
+    # date = Date.new
+    time = Time.now.to_i
+    name = "#{user}"+"#{time}"  
+    return name
   end
   
 end

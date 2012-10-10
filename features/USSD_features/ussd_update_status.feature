@@ -32,7 +32,7 @@ Then User should see his previously updated message " "
 
 Scenario: Verify back from update page from USSD
 Given User chooses the option to "update status"
-When User replies "0" to go back from update status page to home page
+When User replies "0" from update status page to go back to home page
 Then "rocket" should see the USSD home page
 
 
@@ -61,10 +61,10 @@ Given the following user exists in canvas:
 |LOGIN_ID|PASSWORD|
 |user1|password1|
 |user2|password2|
-Given I make a new login request
+Given I make a new USSD login request
 When I enter the login credentials as "user1" with password "password1"
 And I save the access token for user "user1"
-Given I make a new login request
+Given I make a new USSD login request
 When I enter the login credentials as "user2" with password "password2"
 And I save the access token for user "user2"
 
