@@ -1,3 +1,5 @@
+#Bug No. 254
+@wip
 @javascript
 Feature:
 
@@ -14,4 +16,3 @@ Feature:
   And User "rocket" logs into Canvas with her credentials
   Then "rocket" should see the Canvas home page
   Then User logs out
-  

@@ -1,5 +1,7 @@
 class Search < SitePrism::Page
-  
+
+  set_url "/sen/users/search"
+
   element :about_page_link, "li.user_name"
   element :logout_link, "li.logout"
   
