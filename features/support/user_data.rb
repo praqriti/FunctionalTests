@@ -1,5 +1,5 @@
 class Users
-  attr_reader :name , :login_id , :password
+  attr_accessor :name , :login_id , :password, :id
   def initialize(user)
     @user = user
     @name = create_unique_name(user)
@@ -8,14 +8,13 @@ class Users
   end
   
   def create_unique_login(user)  
-    # date = Date.new
     time = Time.now.to_i
-    login_id = "test_login"+"#{time}"  
+    login_id = "test_login"+"#{1 + rand(10000000)}"  
+    p login_id
     return login_id
   end
   
   def create_unique_name(user)  
-    # date = Date.new
     time = Time.now.to_i
     name = "#{user}"+"#{time}"  
     return name

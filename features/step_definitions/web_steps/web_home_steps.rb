@@ -9,8 +9,8 @@ Given /^User lands on the home page$/ do
 end
 
 Then /^User navigates to canvas home page$/ do
-  #@app.redirect.load
-  #@app.home.load
+  @app.redirect.load
+   @app.home.load
 
 end
 

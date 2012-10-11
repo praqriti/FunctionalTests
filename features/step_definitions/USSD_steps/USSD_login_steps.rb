@@ -24,12 +24,9 @@ Given /^I make a new USSD login request$/ do
    Then the JSON at "session_id" should be "session id"
    Then the JSON at "session_type" should be "SESSION"
  }
-  
+   
 end
 
-# Given /^create users$/ do
-#   CanvasUserInterface.create_user("","")
-# end
 
 When /^User "([^\"]*)" logs in with "([^\"]*)"$/ do |user,password|
   user = CanvasUserInterface.get_user
@@ -94,8 +91,8 @@ end
 
 
 Then /^"([^\"]*)" should see the USSD home page$/ do |user|
-  user = CanvasUserInterface.get_user
-  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
+  user_id = CanvasUserInterface.get_user_id
+  # user_id = CanvasUserInterface.find_user(user.login_id)["id"]
   message = "Welcome to SEN!\\n"
    steps %{
       Then the JSON at "message" should be "#{message}"

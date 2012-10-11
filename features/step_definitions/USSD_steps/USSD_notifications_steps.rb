@@ -1,6 +1,6 @@
 Given /^User chooses the option "Notifications"$/ do
-  user = CanvasUserInterface.get_user
-  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
+  user_id = CanvasUserInterface.get_user_id
+  # user_id = CanvasUserInterface.find_user(user.login_id)["id"]
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
       :body => {
           :session_id => "session id",
@@ -36,8 +36,8 @@ Given /^User chooses the option "Notifications"$/ do
 end
 
 Then /^User should see the notifications menu$/ do
-  user = CanvasUserInterface.get_user
-  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
+  user_id = CanvasUserInterface.get_user_id
+  # user_id = CanvasUserInterface.find_user(user.login_id)["id"]
   steps %{
     Then the JSON at "session_id" should be "session id"
     Then the JSON at "session_type" should be "SESSION"
@@ -64,8 +64,8 @@ Then /^User should see the notifications menu$/ do
 end
 
 When /^User replies "0" from notifications page to go back to home page$/ do
-  user = CanvasUserInterface.get_user
-  user_id = CanvasUserInterface.find_user(user.login_id)["id"]
+  user_id = CanvasUserInterface.get_user_id
+  # user_id = CanvasUserInterface.find_user(user.login_id)["id"]
   
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
       :body => {
