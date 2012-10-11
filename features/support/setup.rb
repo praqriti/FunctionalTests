@@ -19,9 +19,9 @@ Capybara.app_host = CANVAS_URL
 Capybara.default_selector = :css
 Capybara.default_driver = :selenium_firefox
 Capybara.run_server = false
-# Capybara.javascript_driver = :selenium_chrome
+ #Capybara.javascript_driver = :selenium_chrome
 Capybara.javascript_driver = :webkit
-Capybara.default_wait_time = 10
+Capybara.default_wait_time = 50
 Capybara.server_boot_timeout = 50
 Capybara.reset_sessions!
 
