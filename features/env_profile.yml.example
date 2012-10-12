@@ -13,5 +13,5 @@ test:
 int:
     canvas_url: http://192.168.31.6
     sen_url: http://192.168.31.6:8383
-    access_token: Bearer mmoCqh7zHVIcIquwk2u5nGIN7NxyyZIEcc7AglrjtaK19Graqc1b0NCwq5AW2ptS
+    access_token: Bearer DRcqhf3Yi7dm11Bcm1e8kdzmkT8ZQCcIGTX2td9pCJH9DCcr6ojlon1pMQV2Z547
     account_id: 2
