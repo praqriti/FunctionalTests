@@ -1,4 +1,4 @@
-class MyWall < SitePrism::Page
+class Wall < SitePrism::Page
   
   element :about_page_link, "li.user_name"
   element :logout_link, "li.logout"

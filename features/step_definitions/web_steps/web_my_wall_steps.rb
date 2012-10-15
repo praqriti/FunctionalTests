@@ -1,5 +1,5 @@
 Given /^User lands on My Wall and can view all the elements$/ do
-  my_wall = MyWall.new
+  my_wall = Wall.new
   my_wall.wait_until_user_name_visible
 end
 

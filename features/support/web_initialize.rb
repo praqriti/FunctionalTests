@@ -20,7 +20,11 @@ class App
   end
   
   def my_wall
-    MyWall.new
+    Wall.new
+  end
+
+  def user_wall
+    Wall.new
   end
   
   def redirect
