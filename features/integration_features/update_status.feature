@@ -6,10 +6,7 @@ Feature:
   I should be able to see my changes from both mobile and web 
   
   Scenario: Status updated on web must be reflected on my mobile device
-  Given the following user exists in canvas:
-  |USER|
-  |rocket|
-
+ 
   When I am on the Sign In page
   And User "camfed_student" logs into Canvas with her credentials
   Then "camfed_student" should see the Canvas home page
