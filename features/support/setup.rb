@@ -1,5 +1,3 @@
-$: << File.join(File.dirname(__FILE__), '../..')
-
 profile = ENV['RAILS_ENV'] || 'default'
 
 ENV_CONFIG = YAML.load(File.read("features/env_profile.yml"))[profile]

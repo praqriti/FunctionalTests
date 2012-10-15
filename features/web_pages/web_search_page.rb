@@ -7,7 +7,8 @@ class Search < SitePrism::Page
   
   section :menu, MenuSection, "ul#menu"
   
-  element :search_box
-  element :search_button
-  element :search_results
+  element :search_box, "form#search_user input.span2"
+  element :search_button, "div#search form#search_user input.btn"
+  element :search_results, "div#search_result.search-error"
+  elements :users, ".user"
 end

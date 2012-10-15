@@ -13,15 +13,15 @@ Feature:
   |rocket|
 
   When I am on the Sign In page
-  And User "rocket" logs into Canvas with her credentials
-  Then "rocket" should see the Canvas home page
+  And User "camfed_student" logs into Canvas with her credentials
+  Then "camfed_student" should see the Canvas home page
   When User "updates" the status message as "status message"
   Then User status "status message" is updated successfully
  
  # log-in to ussd and verify  
   Given I make a new USSD login request
-  When User "rocket" logs into USSD with her credentials
-  Then "rocket" should see the USSD home page
+  When User "camfed_student" logs into USSD with her credentials
+  Then "camfed_student" should see the USSD home page
   
   And User chooses the option to "update status"
   And User should see his previously updated message "status message"

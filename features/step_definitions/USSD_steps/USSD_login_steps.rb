@@ -1,16 +1,3 @@
-Given /^the following user exists in canvas:$/ do |users_table|
-  users_table.hashes.each do |hash|  
-     CanvasUserInterface.create_user("#{hash["USER"]}")
-  end
-end
-
-Then /^the following users are removed from canvas:$/ do |users_table|
-   users_table.hashes.each do |hash|
-     CanvasUserInterface.delete_user("#{hash["USER"]}")
-  end
-end
-
-
 Given /^I make a new USSD login request$/ do
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
   :body => {
@@ -29,7 +16,7 @@ end
 
 
 When /^User "([^\"]*)" logs in with "([^\"]*)"$/ do |user,password|
-  user = CanvasUserInterface.get_user
+  user = CanvasUserInterface.get_user 
   steps %{
     When User enters the username "#{user.login_id}"
     And User enters the password "#{password}" for user "#{user.login_id}"
@@ -38,11 +25,11 @@ end
 
 
 When /^User "([^\"]*)" logs into USSD with her credentials$/ do |user|
-  user = CanvasUserInterface.get_user
-  steps %{
-    When User enters the username "#{user.login_id}"
-    And User enters the password "#{user.password}" for user "#{user.login_id}"
-  }
+user = CanvasUserInterface.get_user 
+      steps %{
+      When User enters the username "#{user.login_id}"
+      And User enters the password "#{user.password}" for user "#{user.login_id}"
+    }
 end
 
 When /^User enters the username "([^\"]*)"$/ do |login_id|
@@ -91,8 +78,7 @@ end
 
 
 Then /^"([^\"]*)" should see the USSD home page$/ do |user|
-  user_id = CanvasUserInterface.get_user_id
-  # user_id = CanvasUserInterface.find_user(user.login_id)["id"]
+  user = CanvasUserInterface.get_user 
   message = "Welcome to SEN!\\n"
    steps %{
       Then the JSON at "message" should be "#{message}"
@@ -104,23 +90,23 @@ Then /^"([^\"]*)" should see the USSD home page$/ do |user|
       {
             "5": {
                "text": "Courses",
-                "url": "sen/users/#{user_id}/courses"
+                "url": "sen/users/#{user.id}/courses"
               },
               "4": {
                 "text": "Groups",
-                "url": "sen/users/#{user_id}/groups"
+                "url": "sen/users/#{user.id}/groups"
               },
               "3": {
                 "text": "My Profile",
-                "url": "sen/users/#{user_id}/profile"
+                "url": "sen/users/#{user.id}/profile"
               },
               "2": {
                 "text": "Update Status",
-                "url": "sen/users/#{user_id}/status"
+                "url": "sen/users/#{user.id}/status"
               },
               "1": {
                 "text": "Notifications",
-                "url": "sen/users/#{user_id}/notifications"
+                "url": "sen/users/#{user.id}/notifications"
               }
         }
       

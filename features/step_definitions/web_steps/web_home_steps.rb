@@ -2,16 +2,12 @@ Given /^User lands on the home page$/ do
   steps %{
     And I wait 10 seconds
   }
-   #@app.redirect.load
-   #@app.home.load
    @app.home.wait_until_status_message_visible
    @app.home.all_there?
 end
 
 Then /^User navigates to canvas home page$/ do
-  @app.redirect.load
-   @app.home.load
-
+    @app.home.load 
 end
 
 Then /^I log out of my account$/ do

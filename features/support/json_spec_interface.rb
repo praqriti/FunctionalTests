@@ -26,4 +26,4 @@ World(JSONSpecInterface)
   # end
   # 
   # puts Representative.get_all_by_name('Donnelly').inspect
-  # # {"results"=>[{"district"=>"2", "last"=>"Donnelly", "first"=>"Joe", "state"=>"IN", "party"=>"D"}]}
+  # # {"results"=>[{"district"=>"2", "last"=>"Donnelly", "xfirst"=>"Joe", "state"=>"IN", "party"=>"D"}]}

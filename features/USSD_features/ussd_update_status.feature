@@ -5,13 +5,12 @@ Feature:
   I want to update my status using my mobile device
   
   Background:
-  Given the following user exists in canvas:
-  |USER|
-  |rocket|
+  
+ 
 
   Given I make a new USSD login request
-  When User "rocket" logs into USSD with her credentials
-  Then "rocket" should see the USSD home page
+  When User "camfed_student" logs into USSD with her credentials
+  Then "camfed_student" should see the USSD home page
   
   
 Scenario: Update and view new status update from USSD
@@ -33,7 +32,7 @@ Then User should see his previously updated message " "
 Scenario: Verify back from update page from USSD
 Given User chooses the option to "update status"
 When User replies "0" from update status page to go back to home page
-Then "rocket" should see the USSD home page
+Then "camfed_student" should see the USSD home page
 
 
 Scenario: Verify no error on status update longer than max allowed length from USSD

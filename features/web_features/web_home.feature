@@ -7,13 +7,12 @@ Feature:
   I am on the home page of canvas
   
 Background:
-Given the following user exists in canvas:
-|USER|
-|rocket|
+
+
 
 When I am on the Sign In page
-And User "rocket" logs into Canvas with her credentials
-Then "rocket" should see the Canvas home page
+And User "camfed_student" logs into Canvas with her credentials
+Then "camfed_student" should see the Canvas home page
 
 #Bug No. 254
 @wip
@@ -32,6 +31,7 @@ Then User status "status updated" is not updated
 # Then clear cookies
 Then User logs out
 
+
 #Bug No. 254
 @wip
 Scenario: Verify that user can update status multiple times
@@ -39,3 +39,4 @@ Given User "updates" the status message as "status message"
 Then User can update the status again as "new status message"
 # Then clear cookies
 Then User logs out
+
