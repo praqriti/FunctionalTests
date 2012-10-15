@@ -12,6 +12,7 @@ Given I am on the Sign In page
 Given User "camfed_student" logs into Canvas with her credentials
 Given "camfed_student" should see the Canvas home page
 
+@wip
 Scenario: Verify User can view connection status on search page
  Given the following users exists in canvas:
         |USER|
