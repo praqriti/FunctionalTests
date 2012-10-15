@@ -18,6 +18,7 @@ Feature:
    Then User should see the search error
    Then User logs out
    
+   @wip
    Scenario: Verify User can make a successful search 
    Given the following users exists in canvas:
           |USER|
