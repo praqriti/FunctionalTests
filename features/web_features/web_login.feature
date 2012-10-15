@@ -1,5 +1,3 @@
-#Bug No. 254
-@wip
 @javascript
 Feature:
 
@@ -8,8 +6,6 @@ Feature:
   I want to login to the system
   
   Scenario: login to canvas as a user using CAS
-  
- 
 
   When I am on the Sign In page
   And User "camfed_student" logs into Canvas with her credentials

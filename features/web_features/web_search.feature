@@ -18,11 +18,12 @@ Feature:
    Then User should see the search error
    Then User logs out
    
+   
    Scenario: Verify User can make a successful search 
    Given the following users exists in canvas:
           |USER|
           |camfed_student_1|
-          |camfed_student_1|
+          |camfed_student_2|
    When User searches for "student" and clicks search
    Then User should see the users
    |USER|
@@ -35,7 +36,7 @@ Feature:
    Given the following users exists in canvas:
            |USER|
            |camfed_student_1|
-           |camfed_student_1|
+           |camfed_student_2|
     When User searches for "student" and clicks search
     Then User should see the users
     |USER|
@@ -51,7 +52,7 @@ Feature:
   |search user 1|
   |search user 2|
   Then User must be able to navigate to the wall of  "search user 1"
-    
+  
     
     
     

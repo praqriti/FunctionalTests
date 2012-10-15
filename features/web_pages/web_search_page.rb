@@ -11,4 +11,7 @@ class Search < SitePrism::Page
   element :search_button, "div#search form#search_user input.btn"
   element :search_results, "div#search_result.search-error"
   elements :users, ".user"
+  element :unlinked_user, ".not_connected"
+  element :pending_request_user, ".not_connected"
+  element :linked_user, ".request_pending"
 end
