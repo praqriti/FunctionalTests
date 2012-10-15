@@ -14,13 +14,9 @@ Then /^User can view her latest status message "(.*?)"$/ do |arg1|
   @app.my_wall.status_message.text.should == arg1
 end
 
-Then /^User can view the comments attached to the status message$/ do
-  @app.my_wall.wait_until_comment_text_visible
-  @app.my_wall.comment_text.should_be_displayed
-end
 
-Then /^User can view the username of the user who has commented on the status message$/ do
-  @app.my_wall.commented_by.should_be_displayed
+Then /^User can view her name on the comment$/ do
+  @app.my_wall.commented_by.text.should == @app.my_wall.display_name.text
 end
 
 Then /^User comments "(.*?)" on her status message$/ do |arg1|
@@ -29,11 +25,16 @@ Then /^User comments "(.*?)" on her status message$/ do |arg1|
   @app.my_wall.comment_submit.click
 end
 
-Then /^the comment "(.*?)" is visible on My Wall$/ do |arg1|
-  @app.my_wall.comment_text.text.should == arg1
+Then /^the comments are visible on My Wall$/ do |comments_table|
+  comments_table.hashes.each do |hash|
+    @app.my_wall.comment_text.each do |comment|
+      p comment.text.should == "#{hash[:COMMENT]}"
+    end
+  end
 end
 
 Then /error message "(.*?)" is displayed$/ do |error1|
+  @app.my_wall.wait_until_error_message_visible
   @app.my_wall.error_message.text.should == error1
 end
 

@@ -27,3 +27,15 @@ Given User "updates" the status message as "status message"
 Then User can update the status again as "new status message"
 Then User logs out
 
+@manual
+Scenario: Verify that user cannot enter a status greater than 256 characters
+Given User "updates" the status message as
+"""
+thisisastatusgreaterthan256characterswhichshouldnotbeallowed
+"""
+Then User status is visible as:
+"""
+thisisastatusgreaterthan256characters
+"""
+Then User logs out
+
