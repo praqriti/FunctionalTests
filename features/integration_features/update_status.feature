@@ -1,5 +1,3 @@
-#Bug No. 254
-@wip
 @javascript
 Feature:
 

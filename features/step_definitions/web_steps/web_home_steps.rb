@@ -1,9 +1,5 @@
 Given /^User lands on the home page$/ do
-  steps %{
-    And I wait 10 seconds
-  }
    @app.home.wait_until_status_message_visible
-   @app.home.all_there?
 end
 
 Then /^User navigates to canvas home page$/ do
@@ -12,7 +8,6 @@ end
 
 Then /^I log out of my account$/ do
   @app.home.logout_link.text.should == "Logout"
-  @app.home.wait_until_message_box_visible
 end
 
 And /^User "updates" the status message as "([^\"]*)"$/ do |message|
@@ -31,7 +26,10 @@ Then /^User status "([^\"]*)" is updated successfully$/ do |message|
   steps %{
     Then User navigates to canvas home page
   }
-  @app.home.status_message.value.should == "#{message}"
+  @app.home.wait_until_status_message_visible
+  @app.home.should have_updated_status_message
+  @app.home.updated_status_message.value.should == "#{message}"
+
 end
 
 
