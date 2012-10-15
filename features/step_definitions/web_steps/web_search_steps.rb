@@ -22,11 +22,7 @@ When /^User searches for "([^\"]*)" and clicks search$/ do |search_query|
 end
 
 When /^User should see the users$/ do |users_table|
-   users_table.hashes.each do |hash|  
-     @app.search.users.each do |user|
-      p user.text.should == "#{hash[:USER]}"
-    end    
- end
+     @app.search.users.find("#{hash[:USER]}") 
 end
 
 When /^User navigates to search page$/ do

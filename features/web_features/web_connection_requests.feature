@@ -14,11 +14,12 @@ Given "camfed_student" should see the Canvas home page
 
 @wip
 Scenario: Verify User can view connection status on search page
- Given the following users exists in canvas:
+Given the following users exists in canvas:
         |USER|
         |camfed_student_1|
         |camfed_student_2|
-
+When User searches for "student" and clicks search
+Then User should see "camfed_student_1" as an "unlinked" connection
 
 Scenario: Verify if a logged in user can view his connection requests
 Given User has pending connection requests from:
