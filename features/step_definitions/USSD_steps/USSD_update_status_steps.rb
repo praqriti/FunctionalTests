@@ -209,7 +209,7 @@ Then /^User recieves an error and the session is ended$/ do
    steps %{
    Then the JSON at "session_id" should be "session id"
    Then the JSON at "session_type" should be "END"
-   Then the JSON at "message" should be "invalid access token"  
+   Then the JSON at "message" should be "Something went wrong. Please try again"
      }
      
 end
