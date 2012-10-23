@@ -1,3 +1,4 @@
+@javascript
 Feature:
 
 	In order to attempt a test or view scores of test
