@@ -13,12 +13,5 @@ class Users
     return login_id
   end
   
-  # def create_unique_name(user)  
-  #   time = Time.now.to_i
-  #   name = "#{user}"+"#{time}"  
-  #   return name
-  # end
-  
 end
 
-# World(Users)

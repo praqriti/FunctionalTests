@@ -57,8 +57,8 @@ end
 Then /^User should see the courses list$/ do
   user_id = CanvasUserInterface.get_user_id
   actual_response = @last_response.parsed_response
-
   s_no = 1
+  @enrolled_courses.sort! { |a,b| a.name <=> b.name }
   @enrolled_courses.each do |enrolled_course|
     actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
     actual_response["response_map"]["#{s_no}"]["url"].should  == "/sen/users/#{user_id}/courses/#{enrolled_course.id}/quizzes"
@@ -100,8 +100,3 @@ Then /^"([^\"]*)" should be displayed to the User$/ do |message|
     		}
 end	
 
-Then /^the created courses are deleted$/ do
-	@courses.each do |course|      
-   		CanvasCourseInterface.delete_course(course)
-   	end  
-end

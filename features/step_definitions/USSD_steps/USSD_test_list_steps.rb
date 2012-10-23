@@ -31,7 +31,7 @@ Given /^User publishes the course "([^\"]*)"$/ do |course_name|
   @course = @enrolled_courses.select { |c| c.name == course_name }.first
 
   steps %{
-          When I am on the Sign In page
+          When User is on the Sign In page
           And User "camfed_student" logs into Canvas with her credentials
           Then "camfed_student" should see the Canvas home page
           And User publishes the "#{course_name}" course

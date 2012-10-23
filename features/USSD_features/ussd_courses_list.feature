@@ -25,11 +25,10 @@ Scenario: View Courses list
 	|Chemistry|
 	Given User chooses the option "Courses"
 	Then User should see the courses list
-	Then the created courses are deleted
 	
 Scenario: Verify back from courses page from ussd
 
-    And User is enrolled to the following courses as "teacher"
+  And User is enrolled to the following courses as "teacher"
 	|COURSE|
 	|History|
 	|Chemistry|
@@ -37,10 +36,8 @@ Scenario: Verify back from courses page from ussd
 	And User should see the courses list
 	When User replies "0" from courses page to go back to home page
 	Then "camfed_student" should see the USSD home page
-	Then the created courses are deleted
 
 Scenario: User is not enrolled to any course
 
 	Given User chooses the option "Courses"
 	Then "No Course Attached" should be displayed to the User
-	Then the created courses are deleted

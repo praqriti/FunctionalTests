@@ -10,6 +10,13 @@ After do
        CanvasUserInterface.delete_user(user)
       end
   end
+  
+  if (@courses)
+     @courses.each do |course|      
+         CanvasCourseInterface.delete_course(course)
+         p '#{course} deleted'
+        end
+  end
 end
 
   
