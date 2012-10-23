@@ -42,7 +42,7 @@ end
 
 And /^User is enrolled to the following courses as "([^\"]*)"$/ do |type, courses_table|
 	@enrolled_courses = Array.new
-  enroll_type = type == "teacher" ? "TeacherEnrollment" : "StudentEnrollment"
+  	enroll_type = type == "teacher" ? "TeacherEnrollment" : "StudentEnrollment"
 	user_id = CanvasUserInterface.get_user_id
 	courses_table.hashes.each do |hash|
 		@courses.each do |course|
@@ -59,7 +59,6 @@ Then /^User should see the courses list$/ do
   actual_response = @last_response.parsed_response
 
   s_no = 1
-  @enrolled_courses.sort! { |c1, c2| c1.name <=> c2.name }
   @enrolled_courses.each do |enrolled_course|
     actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
     actual_response["response_map"]["#{s_no}"]["url"].should  == "/sen/users/#{user_id}/courses/#{enrolled_course.id}/quizzes"
