@@ -40,13 +40,14 @@ Given /^the following courses exist in canvas$/ do |courses_table|
   end
 end
 
-And /^User is enrolled to the following courses$/ do |courses_table|	 
+And /^User is enrolled to the following courses as "([^\"]*)"$/ do |type, courses_table|
 	@enrolled_courses = Array.new
+  enroll_type = type == "teacher" ? "TeacherEnrollment" : "StudentEnrollment"
 	user_id = CanvasUserInterface.get_user_id
 	courses_table.hashes.each do |hash|
 		@courses.each do |course|
 			if(course.name == "#{hash["COURSE"]}")
-				CanvasEnrollmentInterface.enroll_user(course.id, user_id)
+				CanvasEnrollmentInterface.enroll_user(course.id, user_id, enroll_type)
 				@enrolled_courses << course
 			end
 		end

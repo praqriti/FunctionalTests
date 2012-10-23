@@ -19,7 +19,7 @@ Background:
 
 Scenario: View Courses list
 	
-	And User is enrolled to the following courses
+	And User is enrolled to the following courses as "teacher"
 	|COURSE|
 	|History|
 	|Chemistry|
@@ -28,8 +28,8 @@ Scenario: View Courses list
 	Then the created courses are deleted
 	
 Scenario: Verify back from courses page from ussd
-	
-	And User is enrolled to the following courses
+
+    And User is enrolled to the following courses as "teacher"
 	|COURSE|
 	|History|
 	|Chemistry|

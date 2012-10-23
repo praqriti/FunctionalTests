@@ -4,6 +4,7 @@ And /^User publishes the "([^\"]*)" course$/ do |course_name|
   @app.course.courses.select{|course| course.text == course_name}.first.click
   @app.course.wait_until_wizard_box_visible
   @app.course.publish_link.click
+  @app.course.wait_until_publish_button_visible
   @app.course.publish_button.click
   @app.course.wait_until_publish_success_visible
 end
