@@ -1,4 +1,4 @@
-@wip
+
 Feature:
 
 	In order to know the courses I have enrolled for
@@ -13,9 +13,20 @@ Background:
 
 Scenario: View Courses list
 	
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	And User is enrolled to the following courses
+	|COURSE|
+	|History|
+	|Chemistry|
 	Given User chooses the option "Courses"
-	Then User should see the courses list in alphabetical order
-
+	Then User should see the courses list
+	Then the created courses are deleted
+@wip	
 Scenario: Verify back from courses page from ussd
 	
 	Given User chooses the option "Courses"
