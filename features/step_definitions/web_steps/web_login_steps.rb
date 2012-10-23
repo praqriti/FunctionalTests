@@ -23,12 +23,16 @@ Then /^I am given an appropriate error$/ do
 end
 
 Then /^"([^\"]*)" should see the Canvas home page$/ do |user|
-  name = CanvasUserInterface.get_user.name
+  if(user==DEFAULT_USER.name) 
+     user = DEFAULT_USER
+   else
+     user = CanvasUserInterface.get_user
+   end
   
   steps %{
     Then User lands on the home page
   }   
-  @app.home.about_page_link.text.should == name
+  @app.home.about_page_link.text.should == user.name
 end
 
 When /^I wait (\d+) seconds?$/ do |seconds|

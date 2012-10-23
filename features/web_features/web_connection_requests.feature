@@ -21,8 +21,8 @@ Scenario: Verify if a logged in user can view his connection requests
 	|USER|
 	|requesting_user|
 	Then User logs out
-  
-  @leave_the_window_open
+	
+  @wip 
   Scenario: Verify if a logged in user can accept his connection requests
     Given User "camfed_student" has pending connection requests from:
           |USER|
@@ -37,6 +37,21 @@ Scenario: Verify if a logged in user can view his connection requests
     Then User can "accept" the connection request from "requesting_user"
     When User navigates to my connections page
     And User can see "requesting_user" on my connections page
+
+  Scenario: Verify if a logged in user can reject his connection requests
+  Given User "camfed_student" has pending connection requests from:
+             |USER|
+             |requesting_user|
+  When User is on the Sign In page
+  And User "camfed_student" logs into Canvas with her credentials
+  Then "camfed_student" should see the Canvas home page
+  When User navigates to "Connection Requests"
+  And User can see the pending connection requests sent from:
+             |USER|
+             |requesting_user|
+  Then User can "reject" the connection request from "requesting_user"
+  When User navigates to my connections page
+  And User cannot see "requesting_user" on my connections page
 
 @wip 
 Scenario: Verify if a logged in user can view his connection requests

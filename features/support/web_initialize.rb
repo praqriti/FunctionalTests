@@ -39,7 +39,7 @@ class App
      ConnectionRequests.new
    end
    
-  def connection_requests
+  def my_connections
       MyConnections.new
   end
    
