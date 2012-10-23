@@ -7,7 +7,7 @@ Feature:
 
 @wip
 Scenario: Verify that a user can comment on the status of other user
-  When I am on the Sign In page
+  When User is on the Sign In page
   And User "camfed_student_unique" logs into Canvas with her credentials
   And "camfed_student_unique" should see the Canvas home page
   When User "updates" the status message as "status message"

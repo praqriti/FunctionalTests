@@ -28,7 +28,7 @@ end
 Then /^the comments are visible on My Wall$/ do |comments_table|
   comments_table.hashes.each do |hash|
     @app.my_wall.comment_text.each do |comment|
-      p comment.text.should == "#{hash[:COMMENT]}"
+      comment.text.should == "#{hash[:COMMENT]}"
     end
   end
 end

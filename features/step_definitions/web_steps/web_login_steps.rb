@@ -1,4 +1,4 @@
-Then /^I am on the Sign In page$/ do
+Then /^User is on the Sign In page$/ do
   @app = App.new
   @app.home.load
   @app.login.wait_until_sign_in_button_visible
@@ -6,7 +6,11 @@ Then /^I am on the Sign In page$/ do
 end
 
 When /^User "([^\"]*)" logs into Canvas with her credentials$/ do |user|
-  user = CanvasUserInterface.get_user
+  if(user==DEFAULT_USER.name) 
+    user = DEFAULT_USER
+  else
+    user = CanvasUserInterface.get_user
+  end
 
   @app.login.email.set "#{user.login_id}"
   @app.login.password.set "#{user.password}"

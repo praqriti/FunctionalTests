@@ -51,7 +51,7 @@ end
 Then /^User logs out$/ do
   @app.home.logout_link.click
     steps %{
-      Then I am on the Sign In page
+      Then User is on the Sign In page
     }
 end
 

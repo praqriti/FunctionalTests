@@ -34,4 +34,13 @@ class App
   def quiz
     Quiz.new
   end
+  
+  def connection_requests
+     ConnectionRequests.new
+   end
+   
+  def connection_requests
+      MyConnections.new
+  end
+   
 end

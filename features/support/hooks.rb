@@ -4,6 +4,12 @@ end
 
 After do 
   CanvasUserInterface.delete_user(DEFAULT_USER)
+  
+  if (@users)
+    @users.each do |user|      
+       CanvasUserInterface.delete_user(user)
+      end
+  end
 end
 
   

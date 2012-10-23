@@ -9,9 +9,12 @@ class Search < SitePrism::Page
   
   element :search_box, "form#search_user input.span2"
   element :search_button, "div#search form#search_user input.btn"
-  element :search_results, "div#search_result.search-error"
+  element :search_results, "div#search_result"
+  element :search_error, "div#search_result.search-error"
   elements :users, ".user"
-  element :unlinked_user, ".not_connected"
-  element :pending_request_user, ".not_connected"
-  element :linked_user, ".request_pending"
+  element :username, ".user .title"
+  element :unlinked_user, ".user .not_connected"
+  element :pending_request_user, ".request_pending"
+  element :pending_response_user, ".response_pending"
+  element :connection_alert, "div.notice div.message"
 end
