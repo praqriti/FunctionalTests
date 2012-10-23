@@ -37,7 +37,7 @@ Given /^the following courses exist in canvas$/ do |courses_table|
 	@courses = Array.new	
 	courses_table.hashes.each do |hash|
 		@courses << CanvasCourseInterface.create_course("#{hash["COURSE"]}")
-	end
+  end
 end
 
 And /^User is enrolled to the following courses$/ do |courses_table|	 
@@ -50,33 +50,29 @@ And /^User is enrolled to the following courses$/ do |courses_table|
 				@enrolled_courses << course
 			end
 		end
-	end
+  end
 end
 
 Then /^User should see the courses list$/ do
 	user_id = CanvasUserInterface.get_user_id
-	@enrolled_courses.sort! { |c1, c2| c1.name <=> c2.name }
+	@enrolled_courses.reverse! { |c1, c2| c1.name <=> c2.name }
+
+  actual_response = @last_response.parsed_response
+
+  s_no = 1
+
+  @enrolled_courses.each do |enrolled_course|
+    actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
+    actual_response["response_map"]["#{s_no}"]["url"].should  == "/sen/users/#{user_id}/courses/#{enrolled_course.id}/quizzes"
+    s_no+=1
+  end
+  actual_response["response_map"]["0"]["text"].should == "Home"
+  actual_response["response_map"]["0"]["url"].should  == "sen/users/#{user_id}"
+
 	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
-		Then the JSON at "response_map" should be:
-		"""
-		{
-			"2": {
-			"text": "History",
-			"url": "/sen/users/#{user_id}/courses/#{@enrolled_courses[1].id}/quizzes"
-			},
-			"1": {
-			"text": "Chemistry",
-			"url": "/sen/users/#{user_id}/courses/#{@enrolled_courses[0].id}/quizzes"
-			},
-			"0": {
-			"text": "Home",
-			"url": "sen/users/#{user_id}"
-			}
-		}
-		"""
     		}
 end
 
