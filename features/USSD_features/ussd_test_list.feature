@@ -1,4 +1,3 @@
-@wip
 Feature:
 
 	In order to attempt a test or view scores of test
@@ -16,10 +15,20 @@ Background:
     And User is enrolled to the following courses
       |COURSE|
       |History|
+    And User publishes the course "History"
+    And User navigates to quiz page and creates following quiz
+      |TEST|
+      |Indian Independence|
+      |World War 5|
+      |World War 6|
+      |World War 7|
+      |World War 8|
 
 Scenario: List of tests in the courses attached to User should be displayed
 
     Given User chooses the option "Courses"
     When User should see the courses list
     And User chooses the first course
-    Then User should see the tests
+    Then User should see the tests for page 1
+    And User chooses the first test
+    Then User should see the teachers menu

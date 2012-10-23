@@ -7,7 +7,8 @@ class CanvasEnrollmentInterface
 			  :enrollment =>
 				  {
 				    :user_id => user_id,
-				    :type => "TeacherEnrollment"
+				    :type => "TeacherEnrollment",
+            :enrollment_state => "active"
 				  }
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})

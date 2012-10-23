@@ -29,5 +29,9 @@ class App
   
   def redirect
     Redirect.new
-  end 
+  end
+
+  def quiz
+    Quiz.new
+  end
 end

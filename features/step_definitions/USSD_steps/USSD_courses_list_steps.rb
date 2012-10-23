@@ -55,15 +55,17 @@ end
 
 Then /^User should see the courses list$/ do
 	user_id = CanvasUserInterface.get_user_id
-	actual_response = @last_response.parsed_response
-	s_no = 1
-	@enrolled_courses.each do |enrolled_course|
-		actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
-		actual_response["response_map"]["#{s_no}"]["url"].should  == "/sen/users/#{user_id}/courses/#{enrolled_course.id}/quizzes"
-		s_no+=1
-  	end
-	actual_response["response_map"]["0"]["text"].should == "Home"
-	actual_response["response_map"]["0"]["url"].should  == "sen/users/#{user_id}"
+  actual_response = @last_response.parsed_response
+
+  s_no = 1
+
+  @enrolled_courses.each do |enrolled_course|
+    actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
+    actual_response["response_map"]["#{s_no}"]["url"].should  == "/sen/users/#{user_id}/courses/#{enrolled_course.id}/quizzes"
+    s_no+=1
+  end
+  actual_response["response_map"]["0"]["text"].should == "Home"
+  actual_response["response_map"]["0"]["url"].should  == "sen/users/#{user_id}"
 	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
