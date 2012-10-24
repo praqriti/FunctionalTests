@@ -20,7 +20,7 @@ Capybara.default_driver = :selenium_firefox
 Capybara.run_server = false
  #Capybara.javascript_driver = :selenium_chrome
 Capybara.javascript_driver = :webkit
-Capybara.default_wait_time = 50
+Capybara.default_wait_time = 75
 Capybara.server_boot_timeout = 50
 Capybara.reset_sessions!
 
