@@ -5,6 +5,8 @@ Feature:
   As an user
   I should be able to see my changes from both mobile and web 
   
+  # Bug 
+  @wip
   Scenario: Status updated on web must be reflected on my mobile device
  
   When User is on the Sign In page

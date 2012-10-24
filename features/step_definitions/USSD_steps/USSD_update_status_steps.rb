@@ -33,7 +33,6 @@ When /^User replies with new status message "([^\"]*)"$/ do |message|
    @last_response = JSONSpecInterface.post("#{SEN_URL}",
                                            :body => body.to_json,
                                            :headers => { "Content-Type" => "application/json"})
-  binding.pry
 end
 
 When /^User replies with new status message:$/ do |string|
