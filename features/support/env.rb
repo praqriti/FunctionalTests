@@ -18,6 +18,7 @@ After('@leave_the_window_open') do |scenario|
   end
 end
 
+
 # @default_user = CanvasUserInterface.create_user("camfed_student")
 # 
 # at_exit do 

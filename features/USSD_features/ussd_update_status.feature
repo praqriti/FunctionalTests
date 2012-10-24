@@ -9,7 +9,8 @@ Background:
 	Given I make a new USSD login request
 	When User "camfed_student" logs into USSD with her credentials
 	Then "camfed_student" should see the USSD home page
-  
+
+@wip  
 Scenario: Update and view new status update from USSD
 
 	Given User chooses the option to "update status"
@@ -19,6 +20,7 @@ Scenario: Update and view new status update from USSD
 	And User chooses the option to "update status"
 	Then User should see his previously updated message "new status"
 
+@wip
 Scenario: Verify blank status update from USSD
 
 	Given User chooses the option to "update status"
@@ -34,7 +36,7 @@ Scenario: Verify back from update page from USSD
 	When User replies "0" from update status page to go back to home page
 	Then "camfed_student" should see the USSD home page
 
-
+@wip
 Scenario: Verify no error on status update longer than max allowed length from USSD
 
 	Given User chooses the option to "update status"
@@ -68,9 +70,6 @@ Scenario: Verify one user cannot use another users access token
 	Given I make a new USSD login request
 	When I enter the login credentials as "user2" with password "password2"
 	And I save the access token for user "user2"
-
-@wip @manual
-Scenario: One user cannot continue with other users access token
 
 @wip
 Scenario: Verify that error is given to the user when she enters an invalid option

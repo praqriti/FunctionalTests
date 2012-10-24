@@ -1,36 +1,9 @@
 Given /^User chooses the option "Courses"$/ do
-	user_id = CanvasUserInterface.get_user_id
-	@last_response = JSONSpecInterface.post("#{SEN_URL}",
-		:body =>{
-			:session_id => "session id",
-			:session_type => "SESSION",
-			:message => "5",
-			:access_token =>"#{@last_response.parsed_response["access_token"]}",
-			:response_map =>
-			{
-				"5"=> {
-				"text"=> "Courses",
-				"url"=> "sen/users/#{user_id}/courses"
-			  	},
-				"4"=> {
-				"text"=> "Groups",
-				"url"=> "sen/users/#{user_id}/groups"
-				},
-				"3"=> {
-				"text"=> "My Profile",
-				"url"=> "sen/users/#{user_id}/profile"
-				},
-				"2"=> {
-				"text"=> "Update Status",
-				"url"=> "sen/users/#{user_id}/status"
-				},
-				"1"=> {
-				"text"=> "Notifications",
-				"url"=> "sen/users/#{user_id}/notifications"
-				}
-			}
-		}.to_json,
-	:headers => { "Content-Type" => "application/json"})
+  body = @last_response.parsed_response
+   body.merge!({"message" => "5"})
+   @last_response = JSONSpecInterface.post("#{SEN_URL}",
+                                           :body => body.to_json,
+                                           :headers => { "Content-Type" => "application/json"})
 end
 
 Given /^the following courses exist in canvas$/ do |courses_table|	
@@ -55,17 +28,13 @@ And /^User is enrolled to the following courses as "([^\"]*)"$/ do |type, course
 end
 
 Then /^User should see the courses list$/ do
-  user_id = CanvasUserInterface.get_user_id
   actual_response = @last_response.parsed_response
   s_no = 1
-  @enrolled_courses.sort! { |a,b| a.name <=> b.name }
   @enrolled_courses.each do |enrolled_course|
     actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
-    actual_response["response_map"]["#{s_no}"]["url"].should  == "/sen/users/#{user_id}/courses/#{enrolled_course.id}/quizzes"
     s_no+=1
   end
   actual_response["response_map"]["0"]["text"].should == "Home"
-  actual_response["response_map"]["0"]["url"].should  == "sen/users/#{user_id}"
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"

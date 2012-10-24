@@ -14,7 +14,7 @@ After do
   if (@courses)
      @courses.each do |course|      
          CanvasCourseInterface.delete_course(course)
-         p '#{course} deleted'
+         p "#{course.name} deleted"
         end
   end
 end

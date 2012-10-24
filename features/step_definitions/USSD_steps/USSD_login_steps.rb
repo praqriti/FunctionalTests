@@ -39,7 +39,7 @@ When /^User enters the username "([^\"]*)"$/ do |login_id|
        :session_id => "session id",
        :session_type => "SESSION",
        :message => "#{login_id}",
-       :response_map => {"$"=>{"url"=>"sen/users"}},
+       :response_map => {"target_url"=>"sen/users"},
        }.to_json,
    :headers => { "Content-Type" => "application/json"})
     
@@ -58,7 +58,7 @@ And /^User enters the password "([^\"]*)" for user "([^\"]*)"$/ do |password,log
          :session_type => "SESSION",
          :params => {"username" => "#{login_id}"},
          :message => "#{password}",
-         :response_map => {"$"=>{"url"=>"sen/users/password"}},
+         :response_map => {"target_url"=>"sen/users/password"},
               }.to_json, 
 
   :headers => { "Content-Type" => "application/json"})
@@ -85,32 +85,8 @@ Then /^"([^\"]*)" should see the USSD home page$/ do |user|
       Then the JSON at "session_id" should be "session id"   
       Then the JSON at "session_type" should be "SESSION"
       Then the JSON should have "access_token"
-      Then the JSON at "response_map" should be: 
-      """
-      {
-            "5": {
-               "text": "Courses",
-                "url": "sen/users/#{user.id}/courses"
-              },
-              "4": {
-                "text": "Groups",
-                "url": "sen/users/#{user.id}/groups"
-              },
-              "3": {
-                "text": "My Profile",
-                "url": "sen/users/#{user.id}/profile"
-              },
-              "2": {
-                "text": "Update Status",
-                "url": "sen/users/#{user.id}/status"
-              },
-              "1": {
-                "text": "Notifications",
-                "url": "sen/users/#{user.id}/notifications"
-              }
-        }
-      
-      """
     }
+    
+   
 end
 

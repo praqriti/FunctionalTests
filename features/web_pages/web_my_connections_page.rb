@@ -7,5 +7,7 @@ class MyConnections < SitePrism::Page
   element :connection_message, ".connection_action div.message"
   element :username, ".user .title"
   element :connection_alert, ".notice .message" 
+  element :confirm_disconnect_button, ".modal_confirm_button"
+  element :cancel_disconnect_button, ".modal_cancel_button"
   section :menu, MenuSection, "ul#menu"    
 end

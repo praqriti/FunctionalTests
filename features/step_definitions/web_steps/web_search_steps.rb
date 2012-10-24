@@ -61,19 +61,7 @@ Then /^User should see "(.*?)" without any connection status$/ do |username|
 end
 
 
-Given /^User "(.*?)" has pending connection requests from:$/ do |user,users_table|
-  users_table.hashes.each do |hash|  
-  steps %{
-     When User is on the Sign In page
-     And User "#{hash[:USER]}" logs into Canvas with her credentials
-     Then "#{hash[:USER]}" should see the Canvas home page
-     And User navigates to search page
-     When User searches for "#{user}" and clicks search
-     And User adds the user "#{user}" as a connection
-     Then User logs out
-  }
-  end
-end
+
 
 
 

@@ -1,3 +1,16 @@
+Given /^User "(.*?)" has pending connection requests from:$/ do |user,users_table|
+  users_table.hashes.each do |hash|  
+  steps %{
+     When User is on the Sign In page
+     And User "#{hash[:USER]}" logs into Canvas with her credentials
+     Then "#{hash[:USER]}" should see the Canvas home page
+     And User navigates to search page
+     When User searches for "#{user}" and clicks search
+     And User adds the user "#{user}" as a connection
+     Then User logs out
+  }
+  end
+end
 
 When /^User navigates to "Connection Requests"$/ do
   @app.connection_requests.load
@@ -17,7 +30,9 @@ Then /^User can view the connection requests in alphabetical order$/ do
 end
 
 Then /^User can "(.*?)" the connection request from "(.*?)"$/ do |user_action, username|
-  if(user_action == 'accept')
+  @app.connection_requests.header_message.text.should == "1 Pending Request(s)"
+  
+  if(user_action == 'accept')  
     @app.connection_requests.accept_button.click 
     @app.connection_requests.wait_until_connection_alert_visible
     @app.connection_requests.connection_alert.text.should == "#{username} and You are now connected"
@@ -27,21 +42,13 @@ Then /^User can "(.*?)" the connection request from "(.*?)"$/ do |user_action, u
     @app.connection_requests.wait_until_connection_alert_visible
     @app.connection_requests.connection_alert.text.should == "#{username} and You are no longer connected"
   end
-  @app.connection_requests.header_message.text.should == "0 Pending Request(s)"
 end
 
-When /^User navigates to my connections page$/ do
-  @app.my_connections.load
-  @app.my_connections.wait_until_header_message_visible 
+Then /^User can see the "(.*?)" pending requests$/ do |number|
+@app.connection_requests.load
+@app.connection_requests.wait_until_header_message_visible
+@app.connection_requests.header_message.text.should == "#{number} Pending Request(s)"
 end
 
 
-Then /^User can see "(.*?)" on my connections page$/ do |username|
-  @app.my_connections.username.text.should == "#{username}"
-  @app.my_connections.should have_disconnect_button
-end
 
-Then /^User cannot see "(.*?)" on my connections page$/ do |username|
-  @app.my_connections.should_not have_username
-  @app.my_connections.should_not have_disconnect_button
-end
