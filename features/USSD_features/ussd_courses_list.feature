@@ -12,28 +12,59 @@ Background:
 	Then "camfed_student" should see the USSD home page
 
 
-Scenario: View first page of Courses list
-  Given the following courses exist in canvas
-    |COURSE|
-    |History|
-    |Chemistry|
-    |Mathematics|
-    |Computer|
-    |Biology |
-
+Scenario: View Courses list
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	|Biology |
 	And User is enrolled to the following courses as "teacher"
 	|COURSE|
 	|History|
 	|Chemistry|
-    |Mathematics|
-    |Computer|
-    |Biology |
+	|Mathematics|
 	Given User chooses the option "Courses"
 	Then User should see the courses list
-    And User should see the "Next" option on first page
+	And User should not see "Previous" and "Next" option
 
-@wip
-Scenario: View second page of Courses list when there are a total of 3 pages
+Scenario: View all pages of Courses list when there are a total of 3 pages
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	|Biology |
+	|Physics |
+	|English |
+	|Portuguese |
+	|Punjabi |
+	And User is enrolled to the following courses as "student"
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	|Biology |
+	|Physics |
+	|English |
+	|Portuguese |
+	|Punjabi |
+	Given User chooses the option "Courses"
+	Then User should see the courses list on page "1"
+	And User should see the "Next" option
+	When User chooses the "Next" option
+	Then User should see the courses list on page "2"
+	And User should see the "Next" and "Previous" option
+	When User chooses the "Next" option
+	Then User should see the courses list on page "3"
+	And User should see the "Previous" option
+	When User chooses the "Previous" option
+	Then User should see the courses list on page "2"
+
+Scenario: Verify back from courses page from ussd
 
 	Given the following courses exist in canvas
 	|COURSE|
@@ -41,40 +72,7 @@ Scenario: View second page of Courses list when there are a total of 3 pages
 	|Chemistry|
 	|Mathematics|
 	|Computer|
-    |Biology |
-    |Physics |
-    |English |
-    |Portuguese |
-    |Punjabi |
-
-	And User is enrolled to the following courses as "student"
-	|COURSE|
-	|History|
-	|Chemistry|
-    |Mathematics|
-    |Computer|
-    |Biology |
-    |Physics |
-    |English |
-    |Portuguese |
-    |Punjabi |
-	Given User chooses the option "Courses"
-	Then User should see the courses list
-    And User chooses the "Next" option
-    Then User should see the courses list
-    And User should see "Previous" and "Next" option
-
-
-Scenario: Verify back from courses page from ussd
-
-    Given the following courses exist in canvas
-    |COURSE|
-    |History|
-    |Chemistry|
-    |Mathematics|
-    |Computer|
-
-    And User is enrolled to the following courses as "teacher"
+    	And User is enrolled to the following courses as "teacher"
 	|COURSE|
 	|History|
 	|Chemistry|
