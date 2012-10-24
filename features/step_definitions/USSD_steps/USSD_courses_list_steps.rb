@@ -45,9 +45,10 @@ end
 Then /^User should see the courses list on page "([^\"]*)"$/ do |page_no|
 	actual_response = @last_response.parsed_response
 	page_no = page_no.to_i
-	s_no = (4 * (page_no-1)) + 1
-	start_index = 4 * (page_no-1)
-	end_index = start_index + 3
+	rpp = "#{RECORDS_PER_PAGE}".to_i
+	s_no = (rpp * (page_no-1)) + 1
+	start_index = rpp * (page_no-1)
+	end_index = start_index + (rpp-1)
 	@enrolled_courses[start_index..end_index].each do |enrolled_course|
 		actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
 		s_no+=1

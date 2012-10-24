@@ -12,6 +12,8 @@ CANVAS_ACCESS_TOKEN = "#{ENV_CONFIG['access_token']}"
 
 ACCOUNT_ID = "#{ENV_CONFIG['account_id']}"
 
+RECORDS_PER_PAGE = "#{ENV_CONFIG['records_per_page']}"
+
 Capybara.app_host = CANVAS_URL
 Capybara.default_selector = :css
 Capybara.default_driver = :selenium_firefox
