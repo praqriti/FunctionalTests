@@ -61,3 +61,18 @@ Then /^User should see the teachers menu$/ do
     		}
 end
 
+Then /^User should see the students menu$/ do
+  user_id = CanvasUserInterface.get_user_id
+  actual_response = @last_response.parsed_response
+
+  actual_response["response_map"]["2"]["text"].should == "Attempt Quiz"
+  actual_response["response_map"]["1"]["text"].should == "View Score"
+  actual_response["response_map"]["0"]["text"].should == "Home"
+  actual_response["response_map"]["0"]["url"].should  == "sen/users/#{user_id}"
+
+  steps %{
+		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_type" should be "SESSION"
+		Then the JSON should have "access_token"
+    		}
+end

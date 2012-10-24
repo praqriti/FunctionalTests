@@ -13,7 +13,18 @@ class CanvasEnrollmentInterface
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 		if (@last_response.response.code==200)
-		    	 p "User Enrolled"
-		end
-	end
+      p "User Enrolled"
+    end
+    return @last_response.parsed_response["id"]
+  end
+
+  def self.conclude_enrollment(course_id, enrollment_id)
+    @last_response =
+        JSONSpecInterface.delete("#{CANVAS_API}/courses/#{course_id}/enrollments/#{enrollment_id}",
+                               :body =>  {},
+                               :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
+    if (@last_response.response.code==200)
+      p "User concluded from course"
+    end
+  end
 end

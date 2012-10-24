@@ -8,7 +8,7 @@ class CanvasCourseInterface
 			  :course =>
 				  {
 				    :name => "#{@course.name}"
-				  }
+				  }, :offer => true
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 		@course.id =  @last_response.parsed_response["id"]
