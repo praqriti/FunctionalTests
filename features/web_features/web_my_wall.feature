@@ -37,7 +37,7 @@ Feature:
   And User can view her latest status message "status message"
   And User comments "Hello" on her status message
   And User comments "Good" on her status message
-  #Research for identifying different comment_texts.
+  #Research for identifying different comments.
   Then the comments are visible on My Wall
     |COMMENT|
     |Hello  |
