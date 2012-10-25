@@ -28,7 +28,6 @@ Scenario: Verify if a logged in user can accept his connection requests
     And User can see "requesting_user" on my connections page
     Then User logs out
 
-@wip  	
 Scenario: Verify if a logged in user can reject his connection requests
   When User "camfed_student" has pending connection requests from:
              |USER|
@@ -46,7 +45,6 @@ Scenario: Verify if a logged in user can reject his connection requests
   And User cannot see "requesting_user" on my connections page
   Then User logs out
 	
-@wip	
 Scenario: Verify if a logged in user can disconnect his connections
 When User "camfed_student" is connected to:
 |USER|
