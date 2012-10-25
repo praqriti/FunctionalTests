@@ -44,7 +44,8 @@ Scenario: Verify if a logged in user can reject his connection requests
   Then User navigates to "My Connections" page
   And User cannot see "requesting_user" on my connections page
   Then User logs out
-	
+
+@wip	
 Scenario: Verify if a logged in user can disconnect his connections
 When User "camfed_student" is connected to:
 |USER|

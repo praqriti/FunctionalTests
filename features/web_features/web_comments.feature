@@ -18,7 +18,7 @@ Then User status "status message" is updated successfully
 And User logs out
 
 Scenario: Verify that a user can comment on the status of other user 
-  And User "camfed_user" logs into Canvas with her credentials
-  And User can navigate and view the wall of user "camfed_student"
-  Then User comments "Nice status" on the status of "camfed_student"
-  Then the comment "Nice status" is visible on the wall
+And User "camfed_user" logs into Canvas with her credentials
+And User can navigate and view the wall of user "camfed_student"
+Then User comments "Nice status" on the status of "camfed_student"
+Then the comment "Nice status" is visible on the wall

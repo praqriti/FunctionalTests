@@ -23,10 +23,6 @@ class App
     Wall.new
   end
 
-  def user_wall
-    Wall.new
-  end
-  
   def redirect
     Redirect.new
   end

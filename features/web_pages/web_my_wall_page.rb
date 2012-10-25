@@ -5,11 +5,10 @@ class Wall < SitePrism::Page
   
   section :menu, MenuSection, "ul#menu"
     
-  element :user_name, "div.profile_headings h2"
+  element :user_name, ".profile_headings"
   element :full_name, "table.profile_table tbody tr td.name"
   element :display_name, "table.profile_table tbody tr td.short_name"
   element :profile_picture, "div.profile_headings img"
-  
   element :status_message, "div#status_message em"
   element :comment_box, "textarea#comment_message.autoclearInput"
   element :comment_submit, "form#new_comment.new_comment input.submit"
