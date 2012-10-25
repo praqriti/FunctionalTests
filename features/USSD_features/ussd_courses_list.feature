@@ -81,6 +81,50 @@ Scenario: Verify back from courses page from ussd
 	When User replies "0" from courses page to go back to home page
 	Then "camfed_student" should see the USSD home page
 
+@manual
+Scenario: Verify that the order of courses in the list is correct
+
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	|Biology |
+	|Physics |
+	|English |
+	|Portuguese |
+	|Punjabi |
+	|Refactoring|
+	|Object Oriented|
+	|Business logic|
+	And User is enrolled to the following courses as "student"
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	|Biology |
+	|Physics |
+	|English |
+	|Portuguese |
+	|Punjabi |
+	|Refactoring|
+	|Object Oriented|
+	|Business logic|
+	Given User chooses the option "Courses"
+	Then User should see the courses list on page "1"
+	And the ordering of courses on page "1" should be correct
+	And User should see the "Next" option
+	When User chooses the "Next" option
+	Then User should see the courses list on page "2"
+	And the ordering of courses on page "2" should be correct
+	And User should see the "Next" and "Previous" option
+	When User chooses the "Next" option
+	Then User should see the courses list on page "3"
+	And the ordering of courses on page "3" should be correct
+	And User should see the "Previous" option
+
 Scenario: User is not enrolled to any course
 
 	Given User chooses the option "Courses"
