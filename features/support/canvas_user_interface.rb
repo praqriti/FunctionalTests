@@ -17,7 +17,7 @@ class CanvasUserInterface
           :user =>
                   {
                     :name => "#{@user.name}",
-                    # :short_name => "#{user}"
+                    :sort_name => "#{user}"
                   }
                   },
         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})         

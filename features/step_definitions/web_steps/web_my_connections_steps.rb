@@ -5,7 +5,8 @@ end
 
 
 Then /^User can see "(.*?)" on my connections page$/ do |username|
-  @app.my_connections.username.text.should == "#{username}"
+  user = @users.find{|user| user.identifier == username}
+  @app.my_connections.username.text.should == "#{user.name}"
   @app.my_connections.should have_disconnect_button
 end
 

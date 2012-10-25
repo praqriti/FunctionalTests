@@ -1,9 +1,10 @@
 Before do 
-  DEFAULT_USER = CanvasUserInterface.create_user("camfed_student")
+  @users = Array.new
+  @users << CanvasUserInterface.create_user("camfed_student")
 end
 
 After do 
-  CanvasUserInterface.delete_user(DEFAULT_USER)
+  # CanvasUserInterface.delete_user(DEFAULT_USER)
   
   if (@users)
     @users.each do |user|      

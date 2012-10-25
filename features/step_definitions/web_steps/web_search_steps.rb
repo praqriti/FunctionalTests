@@ -17,14 +17,30 @@ When /^And User navigates to search page$/ do
 end
 
 When /^User searches for "([^\"]*)" and clicks search$/ do |search_query|
+  user = @users.find{|user| user.identifier == search_query}
+  if (user)
+  @app.search.search_box.set "#{user.name}" 
+else
   @app.search.search_box.set "#{search_query}"
-  @app.search.search_button.click
+end
+@app.search.search_button.click
+end
+
+
+When /^User adds the user "(.*?)" as a connection$/ do |username|
+  user = @users.find{|user| user.identifier == username}
+  @app.search.wait_until_search_results_visible
+  # binding.pry
+  @app.search.username.text.should == "#{user.name}"
+  @app.search.unlinked_user.click
+  @app.search.wait_until_connection_alert_visible
 end
 
 When /^User should see the users$/ do |users_table|
   @app.search.wait_until_search_results_visible
   users_table.hashes.each do |hash|  
-  @app.search.users.map {|user| user.text}.should == "#{hash[:USER]}"
+  user = @users.find{|user| user.identifier == hash[:USER]}
+  @app.search.username.text.should == "#{user.name}"
   end 
 end
 
@@ -37,28 +53,25 @@ When /^User should see the search error$/ do
   @app.search.search_results.text.should == "Sorry!, Unable to find user with entered criteria"
 end
 
-Then /^User should see "(.*?)" as an "(.*?)" connection$/ do |username, connection_status|
-  @app.search.wait_until_search_results_visible
-  @app.search.username.text.should == "#{username}"
+Then /^User should see "(.*?)" as an "(.*?)" connection$/ do |identifier, connection_status|
+  user = @users.find{|user| user.identifier == identifier}
+    @app.search.wait_until_search_results_visible
+    @app.search.username.text.should == "#{user.name}"
     @app.search.should have_unlinked_user if(connection_status == "unlinked")
     @app.search.should have_pending_request_user if(connection_status == "request pending")
     @app.search.should have_pending_response_user if(connection_status == "response pending")
 end
 
-When /^User adds the user "(.*?)" as a connection$/ do |username|
-  @app.search.wait_until_search_results_visible
-  @app.search.username.text.should == "#{username}"
-  @app.search.unlinked_user.click
-  @app.search.wait_until_connection_alert_visible
-end
 
 Then /^User should see "(.*?)" without any connection status$/ do |username|
+  user = @users.find{|user| user.identifier == username}
   @app.search.wait_until_search_results_visible
-  @app.search.username.text.should == "#{username}"
+  @app.search.username.text.should == "#{user.name}"
       @app.search.should_not have_unlinked_user 
       @app.search.should_not have_pending_request_user 
       @app.search.should_not have_pending_response_user 
 end
+
 
 
 

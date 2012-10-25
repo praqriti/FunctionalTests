@@ -1,4 +1,4 @@
-@javascript
+# @javascript
 Feature:
 
   In order find other users
@@ -16,26 +16,21 @@ Feature:
      Then User should see the search error
      Then User logs out
      
-        # fix in progress - Prakriti    
-      @wip 
      Scenario: Verify User can make a successful search 
      Given the following users exists in canvas:
             |USER|
             |camfed_new_student|
-     When User searches for "student" and clicks search
+     When User searches for "camfed_new_student" and clicks search
      Then User should see the users
      |USER|
      |camfed_new_student|
   
-     # fix in progress - Prakriti    
-   @wip
    Scenario: Verify User can navigate to users wall from search page
    Given the following users exists in canvas:
            |USER|
            |camfed_bio_student|
    When User searches for "camfed_bio_student" and clicks search
-   Then User can navigate to the wall of "camfed_bio_student"
-   
+   Then User can navigate and view the wall of user "camfed_bio_student"
    
    Scenario: Verify User can view unlinked user on search page
    Given the following users exists in canvas:

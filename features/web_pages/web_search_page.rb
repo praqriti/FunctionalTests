@@ -14,6 +14,7 @@ class Search < SitePrism::Page
   elements :users, ".user"
   element :username, ".user .title"
   element :unlinked_user, ".user .not_connected"
+  element :users_link, ".user div.details a"
   element :pending_request_user, ".request_pending"
   element :pending_response_user, ".response_pending"
   element :connection_alert, "div.notice div.message"
