@@ -29,6 +29,26 @@ Scenario: View Courses list
 	Then User should see the courses list
 	And User should not see "Previous" and "Next" option
 
+Scenario: View Courses list when User is enrolled as both teacher and student
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	|Biology |
+	And User is enrolled to the following courses as "teacher"
+	|COURSE|
+	|History|
+	|Mathematics|
+	And User is enrolled to the following courses as "student"
+	|COURSE|
+	|Chemistry|
+	|Biology|
+	Given User chooses the option "Courses"
+	Then User should see the courses list
+	And User should not see "Previous" and "Next" option
+
 Scenario: View all pages of Courses list when there are a total of 3 pages
 	Given the following courses exist in canvas
 	|COURSE|

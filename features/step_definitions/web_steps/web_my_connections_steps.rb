@@ -39,28 +39,19 @@ end
 
 
 When /^User can "disconnect" his connection "(.*?)"$/ do |username|
-  @app.my_connections.username.text.should == "#{username}"
+  user = @users.find{|user| user.identifier == username}
+  @app.my_connections.username.text.should == "#{user.name}"
   @app.my_connections.header_message.text.should == "1 Connection(s) available"  
-  page.evaluate_script('window.confirm = function() { return true; }')
-  
   @app.my_connections.disconnect_button.click
-  # handle_js_confirm(true)
-  @app.my_connections.connection_alert.text.should == "#{username} and You are no longer connected"
+  @app.my_connections.wait_until_dialog_visible
+  page.find("#modal_confirm_button").click
+  @app.my_connections.wait_until_connection_alert_visible
+  @app.my_connections.connection_alert.text.should == "#{user.name} and You are no longer connected"
 end
 
 Then /^User can see the "(.*?)" connections available$/ do |number|
 @app.my_connections.load
 @app.connection_requests.wait_until_header_message_visible
 @app.my_connections.header_message.text.should == "#{number} Connection(s) available"
-end
-
-
-def handle_js_confirm(accept=true)
-  page.evaluate_script "window.original_confirm_function = window.confirm"
-   page.evaluate_script "window.confirm = function(msg) { return #{!!accept}; }"
- #   yield
- # ensure
- #   page.evaluate_script "window.confirm = window.original_confirm_function"
- # 
 end
 

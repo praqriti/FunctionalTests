@@ -11,10 +11,10 @@ Given /^the following courses exist in canvas$/ do |courses_table|
 	courses_table.hashes.each do |hash|
 		@courses << CanvasCourseInterface.create_course("#{hash["COURSE"]}")
 	end
+	@enrolled_courses = Array.new
 end
 
 And /^User is enrolled to the following courses as "([^\"]*)"$/ do |type, courses_table|
-	@enrolled_courses = Array.new
   	enroll_type = type == "teacher" ? "TeacherEnrollment" : "StudentEnrollment"
 	user_id = CanvasUserInterface.get_user_id
 	courses_table.hashes.each do |hash|
