@@ -31,6 +31,10 @@ class App
     Quiz.new
   end
   
+  def assignment
+    Assignment.new
+  end
+
   def connection_requests
      ConnectionRequests.new
    end

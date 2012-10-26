@@ -7,4 +7,5 @@ class Quiz < SitePrism::Page
   element :quiz_name_field, 'input#quiz_title'
   element :publish_button, 'button.publish_quiz_button'
   element :quiz_name_header, 'h2#quiz_title'
+  element :quiz_group, 'select#quiz_assignment_group_id'
 end
