@@ -22,7 +22,7 @@ class CanvasUserInterface
                   },
         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})         
      @user.id =  @last_response.parsed_response["id"]
-     if (@last_response.response.code==200)
+     if (@last_response.response.code=="200")
      p "user #{@user.login_id} created"
    end
      return @user      

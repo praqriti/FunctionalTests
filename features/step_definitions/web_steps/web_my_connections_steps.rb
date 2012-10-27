@@ -51,7 +51,8 @@ end
 
 Then /^User can see the "(.*?)" connections available$/ do |number|
 @app.my_connections.load
-@app.connection_requests.wait_until_header_message_visible
+@app.my_connections.wait_until_header_message_visible
 @app.my_connections.header_message.text.should == "#{number} Connection(s) available"
+@app.my_connections.wait_for_my_connections_details
 end
 

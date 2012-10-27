@@ -10,5 +10,9 @@ class MyConnections < SitePrism::Page
   element :dialog, ".modal_container" 
   element :confirm_disconnect_button, ".modal_confirm_button"
   element :cancel_disconnect_button, ".modal_cancel_button"
-  section :menu, MenuSection, "ul#menu"    
+  element :show_more, ".sen_social #more a"
+  elements :users, ".user"
+  section :menu, MenuSection, "ul#menu"   
+  sections :my_connections_details, MyConnectionsSection, "#connection_details .user"    
+   
 end

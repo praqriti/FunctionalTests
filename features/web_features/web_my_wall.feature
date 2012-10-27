@@ -27,7 +27,7 @@ Feature:
   Then the comments are visible on My Wall
     |COMMENT|
     |Good Status|
-  And User can view her name on the comment
+  And User can view her name "camfed_student" on the comment
   And User logs out
 
   @wip

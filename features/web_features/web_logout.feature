@@ -25,13 +25,11 @@ Scenario: logout for the social education network from CAS
   Then User is on the Sign In page
   
 Scenario: logout and login as another user succesfully
-
-    Given User is on the Sign In page
+    Given the following users exists in canvas:
+         |USER|
+         |camfed_teacher|
+    And User is on the Sign In page
     And User "camfed_student" logs into Canvas with her credentials
     And "camfed_student" should see the Canvas home page
-    And User logs out
-    When the following users exists in canvas:
-             |USER|
-             |camfed_teacher|
-    And User "camfed_teacher" logs into Canvas with her credentials
+    And User logs out and logs into canvas as "camfed_teacher"
     Then "camfed_teacher" should see the Canvas home page  

@@ -31,3 +31,9 @@ When /^I wait (\d+) seconds?$/ do |seconds|
   sleep seconds.to_i
 end
 
+Given /^User logs out and logs into canvas as "(.*?)"$/ do |username|
+  steps %{Then User logs out
+    Then User "#{username}" logs into Canvas with her credentials
+    }
+end
+

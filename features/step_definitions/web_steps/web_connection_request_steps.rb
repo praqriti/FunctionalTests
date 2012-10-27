@@ -15,7 +15,7 @@ end
 
 When /^User navigates to "Connection Requests"$/ do
   @app.connection_requests.load
-  @app.connection_requests.wait_until_header_message_visible
+  @app.connection_requests.wait_until_users_visible
 end
 
 Then /^User can see the pending connection requests sent from:$/ do |users_table|
@@ -53,7 +53,50 @@ Then /^User can see the "(.*?)" pending requests$/ do |number|
 @app.connection_requests.load
 @app.connection_requests.wait_until_header_message_visible
 @app.connection_requests.header_message.text.should == "#{number} Pending Request(s)"
+@app.connection_requests.wait_for_connection_details
 end
+
+Given /^User "(.*?)" has pending connection requests from "(.*?)" users$/ do |username, user_count|
+(1..user_count.to_i).each do |i|
+ @users << CanvasUserInterface.create_user("dummy_user_#{i}_")
+ current_user = @users.last
+  steps %{
+      When User is on the Sign In page
+      And User "#{current_user.identifier}" logs into Canvas with her credentials
+      Then "#{current_user.identifier}" should see the Canvas home page
+      And User navigates to search page
+      When User searches for "#{username}" and clicks search
+      And User adds the user "#{username}" as a connection
+      Then User logs out
+   }
+  p "pending request created by user #{current_user.login_id}"
+  end
+end
+
+Then /^User can view "(.*?)" connection requests on "Connections Requests" page$/ do |request_count|
+  @app.connection_requests.users.size.should == request_count.to_i
+end
+
+Then /^User can view "(.*?)" connection requests on "My Connections" page$/ do |request_count|
+  @app.my_connections.users.size.should == request_count.to_i
+end
+
+Then /^User clicks on "show more"$/ do
+  @app.connection_requests.show_more.click
+  sleep(5)
+end
+
+
+When /^User rejects a connection request from page "(.*?)"$/ do |user_count|
+  @app.connection_requests.connection_details.last.reject_button.click
+  @app.connection_requests.wait_until_connection_alert_visible
+end
+
+When /^User accepts a connection request from page "(.*?)"$/ do |user_count|
+  @app.connection_requests.connection_details.last.accept_button.click
+  @app.connection_requests.wait_until_connection_alert_visible
+end
+
 
 
 

@@ -18,4 +18,6 @@ class Search < SitePrism::Page
   element :pending_request_user, ".request_pending"
   element :pending_response_user, ".response_pending"
   element :connection_alert, "div.notice div.message"
+  element :show_more, ".sen_social #more a"
+  
 end

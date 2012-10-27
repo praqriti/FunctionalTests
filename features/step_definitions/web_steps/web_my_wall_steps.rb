@@ -15,8 +15,9 @@ Then /^User can view her latest status message "(.*?)"$/ do |arg1|
 end
 
 
-Then /^User can view her name on the comment$/ do
-  @app.my_wall.commented_by.text.should == @app.my_wall.display_name.text
+Then /^User can view her name "(.*?)" on the comment$/ do |username|
+  user = @users.find{|user| user.identifier == username}
+  @app.my_wall.commented_by.text.should == "#{user.name}"
 end
 
 Then /^User comments "(.*?)" on her status message$/ do |arg1|
@@ -51,8 +52,5 @@ Then /^User comments on her status message:$/ do |string|
   @app.my_wall.comment_submit.click
 end
 
-Then /^the comment visible is:$/ do |string|
-  @app.my_wall.comment.text.should == string
-end
 
 

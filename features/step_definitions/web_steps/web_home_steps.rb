@@ -50,9 +50,7 @@ end
 
 Then /^User logs out$/ do
   @app.home.logout_link.click
-    steps %{
-      Then User is on the Sign In page
-    }
+  @app.login.message.text.should == "You have successfully logged out."
 end
 
 

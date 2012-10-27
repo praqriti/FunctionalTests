@@ -18,6 +18,12 @@ After do
          p "#{course.name} deleted"
         end
   end
+  
+  if (@dummy_users)
+    @users.each do |user|      
+       CanvasUserInterface.delete_user(user)
+      end
+  end
 end
 
   

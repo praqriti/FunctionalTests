@@ -12,38 +12,40 @@ Given the following users exists in canvas:
 	|requesting_user|
 
 Scenario: Verify if a logged in user can accept his connection requests
-	When User "camfed_student" has pending connection requests from:
-	|USER|
-	|requesting_user|
-	When User is on the Sign In page
-	When User "camfed_student" logs into Canvas with her credentials
-	When "camfed_student" should see the Canvas home page
-	When User navigates to "Connection Requests"
-	When User can see the pending connection requests sent from:
-	|USER|
-	|requesting_user|
-	Then User can "accept" the connection request from "requesting_user"
-	Then User navigates to "My Connections" page
-	And User can see "requesting_user" on my connections page
-	Then User logs out
-
+    When User "camfed_student" has pending connection requests from:
+          |USER|
+          |requesting_user|
+    When User is on the Sign In page
+    When User "camfed_student" logs into Canvas with her credentials
+    When "camfed_student" should see the Canvas home page
+    When User navigates to "Connection Requests"
+    When User can see the pending connection requests sent from:
+          |USER|
+          |requesting_user|
+    Then User can "accept" the connection request from "requesting_user"
+    Then User navigates to "My Connections" page
+    And User can see "requesting_user" on my connections page
+    Then User logs out
+    
 Scenario: Verify if a logged in user can reject his connection requests
-	When User "camfed_student" has pending connection requests from:
-	|USER|
-	|requesting_user|
-	When User is on the Sign In page
-	When User "camfed_student" logs into Canvas with her credentials
-	When "camfed_student" should see the Canvas home page
-	When User navigates to "Connection Requests"
-	When User can see the pending connection requests sent from:
-	|USER|
-	|requesting_user|
-	Then User can "reject" the connection request from "requesting_user"
-	And User can see the "0" pending requests
-	Then User navigates to "My Connections" page
-	And User cannot see "requesting_user" on my connections page
-	Then User logs out
-	
+      When User "camfed_student" has pending connection requests from:
+                 |USER|
+                 |requesting_user|
+      When User is on the Sign In page
+      When User "camfed_student" logs into Canvas with her credentials
+      When "camfed_student" should see the Canvas home page
+      When User navigates to "Connection Requests"
+      When User can see the pending connection requests sent from:
+                 |USER|
+                 |requesting_user|
+      Then User can "reject" the connection request from "requesting_user"
+      And User can see the "0" pending requests
+      Then User navigates to "My Connections" page
+      And User cannot see "requesting_user" on my connections page
+      Then User logs out
+      
+      
+@wip	
 Scenario: Verify if a logged in user can disconnect his connections
 	When User "camfed_student" is connected to:
 	|USER|
