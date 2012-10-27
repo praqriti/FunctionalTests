@@ -53,7 +53,9 @@ Then /^User can see the "(.*?)" pending requests$/ do |number|
 @app.connection_requests.load
 @app.connection_requests.wait_until_header_message_visible
 @app.connection_requests.header_message.text.should == "#{number} Pending Request(s)"
+if(number!='0')
 @app.connection_requests.wait_for_connection_details
+end
 end
 
 Given /^User "(.*?)" has pending connection requests from "(.*?)" users$/ do |username, user_count|

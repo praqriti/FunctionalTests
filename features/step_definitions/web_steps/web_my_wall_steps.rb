@@ -27,10 +27,9 @@ Then /^User comments "(.*?)" on her status message$/ do |arg1|
 end
 
 Then /^the comments are visible on My Wall$/ do |comments_table|
+  @app.my_wall.wait_until_comment_box_visible
   comments_table.hashes.each do |hash|
-    @app.my_wall.comment.each do |comment|
-      comment.text.should == "#{hash[:COMMENT]}"
-    end
+    @app.my_wall.comment.text.should == "#{hash[:COMMENT]}"
   end
 end
 
