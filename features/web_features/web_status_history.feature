@@ -1,3 +1,4 @@
+@javascript
 Feature:
 
   In order to know my past statuses
