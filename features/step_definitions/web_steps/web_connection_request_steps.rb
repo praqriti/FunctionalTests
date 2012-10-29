@@ -83,11 +83,15 @@ Then /^User can view "(.*?)" connection requests on "My Connections" page$/ do |
   @app.my_connections.users.size.should == request_count.to_i
 end
 
-Then /^User clicks on "show more"$/ do
+Then /^User clicks on "show more" on "Connections Requests" page$/ do
   @app.connection_requests.show_more.click
   sleep(5)
 end
 
+Then /^User clicks on "show more" on "My Connections" page$/ do
+  @app.my_connections.show_more.click
+  sleep(5)
+end
 
 When /^User rejects a connection request from page "(.*?)"$/ do |user_count|
   @app.connection_requests.connection_details.last.reject_button.click
@@ -97,6 +101,15 @@ end
 When /^User accepts a connection request from page "(.*?)"$/ do |user_count|
   @app.connection_requests.connection_details.last.accept_button.click
   @app.connection_requests.wait_until_connection_alert_visible
+end
+
+When /^User accepts "(.*?)" connection requests$/ do |request_count|
+  (1..request_count.to_i).each do |i|
+	@app.connection_requests.connection_details[0].accept_button.click
+	@app.connection_requests.wait_until_connection_alert_visible
+	p "Request accepted"
+	@app.connection_requests.load
+   end
 end
 
 
