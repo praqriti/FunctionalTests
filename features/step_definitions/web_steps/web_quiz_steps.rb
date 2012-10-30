@@ -2,7 +2,7 @@ Given /^User navigates to quiz page of "([^\"]*)" course and creates following q
   @course = @courses.select { |c| c.name == course_name }.first
   enroll_type = "TeacherEnrollment"
   user_id = CanvasUserInterface.get_user_id
-  enrollment_id = CanvasEnrollmentInterface.enroll_user(@course.id, user_id, enroll_type)
+  enrollment_id = CanvasEnrollmentInterface.enroll_user(@course.id, user_id, enroll_type, "active")
   steps %{
           When User is on the Sign In page
           And User "camfed_student" logs into Canvas with her credentials

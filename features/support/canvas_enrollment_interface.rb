@@ -1,6 +1,6 @@
 class CanvasEnrollmentInterface
 
-	def self.enroll_user(course_id, user_id, enroll_type)
+	def self.enroll_user(course_id, user_id, enroll_type, state)
 		@last_response =
 			JSONSpecInterface.post("#{CANVAS_API}/courses/#{course_id}/enrollments",
 			:body =>  {
@@ -8,26 +8,26 @@ class CanvasEnrollmentInterface
 				  {
 				    :user_id => user_id,
 				    :type => enroll_type,
-            :enrollment_state => "active",
-            :notify => "false"
+				    :enrollment_state => state,
+				    :notify => "false"
 				  }
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 		if (@last_response.response.code==200)
-      p "User Enrolled"
-    end
-    return @last_response.parsed_response["id"]
-  end
+      			p "User Enrolled"
+    		end
+	    	return @last_response.parsed_response["id"]
+	end
 
-  def self.conclude_enrollment(course_id, enrollment_id)
-    @last_response =
-        JSONSpecInterface.delete("#{CANVAS_API}/courses/#{course_id}/enrollments/#{enrollment_id}",
-                               :body =>  {
-                                   :task => "delete"
+	def self.conclude_enrollment(course_id, enrollment_id)
+    		@last_response =
+        		JSONSpecInterface.delete("#{CANVAS_API}/courses/#{course_id}/enrollments/#{enrollment_id}",
+                        :body =>  {
+                          :task => "delete"
                                },
                                :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-    if (@last_response.response.code==200)
-      p "User concluded from course"
-    end
-  end
+    		if (@last_response.response.code==200)
+      			p "User concluded from course"
+    		end
+  	end
 end

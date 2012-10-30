@@ -20,7 +20,7 @@ And /^User is enrolled to the following courses as "([^\"]*)"$/ do |type, course
 	courses_table.hashes.each do |hash|
 		@courses.each do |course|
 			if(course.name == "#{hash["COURSE"]}")
-				CanvasEnrollmentInterface.enroll_user(course.id, user_id, enroll_type)
+				CanvasEnrollmentInterface.enroll_user(course.id, user_id, enroll_type, "active")
 				@enrolled_courses << course
 			end
 		end

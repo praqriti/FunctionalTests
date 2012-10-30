@@ -1,6 +1,7 @@
-When /^User chooses the first course$/ do
+When /^User chooses course "([^\"]*)"$/ do |course_no|
+  course_no = course_no.to_i
   body = @last_response.parsed_response
-  body.merge!({"message" => "1"})
+  body.merge!({"message" => "#{course_no}"})
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
                                           :body => body.to_json,
                                           :headers => { "Content-Type" => "application/json"})
@@ -38,9 +39,10 @@ Given /^User publishes the course "([^\"]*)"$/ do |course_name|
         }
 end
 
-And /^User chooses the first test$/ do
+And /^User chooses test "([^\"]*)"$/ do |test_no|
+  test_no = test_no.to_i
   body = @last_response.parsed_response
-  body.merge!({"message" => "1"})
+  body.merge!({"message" => "#{test_no}"})
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
                                           :body => body.to_json,
                                           :headers => { "Content-Type" => "application/json"})
