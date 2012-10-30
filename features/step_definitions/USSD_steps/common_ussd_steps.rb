@@ -34,9 +34,9 @@ user_id = CanvasUserInterface.find_user(login_id)["id"]
   :headers => { "Content-Type" => "application/json"})
 end
 
-Then /^User is given an error message$/ do
+Then /^User is given an error message and returns to home page$/ do
     steps %{
-      Then the JSON at "message" should be "Invalid Option"
+      Then the JSON at "message" should be "Invalid Option \\n"
     }
 end
 

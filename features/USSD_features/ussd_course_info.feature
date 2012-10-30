@@ -40,13 +40,13 @@ Scenario: User selects a course in which he is enrolled as student
 	When User chooses course "3"
 	Then User should see the message "Attached to course as Student\nNo Quiz Attached"
 
-Scenario: User selects a course in which invitation is pendiing for student
+Scenario: User selects a course in which invitation is pending for student
 
 	When User chooses the "Next" option
 	And User chooses course "5"
 	Then User should see the message "Attached to course as Student\nPlease log in to Web, to respond to Course request"
 
-Scenario: User selects a course in which invitation is pendiing for teacher
+Scenario: User selects a course in which invitation is pending for teacher
 
 	When User chooses the "Next" option
 	And User chooses course "6"

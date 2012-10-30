@@ -149,3 +149,26 @@ Scenario: User is not enrolled to any course
 
 	Given User chooses the option "Courses"
 	Then "No Course Attached" should be displayed to the User
+
+Scenario: User is enrolled to courses as student and Observer
+
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	And User is enrolled to the following courses as "student"
+	|COURSE|
+	|History|
+	And User is enrolled to "Chemistry" as "Observer" with pending invitation
+	When User chooses the option "Courses"
+	Then User should only see course "History"
+
+Scenario: User is enrolled to courses as Observer
+
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	And User is enrolled to "Chemistry" as "Observer" with pending invitation
+	Given User chooses the option "Courses"
+	Then "No Course Attached" should be displayed to the User

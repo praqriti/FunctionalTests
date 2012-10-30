@@ -133,3 +133,12 @@ Then /^"([^\"]*)" should be displayed to the User$/ do |message|
     		}
 end	
 
+Then /^User should only see course "([^\"]*)"$/ do |course_name|
+	@last_response.parsed_response["response_map"]["1"]["text"].should == course_name
+	@last_response.parsed_response["response_map"]["0"]["text"].should == "Home"
+	steps %{
+		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_type" should be "SESSION"
+		Then the JSON should have "access_token"
+		}
+end

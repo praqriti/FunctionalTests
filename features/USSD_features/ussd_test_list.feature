@@ -29,7 +29,7 @@ Scenario: Teacher Menu option displayed for a test in a course
 	Given User chooses the option "Courses"
 	When User should see the courses list
 	And User chooses course "1"
-	Then User should see the tests for page 1
+	Then User should see the tests for page "1"
 	And User chooses test "1"
 	Then User should see the teachers menu
 
@@ -40,6 +40,32 @@ Scenario: Student Menu option displayed for a test in a course
 	Given User chooses the option "Courses"
 	When User should see the courses list
 	And User chooses course "1"
-	Then User should see the tests for page 1
+	Then User should see the tests for page "1"
 	And User chooses test "1"
 	Then User should see the students menu
+
+Scenario: User can view all pages on tests list
+	When User is enrolled to the following courses as "student"
+	|COURSE|
+	|History|
+	Given User chooses the option "Courses"
+	When User should see the courses list
+	And User chooses course "1"
+	Then User should see the tests for page "1"
+	Then User should see the "Next" option on tests list
+	When User chooses the "Next" option
+	Then User should see the tests for page "2"
+	Then User should see the "Previous" option on tests list
+	When User chooses the "Previous" option
+	Then User should see the tests for page "1"
+
+Scenario: Verify back from tests page from ussd
+	When User is enrolled to the following courses as "teacher"
+	|COURSE|
+	|History|
+	Given User chooses the option "Courses"
+	When User should see the courses list
+	And User chooses course "1"
+	Then User should see the tests for page "1"
+	When User replies "0" from tests page to go back to home page
+	Then "camfed_student" should see the USSD home page

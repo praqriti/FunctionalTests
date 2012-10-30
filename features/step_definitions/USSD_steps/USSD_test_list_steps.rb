@@ -8,24 +8,23 @@ When /^User chooses course "([^\"]*)"$/ do |course_no|
 end
 
 
-Then /^User should see the tests for page 1$/ do
-  user_id = CanvasUserInterface.get_user_id
-  actual_response = @last_response.parsed_response
-
-  s_no = 1
-
-  @quizzes[0..3].each do |quiz|
-    actual_response["response_map"]["#{s_no}"]["text"].should == quiz["TEST"]
-    s_no+=1
-  end
-  actual_response["response_map"]["0"]["text"].should == "Home"
-  actual_response["response_map"]["0"]["url"].should  == "sen/users/#{user_id}"
-
-  steps %{
+Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
+  	actual_response = @last_response.parsed_response
+	page_no = page_no.to_i
+	rpp = "#{RECORDS_PER_PAGE}".to_i
+	s_no = (rpp * (page_no-1)) + 1
+	start_index = rpp * (page_no-1)
+	end_index = start_index + (rpp-1)
+	@quizzes[start_index..end_index].each do |quiz|
+		actual_response["response_map"]["#{s_no}"]["text"].should == quiz["TEST"]
+		s_no+=1
+	end
+	actual_response["response_map"]["0"]["text"].should == "Home"
+	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
-    		}
+		}
 end
 
 Given /^User publishes the course "([^\"]*)"$/ do |course_name|
@@ -77,4 +76,28 @@ Then /^User should see the students menu$/ do
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
     		}
+end
+
+Then /^User should see the "Next" option on tests list$/ do
+	user_id = CanvasUserInterface.get_user_id
+	course_id = CanvasCourseInterface.get_course_id
+	actual_response = @last_response.parsed_response
+	actual_response["response_map"]["#"]["url"].should  == "sen/users/#{user_id}/courses/#{course_id}/quizzes/?page=2"
+	actual_response["response_map"]["#"]["text"].should  == "Next"
+end
+
+Then /^User should see the "Previous" option on tests list$/ do
+	user_id = CanvasUserInterface.get_user_id
+	course_id = CanvasCourseInterface.get_course_id
+	actual_response = @last_response.parsed_response
+	actual_response["response_map"]["*"]["url"].should  == "sen/users/#{user_id}/courses/#{course_id}/quizzes/?page=1"
+	actual_response["response_map"]["*"]["text"].should  == "Previous"
+end
+
+When /^User replies "0" from tests page to go back to home page$/ do
+	user_id = CanvasUserInterface.get_user_id
+	body = @last_response.parsed_response.merge!({"message" => "0"})
+	@last_response = JSONSpecInterface.post("#{SEN_URL}",
+       	:body =>body.to_json,
+	:headers => { "Content-Type" => "application/json"})
 end

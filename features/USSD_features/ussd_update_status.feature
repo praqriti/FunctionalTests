@@ -10,7 +10,7 @@ Background:
 	When User "camfed_student" logs into USSD with her credentials
 	Then "camfed_student" should see the USSD home page
 
-@wip  
+
 Scenario: Update and view new status update from USSD
 
 	Given User chooses the option to "update status"
@@ -36,7 +36,7 @@ Scenario: Verify back from update page from USSD
 	When User replies "0" from update status page to go back to home page
 	Then "camfed_student" should see the USSD home page
 
-@wip
+@manual
 Scenario: Verify no error on status update longer than max allowed length from USSD
 
 	Given User chooses the option to "update status"
@@ -50,13 +50,16 @@ Scenario: Verify no error on status update longer than max allowed length from U
 	"""
 	1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567...
 	"""
+Scenario: Verify that error is given to the user when she enters an invalid option
+	
+	Given User sends an invalid option "9"
+	Then User is given an error message and returns to home page
 
 Scenario: Verify user not allowed to continue with incorrect access token
 
 	Given User chooses the option to "update status" with incorrect access_token
 	Then User recieves an error and the session is ended
-	# And User "camfed_today" is not allowed to "update status" after the session has ended
-
+	
 @wip @manual
 Scenario: Verify one user cannot use another users access token
 
@@ -70,11 +73,6 @@ Scenario: Verify one user cannot use another users access token
 	Given I make a new USSD login request
 	When I enter the login credentials as "user2" with password "password2"
 	And I save the access token for user "user2"
-
-@wip
-Scenario: Verify that error is given to the user when she enters an invalid option
-Given User "camfed_today" sends an invalid option "9" from "home" page
-Then User is given an error message
 
 
 
