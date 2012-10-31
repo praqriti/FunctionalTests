@@ -10,6 +10,7 @@ Background:
 Given the following users exists in canvas:
 	|USER|
 	|requesting_user|
+    |camfed_student|
 
 Scenario: Verify if a logged in user can accept his connection requests
     When User "camfed_student" has pending connection requests from:
@@ -45,20 +46,27 @@ Scenario: Verify if a logged in user can reject his connection requests
       Then User logs out
       	
 Scenario: Verify if a logged in user can disconnect his connections
-	When User "camfed_student" is connected to:
+  When User "camfed_student" is connected to:
 	|USER|
 	|requesting_user|
-	Then User can see the "1" connections available
-	When User navigates to "My Connections" page
-	And User can "disconnect" his connection "requesting_user"	
-	And User confirms the disconnection "requesting_user"
-	Then User can see the "0" connections available
-	Then User logs out
+  When User is on the Sign In page
+  When User "camfed_student" logs into Canvas with her credentials
+  When "camfed_student" should see the Canvas home page
+  When User navigates to "My Connections" page
+  Then User can see the "1" connections available
+  When User navigates to "My Connections" page
+  And User can "disconnect" his connection "requesting_user"
+  And User confirms the disconnection "requesting_user"
+  Then User can see the "0" connections available
+  Then User logs out
 
 Scenario: Verify if a logged in user can unconfirm a disconnection
 	When User "camfed_student" is connected to:
 	|USER|
 	|requesting_user|
+  When User is on the Sign In page
+  When User "camfed_student" logs into Canvas with her credentials
+  When "camfed_student" should see the Canvas home page
 	Then User can see the "1" connections available
 	When User navigates to "My Connections" page
 	And User can "disconnect" his connection "requesting_user"

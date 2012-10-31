@@ -14,12 +14,9 @@ Background:
 
 Scenario: Verify previous status link is visible on my wall page
 
-  When User "updates" the status message as "status message 1"
-  Then User status "status message 1" is updated successfully
-  When User "updates" the status message as "status message 2"
-  Then User status "status message 2" is updated successfully
-  When User "updates" the status message as "status message 3"
-  Then User status "status message 3" is updated successfully
+  And "camfed_student" has his status set to "status message 1"
+  And "camfed_student" has his status set to "status message 2"
+  And "camfed_student" has his status set to "status message 3"
   Then User clicks on My Wall
   And User lands on My Wall and can view all the elements
   Then User should see the previous statuses link
@@ -28,22 +25,12 @@ Scenario: Verify previous status link is visible on my wall page
 
 Scenario: Verify user can view previous 5 status messages
 
-  When User "updates" the status message as "status message 1"
-  Then User status "status message 1" is updated successfully
-  When User "updates" the status message as "status message 2"
-  Then User status "status message 2" is updated successfully
-  Then User clicks on My Wall
-  And User comments "good" on her status message
-  Then User navigates to canvas home page
-  Then User lands on the home page
-  When User "updates" the status message as "status message 3"
-  Then User status "status message 3" is updated successfully
-  When User "updates" the status message as "status message 4"
-  Then User status "status message 4" is updated successfully
-  When User "updates" the status message as "status message 5"
-  Then User status "status message 5" is updated successfully
-  When User "updates" the status message as "status message 6"
-  Then User status "status message 6" is updated successfully
+  And "camfed_student" has his status set to "status message 1"
+  And "camfed_student" has his status set to "status message 2"
+  And "camfed_student" has his status set to "status message 3"
+  And "camfed_student" has his status set to "status message 4"
+  And "camfed_student" has his status set to "status message 5"
+  And "camfed_student" has his status set to "status message 6"
   Then User clicks on My Wall
   And User lands on My Wall and can view all the elements
   Then User clicks on Show previous status messages link

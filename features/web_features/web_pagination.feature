@@ -7,6 +7,9 @@ Feature:
 	
 Background:
 
+  Given the following users exists in canvas:
+    |USER|
+    |camfed_student|
   Given User "camfed_student" has pending connection requests from "4" users
   When User is on the Sign In page
   And User "camfed_student" logs into Canvas with her credentials

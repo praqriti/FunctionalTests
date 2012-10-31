@@ -6,12 +6,13 @@ Feature:
   I want to access my wall
 
   Background:
+    Given the following users exists in canvas:
+      |USER|
+      |camfed_student|
 
   When User is on the Sign In page
   And  User "camfed_student" logs into Canvas with her credentials
-  And "camfed_student" should see the Canvas home page
-  When User "updates" the status message as "status message"
-  Then User status "status message" is updated successfully
+  And "camfed_student" has his status set to "status message"
 
   Scenario: Verify the elements on My Wall
   Given User clicks on My Wall

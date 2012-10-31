@@ -1,14 +1,7 @@
 Given /^User "(.*?)" has pending connection requests from:$/ do |username,users_table|
-  user = @users.find{|user| user.identifier == username}
-  users_table.hashes.each do |hash|  
+  users_table.hashes.each do |hash|
   steps %{
-     When User is on the Sign In page
-     And User "#{hash[:USER]}" logs into Canvas with her credentials
-     Then "#{hash[:USER]}" should see the Canvas home page
-     And User navigates to search page
-     When User searches for "#{username}" and clicks search
-     And User adds the user "#{username}" as a connection
-     Then User logs out
+     And "#{hash[:USER]}" has sent connection request to "#{username}"
   }
   end
 end
@@ -59,19 +52,14 @@ end
 end
 
 Given /^User "(.*?)" has pending connection requests from "(.*?)" users$/ do |username, user_count|
-(1..user_count.to_i).each do |i|
- @users << CanvasUserInterface.create_user("dummy_user_#{i}_")
- current_user = @users.last
-  steps %{
-      When User is on the Sign In page
-      And User "#{current_user.identifier}" logs into Canvas with her credentials
-      Then "#{current_user.identifier}" should see the Canvas home page
-      And User navigates to search page
-      When User searches for "#{username}" and clicks search
-      And User adds the user "#{username}" as a connection
-      Then User logs out
-   }
-  p "pending request created by user #{current_user.login_id}"
+ (1..user_count.to_i).each do |i|
+   @users << CanvasUserInterface.create_user("dummy_user_#{i}_")
+   current_user = @users.last
+    steps %{
+        And "#{current_user.identifier}" has sent connection request to "#{username}"
+     }
+   sleep 1
+    p "pending request created by user #{current_user.login_id}"
   end
 end
 
@@ -109,7 +97,21 @@ When /^User accepts "(.*?)" connection requests$/ do |request_count|
 	@app.connection_requests.wait_until_connection_alert_visible
 	p "Request accepted"
 	@app.connection_requests.load
-   end
+  end
+end
+
+And /^"(.*?)" has sent connection request to "(.*?)"$/ do |user_identifier, friend_identifier|
+  user1 = @users.find{|user| user.identifier == user_identifier}
+  friend1 = @users.find{|user| user.identifier == friend_identifier}
+
+  ConnectionsInterface.send_connection_request(user1, friend1)
+end
+
+And /^"(.*?)" is connected to "(.*?)"$/ do |user_identifier, friend_identifier|
+  user1 = @users.find{|user| user.identifier == user_identifier}
+  friend1 = @users.find{|user| user.identifier == friend_identifier}
+
+  ConnectionsInterface.create_connection(user1, friend1)
 end
 
 And /^User disconnects a connection$/ do

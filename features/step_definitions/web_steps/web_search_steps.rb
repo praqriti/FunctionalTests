@@ -30,7 +30,6 @@ end
 When /^User adds the user "(.*?)" as a connection$/ do |username|
   user = @users.find{|user| user.identifier == username}
   @app.search.wait_until_search_results_visible
-  # binding.pry
   @app.search.username.text.should == "#{user.name}"
   @app.search.unlinked_user.click
   @app.search.wait_until_connection_alert_visible
