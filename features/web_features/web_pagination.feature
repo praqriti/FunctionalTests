@@ -38,13 +38,18 @@ Scenario: Verify if a logged in user can accept connection request after paginat
       Then User can see the "1" connections available
       And User logs out
 
-Scenario: Verify if a logged in user can view correct number of connected users per page
+Scenario: Verify if a logged in user can view correct number of connected users per page and disconnect a user after pagination
       When User navigates to "Connection Requests"
       And User clicks on "show more" on "Connections Requests" page
       And User accepts "4" connection requests
       And User navigates to "My Connections" page
       Then User can see the "4" connections available
-      Then User can view "2" connection requests on "My Connections" page
+      Then User can view "2" connections on "My Connections" page
       And User clicks on "show more" on "My Connections" page
-      And User can view "4" connection requests on "My Connections" page
+      And User can view "4" connections on "My Connections" page
+      And User disconnects a connection
+      And User navigates to "My Connections" page
+      And User clicks on "show more" on "My Connections" page
+      Then User can view "3" connections on "My Connections" page
       And User logs out 
+

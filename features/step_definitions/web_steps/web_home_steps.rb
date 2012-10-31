@@ -53,5 +53,8 @@ Then /^User logs out$/ do
   @app.login.message.text.should == "You have successfully logged out."
 end
 
-
-
+Then /^status message should be "([^\"]*)"$/ do |message|
+  @app.home.wait_until_status_message_visible
+  @app.home.should have_updated_status_message
+  @app.home.updated_status_message.value.should == "#{message}"
+end

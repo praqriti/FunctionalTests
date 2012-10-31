@@ -79,7 +79,7 @@ Then /^User can view "(.*?)" connection requests on "Connections Requests" page$
   @app.connection_requests.users.size.should == request_count.to_i
 end
 
-Then /^User can view "(.*?)" connection requests on "My Connections" page$/ do |request_count|
+Then /^User can view "(.*?)" connections on "My Connections" page$/ do |request_count|
   @app.my_connections.users.size.should == request_count.to_i
 end
 
@@ -112,6 +112,9 @@ When /^User accepts "(.*?)" connection requests$/ do |request_count|
    end
 end
 
-
-
-
+And /^User disconnects a connection$/ do
+  @app.my_connections.disconnect_button.click
+  @app.my_connections.wait_until_dialog_visible
+  page.find("#modal_confirm_button").click
+  @app.my_connections.wait_until_connection_alert_visible
+end

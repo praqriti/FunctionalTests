@@ -131,11 +131,4 @@ Then /^User recieves an error and the session is ended$/ do
 	}    
 end
 
-Given /^User sends an invalid option "([^\"]*)"$/ do |option|
-   body = @last_response.parsed_response
-   body.merge!({"message" => "#{option}"})
-   @last_response = JSONSpecInterface.post("#{SEN_URL}",
-                                           :body => body.to_json,
-                                           :headers => { "Content-Type" => "application/json"}) 
-end
 

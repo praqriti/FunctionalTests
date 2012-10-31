@@ -172,3 +172,22 @@ Scenario: User is enrolled to courses as Observer
 	And User is enrolled to "Chemistry" as "Observer" with pending invitation
 	Given User chooses the option "Courses"
 	Then "No Course Attached" should be displayed to the User
+
+Scenario: Verify that error is given to the user when she enters an invalid option
+	
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	|Biology |
+	And User is enrolled to the following courses as "teacher"
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	Given User chooses the option "Courses"
+	Then User should see the courses list
+	Given User sends an invalid option "9"
+	Then User is given an error message and returns to home page

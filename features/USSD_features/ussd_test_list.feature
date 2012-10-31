@@ -69,3 +69,15 @@ Scenario: Verify back from tests page from ussd
 	Then User should see the tests for page "1"
 	When User replies "0" from tests page to go back to home page
 	Then "camfed_student" should see the USSD home page
+
+Scenario: Verify that error is given to the user when she enters an invalid option
+
+	When User is enrolled to the following courses as "teacher"
+	|COURSE|
+	|History|
+	Given User chooses the option "Courses"
+	When User should see the courses list
+	And User chooses course "1"
+	Then User should see the tests for page "1"	
+	Given User sends an invalid option "9"
+	Then User is given an error message and returns to home page

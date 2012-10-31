@@ -34,6 +34,14 @@ user_id = CanvasUserInterface.find_user(login_id)["id"]
   :headers => { "Content-Type" => "application/json"})
 end
 
+Given /^User sends an invalid option "([^\"]*)"$/ do |option|
+   body = @last_response.parsed_response
+   body.merge!({"message" => "#{option}"})
+   @last_response = JSONSpecInterface.post("#{SEN_URL}",
+                                           :body => body.to_json,
+                                           :headers => { "Content-Type" => "application/json"}) 
+end
+
 Then /^User is given an error message and returns to home page$/ do
     steps %{
       Then the JSON at "message" should be "Invalid Option \\n"
