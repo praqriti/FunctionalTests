@@ -68,6 +68,12 @@ Then /^User should see his previously updated message "([^\"]*)"$/ do |message|
     }
 end
 
+Then /^User should see his previously updated blank message "([^\"]*)"$/ do |message|
+  steps %{
+      Then the JSON at "message" should be "#{message}Enter your new status"
+    }
+end
+
 Then /^User should see his previously updated message:$/ do |string|
   steps %{
       Then the JSON at "message" should be "#{string}\\n\\nEnter your new status"

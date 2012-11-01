@@ -20,14 +20,13 @@ Scenario: Update and view new status update from USSD
 	And User chooses the option to "update status"
 	Then User should see his previously updated message "new status"
 
-@wip
 Scenario: Verify blank status update from USSD
 
 	Given User chooses the option to "update status"
 	When User replies with new status message " "
 	And User should get a confirmation that the status was updated successfully
 	And User chooses the option to "update status"
-	Then User should see his previously updated message " "
+	Then User should see his previously updated blank message ""
 
 
 Scenario: Verify back from update page from USSD
