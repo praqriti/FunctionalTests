@@ -191,3 +191,27 @@ Scenario: Verify that error is given to the user when she enters an invalid opti
 	Then User should see the courses list
 	Given User sends an invalid option "9"
 	Then User is given an error message and returns to home page
+
+#bug 295
+Scenario: Verify courses are not repeated at multiples of four
+
+	Given the following courses exist in canvas
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	|Biology |
+	And User is enrolled to the following courses as "teacher"
+	|COURSE|
+	|History|
+	|Chemistry|
+	|Mathematics|
+	|Computer|
+	Given User chooses the option "Courses"
+	Then User should see the courses list
+	Then User replies "0" from courses page to go back to home page
+	And User chooses the option "Courses"
+	Then User should see the courses list
+	When User chooses the "Next" option
+	Then User is given an error message and returns to home page
