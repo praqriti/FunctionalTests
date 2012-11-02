@@ -4,7 +4,7 @@ group :test do
  
   gem "builder", "~> 2.1.2"
   gem 'capybara'
-  # gem 'capybara-webkit'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   # gem 'cucumber-rails'
   gem 'cucumber'
@@ -16,5 +16,4 @@ group :test do
   gem "json_spec"
   gem "pry"
   gem 'headless'
-  gem 'capybara-webkit'
 end

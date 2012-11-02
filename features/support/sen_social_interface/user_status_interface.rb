@@ -6,7 +6,7 @@ class UserStatusInterface
   def self.create_status user, message
     response = JSONSpecInterface.post( "#{CANVAS_URL}/sen/users/#{user.id}/status.json",
                             :body => { :status => {:message => message}},
-                            :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
+                            :headers => { "Authorization" => "#{user.token}"})
     response["message"].should == message
     sleep(1)
   end

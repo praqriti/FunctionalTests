@@ -20,12 +20,31 @@ class CanvasUserInterface
                     :sort_name => "#{user}"
                   }
                   },
-        :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})         
+        :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
      @user.id =  @last_response.parsed_response["id"]
      if (@last_response.response.code=="200")
      p "user #{@user.login_id} created"
+     retrieve_user_token(@user)
    end
      return @user      
+  end
+
+def self.retrieve_user_token(user)
+  last_response_new = JSONSpecInterface.post("#{CANVAS_URL}/login",
+      :body => {
+        :pseudonym_session =>
+            {
+                :unique_id => "#{user.login_id}",
+                :password => "#{user.password}"
+            },
+        #:user =>
+        #    {
+        #        :name => "#{user.name}"
+        #    },
+        :dev_key => "#{DEV_KEY}"
+      },
+      :headers => { "Accept" => "application/json"})
+  user.token = last_response_new.parsed_response["token"]
 end
 
 

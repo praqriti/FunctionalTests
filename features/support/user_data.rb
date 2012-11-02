@@ -1,5 +1,5 @@
 class Users
-  attr_accessor :name , :login_id , :password, :id, :identifier
+  attr_accessor :name , :login_id , :password, :id, :identifier, :token
   def initialize(user)
     @identifier = user
     @name = create_unique_name(user)
