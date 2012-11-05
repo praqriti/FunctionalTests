@@ -8,7 +8,6 @@ require 'site_prism'
 require 'yaml'
 require 'pry'
 require 'selenium-webdriver'
-require File.expand_path(File.dirname(__FILE__) + "/canvas_user_interface")
 
 
 After('@leave_the_window_open') do |scenario|

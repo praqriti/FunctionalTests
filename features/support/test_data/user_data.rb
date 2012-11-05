@@ -23,4 +23,3 @@ class Users
      end
   
 end
-

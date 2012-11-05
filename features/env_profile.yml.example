@@ -2,7 +2,7 @@ default:
     canvas_url: http://localhost
     sen_url: http://localhost:3002
     access_token: Bearer obbSivMVhix83xUSXVZ0xe76kT3Wa8193oaIalHhxboJ5AlnxqIplShd1TBiAWYj
-    dev_key: TIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD
+    dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
     account_id: 2
     records_per_page: 4 
     
@@ -17,6 +17,6 @@ int:
     canvas_url: http://192.168.31.6
     sen_url: http://192.168.31.6:8383
     access_token: Bearer alpRpz2flrNUdCEvPbdcKh6kraI6awXuHt6oldvCXWFVkhYLjST68WVyQrcaT9qy
-    dev_key: TIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD
+    dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
     account_id: 2
     records_per_page: 4

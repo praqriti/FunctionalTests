@@ -1,4 +1,4 @@
-
+@javascript
 Feature:
 
 	In order to know the courses I have enrolled for

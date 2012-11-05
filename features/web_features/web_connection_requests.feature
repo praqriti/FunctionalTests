@@ -10,7 +10,6 @@ Background:
 Given the following users exists in canvas:
 	|USER|
 	|requesting_user|
-    |camfed_student|
 
 Scenario: Verify if a logged in user can accept his connection requests
     When User "camfed_student" has pending connection requests from:

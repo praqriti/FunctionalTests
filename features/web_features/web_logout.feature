@@ -33,3 +33,5 @@ Scenario: logout and login as another user succesfully
     And "camfed_student" should see the Canvas home page
     And User logs out and logs into canvas as "camfed_teacher"
     Then "camfed_teacher" should see the Canvas home page  
+    Then User logs out
+    

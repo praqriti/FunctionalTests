@@ -23,7 +23,7 @@ class CanvasUserInterface
         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
      @user.id =  @last_response.parsed_response["id"]
      if (@last_response.response.code=="200")
-     p "user #{@user.login_id} created"
+     p "user #{@user.login_id} created"     
      retrieve_user_token(@user)
    end
      return @user      
@@ -37,10 +37,6 @@ def self.retrieve_user_token(user)
                 :unique_id => "#{user.login_id}",
                 :password => "#{user.password}"
             },
-        #:user =>
-        #    {
-        #        :name => "#{user.name}"
-        #    },
         :dev_key => "#{DEV_KEY}"
       },
       :headers => { "Accept" => "application/json"})

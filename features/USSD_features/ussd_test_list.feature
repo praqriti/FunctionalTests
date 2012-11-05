@@ -20,6 +20,7 @@ Background:
 	|World War 6|
 	|World War 7|
 	|World War 8|
+  And User logs out
 
 
 Scenario: Teacher Menu option displayed for a test in a course
