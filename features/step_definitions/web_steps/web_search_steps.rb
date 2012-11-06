@@ -24,6 +24,7 @@ else
   @app.search.search_box.set "#{search_query}"
 end
 @app.search.search_button.click
+@app.search.wait_until_search_results_visible
 end
 
 

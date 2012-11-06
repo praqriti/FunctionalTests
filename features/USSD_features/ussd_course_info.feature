@@ -9,22 +9,30 @@ Background:
 Given I make a new USSD login request
 When User "camfed_student" logs into USSD with her credentials
 Then "camfed_student" should see the USSD home page
+Given the user "camfed_student" is enrolled with following courses:
+|COURSE     |ROLE   |STATUS |
+|History    |Teacher|active |
+|Mathematics|Teacher|active |
+|Chinese    |Teacher|pending|
+|Chemistry  |Student|active |
+|Biology    |Student|active |Attached to course as Student\nNo Quiz Attached|
+|Computer   |Student|pending|Attached to course as Student\nPlease log in to Web, to respond to Course request|
 
-# Scenario Outline:
-# 
-# 
-# Example:
-# |COURSE     |ROLE   |STATUS |MESSAGE|
-# |History    |Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
-# |Mathematics|Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
-# |Chinese    |Teacher|pending|Attached to course as Teacher\nPlease log in to Web, to respond to Course request|
-# |Chemistry  |Student|active |Attached to course as Student\nNo Quiz Attached|
-# |Biology    |Student|active |Attached to course as Student\nNo Quiz Attached|
-# |Computer   |Student|pending|Attached to course as Student\nPlease log in to Web, to respond to Course request|
+Scenario Outline:
 
-# Given I make a new USSD login request
-# When User "camfed_student" logs into USSD with her credentials
-# Then "camfed_student" should see the USSD home page
+
+Example:
+|COURSE     |ROLE   |STATUS |MESSAGE|
+|History    |Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
+|Mathematics|Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
+|Chinese    |Teacher|pending|Attached to course as Teacher\nPlease log in to Web, to respond to Course request|
+|Chemistry  |Student|active |Attached to course as Student\nNo Quiz Attached|
+|Biology    |Student|active |Attached to course as Student\nNo Quiz Attached|
+|Computer   |Student|pending|Attached to course as Student\nPlease log in to Web, to respond to Course request|
+
+Given I make a new USSD login request
+When User "camfed_student" logs into USSD with her credentials
+Then "camfed_student" should see the USSD home page
 Scenario:
   Given the following courses exist in canvas
   |COURSE|
