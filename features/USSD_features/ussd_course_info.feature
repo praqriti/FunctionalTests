@@ -5,8 +5,14 @@ Feature:
 	I want to be able to view information about the course
 
 Background:
+Given I make a new USSD login request
+When User "camfed_student" logs into USSD with her credentials
+Then "camfed_student" should see the USSD home page
 
-# Given the following course data exists for "camfed_student":
+# Scenario Outline:
+# 
+# 
+# Example:
 # |COURSE     |ROLE   |STATUS |MESSAGE|
 # |History    |Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
 # |Mathematics|Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
