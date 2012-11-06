@@ -6,27 +6,36 @@ Feature:
 
 Background:
 
-	Given I make a new USSD login request
-	When User "camfed_student" logs into USSD with her credentials
-	Then "camfed_student" should see the USSD home page
-	Given the following courses exist in canvas
-	|COURSE|
-	|History|
-	|Chemistry|
-	|Mathematics|
-	|Computer|
-	|Biology |
-	|Chinese|
-	And User is enrolled to the following courses as "teacher"
-	|COURSE|
-	|History|
-	|Mathematics|
-	And User is enrolled to the following courses as "student"
-	|COURSE|
-	|Chemistry|
-	|Biology|
-	And User is enrolled to "Computer" as "Student" with pending invitation
-	And User is enrolled to "Chinese" as "Teacher" with pending invitation
+# Given the following course data exists for "camfed_student":
+# |COURSE     |ROLE   |STATUS |MESSAGE|
+# |History    |Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
+# |Mathematics|Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
+# |Chinese    |Teacher|pending|Attached to course as Teacher\nPlease log in to Web, to respond to Course request|
+# |Chemistry  |Student|active |Attached to course as Student\nNo Quiz Attached|
+# |Biology    |Student|active |Attached to course as Student\nNo Quiz Attached|
+# |Computer   |Student|pending|Attached to course as Student\nPlease log in to Web, to respond to Course request|
+
+Given I make a new USSD login request
+When User "camfed_student" logs into USSD with her credentials
+Then "camfed_student" should see the USSD home page
+  Given the following courses exist in canvas
+  |COURSE|
+  |History|
+  |Chemistry|
+  |Mathematics|
+  |Computer|
+  |Biology |
+  |Chinese|
+  And User is enrolled to the following courses as "teacher"
+  |COURSE|
+  |History|
+  |Mathematics|
+  And User is enrolled to the following courses as "student"
+  |COURSE|
+  |Chemistry|
+  |Biology|
+  And User is enrolled to "Computer" as "Student" with pending invitation
+  And User is enrolled to "Chinese" as "Teacher" with pending invitation
 	Given User chooses the option "Courses"
 	Then User should see the courses list on page "1"
 

@@ -3,9 +3,7 @@ Before do
   @users << CanvasUserInterface.create_user("camfed_student")
 end
 
-After do 
-  # CanvasUserInterface.delete_user(DEFAULT_USER)
-  
+After do   
   if (@users)
     @users.each do |user|      
        CanvasUserInterface.delete_user(user)

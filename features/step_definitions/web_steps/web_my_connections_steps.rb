@@ -23,6 +23,10 @@ Given /^User "(.*?)" is connected to:$/ do |username, users_table|
   end
 end
 
+Then /^User clicks on "show more" on "My Connections" page$/ do
+  @app.my_connections.show_more.click
+  sleep(5)
+end
 
 When /^User can "disconnect" his connection "(.*?)"$/ do |username|
   user = @users.find{|user| user.identifier == username}

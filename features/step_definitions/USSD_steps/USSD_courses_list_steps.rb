@@ -27,6 +27,30 @@ And /^User is enrolled to the following courses as "([^\"]*)"$/ do |type, course
 	end
 end
 
+Given /^User is enrolled to the following courses:$/ do |enrollment_table|
+  enrollment_table.hashes.each do |hash|
+  enroll_type = "#{hash[:ROLE]}Enrollment"
+	user_id = CanvasUserInterface.get_user_id
+		@courses.each do |course|
+			if(course.name == "#{hash[:COURSE]}")
+				CanvasEnrollmentInterface.enroll_user(course.id, user_id, enroll_type, "active")
+			@enrolled_courses << course
+			end
+		end
+	end
+end
+
+And /^User is enrolled to "([^\"]*)" as "([^\"]*)" with pending invitation$/ do |course_name, enroll_type|
+	user_id = CanvasUserInterface.get_user_id
+	@courses.each do |course|
+		if(course.name == course_name)
+			CanvasEnrollmentInterface.enroll_user(course.id, user_id, "#{enroll_type}Enrollment", "invited")
+			@enrolled_courses << course
+		end
+	end
+end
+
+
 Then /^User should see the courses list$/ do
 	actual_response = @last_response.parsed_response
 	s_no = 1
@@ -85,6 +109,7 @@ end
 And /^User should see the "Next" and "Previous" option$/ do
 	user_id = CanvasUserInterface.get_user_id
 	actual_response = @last_response.parsed_response
+	binding.pry
 	actual_response["response_map"]["*"]["url"].should == "sen/users/#{user_id}/courses/?page=1"
 	actual_response["response_map"]["*"]["text"].should == "Previous"
 	actual_response["response_map"]["#"]["url"].should  == "sen/users/#{user_id}/courses/?page=3"

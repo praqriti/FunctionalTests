@@ -13,8 +13,8 @@ class CanvasEnrollmentInterface
 				  }
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-		if (@last_response.response.code==200)
-      			p "User Enrolled"
+		if (@last_response.response.code=="200")
+      			p "User Enrolled as #{enroll_type}"
     		end
 	    	return @last_response.parsed_response["id"]
 	end
@@ -26,7 +26,7 @@ class CanvasEnrollmentInterface
                           :task => "delete"
                                },
                                :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-    		if (@last_response.response.code==200)
+    		if (@last_response.response.code=="200")
       			p "User concluded from course"
     		end
   	end

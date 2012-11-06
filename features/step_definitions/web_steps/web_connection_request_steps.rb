@@ -87,10 +87,6 @@ Then /^User clicks on "show more" on "Connections Requests" page$/ do
   sleep(5)
 end
 
-Then /^User clicks on "show more" on "My Connections" page$/ do
-  @app.my_connections.show_more.click
-  sleep(5)
-end
 
 When /^User rejects a connection request from page "(.*?)"$/ do |user_count|
   @app.connection_requests.connection_details.last.reject_button.click

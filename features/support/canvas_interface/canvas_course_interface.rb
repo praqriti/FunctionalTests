@@ -12,6 +12,9 @@ class CanvasCourseInterface
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 		@course.id =  @last_response.parsed_response["id"]
+		if (@last_response.response.code=="200")
+  			p "course #{@course.name} created"
+		end
 		return @course
 	end 
 
@@ -25,5 +28,5 @@ class CanvasCourseInterface
 			:event => "delete"
 			},
 		:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-	end		     
+	end		   
 end    

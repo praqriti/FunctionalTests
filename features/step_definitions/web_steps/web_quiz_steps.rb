@@ -1,29 +1,46 @@
-Given /^User navigates to quiz page of "([^\"]*)" course and creates following quiz$/ do |course_name, table|
-  @course = @courses.select { |c| c.name == course_name }.first
-  enroll_type = "TeacherEnrollment"
-  user_id = CanvasUserInterface.get_user_id
-  enrollment_id = CanvasEnrollmentInterface.enroll_user(@course.id, user_id, enroll_type, "active")
+
+Given /^User navigates to quiz page and creates the following:$/ do |quiz_table|
+  quiz_table.hashes.each do |hash|
+  course = @courses.select { |c| c.name == hash[:COURSE] }.first
+  user = @users.find{|user| user.identifier == hash[:USER]}
+  @quizzes = hash[:TESTS].split(",")
+  
+  enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, "TeacherEnrollment", "active")
+  
   steps %{
-          When User is on the Sign In page
-          And User "camfed_student" logs into Canvas with her credentials
-          Then "camfed_student" should see the Canvas home page
-        }
-  Assignment.set_page_url @course.id
+    And User is on the Sign In page
+    And User "#{user.identifier}" logs into Canvas with her credentials
+    And User sets the quiz group as "USSD" for course "#{course.name}"
+  }  
+  Quiz.set_page_url course.id
+   @quizzes.each do |quiz_name|
+     steps %{
+       And User creates quiz "#{quiz_name}" for group "USSD"
+     }
+   end
+   CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
+ end
+end
+
+Given /^User sets the quiz group as "USSD" for course "([^\"]*)"$/ do |course_name|
+  
+  course = @courses.select { |c| c.name == course_name }.first
+  Assignment.set_page_url course.id
   @app.assignment.load
   @app.assignment.add_group.click
   @app.assignment.group_name.set "USSD"
   @app.assignment.update_button.click
-  Quiz.set_page_url @course.id
-  @quizzes = table.hashes
-  table.hashes.each do |test|
+
+end
+
+Then /^User creates quiz "([^\"]*)" for group "([^\"]*)"$/ do |quiz_name,quiz_group|
     @app.quiz.load
     @app.quiz.wait_until_new_quiz_button_visible
     @app.quiz.new_quiz_button.click
     @app.quiz.wait_until_publish_button_visible
-    page.select 'USSD', :from => 'quiz_assignment_group_id'
-    @app.quiz.quiz_name_field.set "#{test["TEST"]}"
+    page.select "#{quiz_group}", :from => 'quiz_assignment_group_id'
+    @app.quiz.quiz_name_field.set "#{quiz_name}"
     @app.quiz.publish_button.click
     @app.quiz.wait_until_quiz_name_header_visible
-  end
-  CanvasEnrollmentInterface.conclude_enrollment @course.id, enrollment_id
-end
+end 
+

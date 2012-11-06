@@ -16,7 +16,7 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 	start_index = rpp * (page_no-1)
 	end_index = start_index + (rpp-1)
 	@quizzes[start_index..end_index].each do |quiz|
-		actual_response["response_map"]["#{s_no}"]["text"].should == quiz["TEST"]
+		actual_response["response_map"]["#{s_no}"]["text"].should == quiz
 		s_no+=1
 	end
 	actual_response["response_map"]["0"]["text"].should == "Home"
@@ -101,3 +101,36 @@ When /^User replies "0" from tests page to go back to home page$/ do
        	:body =>body.to_json,
 	:headers => { "Content-Type" => "application/json"})
 end
+
+Given /^the following test data exists:$/ do |test_table|
+  test_table.hashes.each do |hash|
+    user = hash[:USER]
+    role = hash[:ROLE]
+    course = hash[:COURSE]
+    tests = hash[:TESTS]
+    
+    steps %{
+       Given the following users exists in canvas:
+        |USER|
+        |#{user}| 
+       Given the following courses exist in canvas
+        |COURSE|
+        |#{course}|
+    }
+    steps %{
+      And User navigates to quiz page and creates the following:
+      |USER|COURSE|TESTS|
+      |#{user}|#{course}|#{tests}|
+      And User logs out      
+    }
+    steps %{
+       When User is enrolled to the following courses:
+          |COURSE|ROLE|
+          |#{course}|#{role}|
+    }
+  end
+end
+
+
+
+

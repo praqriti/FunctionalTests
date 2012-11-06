@@ -42,6 +42,16 @@ Given /^User sends an invalid option "([^\"]*)"$/ do |option|
                                            :headers => { "Content-Type" => "application/json"}) 
 end
 
+Then /^User should see the message "([^\"]*)"$/ do |message|
+	user = CanvasUserInterface.get_user
+	steps %{
+	Then the JSON at "message" should be "#{message}"
+	Then the JSON at "session_id" should be "session id"   
+	Then the JSON at "session_type" should be "SESSION"
+	Then the JSON should have "access_token"
+	}
+end
+
 Then /^User is given an error message and returns to home page$/ do
     steps %{
       Then the JSON at "message" should be "Invalid Option \\n"

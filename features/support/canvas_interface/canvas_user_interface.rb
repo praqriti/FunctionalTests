@@ -30,7 +30,7 @@ class CanvasUserInterface
   end
 
 def self.retrieve_user_token(user)
-  last_response_new = JSONSpecInterface.post("#{CANVAS_URL}/login",
+  @last_response = JSONSpecInterface.post("#{CANVAS_URL}/login",
       :body => {
         :pseudonym_session =>
             {
@@ -40,7 +40,7 @@ def self.retrieve_user_token(user)
         :dev_key => "#{DEV_KEY}"
       },
       :headers => { "Accept" => "application/json"})
-  user.token = last_response_new.parsed_response["token"]
+  user.token = @last_response.parsed_response["token"]
 end
 
 

@@ -30,7 +30,8 @@ Scenario: Verify if a logged in user can reject connection request after paginat
 	Then User navigates to "My Connections" page
 	Then User can see the "0" connections available
 	And User logs out
-      
+
+@wip      
 Scenario: Verify if a logged in user can accept connection request after pagination
 	Given User "camfed_student" has pending connection requests from "4" users
 	When User is on the Sign In page
