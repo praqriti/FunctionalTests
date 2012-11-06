@@ -109,7 +109,6 @@ end
 And /^User should see the "Next" and "Previous" option$/ do
 	user_id = CanvasUserInterface.get_user_id
 	actual_response = @last_response.parsed_response
-	binding.pry
 	actual_response["response_map"]["*"]["url"].should == "sen/users/#{user_id}/courses/?page=1"
 	actual_response["response_map"]["*"]["text"].should == "Previous"
 	actual_response["response_map"]["#"]["url"].should  == "sen/users/#{user_id}/courses/?page=3"
