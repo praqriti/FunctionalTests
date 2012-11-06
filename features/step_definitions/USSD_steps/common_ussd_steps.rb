@@ -54,7 +54,7 @@ end
 
 Then /^User is given an error message and returns to home page$/ do
     steps %{
-      Then the JSON at "message" should be "Invalid Option \\n"
+      Then the JSON at "message" should be "Invalid Option \\nWelcome to SEN!\\n"
     }
 end
 
