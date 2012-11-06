@@ -6,10 +6,6 @@ Feature:
   I want to access my wall
 
   Background:
-    Given the following users exists in canvas:
-      |USER|
-      |camfed_student|
-
   When User is on the Sign In page
   And  User "camfed_student" logs into Canvas with her credentials
   And "camfed_student" has his status set to "status message"
@@ -18,6 +14,7 @@ Feature:
   Given User clicks on My Wall
   Then User lands on My Wall and can view all the elements
   And User can view her latest status message "status message"
+	And User can view the timestamp on the status
   And User logs out
 
   Scenario: Verify user can comment on her status message
@@ -26,23 +23,22 @@ Feature:
   And User can view her latest status message "status message"
   And User comments "Good Status" on her status message
   Then the comments are visible on My Wall
-    |COMMENT|
-    |Good Status|
+  |COMMENT|
+  |Good Status|
   And User can view her name "camfed_student" on the comment
+	And User can view the timestamp on the comment
   And User logs out
 
-  @wip
   Scenario: Verify user can comment multiple times on her status message
   Given User clicks on My Wall
   Then User lands on My Wall and can view all the elements
   And User can view her latest status message "status message"
   And User comments "Hello" on her status message
   And User comments "Good" on her status message
-  #Research for identifying different comments.
   Then the comments are visible on My Wall
-    |COMMENT|
-    |Hello  |
-    |Good  |
+  |COMMENT|
+  |Hello  |
+  |Good  |
   And User logs out
 
   Scenario: Verify user cannot enter blank comment

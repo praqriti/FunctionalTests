@@ -17,6 +17,10 @@ end
 
 
 Then /^the comment "(.*?)" by "(.*?)" is visible on users wall$/ do |comment, username|
-  @app.my_wall.comment.text.should == comment
-  steps %{Then User can view her name "#{username}" on the comment}
+  @app.my_wall.comment.each do |actual_comment|
+		actual_comment.text.should == comment
+	end
+  steps %{
+	Then User can view her name "#{username}" on the comment
+	}
 end

@@ -20,17 +20,26 @@ Then /^User can view her name "(.*?)" on the comment$/ do |username|
   @app.my_wall.commented_by.text.should == "#{user.name}"
 end
 
+And /^User can view the timestamp on the status$/ do
+	@app.my_wall.should have_timestamp_status
+end
+
+And /^User can view the timestamp on the comment$/ do
+	@app.my_wall.should have_commented_at
+end
+
 Then /^User comments "(.*?)" on her status message$/ do |arg1|
   @app.my_wall.wait_until_comment_box_visible
   @app.my_wall.comment_box.set "#{arg1}"
   @app.my_wall.comment_submit.click
+	@app.my_wall.wait_until_comments_visible
 end
 
 Then /^the comments are visible on My Wall$/ do |comments_table|
   @app.my_wall.wait_until_comment_box_visible
-  comments_table.hashes.each do |hash|
-    @app.my_wall.comment.text.should == "#{hash[:COMMENT]}"
-  end
+	expected_comments = comments_table.hashes.collect{|x| x["COMMENT"]}
+	actual_comments = @app.my_wall.comments.collect(&:text)
+	expected_comments.sort.should == actual_comments.sort	
 end
 
 Then /error message "(.*?)" is displayed$/ do |error1|
