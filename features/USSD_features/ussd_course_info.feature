@@ -1,3 +1,4 @@
+@wip
 Feature:
 
 	In order to know my enrollments in a course
@@ -21,9 +22,10 @@ Then "camfed_student" should see the USSD home page
 # |Biology    |Student|active |Attached to course as Student\nNo Quiz Attached|
 # |Computer   |Student|pending|Attached to course as Student\nPlease log in to Web, to respond to Course request|
 
-Given I make a new USSD login request
-When User "camfed_student" logs into USSD with her credentials
-Then "camfed_student" should see the USSD home page
+# Given I make a new USSD login request
+# When User "camfed_student" logs into USSD with her credentials
+# Then "camfed_student" should see the USSD home page
+Scenario:
   Given the following courses exist in canvas
   |COURSE|
   |History|
