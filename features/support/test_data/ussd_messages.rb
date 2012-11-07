@@ -7,8 +7,8 @@ class Messages
  @teacher_with_pending_invitation = "Attached to course as Teacher\\nPlease log in to Web, to respond to Course request"
  @student_with_no_quiz = "Attached to course as Student\\nNo Quiz Attached"
  @student_with_pending_invitation = "Attached to course as Student\\nPlease log in to Web, to respond to Course request" 
- @invalid_option = "Invalid Option \\nWelcome to SEN!\\n"
- @home_page = "Welcome to SEN!\\n"
+ @invalid_option = "Invalid Option \\nWelcome to SEN!"
+ @home_page = "Welcome to SEN!"
  @no_course_attached = "No Course Attached"
  @incorrect_credentials = "Incorrect Username/ Password"
  end
