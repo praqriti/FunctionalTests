@@ -84,7 +84,7 @@ end
 Then /^User should get a confirmation that the status was updated successfully$/ do
   user_id = CanvasUserInterface.get_user_id
      steps %{
-        Then the JSON at "message" should be "Status Updated\\n"
+        Then the JSON at "message" should be "Status Updated"
         Then the JSON at "session_id" should be "session id"   
         Then the JSON at "session_type" should be "SESSION"
         Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
