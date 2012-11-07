@@ -1,4 +1,3 @@
-@wip
 @javascript
 Feature:
 
@@ -17,7 +16,7 @@ Scenario: Verify that a user can comment on the status of other user
 
 	When User is on the Sign In page
 	And User "camfed_user" logs into Canvas with her credentials
-	Then "camfed_student" should see the Canvas home page
+	Then "camfed_user" should see the Canvas home page
 	And "camfed_student" is connected to "camfed_student"
 	And User can navigate and view the wall of user "camfed_student"
 	Then User comments "Nice status" on the status of "camfed_student"
