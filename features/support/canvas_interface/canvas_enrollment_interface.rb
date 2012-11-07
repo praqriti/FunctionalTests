@@ -14,7 +14,7 @@ class CanvasEnrollmentInterface
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 		if (@last_response.response.code=="200")
-      			p "User Enrolled as #{enroll_type}"
+      			puts "\nuser Enrolled as #{enroll_type}"
     		end
 	    	return @last_response.parsed_response["id"]
 	end
@@ -27,7 +27,7 @@ class CanvasEnrollmentInterface
                                },
                                :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
     		if (@last_response.response.code=="200")
-      			p "User concluded from course"
+      			puts "\nuser concluded from course"
     		end
   	end
 end

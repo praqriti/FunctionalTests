@@ -66,9 +66,9 @@ And /^User enters the password "([^\"]*)" for user "([^\"]*)"$/ do |password,log
 end
 
 Then /^I should be informed that my username and password is incorrect$/ do 
-auth_message = "Incorrect Username/ Password"
+  expected_message = @messages.get("incorrect_credentials")
   steps %{
-    Then the JSON at "message" should be "#{auth_message}"
+    Then the JSON at "message" should be "#{expected_message}"
     Then the JSON at "session_id" should be "session id"   
     Then the JSON at "session_type" should be "END"
     Then the JSON should not have "access_token"
@@ -77,11 +77,10 @@ auth_message = "Incorrect Username/ Password"
 end
 
 
-Then /^"([^\"]*)" should see the USSD home page$/ do |user|
-  user = CanvasUserInterface.get_user 
-  message = "Welcome to SEN!\\n"
+Then /^User should see the USSD home page$/ do
+   expected_message = @messages.get("home_page")
    steps %{
-      Then the JSON at "message" should be "#{message}"
+      Then the JSON at "message" should be "#{expected_message}"
       Then the JSON at "session_id" should be "session id"   
       Then the JSON at "session_type" should be "SESSION"
       Then the JSON should have "access_token"

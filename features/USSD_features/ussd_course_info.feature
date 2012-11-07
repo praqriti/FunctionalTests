@@ -1,78 +1,57 @@
-@wip
 Feature:
 
 	In order to know my enrollments in a course
 	As a User
 	I want to be able to view information about the course
 
-Background:
-Given I make a new USSD login request
-When User "camfed_student" logs into USSD with her credentials
-Then "camfed_student" should see the USSD home page
-Given the user "camfed_student" is enrolled with following courses:
-|COURSE     |ROLE   |STATUS |
-|History    |Teacher|active |
-|Mathematics|Teacher|active |
-|Chinese    |Teacher|pending|
-|Chemistry  |Student|active |
-|Biology    |Student|active |Attached to course as Student\nNo Quiz Attached|
-|Computer   |Student|pending|Attached to course as Student\nPlease log in to Web, to respond to Course request|
-
 Scenario Outline:
-
-
-Example:
-|COURSE     |ROLE   |STATUS |MESSAGE|
-|History    |Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
-|Mathematics|Teacher|active |Attached to course as Teacher\nNo Quiz Attached|
-|Chinese    |Teacher|pending|Attached to course as Teacher\nPlease log in to Web, to respond to Course request|
-|Chemistry  |Student|active |Attached to course as Student\nNo Quiz Attached|
-|Biology    |Student|active |Attached to course as Student\nNo Quiz Attached|
-|Computer   |Student|pending|Attached to course as Student\nPlease log in to Web, to respond to Course request|
-
 Given I make a new USSD login request
 When User "camfed_student" logs into USSD with her credentials
-Then "camfed_student" should see the USSD home page
-Scenario:
-  Given the following courses exist in canvas
-  |COURSE|
-  |History|
-  |Chemistry|
-  |Mathematics|
-  |Computer|
-  |Biology |
-  |Chinese|
-  And User is enrolled to the following courses as "teacher"
-  |COURSE|
-  |History|
-  |Mathematics|
-  And User is enrolled to the following courses as "student"
-  |COURSE|
-  |Chemistry|
-  |Biology|
-  And User is enrolled to "Computer" as "Student" with pending invitation
-  And User is enrolled to "Chinese" as "Teacher" with pending invitation
-	Given User chooses the option "Courses"
-	Then User should see the courses list on page "1"
+Then User should see the USSD home page
+Given User "camfed_student" is enrolled with following courses:
+|COURSE     |ROLE   |STATUS   |
+|<COURSE>   |<ROLE> |<STATUS> |
+Given User chooses the option "Courses"
+When User chooses the course "<COURSE>"
+Then User should see the message "<MESSAGE>"
 
-Scenario: User selects a course in which he is enrolled as teacher
+Examples:
+|COURSE     |ROLE   |STATUS |MESSAGE|
+|History    |Teacher|active |teacher_with_no_quiz|
+|Chinese    |Teacher|pending|teacher_with_pending_invitation|
+|Biology    |Student|active |student_with_no_quiz|
+|Computer   |Student|pending|student_with_pending_invitation|
 
-	When User chooses course "1"
-	Then User should see the message "Attached to course as Teacher\nNo Quiz Attached"
 
-Scenario: User selects a course in which he is enrolled as student
+Scenario: Verify student course info with pagination
+Given I make a new USSD login request
+When User "camfed_student" logs into USSD with her credentials
+Then User should see the USSD home page
+  Given User "camfed_student" is enrolled with following courses:
+  |COURSE     |ROLE    |STATUS|
+  |History    |Student |active|
+  |Physics    |Student |active|
+  |Geography  |Student |active|
+  |Maths      |Student |active|
+  |Biology    |Student |pending|
+  Given User chooses the option "Courses"
+  When User chooses the "Next" option
+  And User chooses the course "Biology"
+  Then User should see the message "student_with_pending_invitation"
 
-	When User chooses course "3"
-	Then User should see the message "Attached to course as Student\nNo Quiz Attached"
-
-Scenario: User selects a course in which invitation is pending for student
-
-	When User chooses the "Next" option
-	And User chooses course "5"
-	Then User should see the message "Attached to course as Student\nPlease log in to Web, to respond to Course request"
-
-Scenario: User selects a course in which invitation is pending for teacher
-
-	When User chooses the "Next" option
-	And User chooses course "6"
-	Then User should see the message "Attached to course as Teacher\nPlease log in to Web, to respond to Course request"
+Scenario: Verify teacher course info with pagination
+Given User "camfed_student" is enrolled with following courses:
+|COURSE     |ROLE    |STATUS|
+|Hindi      |Student |pending|
+|Chemistry  |Student |active|
+|Arts       |Teacher |active|
+|Biology    |Student |active|
+|English    |Teacher |pending|
+Given I make a new USSD login request
+When User "camfed_student" logs into USSD with her credentials
+Then User should see the USSD home page
+And User chooses the option "Courses"
+When User chooses the "Next" option
+And User chooses the course "English"
+Then User should see the message "teacher_with_pending_invitation"
+	    

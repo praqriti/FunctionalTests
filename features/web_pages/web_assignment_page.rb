@@ -6,4 +6,5 @@ class Assignment < SitePrism::Page
   element :update_button, 'button.button'
   element :group_name, 'input#assignment_group_name'
   element :add_group, 'a.add_group_link'
+  element :group, '.group_name'
 end

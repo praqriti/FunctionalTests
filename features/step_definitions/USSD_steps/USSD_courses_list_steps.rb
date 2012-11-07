@@ -6,26 +6,35 @@ Given /^User chooses the option "Courses"$/ do
 		                           :headers => { "Content-Type" => "application/json"})
 end
 
+Given /^User "(.*?)" is enrolled with following courses:$/ do |username, courses_table|
+  courses_table.hashes.each do |hash|
+		@courses << CanvasCourseInterface.create_course("#{hash["COURSE"]}")
+		enroll_type = "#{hash[:ROLE]}Enrollment"
+		user = @users.find{|user| user.identifier == username}
+		course = @courses.last
+  	CanvasEnrollmentInterface.enroll_user(course.id, user.id, enroll_type, hash[:STATUS])
+  	@enrolled_courses << course
+	end
+end
+
+When /^User chooses the course "(.*?)"$/ do |course_name|
+	actual_response = @last_response.parsed_response
+	course_no = actual_response["response_map"].find{|course| course[1]["text"] == course_name}.first
+  body = actual_response
+	body.merge!({"message" => "#{course_no}"})
+	@last_response = JSONSpecInterface.post("#{SEN_URL}",
+		                           :body => body.to_json,
+		                           :headers => { "Content-Type" => "application/json"})
+	
+end
+
+
 Given /^the following courses exist in canvas$/ do |courses_table|	
-	@courses = Array.new	
 	courses_table.hashes.each do |hash|
 		@courses << CanvasCourseInterface.create_course("#{hash["COURSE"]}")
 	end
-	@enrolled_courses = Array.new
 end
 
-And /^User is enrolled to the following courses as "([^\"]*)"$/ do |type, courses_table|
-  	enroll_type = type == "teacher" ? "TeacherEnrollment" : "StudentEnrollment"
-	user_id = CanvasUserInterface.get_user_id
-	courses_table.hashes.each do |hash|
-		@courses.each do |course|
-			if(course.name == "#{hash["COURSE"]}")
-				CanvasEnrollmentInterface.enroll_user(course.id, user_id, enroll_type, "active")
-				@enrolled_courses << course
-			end
-		end
-	end
-end
 
 Given /^User is enrolled to the following courses:$/ do |enrollment_table|
   enrollment_table.hashes.each do |hash|
@@ -40,23 +49,14 @@ Given /^User is enrolled to the following courses:$/ do |enrollment_table|
 	end
 end
 
-And /^User is enrolled to "([^\"]*)" as "([^\"]*)" with pending invitation$/ do |course_name, enroll_type|
-	user_id = CanvasUserInterface.get_user_id
-	@courses.each do |course|
-		if(course.name == course_name)
-			CanvasEnrollmentInterface.enroll_user(course.id, user_id, "#{enroll_type}Enrollment", "invited")
-			@enrolled_courses << course
-		end
-	end
-end
-
 
 Then /^User should see the courses list$/ do
 	actual_response = @last_response.parsed_response
 	s_no = 1
+	binding.pry
 	@enrolled_courses.each do |enrolled_course|
 		actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
-		s_no+=1
+	s_no+=1
 	end
 	actual_response["response_map"]["0"]["text"].should == "Home"
 	steps %{
@@ -130,32 +130,13 @@ And /^User chooses the "Previous" option$/ do
 		                          :headers => { "Content-Type" => "application/json"})
 end
 
-When /^User replies "0" from courses page to go back to home page$/ do
-	user_id = CanvasUserInterface.get_user_id
+When /^User replies "0" to go back to home page$/ do
 	body = @last_response.parsed_response.merge!({"message" => "0"})
 	@last_response = JSONSpecInterface.post("#{SEN_URL}",
        	:body =>body.to_json,
 	:headers => { "Content-Type" => "application/json"})
+	@last_response.parsed_response["response_map"]["1"]["text"].should == "Notifications"
 end
-
-Then /^"([^\"]*)" should be displayed to the User$/ do |message|
-	user_id = CanvasUserInterface.get_user_id
-	steps %{
-		Then the JSON at "message" should be "#{message}"
-		Then the JSON at "session_id" should be "session id"
-		Then the JSON at "session_type" should be "SESSION"
-		Then the JSON should have "access_token"
-		Then the JSON at "response_map" should be:
-		"""
-		{
-			"0": {
-			"text": "Home",
-			"url": "sen/users/#{user_id}"
-			}
-		}
-		"""
-    		}
-end	
 
 Then /^User should only see course "([^\"]*)"$/ do |course_name|
 	@last_response.parsed_response["response_map"]["1"]["text"].should == course_name

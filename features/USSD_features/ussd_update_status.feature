@@ -8,7 +8,7 @@ Background:
   
 	Given I make a new USSD login request
 	When User "camfed_student" logs into USSD with her credentials
-	Then "camfed_student" should see the USSD home page
+	Then User should see the USSD home page
 
 
 Scenario: Update and view new status update from USSD
@@ -33,7 +33,7 @@ Scenario: Verify back from update page from USSD
 	
 	Given User chooses the option to "update status"
 	When User replies "0" from update status page to go back to home page
-	Then "camfed_student" should see the USSD home page
+	Then User should see the USSD home page
 
 @manual
 Scenario: Verify no error on status update longer than max allowed length from USSD
@@ -52,7 +52,7 @@ Scenario: Verify no error on status update longer than max allowed length from U
 Scenario: Verify that error is given to the user when she enters an invalid option
 	
 	Given User sends an invalid option "9"
-	Then User is given an error message and returns to home page
+	Then User returns to home page with error "invalid_option"
 
 Scenario: Verify user not allowed to continue with incorrect access token
 

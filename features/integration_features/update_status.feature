@@ -15,7 +15,7 @@ Feature:
  
   Given I make a new USSD login request
   When User "camfed_student" logs into USSD with her credentials
-  Then "camfed_student" should see the USSD home page
+  Then User should see the USSD home page
   
   And User chooses the option to "update status"
   And User should see his previously updated message "status message"
@@ -26,7 +26,7 @@ Feature:
 
   Given I make a new USSD login request
   When User "camfed_student" logs into USSD with her credentials
-  Then "camfed_student" should see the USSD home page
+  Then User should see the USSD home page
 
   And User chooses the option to "update status"
   And User replies with new status message "new status message" 

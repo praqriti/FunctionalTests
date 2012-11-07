@@ -1,6 +1,11 @@
 Before do 
   @users = Array.new
+  @enrolled_courses = Array.new
+	@courses = Array.new	
+  @messages = Messages.new
+  
   @users << CanvasUserInterface.create_user("camfed_student")
+  
 end
 
 After do   
@@ -13,7 +18,6 @@ After do
   if (@courses)
      @courses.each do |course|      
          CanvasCourseInterface.delete_course(course)
-         p "#{course.name} deleted"
         end
   end
   

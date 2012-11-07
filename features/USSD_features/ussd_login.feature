@@ -8,7 +8,7 @@ Scenario: Verify login from USSD
 
 	Given I make a new USSD login request
 	When User "camfed_student" logs into USSD with her credentials
-	Then "camfed_student" should see the USSD home page
+	Then User should see the USSD home page
 
   
 Scenario Outline: Verify Incorrect login details

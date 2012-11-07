@@ -11,25 +11,26 @@ Given /^User navigates to quiz page and creates the following:$/ do |quiz_table|
     And User is on the Sign In page
     And User "#{user.identifier}" logs into Canvas with her credentials
     And User sets the quiz group as "USSD" for course "#{course.name}"
-  }  
+  }
   Quiz.set_page_url course.id
    @quizzes.each do |quiz_name|
      steps %{
-       And User creates quiz "#{quiz_name}" for group "USSD"
+       And User creates quiz "#{quiz_name}" for group "#{hash[:GROUP]}"
      }
    end
    CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
  end
 end
 
-Given /^User sets the quiz group as "USSD" for course "([^\"]*)"$/ do |course_name|
+Given /^User sets the quiz group as "([^\"]*)" for course "([^\"]*)"$/ do |group_name,course_name|
   
   course = @courses.select { |c| c.name == course_name }.first
   Assignment.set_page_url course.id
   @app.assignment.load
   @app.assignment.add_group.click
-  @app.assignment.group_name.set "USSD"
+  @app.assignment.group_name.set "#{group_name}"
   @app.assignment.update_button.click
+  @app.assignment.group.text.should == "#{group_name}:"
 
 end
 
