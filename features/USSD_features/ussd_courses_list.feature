@@ -37,20 +37,17 @@ Given User "camfed_student" is enrolled with following courses:
 	And User should see the "Next" and "Previous" option
 	When User replies "0" to go back to home page
 	Then User should see the USSD home page
-	
-@manual
-Scenario: Verify that the order of courses in the list is correct with pagination
 
 Scenario: User is not enrolled to any course
 	When User chooses the option "Courses"
 	Then User should see the message "no_course_attached"
 	And User should not see "Previous" and "Next" option
 
-@wip
 Scenario: User is enrolled as an observer
   Given User "camfed_student" is enrolled with following courses:
    |COURSE     |ROLE     |STATUS|
    |History    |Observer |active|
+   |Physics    |Observer |pending|
    When User chooses the option "Courses"
    Then User should see the message "no_course_attached"
    And User should not see "Previous" and "Next" option
@@ -83,3 +80,6 @@ Given User "camfed_student" is enrolled with following courses:
 	And User should not see "Previous" and "Next" option
 	When User chooses the "Next" option
   Then User returns to home page with error "invalid_option"
+  
+  @manual
+  Scenario: Verify that the order of courses in the list is correct with pagination

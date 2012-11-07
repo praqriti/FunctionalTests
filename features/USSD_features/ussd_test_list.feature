@@ -5,7 +5,6 @@ Feature:
 	As a User
 	I want to be able to view list of tests attached to my courses
 
-@wip	
 Scenario Outline: Verify Menu option is displayed with pagination for a test in a course
 Given the following test data exists:
  |USER          |ROLE   |COURSE  |STATUS  |GROUP  |TESTS  |
@@ -29,7 +28,7 @@ Given the following test data exists:
 Examples:
 |USER               |ROLE   |COURSE |STATUS|GROUP|TESTS|
 |camfed_quiz_teacher|Teacher|History|active|USSD |Indian Independence,World War 1,World War 2,World War 3,World War 4|
-|camfed_quiz_student|Student|History|active|USSD |India,World Wars,History,World War 10,World War 11|
+|camfed_quiz_student|Student|Arts   |active|USSD |India,World Wars,Sculpting,Sword Fighting,Painting|
 
 
 Scenario: Verify that error is given to the user when she enters an invalid option
