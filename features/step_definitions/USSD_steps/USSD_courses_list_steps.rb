@@ -53,7 +53,6 @@ end
 Then /^User should see the courses list$/ do
 	actual_response = @last_response.parsed_response
 	s_no = 1
-	binding.pry
 	@enrolled_courses.each do |enrolled_course|
 		actual_response["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
 	s_no+=1
