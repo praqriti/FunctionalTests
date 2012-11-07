@@ -1,9 +1,7 @@
 Given /^User chooses the option "Courses"$/ do
-	body = @last_response.parsed_response
-	body.merge!({"message" => "5"})
-	@last_response = JSONSpecInterface.post("#{SEN_URL}",
-		                           :body => body.to_json,
-		                           :headers => { "Content-Type" => "application/json"})
+ steps %{
+   Then User replies with option "5"
+ }
 end
 
 Given /^User "(.*?)" is enrolled with following courses:$/ do |username, courses_table|
@@ -20,12 +18,10 @@ end
 When /^User chooses the course "(.*?)"$/ do |course_name|
 	actual_response = @last_response.parsed_response
 	course_no = actual_response["response_map"].find{|course| course[1]["text"] == course_name}.first
-  body = actual_response
-	body.merge!({"message" => "#{course_no}"})
-	@last_response = JSONSpecInterface.post("#{SEN_URL}",
-		                           :body => body.to_json,
-		                           :headers => { "Content-Type" => "application/json"})
-	
+  
+	steps %{
+     Then User replies with option "#{course_no}"
+   }
 end
 
 
@@ -99,41 +95,32 @@ And /^User chooses the "Next" option$/ do
 end
 
 And /^User should see the "Next" option$/ do
-	user_id = CanvasUserInterface.get_user_id
 	actual_response = @last_response.parsed_response
-	actual_response["response_map"]["#"]["url"].should  == "sen/users/#{user_id}/courses/?page=2"
 	actual_response["response_map"]["#"]["text"].should  == "Next"
 end
 
 And /^User should see the "Next" and "Previous" option$/ do
-	user_id = CanvasUserInterface.get_user_id
 	actual_response = @last_response.parsed_response
-	actual_response["response_map"]["*"]["url"].should == "sen/users/#{user_id}/courses/?page=1"
 	actual_response["response_map"]["*"]["text"].should == "Previous"
-	actual_response["response_map"]["#"]["url"].should  == "sen/users/#{user_id}/courses/?page=3"
 	actual_response["response_map"]["#"]["text"].should  == "Next"
 end
 
 And /^User should see the "Previous" option$/ do
 	user_id = CanvasUserInterface.get_user_id
 	actual_response = @last_response.parsed_response
-	actual_response["response_map"]["*"]["url"].should  == "sen/users/#{user_id}/courses/?page=2"
 	actual_response["response_map"]["*"]["text"].should  == "Previous"
 end
 
 And /^User chooses the "Previous" option$/ do
-	body = @last_response.parsed_response
-	body.merge!({"message" => "*"})
-	@last_response = JSONSpecInterface.post("#{SEN_URL}",
-		                          :body => body.to_json,
-		                          :headers => { "Content-Type" => "application/json"})
+ steps %{
+   Then User replies with option "*"   
+ }
 end
 
 When /^User replies "0" to go back to home page$/ do
-	body = @last_response.parsed_response.merge!({"message" => "0"})
-	@last_response = JSONSpecInterface.post("#{SEN_URL}",
-       	:body =>body.to_json,
-	:headers => { "Content-Type" => "application/json"})
+  steps %{
+    Then User replies with option "0"   
+  }
 	@last_response.parsed_response["response_map"]["1"]["text"].should == "Notifications"
 end
 

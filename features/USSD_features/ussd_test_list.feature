@@ -10,7 +10,7 @@ Given the following test data exists:
  |USER          |ROLE   |COURSE  |STATUS  |GROUP  |TESTS  |
  |<USER>        |<ROLE> |<COURSE>|<STATUS>|<GROUP>|<TESTS>|
  And I make a new USSD login request
- And User "<USER>" logs into USSD with her credentials
+ And User "<USER>" logs into USSD with correct credentials
  Then User should see the USSD home page 
  Given User chooses the option "Courses"
  When User should see the courses list
@@ -36,7 +36,7 @@ Scenario: Verify that error is given to the user when she enters an invalid opti
  |USER               |ROLE   |COURSE |STATUS|GROUP|TESTS|
  |camfed_quiz_student|Student|Maths  |active|USSD |Algebra|
  And I make a new USSD login request
- And User "camfed_quiz_student" logs into USSD with her credentials
+ And User "camfed_quiz_student" logs into USSD with correct credentials
  When User should see the USSD home page 
   And User chooses the option "Courses"
 And User should see the courses list

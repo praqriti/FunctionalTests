@@ -23,6 +23,14 @@ Then /^User returns to home page with error "([^\"]*)"$/ do |error|
     @last_response.parsed_response["response_map"]["1"]["text"].should == "Notifications"
 end
 
+Given /^User replies with option "(.*?)"$/ do |option|
+   body = @last_response.parsed_response
+   body.merge!({"message" => "#{option}"})
+   @last_response = JSONSpecInterface.post("#{SEN_URL}",
+                                           :body => body.to_json,
+                                           :headers => { "Content-Type" => "application/json"})
+end
+
 When /^I save the access token for user "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
