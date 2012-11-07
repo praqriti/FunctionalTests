@@ -16,7 +16,7 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 	start_index = rpp * (page_no-1)
 	end_index = start_index + (rpp-1)
 	@quizzes[start_index..end_index].each do |quiz|
-		actual_response["response_map"]["#{s_no}"]["text"].should == quiz
+		actual_response["response_map"]["#{s_no}"]["text"].should == quiz.title
 		s_no+=1
 	end
 	actual_response["response_map"]["0"]["text"].should == "Home"
@@ -91,32 +91,64 @@ When /^User replies "0" from tests page to go back to home page$/ do
 	:headers => { "Content-Type" => "application/json"})
 end
 
-Given /^the following test data exists:$/ do |test_table|
-  test_table.hashes.each do |hash|
-    user = hash[:USER]
-    role = hash[:ROLE]
-    course = hash[:COURSE]
-    tests = hash[:TESTS]
-    
-    steps %{
-       Given the following users exists in canvas:
-        |USER|
-        |#{user}| 
+def enroll_user_to_course(course, type)
+  enroll_type = type == "Teacher" ? "TeacherEnrollment" : "StudentEnrollment"
+  user_id = CanvasUserInterface.get_user_id
+  CanvasEnrollmentInterface.enroll_user(course.id, user_id, enroll_type, "active")
+end
+
+def create_course(course_name)
+  steps %{
        Given the following courses exist in canvas
         |COURSE|
-        |#{course}|
+        |#{course_name}|
     }
-    steps %{
-      And User navigates to quiz page and creates the following:
-      |USER|COURSE|TESTS|
-      |#{user}|#{course}|#{tests}|
-      And User logs out      
-    }
-    steps %{
-       When User is enrolled to the following courses:
-          |COURSE|ROLE|
-          |#{course}|#{role}|
-    }
+  return @courses[0]
+end
+
+
+def create_quizzes(course, quizzes_table)
+  @quizzes = []
+  user = CanvasUserInterface.get_user
+
+  enrollment_id = enroll_user_to_course course, "Teacher"
+
+  assignment_group = Canvas::AssignmentGroup.new(user, course).create
+  quizzes = quizzes_table.split(",")
+  quizzes.each do |quiz_name|
+    quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name)
+    quiz.create
+    quiz.publish
+    @quizzes << quiz
+  end
+#
+#question = {
+#    :text => "huhahahaha",
+#    :answers => {
+#        "answer_0" => {
+#            "answer_weight" => 100,
+#            "answer_text" => "ddssd"
+#        },
+#
+#        "answer_1" => {
+#            "answer_weight" => 0,
+#            "answer_text" => "ddssdssd"
+#        }
+#    }
+#}
+#quiz.add_question question
+  CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
+end
+
+Given /^the following test data exists:$/ do |test_table|
+  test_table.hashes.each do |hash|
+    role = hash[:ROLE]
+    course_name = hash[:COURSE]
+    tests = hash[:TESTS]
+
+    course = create_course(course_name)
+    create_quizzes(course, tests)
+    enroll_user_to_course(course, role)
   end
 end
 
