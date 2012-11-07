@@ -15,7 +15,6 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 	s_no = (rpp * (page_no-1)) + 1
 	start_index = rpp * (page_no-1)
 	end_index = start_index + (rpp-1)
-	binding.pry
 	@quizzes[start_index..end_index].each do |quiz|
 		actual_response["response_map"]["#{s_no}"]["text"].should == quiz
 		s_no+=1
