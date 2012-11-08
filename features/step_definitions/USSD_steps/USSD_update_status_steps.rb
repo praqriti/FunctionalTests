@@ -11,7 +11,7 @@ Then /^User is given the option to update status or navigate back to home page$/
      Then the JSON at "session_type" should be "SESSION"
      Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
        }  
-     @last_response.parsed_response["response_map"]["0"]["text"].should == "Home"
+     @last_response.parsed_response["response_map"]["0"]["text"].should == "Back"
      
 end 
 

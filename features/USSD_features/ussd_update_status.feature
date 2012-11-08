@@ -35,9 +35,6 @@ Scenario: Verify back from update page from USSD
 	When User replies "0" from update status page to go back to home page
 	Then User should see the USSD home page
 
-@manual
-Scenario: Verify no error on status update longer than max allowed length from USSD
-
 	Given User chooses the option to "update status"
 	When User replies with new status message: 
 	"""
@@ -72,6 +69,9 @@ Scenario: Verify one user cannot use another users access token
 	Given I make a new USSD login request
 	When I enter the login credentials as "user2" with password "password2"
 	And I save the access token for user "user2"
+
+  @manual
+  Scenario: Verify no error on status update longer than max allowed length from USSD
 
 
 

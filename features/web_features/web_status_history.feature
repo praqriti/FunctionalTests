@@ -22,7 +22,7 @@ Scenario: Verify previous status link is visible on my wall page
   Then User should see the previous statuses link
   Then User logs out
 
-Scenario: Verify appropriate message displayed if there are no previous status messages
+Scenario: Verify appropriate message displayed if there is no history of status messages
 
 	And "camfed_student" has his status set to "single status message only"
 	Then User clicks on My Wall

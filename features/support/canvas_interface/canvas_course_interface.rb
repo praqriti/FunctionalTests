@@ -18,10 +18,6 @@ class CanvasCourseInterface
 		return @course
 	end 
 
-	def self.get_course_id
-     		return @course.id
-   	end
-
 	def self.delete_course(course)
 		@delete_response = JSONSpecInterface.delete("#{CANVAS_API}/courses/#{course.id}",
 		:body => {

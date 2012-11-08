@@ -45,28 +45,6 @@ class ConnectionsInterface
     connection_id
   end
 
-  def self.delete_user(user)
-    @delete_response = JSONSpecInterface.delete("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users/#{user.id}",
-    :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-    p "user #{user.login_id} deleted"
-  end
-
-  def self.delete_all_users()
-    for i in (400..500).step(1)
-      @delete_response = JSONSpecInterface.delete("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users/#{i}",
-      :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-      p "#{@delete_response}"
-    end
-  end
-
-   def self.get_user_id
-     return @user.id
-   end
-
-   def self.get_user
-     return @user
-   end
-
 end
 
 # World(CanvasUserInterface)

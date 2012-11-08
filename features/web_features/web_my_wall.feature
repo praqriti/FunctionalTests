@@ -1,4 +1,4 @@
-@javascript
+# @javascript
 Feature:
 
   In order to view my comments
@@ -38,7 +38,7 @@ Feature:
   Then the comments are visible on My Wall
   |COMMENT|
   |Hello  |
-  |Good  |
+  |Good   |
   And User logs out
 
   Scenario: Verify user cannot enter blank comment
