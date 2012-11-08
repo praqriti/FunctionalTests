@@ -10,6 +10,12 @@ module JSONSpecInterface
   def last_json
     @last_response.body
   end
+
+  def self.log last_response
+    if (last_response.response.code !="200")
+        p "Request failed at #{last_response.request.path.to_s} with error: #{last_response.to_json}"
+    end
+  end
 end
 
 World(JSONSpecInterface)

@@ -12,9 +12,7 @@ class CanvasCourseInterface
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 		@course.id =  @last_response.parsed_response["id"]
-		if (@last_response.response.code=="200")
-  			puts "\ncourse #{@course.name} created"
-		end
+    JSONSpecInterface.log(@last_response)
 		return @course
 	end 
 
@@ -28,6 +26,6 @@ class CanvasCourseInterface
 			:event => "delete"
 			},
 		:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-		puts "\n#{course.name} deleted"
+    JSONSpecInterface.log(@last_response)
 	end		   
 end    
