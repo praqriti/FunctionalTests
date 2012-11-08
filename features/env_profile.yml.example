@@ -20,3 +20,11 @@ int:
     dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
     account_id: 2
     records_per_page: 4
+
+staging:
+    canvas_url: http://192.168.31.8
+    sen_url: http://192.168.31.8:8383
+    access_token: Bearer alpRpz2flrNUdCEvPbdcKh6kraI6awXuHt6oldvCXWFVkhYLjST68WVyQrcaT9qy
+    dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
+    account_id: 2
+    records_per_page: 4
