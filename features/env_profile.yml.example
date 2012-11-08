@@ -24,7 +24,7 @@ int:
 staging:
     canvas_url: http://192.168.31.8
     sen_url: http://192.168.31.8:8383
-    access_token: Bearer alpRpz2flrNUdCEvPbdcKh6kraI6awXuHt6oldvCXWFVkhYLjST68WVyQrcaT9qy
-    dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
+    access_token: Bearer PP3rui3JnDFDdv6ym5JT2Rhye07zlO6nZnDUs0aayIKuivjMHJZrSwqnIUJPvh4g
+    dev_key: kVZqIlxlXAYSHTOKbQR8AIVDDJ1jjM21J6gXWYgxcBlrm1Vb36BIxJYxWGUUigVL
     account_id: 2
     records_per_page: 4
