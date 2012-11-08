@@ -93,6 +93,7 @@ end
 
 Given /^the following test data exists:$/ do |test_table|
   test_table.hashes.each do |hash|
+    status = hash[:STATUS]
     role = hash[:ROLE]
     course_name = hash[:COURSE]
     tests = hash[:TESTS]
@@ -116,24 +117,45 @@ Given /^the following test data exists:$/ do |test_table|
       quiz.publish
       @quizzes << quiz
     end
-    #
-    #question = {
-    #    :text => "huhahahaha",
-    #    :answers => {
-    #        "answer_0" => {
-    #            "answer_weight" => 100,
-    #            "answer_text" => "ddssd"
-    #        },
-    #
-    #        "answer_1" => {
-    #            "answer_weight" => 0,
-    #            "answer_text" => "ddssdssd"
-    #        }
-    #    }
-    #}
-    #quiz.add_question question
     CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
-    CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type(role), "active")
+    CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type(role), status)
+  end
+end
+
+Given /^the following test data with questions exists:$/ do |test_table|
+  test_table.hashes.each do |hash|
+    status = hash[:STATUS]
+    role = hash[:ROLE]
+    course_name = hash[:COURSE]
+    tests = hash[:TESTS]
+
+    steps %{
+       Given the following courses exist in canvas
+        |COURSE|
+        |#{course_name}|
+    }
+
+    course = @courses[0]
+    @quizzes = []
+    user = CanvasUserInterface.get_user
+
+    enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type("Teacher"), "active")
+    assignment_group = Canvas::AssignmentGroup.new(user, course).create
+    quizzes = tests.split(",")
+    @questions = []
+    quizzes.each do |quiz_name|
+      quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name)
+      quiz.create
+      for i in 1..2
+        question = QuestionData.question
+        quiz.add_question question
+        @questions << question
+      end
+      quiz.publish
+      @quizzes << quiz
+    end
+    CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
+    CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type(role), status)
   end
 end
 

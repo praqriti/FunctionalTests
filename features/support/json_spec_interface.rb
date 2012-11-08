@@ -12,7 +12,7 @@ module JSONSpecInterface
   end
 
   def self.log last_response
-    if (last_response.response.code !="200")
+    if (!last_response.response.kind_of? Net::HTTPSuccess)
         p "Request failed at #{last_response.request.path.to_s} with error: #{last_response.to_json}"
     end
   end
