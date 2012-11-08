@@ -6,7 +6,7 @@ Feature:
 
 Scenario Outline:
 Given I make a new USSD login request
-When User "camfed_student" logs into USSD with her credentials
+When User "camfed_student" logs into USSD with correct credentials
 Then User should see the USSD home page
 Given User "camfed_student" is enrolled with following courses:
 |COURSE     |ROLE   |STATUS   |
@@ -25,7 +25,7 @@ Examples:
 
 Scenario: Verify student course info with pagination
 Given I make a new USSD login request
-When User "camfed_student" logs into USSD with her credentials
+When User "camfed_student" logs into USSD with correct credentials
 Then User should see the USSD home page
   Given User "camfed_student" is enrolled with following courses:
   |COURSE     |ROLE    |STATUS|
@@ -48,7 +48,7 @@ Given User "camfed_student" is enrolled with following courses:
 |Biology    |Student |active|
 |English    |Teacher |pending|
 Given I make a new USSD login request
-When User "camfed_student" logs into USSD with her credentials
+When User "camfed_student" logs into USSD with correct credentials
 Then User should see the USSD home page
 And User chooses the option "Courses"
 When User chooses the "Next" option

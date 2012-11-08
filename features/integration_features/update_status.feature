@@ -14,7 +14,7 @@ Feature:
   Then User status "status message" is updated successfully
  
   Given I make a new USSD login request
-  When User "camfed_student" logs into USSD with her credentials
+  When User "camfed_student" logs into USSD with correct credentials
   Then User should see the USSD home page
   
   And User chooses the option to "update status"
@@ -25,7 +25,7 @@ Feature:
   Scenario: View status should be reflected on both canvas and ussd app
 
   Given I make a new USSD login request
-  When User "camfed_student" logs into USSD with her credentials
+  When User "camfed_student" logs into USSD with correct credentials
   Then User should see the USSD home page
 
   And User chooses the option to "update status"

@@ -1,10 +1,8 @@
 When /^User chooses course "([^\"]*)"$/ do |course_no|
   course_no = course_no.to_i
-  body = @last_response.parsed_response
-  body.merge!({"message" => "#{course_no}"})
-  @last_response = JSONSpecInterface.post("#{SEN_URL}",
-                                          :body => body.to_json,
-                                          :headers => { "Content-Type" => "application/json"})
+  steps %{
+      Then User replies with option "#{course_no}"   
+    }
 end
 
 
@@ -40,16 +38,13 @@ end
 
 And /^User chooses test "([^\"]*)"$/ do |test_no|
   test_no = test_no.to_i
-  body = @last_response.parsed_response
-  body.merge!({"message" => "#{test_no}"})
-  @last_response = JSONSpecInterface.post("#{SEN_URL}",
-                                          :body => body.to_json,
-                                          :headers => { "Content-Type" => "application/json"})
+  steps %{
+      Then User replies with option "#{test_no}"   
+    }
 end
 
 
 Then /^User should see the "([^\"]*)" menu$/ do |role|
-  user_id = CanvasUserInterface.get_user_id
   actual_response = @last_response.parsed_response
   if (role == "student")
     actual_response["response_map"]["2"]["text"].should == "Attempt Quiz"
@@ -57,8 +52,7 @@ Then /^User should see the "([^\"]*)" menu$/ do |role|
   elsif (role == "teacher")
     actual_response["response_map"]["1"]["text"].should == "View Report"
   end
-   actual_response["response_map"]["0"]["text"].should == "Home"
-   actual_response["response_map"]["0"]["url"].should  == "sen/users/#{user_id}"
+    actual_response["response_map"]["0"]["text"].should == "Home"
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -68,27 +62,19 @@ end
 
 
 Then /^User should see the "Next" option on tests list$/ do
-	user_id = CanvasUserInterface.get_user_id
-	course_id = CanvasCourseInterface.get_course_id
 	actual_response = @last_response.parsed_response
-	actual_response["response_map"]["#"]["url"].should  == "sen/users/#{user_id}/courses/#{course_id}/quizzes/?page=2"
 	actual_response["response_map"]["#"]["text"].should  == "Next"
 end
 
 Then /^User should see the "Previous" option on tests list$/ do
-	user_id = CanvasUserInterface.get_user_id
-	course_id = CanvasCourseInterface.get_course_id
 	actual_response = @last_response.parsed_response
-	actual_response["response_map"]["*"]["url"].should  == "sen/users/#{user_id}/courses/#{course_id}/quizzes/?page=1"
 	actual_response["response_map"]["*"]["text"].should  == "Previous"
 end
 
 When /^User replies "0" from tests page to go back to home page$/ do
-	user_id = CanvasUserInterface.get_user_id
-	body = @last_response.parsed_response.merge!({"message" => "0"})
-	@last_response = JSONSpecInterface.post("#{SEN_URL}",
-       	:body =>body.to_json,
-	:headers => { "Content-Type" => "application/json"})
+  steps %{
+      Then User replies with option "0"   
+    }
 end
 
 Given /^the following test data exists:$/ do |test_table|

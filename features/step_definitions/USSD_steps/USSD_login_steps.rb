@@ -10,58 +10,44 @@ Given /^I make a new USSD login request$/ do
    Then the JSON at "message" should be "Enter your username"
    Then the JSON at "session_id" should be "session id"
    Then the JSON at "session_type" should be "SESSION"
- }
-   
+ }   
 end
 
 
-When /^User "([^\"]*)" logs in with "([^\"]*)"$/ do |user,password|
-  user = CanvasUserInterface.get_user 
+When /^User "([^\"]*)" logs into USSD with password "([^\"]*)"$/ do |username,password|
   steps %{
-    When User enters the username "#{user.login_id}"
-    And User enters the password "#{password}" for user "#{user.login_id}"
+    When User enters the username "#{username}"
+    And User enters the password "#{password}"
   }
 end
 
 
-When /^User "([^\"]*)" logs into USSD with her credentials$/ do |user|
-user = CanvasUserInterface.get_user 
+When /^User "([^\"]*)" logs into USSD with correct credentials$/ do |username|
+	user = @users.find{|user| user.identifier == username}
       steps %{
       When User enters the username "#{user.login_id}"
-      And User enters the password "#{user.password}" for user "#{user.login_id}"
+      And User enters the password "#{user.password}"
     }
 end
 
 When /^User enters the username "([^\"]*)"$/ do |login_id|
- 
-  @last_response = JSONSpecInterface.post("#{SEN_URL}",
-  :body => {
-       :session_id => "session id",
-       :session_type => "SESSION",
-       :message => "#{login_id}",
-       :response_map => {"target_url"=>"sen/users"},
-       }.to_json,
-   :headers => { "Content-Type" => "application/json"})
+  expected_message = @messages.get("enter_password")
+  steps %{
+     Then User replies with option "#{login_id}"   
+   }
     
   steps %{
     And the JSON should include {"username":"#{login_id}"}
-    Then the JSON at "message" should be "Enter your password"
+    Then the JSON at "message" should be "#{expected_message}"
     Then the JSON at "session_id" should be "session id"
     Then the JSON at "session_type" should be "SESSION"
   }  
 end   
 
-And /^User enters the password "([^\"]*)" for user "([^\"]*)"$/ do |password,login_id|
-  @last_response = JSONSpecInterface.post("#{SEN_URL}",
-  :body => {                                
-         :session_id => "session id",
-         :session_type => "SESSION",
-         :params => {"username" => "#{login_id}"},
-         :message => "#{password}",
-         :response_map => {"target_url"=>"sen/users/password"},
-              }.to_json, 
-
-  :headers => { "Content-Type" => "application/json"})
+And /^User enters the password "([^\"]*)"$/ do |password|
+  steps %{
+     Then User replies with option "#{password}"   
+   }
          
 end
 
