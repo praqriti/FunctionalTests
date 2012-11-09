@@ -39,8 +39,11 @@ When /^User enters the username "([^\"]*)"$/ do |login_id|
        :session_id => "session id",
        :session_type => "SESSION",
        :message => "#{login_id}",
-       :response_map => {"target_url"=>"sen/users"},
-       }.to_json,
+        :response => {
+            :response_map => {"target_url"=>"sen/users"},
+            :message => ""
+        }
+  }.to_json,
    :headers => { "Content-Type" => "application/json"})
     
   steps %{
@@ -58,8 +61,11 @@ And /^User enters the password "([^\"]*)" for user "([^\"]*)"$/ do |password,log
          :session_type => "SESSION",
          :params => {"username" => "#{login_id}"},
          :message => "#{password}",
-         :response_map => {"target_url"=>"sen/users/password"},
-              }.to_json, 
+         :response => {
+          :response_map => {"target_url"=>"sen/users/password"},
+          :message => "#{login_id}"
+              }
+    }.to_json,
 
   :headers => { "Content-Type" => "application/json"})
          
@@ -70,7 +76,7 @@ Then /^I should be informed that my username and password is incorrect$/ do
   steps %{
     Then the JSON at "message" should be "#{expected_message}"
     Then the JSON at "session_id" should be "session id"   
-    Then the JSON at "session_type" should be "END"
+    Then the JSON at "session_type" should be "SESSION"
     Then the JSON should not have "access_token"
     Then the JSON should not have "response_map"
   }

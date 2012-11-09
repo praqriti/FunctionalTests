@@ -16,11 +16,16 @@ Then /^User should see the message "([^\"]*)"$/ do |message|
 	}
 end
 
+Then /^User should see the message containing "([^\"]*)"$/ do |message|
+  expected_message = @messages.get(message)
+  @last_response.parsed_response["message"].include?( expected_message).should be_true
+end
+
 Then /^User returns to home page with error "([^\"]*)"$/ do |error|
     steps %{
-     Then User should see the message "#{error}"
+     Then User should see the message containing "#{error}"
     }
-    @last_response.parsed_response["response_map"]["1"]["text"].should == "Notifications"
+    #@last_response.parsed_response["response"]["response_map"]["1"]["text"].should == "Notifications"
 end
 
 When /^I save the access token for user "(.*?)"$/ do |arg1|

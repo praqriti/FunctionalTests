@@ -13,16 +13,7 @@ Then /^User is given the option to update status or navigate back to home page$/
      Then the JSON at "session_type" should be "SESSION"
      Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
 
-     Then the JSON at "response_map" should be: 
-       """
-            {
-              "target_url":"sen/users/#{user_id}/status/create",
-              "0":
-              {"text":"Back","url":"sen/users/#{user_id}"}
-           }
-
-       """  
-       }  
+      }
 
 end 
 
@@ -43,12 +34,15 @@ When /^User replies with new status message:$/ do |string|
         :session_type => "SESSION",
         :message => "#{string}",
         :access_token =>"#{@last_response.parsed_response["access_token"]}",
-        :response_map => 
-         { "$"=>
-            {"url"=>"sen/users/#{user_id}/status/create"},
-           "0"=>
-            {"text"=>"Back","url"=>"sen/users/#{user_id}"}
-         }
+        :response =>{
+            :message => "",
+            :response_map =>
+                { "$"=>
+                      {"url"=>"sen/users/#{user_id}/status/create"},
+                  "0"=>
+                      {"text"=>"Back","url"=>"sen/users/#{user_id}"}
+                }
+        }
         }.to_json,
     :headers => { "Content-Type" => "application/json"})
   
@@ -101,7 +95,9 @@ And /^User chooses the option to "update status" with incorrect access_token$/ d
         :session_type => "SESSION",
         :message => "2",
         :access_token => access_token,
-        :response_map => 
+        :response => {
+            :message => "",
+      :response_map =>
          {
                 "5"=> {
                    "text"=> "Courses",
@@ -123,7 +119,8 @@ And /^User chooses the option to "update status" with incorrect access_token$/ d
                     "text"=> "Notifications",
                     "url"=> "sen/users/#{user_id}/notifications"
                   }
-            }     
+            }
+            }
         }.to_json,
     :headers => { "Content-Type" => "application/json"})
     
@@ -132,8 +129,8 @@ end
 Then /^User recieves an error and the session is ended$/ do
 	steps %{
 	Then the JSON at "session_id" should be "session id"
-	Then the JSON at "session_type" should be "END"
-	Then the JSON at "message" should be "Something went wrong. Please try again"
+	Then the JSON at "session_type" should be "SESSION"
+	Then the JSON at "message" should be "Something went wrong. Please try again\\n"
 	}    
 end
 

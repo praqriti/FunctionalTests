@@ -25,14 +25,18 @@ When /^User replies "0" from notifications page to go back to home page$/ do
           :session_type => "SESSION",
           :message => "0",
           :access_token =>"#{@last_response.parsed_response["access_token"]}",
-          :response_map =>
-              { "2"=>
-                    {"text"=>"Social Notifications", "url"=>"sen/users/#{user_id}/notifications"},
-                "1"=>
-                    {"text"=>"Learning Notifications", "url"=>"sen/users/#{user_id}/notifications"},
-                "0"=>
-                    {"text"=>"Back","url"=>"sen/users/#{user_id}"}
-              }
+          :response => {
+              :response_map =>
+                  { "2"=>
+                        {"text"=>"Social Notifications", "url"=>"sen/users/#{user_id}/notifications"},
+                    "1"=>
+                        {"text"=>"Learning Notifications", "url"=>"sen/users/#{user_id}/notifications"},
+                    "0"=>
+                        {"text"=>"Back","url"=>"sen/users/#{user_id}"}
+                  },
+              :message => ""
+
+          }
       }.to_json,
       :headers => { "Content-Type" => "application/json"})
 
