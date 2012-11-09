@@ -7,8 +7,8 @@ Feature:
   
   Background:   
    When User is on the Sign In page
-   And User "camfed_student" logs into Canvas with her credentials
-   Then "camfed_student" should see the Canvas home page
+   And User "camfed_user" logs into Canvas with her credentials
+   Then "camfed_user" should see the Canvas home page
    And User navigates to search page
    
    Scenario: Verify User can make an incorrect search   
@@ -51,8 +51,8 @@ Feature:
    Then User logs out
    
    Scenario: Verify that connection status does not appear for self on search
-   When User searches for "camfed_student" and clicks search
-   Then User should see "camfed_student" without any connection status
+   When User searches for "camfed_user" and clicks search
+   Then User should see "camfed_user" without any connection status
    Then User logs out
    
    
@@ -60,13 +60,13 @@ Feature:
    Scenario: Verify User can make a successful search with last name
    Given the following users exists in canvas:
            |USER|
-           |camfed_student_1|
-           |camfed_student_2|
+           |camfed_user_1|
+           |camfed_user_2|
     When User searches for "student" and clicks search
     Then User should see the users
     |USER|
-    |camfed_student_1|
-    |camfed_student_2|
+    |camfed_user_1|
+    |camfed_user_2|
     
   
   @wip 

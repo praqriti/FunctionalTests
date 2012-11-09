@@ -8,8 +8,8 @@ Feature:
 Background:
 
 When User is on the Sign In page
-And User "camfed_student" logs into Canvas with her credentials
-Then "camfed_student" should see the Canvas home page
+And User "camfed_user" logs into Canvas with her credentials
+Then "camfed_user" should see the Canvas home page
 
 Scenario: Verify if a logged in user can update his status
 When User "updates" the status message as "status message"

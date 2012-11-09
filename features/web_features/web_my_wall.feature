@@ -7,8 +7,8 @@ Feature:
 
   Background:
   When User is on the Sign In page
-  And  User "camfed_student" logs into Canvas with her credentials
-  And "camfed_student" has his status set to "status message"
+  And  User "camfed_user" logs into Canvas with her credentials
+  And "camfed_user" has his status set to "status message"
 
   Scenario: Verify the elements on My Wall
   Given User clicks on My Wall
@@ -25,7 +25,7 @@ Feature:
   Then the comments are visible on My Wall
   |COMMENT|
   |Good Status|
-  And User can view her name "camfed_student" on the comment
+  And User can view her name "camfed_user" on the comment
 	And User can view the timestamp on the comment
   And User logs out
 

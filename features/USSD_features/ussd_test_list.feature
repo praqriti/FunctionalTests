@@ -10,7 +10,7 @@ Scenario Outline: Verify Menu option is displayed with pagination for a test in 
     |ROLE   |COURSE  |STATUS  |TESTS  |
     |<ROLE> |<COURSE>|<STATUS>|<TESTS>|
   And I make a new USSD login request
-  And User "camfed_student" logs into USSD with her credentials
+  And User "camfed_user" logs into USSD with her credentials
   Then User should see the USSD home page
   Given User chooses the option "Courses"
   When User should see the courses list
@@ -36,7 +36,7 @@ Scenario: Verify that error is given to the user when she enters an invalid opti
     |ROLE   |COURSE |STATUS|TESTS|
     |Student|Maths  |active|Algebra|
   And I make a new USSD login request
-  And User "camfed_student" logs into USSD with her credentials
+  And User "camfed_user" logs into USSD with her credentials
   When User should see the USSD home page
   And User chooses the option "Courses"
   And User should see the courses list

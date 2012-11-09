@@ -10,15 +10,15 @@ Background:
 
 	Given the following users exists in canvas:
 	|USER|
-	|camfed_user|
-	And "camfed_student" has his status set to "status message"
+	|test_user|
+	And "camfed_user" has his status set to "status message"
 
 Scenario: Verify that a user can comment on the status of other user
 
 	When User is on the Sign In page
-	And User "camfed_user" logs into Canvas with her credentials
-	Then "camfed_student" should see the Canvas home page
-	And "camfed_student" is connected to "camfed_student"
-	And User can navigate and view the wall of user "camfed_student"
-	Then User comments "Nice status" on the status of "camfed_student"
-	Then the comment "Nice status" by "camfed_user" is visible on users wall
+	And User "test_user" logs into Canvas with her credentials
+	Then "camfed_user" should see the Canvas home page
+	And "camfed_user" is connected to "camfed_user"
+	And User can navigate and view the wall of user "camfed_user"
+	Then User comments "Nice status" on the status of "camfed_user"
+	Then the comment "Nice status" by "test_user" is visible on users wall

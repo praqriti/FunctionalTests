@@ -8,15 +8,15 @@ Feature:
 Background:
 
   When User is on the Sign In page
-  And User "camfed_student" logs into Canvas with her credentials
-  Then "camfed_student" should see the Canvas home page
+  And User "camfed_user" logs into Canvas with her credentials
+  Then "camfed_user" should see the Canvas home page
 
 
 Scenario: Verify previous status link is visible on my wall page
 
-  And "camfed_student" has his status set to "status message 1"
-  And "camfed_student" has his status set to "status message 2"
-  And "camfed_student" has his status set to "status message 3"
+  And "camfed_user" has his status set to "status message 1"
+  And "camfed_user" has his status set to "status message 2"
+  And "camfed_user" has his status set to "status message 3"
   Then User clicks on My Wall
   And User lands on My Wall and can view all the elements
   Then User should see the previous statuses link
@@ -24,7 +24,7 @@ Scenario: Verify previous status link is visible on my wall page
 
 Scenario: Verify appropriate message displayed if there are no previous status messages
 
-	And "camfed_student" has his status set to "single status message only"
+	And "camfed_user" has his status set to "single status message only"
 	Then User clicks on My Wall
 	And User lands on My Wall and can view all the elements
 	Then User clicks on Show previous status messages link
@@ -40,20 +40,20 @@ Scenario: Verify comment box not present if status is not updated even once
 
 Scenario: Verify user has 7 statuses with comments and can view previous 5 statuses with comments
 
-  And "camfed_student" has his status set to "status message 1"
-  And "camfed_student" has his status set to "status message 2"
-  And "camfed_student" has his status set to "status message 3"
+  And "camfed_user" has his status set to "status message 1"
+  And "camfed_user" has his status set to "status message 2"
+  And "camfed_user" has his status set to "status message 3"
 	Then User clicks on My Wall
 	And User comments "Good Status" on her status message
 	And User comments "Nice Status" on her status message
 	Then User navigates to canvas home page
-  And "camfed_student" has his status set to "status message 4"
-  And "camfed_student" has his status set to "status message 5"
+  And "camfed_user" has his status set to "status message 4"
+  And "camfed_user" has his status set to "status message 5"
 	Then User clicks on My Wall
 	And User comments "Wow! Incredible!" on her status message
 	Then User navigates to canvas home page
-  And "camfed_student" has his status set to "status message 6"
-	And "camfed_student" has his status set to "status message 7"
+  And "camfed_user" has his status set to "status message 6"
+	And "camfed_user" has his status set to "status message 7"
   Then User clicks on My Wall
   And User lands on My Wall and can view all the elements
   Then User clicks on Show previous status messages link
@@ -73,13 +73,13 @@ Scenario: Verify user has 7 statuses with comments and can view previous 5 statu
 
 Scenario: Verify user has 3 statuses with comments and can view previous 2 statuses with comments
 
-  And "camfed_student" has his status set to "status message 1"
-  And "camfed_student" has his status set to "status message 2"
+  And "camfed_user" has his status set to "status message 1"
+  And "camfed_user" has his status set to "status message 2"
 	Then User clicks on My Wall
 	And User comments "Good Status" on her status message
 	And User comments "Nice Status" on her status message
 	Then User navigates to canvas home page
-  And "camfed_student" has his status set to "status message 3"
+  And "camfed_user" has his status set to "status message 3"
 	Then User clicks on My Wall
 	And User comments "Wow! Env Setup is Fun!" on her status message
   Then User clicks on Show previous status messages link
