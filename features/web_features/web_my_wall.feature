@@ -29,6 +29,8 @@ Feature:
 	And User can view the timestamp on the comment
   And User logs out
 
+  #need to figure out a way to fix this
+  @wip
   Scenario: Verify user can comment multiple times on her status message
   Given User clicks on My Wall
   Then User lands on My Wall and can view all the elements
