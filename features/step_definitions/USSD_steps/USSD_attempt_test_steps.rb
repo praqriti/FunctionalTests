@@ -14,7 +14,7 @@ Then /^User should see question "([^\"]*)"$/ do |question_num|
   body["message"].include? "Q(#{question_num}/#{@questions.count}): #{question[:text]}"
 
   for i in 1..question[:answers].count
-    body["response_map"]["#{i}"]["text"].should == question[:answers]["answer_#{i-1}"]["answer_text"]
+    body["response"]["response_map"]["#{i}"]["text"].should == question[:answers]["answer_#{i-1}"]["answer_text"]
   end
   steps %{
       Then the JSON at "session_id" should be "session id"
