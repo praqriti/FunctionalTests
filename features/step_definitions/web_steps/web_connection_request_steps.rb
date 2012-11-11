@@ -101,7 +101,6 @@ end
 And /^"(.*?)" has sent connection request to "(.*?)"$/ do |user_identifier, friend_identifier|
   user1 = @users.find{|user| user.identifier == user_identifier}
   friend1 = @users.find{|user| user.identifier == friend_identifier}
-
   ConnectionsInterface.send_connection_request(user1, friend1)
 end
 

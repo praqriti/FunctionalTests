@@ -7,7 +7,7 @@ Feature:
 Scenario: Verify login from USSD
 
 	Given I make a new USSD login request
-	When User "camfed_student" logs into USSD with correct credentials
+	When User "camfed_user" logs into USSD with her credentials
 	Then User should see the USSD home page
 
   
@@ -22,7 +22,6 @@ Scenario Outline: Verify Incorrect login details
 	| camfed_today | password_two | 
 	| camfed_today |              |
 	|              | password_two |
-  # |              |              |
 	| camfed_today | password_two |
 
 

@@ -8,12 +8,12 @@ Feature:
 Background:
 
 	Given I make a new USSD login request
-	When User "camfed_student" logs into USSD with correct credentials
+	When User "camfed_user" logs into USSD with her credentials
 	Then User should see the USSD home page
 
 
 Scenario: View Courses list when User is enrolled as both teacher and student
-Given User "camfed_student" is enrolled with following courses:
+Given User "camfed_user" is enrolled with following courses:
  |COURSE     |ROLE    |STATUS|
  |History    |Student |pending|
  |Physics    |Teacher |active|
@@ -44,7 +44,7 @@ Scenario: User is not enrolled to any course
 	And User should not see "Previous" and "Next" option
 
 Scenario: User is enrolled as an observer
-  Given User "camfed_student" is enrolled with following courses:
+  Given User "camfed_user" is enrolled with following courses:
    |COURSE     |ROLE     |STATUS|
    |History    |Observer |active|
    |Physics    |Observer |pending|
@@ -53,7 +53,7 @@ Scenario: User is enrolled as an observer
    And User should not see "Previous" and "Next" option
 
 Scenario: Verify that error is given to the user when she enters an invalid option	
-Given User "camfed_student" is enrolled with following courses:
+Given User "camfed_user" is enrolled with following courses:
  |COURSE     |ROLE    |STATUS|
  |History    |Student |pending|
  |Physics    |Teacher |active|
@@ -67,7 +67,7 @@ Given User "camfed_student" is enrolled with following courses:
 #bug 295
 Scenario: Verify courses are not repeated at multiples of four
 
-Given User "camfed_student" is enrolled with following courses:
+Given User "camfed_user" is enrolled with following courses:
  |COURSE     |ROLE    |STATUS|
  |History    |Student |pending|
  |Physics    |Teacher |active|

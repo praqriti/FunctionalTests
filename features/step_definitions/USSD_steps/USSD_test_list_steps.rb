@@ -7,7 +7,7 @@ end
 
 
 Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
-  actual_response = @last_response.parsed_response
+  actual_response = @last_response.parsed_response["response"]
 	page_no = page_no.to_i
 	rpp = "#{RECORDS_PER_PAGE}".to_i
 	s_no = (rpp * (page_no-1)) + 1
@@ -45,7 +45,7 @@ end
 
 
 Then /^User should see the "([^\"]*)" menu$/ do |role|
-  actual_response = @last_response.parsed_response
+  actual_response = @last_response.parsed_response["response"]
   if (role == "student")
     actual_response["response_map"]["2"]["text"].should == "Attempt Quiz"
     actual_response["response_map"]["1"]["text"].should == "View Score"   
@@ -62,12 +62,14 @@ end
 
 
 Then /^User should see the "Next" option on tests list$/ do
-	actual_response = @last_response.parsed_response
+	user_id = CanvasUserInterface.get_user_id
+	course_id = CanvasCourseInterface.get_course_id
+	actual_response = @last_response.parsed_response["response"]
 	actual_response["response_map"]["#"]["text"].should  == "Next"
 end
 
 Then /^User should see the "Previous" option on tests list$/ do
-	actual_response = @last_response.parsed_response
+	actual_response = @last_response.parsed_response["response"]
 	actual_response["response_map"]["*"]["text"].should  == "Previous"
 end
 

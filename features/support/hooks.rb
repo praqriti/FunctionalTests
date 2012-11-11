@@ -4,7 +4,7 @@ Before do
 	@courses = Array.new	
   @messages = Messages.new
   
-  @users << CanvasUserInterface.create_user("camfed_student")
+  @users << CanvasUserInterface.create_user("camfed_user")
   
 end
 

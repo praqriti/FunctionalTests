@@ -24,6 +24,7 @@ When /^User replies with new status message:$/ do |string|
   steps %{
       Then User replies with option "#{string}"   
     }
+
 end
 
 When /^User replies "0" from update status page to go back to home page$/ do
@@ -78,6 +79,8 @@ Then /^User recieves an error and the session is ended$/ do
  	Then the JSON at "session_type" should be "END"
  	Then the JSON at "message" should be "#{message}"
  	}
-end
+
+end 
+
 
 
