@@ -10,9 +10,9 @@ def initialize
     :home_page => "Welcome to SEN!",
     :no_course_attached => "No Course Attached",
     :incorrect_credentials => "Incorrect Username/ Password\\n"
-    :status_updated = "Status Updated\\n"
-    :something_went_wrong = "Something went wrong. Please try again"
-    :enter_password = "Enter your password"
+    :status_updated => "Status Updated\\n"
+    :something_went_wrong => "Something went wrong. Please try again"
+    :enter_password => "Enter your password"
   }
  end
  
