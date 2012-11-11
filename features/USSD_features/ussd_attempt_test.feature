@@ -10,7 +10,7 @@ Scenario Outline: Student attempts a test
     |ROLE   |COURSE  |STATUS  |TESTS  |
     |<ROLE> |<COURSE>|<STATUS>|<TESTS>|
   And I make a new USSD login request
-  And User "camfed_student" logs into USSD with her credentials
+  And User "camfed_student" logs into USSD with correct credentials
   Then User should see the USSD home page
   Given User chooses the option "Courses"
   When User should see the courses list
