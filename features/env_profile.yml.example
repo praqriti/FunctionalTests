@@ -9,8 +9,8 @@ default:
 test:
     canvas_url: http://192.168.31.7
     sen_url: http://192.168.31.7:3001
-    access_token: Bearer Uw9flvBP5j8l7Vd4ABztVVLB8e4yJx2A5g6EGI7j58Yd2ySJs7qWqliltROUsKcB  
-	dev_key: B8rX3vrqJwsM71nfEyPfVXEuoK3RJUjyEq9rNxMzF2yQUShUENJKVUivpttdyTqI
+    access_token: Bearer Uw9flvBP5j8l7Vd4ABztVVLB8e4yJx2A5g6EGI7j58Yd2ySJs7qWqliltROUsKcB
+    dev_key: B8rX3vrqJwsM71nfEyPfVXEuoK3RJUjyEq9rNxMzF2yQUShUENJKVUivpttdyTqI
     account_id: 2
     records_per_page: 4
 

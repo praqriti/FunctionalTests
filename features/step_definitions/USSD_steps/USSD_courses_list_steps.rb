@@ -118,7 +118,6 @@ When /^User replies "0" to go back to home page$/ do
   steps %{
     Then User replies with option "0"   
   }
-  binding.pry
 	@last_response.parsed_response["response"]["response_map"]["1"]["text"].should == "Notifications"
 end
 
