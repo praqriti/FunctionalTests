@@ -7,8 +7,8 @@ Feature:
 
 Scenario Outline: Verify Menu option is displayed with pagination for a test in a course
   Given the following test data exists:
-    |ROLE   |COURSE  |STATUS  |GROUP  |TESTS  |
-    |<ROLE> |<COURSE>|<STATUS>|<GROUP>|<TESTS>|
+    |ROLE   |COURSE  |STATUS  |TESTS  |
+    |<ROLE> |<COURSE>|<STATUS>|<TESTS>|
   And I make a new USSD login request
   And User "camfed_student" logs into USSD with correct credentials
   Then User should see the USSD home page
@@ -26,15 +26,15 @@ Scenario Outline: Verify Menu option is displayed with pagination for a test in 
   Then User should see the USSD home page
 
 Examples:
- |ROLE   |COURSE |STATUS|GROUP|TESTS|
- |Teacher|History|active|USSD |Indian Independence,World War 1,World War 2,World War 3,World War 4|
- |Student|Arts   |active|USSD |India,World Wars,Sculpting,Sword Fighting,Painting|
+ |ROLE   |COURSE |STATUS|TESTS|
+ |Teacher|History|active|Indian Independence,World War 1,World War 2,World War 3,World War 4|
+ |Student|Arts   |active|India,World Wars,Sculpting,Sword Fighting,Painting|
 
 
 Scenario: Verify that error is given to the user when she enters an invalid option
   Given the following test data exists:
-    |ROLE   |COURSE |STATUS|GROUP|TESTS|
-    |Student|Maths  |active|USSD |Algebra|
+    |ROLE   |COURSE |STATUS|TESTS|
+    |Student|Maths  |active|Algebra|
   And I make a new USSD login request
   And User "camfed_student" logs into USSD with correct credentials
   When User should see the USSD home page

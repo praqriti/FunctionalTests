@@ -2,16 +2,12 @@ module Canvas
   class CanvasBase
     protected
     def post resource, body
-      JSONSpecInterface.post("#{CANVAS_URL}/courses/#{@course.id}/#{resource}",
+      response = JSONSpecInterface.post("#{CANVAS_URL}/courses/#{@course.id}/#{resource}",
                              :body =>  body.to_json,
                              :headers => { "Content-Type" => "application/json"},
                              :basic_auth => @auth)
-    end
-
-    def log object
-      if object.nil?
-        p "Operation failed for #{object} with #{@last_response.to_json}"
-      end
+      JSONSpecInterface.log(response)
+      return response
     end
   end
 
@@ -34,7 +30,6 @@ module Canvas
           }
       })
       @id = @last_response["quiz"]["id"]
-      log(@id)
     end
 
     def add_question question
@@ -67,7 +62,6 @@ module Canvas
           }
       })
       @assignment_group = @last_response["assignment_group"]
-      log(@assignment_group)
       return @assignment_group
     end
   end

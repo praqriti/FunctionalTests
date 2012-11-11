@@ -33,10 +33,11 @@ Then /^User comments "(.*?)" on her status message$/ do |arg1|
   @app.my_wall.comment_box.set "#{arg1}"
   @app.my_wall.comment_submit.click
 	@app.my_wall.wait_until_comments_visible
+	@app.my_wall.wait_until_comment_box_visible
 end
 
 Then /^the comments are visible on My Wall$/ do |comments_table|
-  @app.my_wall.wait_until_comment_box_visible
+  # @app.my_wall.wait_until_comment_box_visible
 	expected_comments = comments_table.hashes.collect{|x| x["COMMENT"]}
 	actual_comments = @app.my_wall.comments.collect(&:text)
 	expected_comments.sort.should == actual_comments.sort	
@@ -58,6 +59,7 @@ end
 Then /^User comments on her status message:$/ do |string|
   @app.my_wall.comment_box.set "#{string}"
   @app.my_wall.comment_submit.click
+  @app.my_wall.wait_until_comment_box_visible
 end
 
 

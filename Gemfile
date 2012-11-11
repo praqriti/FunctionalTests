@@ -3,6 +3,7 @@ source "http://rubygems.org"
 group :test do
  
   gem "builder", "~> 2.1.2"
+  gem 'random-word'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'database_cleaner'

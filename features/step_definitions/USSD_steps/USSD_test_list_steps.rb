@@ -77,64 +77,71 @@ When /^User replies "0" from tests page to go back to home page$/ do
     }
 end
 
-def enroll_user_to_course(course, type)
-  enroll_type = type == "Teacher" ? "TeacherEnrollment" : "StudentEnrollment"
-  user_id = CanvasUserInterface.get_user_id
-  CanvasEnrollmentInterface.enroll_user(course.id, user_id, enroll_type, "active")
-end
-
-def create_course(course_name)
-  steps %{
-       Given the following courses exist in canvas
-        |COURSE|
-        |#{course_name}|
-    }
-  return @courses[0]
-end
-
-
-def create_quizzes(course, quizzes_table)
-  @quizzes = []
-  user = CanvasUserInterface.get_user
-
-  enrollment_id = enroll_user_to_course course, "Teacher"
-
-  assignment_group = Canvas::AssignmentGroup.new(user, course).create
-  quizzes = quizzes_table.split(",")
-  quizzes.each do |quiz_name|
-    quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name)
-    quiz.create
-    quiz.publish
-    @quizzes << quiz
-  end
-#
-#question = {
-#    :text => "huhahahaha",
-#    :answers => {
-#        "answer_0" => {
-#            "answer_weight" => 100,
-#            "answer_text" => "ddssd"
-#        },
-#
-#        "answer_1" => {
-#            "answer_weight" => 0,
-#            "answer_text" => "ddssdssd"
-#        }
-#    }
-#}
-#quiz.add_question question
-  CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
-end
-
 Given /^the following test data exists:$/ do |test_table|
   test_table.hashes.each do |hash|
+    status = hash[:STATUS]
     role = hash[:ROLE]
     course_name = hash[:COURSE]
     tests = hash[:TESTS]
 
-    course = create_course(course_name)
-    create_quizzes(course, tests)
-    enroll_user_to_course(course, role)
+    steps %{
+       Given the following courses exist in canvas
+        |COURSE|
+        |#{course_name}|
+    }
+
+    course = @courses[0]
+    @quizzes = []
+    user = CanvasUserInterface.get_user
+
+    enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type("Teacher"), "active")
+    assignment_group = Canvas::AssignmentGroup.new(user, course).create
+    quizzes = tests.split(",")
+    quizzes.each do |quiz_name|
+      quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name)
+      quiz.create
+      quiz.publish
+      @quizzes << quiz
+    end
+    CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
+    CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type(role), status)
+  end
+end
+
+Given /^the following test data with questions exists:$/ do |test_table|
+  test_table.hashes.each do |hash|
+    status = hash[:STATUS]
+    role = hash[:ROLE]
+    course_name = hash[:COURSE]
+    tests = hash[:TESTS]
+
+    steps %{
+       Given the following courses exist in canvas
+        |COURSE|
+        |#{course_name}|
+    }
+
+    course = @courses[0]
+    @quizzes = []
+    user = CanvasUserInterface.get_user
+
+    enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type("Teacher"), "active")
+    assignment_group = Canvas::AssignmentGroup.new(user, course).create
+    quizzes = tests.split(",")
+    @questions = []
+    quizzes.each do |quiz_name|
+      quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name)
+      quiz.create
+      for i in 1..2
+        question = QuestionData.question
+        quiz.add_question question
+        @questions << question
+      end
+      quiz.publish
+      @quizzes << quiz
+    end
+    CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
+    CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type(role), status)
   end
 end
 

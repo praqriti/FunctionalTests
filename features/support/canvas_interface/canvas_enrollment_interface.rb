@@ -13,9 +13,7 @@ class CanvasEnrollmentInterface
 				  }
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-		if (@last_response.response.code=="200")
-      			puts "\nuser Enrolled as #{enroll_type}"
-    		end
+    JSONSpecInterface.log(@last_response)
 	    	return @last_response.parsed_response["id"]
 	end
 
@@ -26,8 +24,10 @@ class CanvasEnrollmentInterface
                           :task => "delete"
                                },
                                :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-    		if (@last_response.response.code=="200")
-      			puts "\nuser concluded from course"
-    		end
-  	end
+        JSONSpecInterface.log(@last_response)
+  end
+
+  def self.enroll_type type
+    return type == "Teacher" ? "TeacherEnrollment" : "StudentEnrollment"
+  end
 end
