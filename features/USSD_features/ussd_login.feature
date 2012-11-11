@@ -7,7 +7,7 @@ Feature:
 Scenario: Verify login from USSD
 
 	Given I make a new USSD login request
-	When User "camfed_user" logs into USSD with her credentials
+	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
   

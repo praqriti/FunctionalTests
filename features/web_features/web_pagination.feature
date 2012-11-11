@@ -58,8 +58,8 @@ Scenario: Verify if a logged in user can view correct number of connected users 
 	And User can view "4" connections on "My Connections" page
 	And User logs out
 
-#bug reported
-@wip
+
+@bug
 Scenario: Verify if a logged in user can disconnect a user after pagination
 
 	Given User "camfed_user" has connections from "4" users

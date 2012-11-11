@@ -1,3 +1,4 @@
+@javascript
 Feature:
 
 	In order utilise the social aspect of canvas
@@ -7,7 +8,7 @@ Feature:
 Background:
   
 	Given I make a new USSD login request
-	When User "camfed_user" logs into USSD with her credentials
+	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
 
@@ -51,10 +52,25 @@ Scenario: Verify that error is given to the user when she enters an invalid opti
 	Given User sends an invalid option "9"
 	Then User returns to home page with error "invalid_option"
 
+@bug
 Scenario: Verify user not allowed to continue with incorrect access token
-
 	Given User chooses the option to "update status" with incorrect access_token
 	Then User recieves an error and the session is ended
+	
+	
+Scenario: View status should be reflected on both canvas and ussd app
+  Given I make a new USSD login request
+  When User "camfed_user" logs into USSD with correct credentials
+  Then User should see the USSD home page
+  And User chooses the option to "update status"
+  And User replies with new status message "new status message" 
+  Then User should get a confirmation that the status was updated successfully
+
+	When User is on the Sign In page
+  When User "camfed_user" logs into Canvas with her credentials
+  Then "camfed_user" should see the Canvas home page
+  And status message should be "new status message"
+
 	
 @wip @manual
 Scenario: Verify one user cannot use another users access token

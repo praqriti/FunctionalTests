@@ -11,7 +11,7 @@ Then /^User is given the option to update status or navigate back to home page$/
      Then the JSON at "session_type" should be "SESSION"
      Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
        }  
-     @last_response.parsed_response["response_map"]["0"]["text"].should == "Back"     
+     @last_response.parsed_response["response"]["response_map"]["0"]["text"].should == "Back"     
 end 
 
 When /^User replies with new status message "([^\"]*)"$/ do |message|
@@ -63,13 +63,13 @@ Then /^User should get a confirmation that the status was updated successfully$/
 end
 
 And /^User chooses the option to "update status" with incorrect access_token$/ do
-  incorrect_access_token = "#{@last_response.parsed_response["access_token"]}" + "A"
-  
+  incorrect_access_token = "A" + "#{@last_response.parsed_response["access_token"]}"
   body = @last_response.parsed_response
   body.merge!({"message" => "2","access_token" =>"#{incorrect_access_token}"})
   @last_response = JSONSpecInterface.post("#{SEN_URL}",
                                            :body => body.to_json,
                                            :headers => { "Content-Type" => "application/json"})
+                                           
 end
   
 Then /^User recieves an error and the session is ended$/ do

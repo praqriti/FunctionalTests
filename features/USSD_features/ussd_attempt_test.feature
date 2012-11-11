@@ -10,7 +10,7 @@ Scenario Outline: Student attempts a single attempt test once
     |ROLE   |COURSE  |STATUS  |TESTS  |
     |<ROLE> |<COURSE>|<STATUS>|<TESTS>|
   And I make a new USSD login request
-  And User "camfed_user" logs into USSD with her credentials
+  And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
   Then User should see the "<ROLE>" menu
   When User chooses attempt test
@@ -31,7 +31,7 @@ Scenario Outline: Student attempts a single attempt test twice
     |ROLE   |COURSE  |STATUS  |TESTS  |
     |<ROLE> |<COURSE>|<STATUS>|<TESTS>|
   And I make a new USSD login request
-  And User "camfed_user" logs into USSD with her credentials
+  And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
   Then User should see the "<ROLE>" menu
   When User chooses attempt test
@@ -54,7 +54,7 @@ Scenario Outline: Student chooses an invalid option while attempting test
     |ROLE   |COURSE  |STATUS  |TESTS  |
     |<ROLE> |<COURSE>|<STATUS>|<TESTS>|
   And I make a new USSD login request
-  And User "camfed_user" logs into USSD with her credentials
+  And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
   Then User should see the "<ROLE>" menu
   When User chooses attempt test

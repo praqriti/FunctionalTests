@@ -15,6 +15,7 @@ And /^User "updates" the status message as "([^\"]*)"$/ do |message|
    When User "enters" the status message as "#{message}"
  }
   @app.home.create_status_button.click
+  @app.home.wait_until_status_updated_visible
 end
 
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|

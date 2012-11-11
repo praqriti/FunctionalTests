@@ -1,4 +1,4 @@
-default: --format pretty -r features -r features/step_definitions --tags ~@wip --tags ~@manual
+default: --format pretty -r features -r features/step_definitions --tags ~@wip --tags ~@manual --tags ~@bug
 
 # chrome: --format pretty -r features/support/profiles/chrome.rb -r features -r features/step_definitions
 # 

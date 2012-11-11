@@ -8,7 +8,7 @@ Feature:
 Background:
 
 	Given I make a new USSD login request
-	When User "camfed_user" logs into USSD with her credentials
+	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
 
@@ -64,7 +64,6 @@ Given User "camfed_user" is enrolled with following courses:
 	Given User sends an invalid option "5"
   Then User returns to home page with error "invalid_option"
 	
-#bug 295
 Scenario: Verify courses are not repeated at multiples of four
 
 Given User "camfed_user" is enrolled with following courses:
