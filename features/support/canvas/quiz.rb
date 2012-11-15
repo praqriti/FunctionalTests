@@ -55,7 +55,7 @@ module Canvas
                                         :headers => { "Content-Type" => "application/json", "Authorization" => CANVAS_ACCESS_TOKEN})
       JSONSpecInterface.log(submissions)
 
-      return true if submissions.select{|s| s["user_id"] == @user.id}.any?
+      return true if submissions.select{|s| s["user_id"] == @user.id && s["workflow_state"] == "graded" }.any?
       return false
     end
 
