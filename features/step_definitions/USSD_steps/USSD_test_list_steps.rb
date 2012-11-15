@@ -115,7 +115,7 @@ Given /^the following test data with questions exists:$/ do |test_table|
     status = hash[:STATUS]
     role = hash[:ROLE]
     course_name = hash[:COURSE]
-    tests = hash[:TESTS]
+    tests = hash[:TEST]
 
     steps %{
        Given the following courses exist in canvas

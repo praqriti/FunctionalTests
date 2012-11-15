@@ -28,9 +28,13 @@ class App
   end
 
   def quiz
+    Quizzes.new
+  end
+
+  def one_quiz
     Quiz.new
   end
-  
+
   def assignment
     Assignment.new
   end

@@ -1,11 +1,12 @@
 class Quiz < SitePrism::Page
-  def self.set_page_url course_id
-    self.set_url "/courses/#{course_id}/quizzes"
+  def self.set_page_url course_id , quiz_id
+    self.set_url "/courses/#{course_id}/quizzes/#{quiz_id}"
   end
 
-  element :new_quiz_button, '.rs-margin-lr a.button'
-  element :quiz_name_field, 'input#quiz_title'
-  element :publish_button, 'button.publish_quiz_button'
-  element :quiz_name_header, 'h2#quiz_title'
-  element :quiz_group, 'select#quiz_assignment_group_id'
+  element :resume, 'header//a[text()="Resume Quiz"]'
+
+  def verify_option_selected question_number, option_number
+    xpath = "//div[contains(@class,'question_holder')][position()='#{question_number}']//*[contains(@class, 'answer')][position()='#{option_number}']//input[@checked]"
+    self.has_xpath?(xpath).should == true
+  end
 end

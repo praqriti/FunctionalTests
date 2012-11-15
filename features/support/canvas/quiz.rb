@@ -12,7 +12,7 @@ module Canvas
   end
 
   class Quiz < CanvasBase
-    attr_reader :title
+    attr_reader :title, :id
 
     def initialize user, course, assignment_group, title
       @auth = {:username => user.login_id, :password => user.password}
