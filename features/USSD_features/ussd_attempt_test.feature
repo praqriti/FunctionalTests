@@ -1,4 +1,3 @@
-@wip
 @javascript
 Feature:
 
@@ -19,7 +18,8 @@ Scenario Outline: Student attempts a single attempt test once
   When User chooses option "2"
   Then User should see question "2"
   When User chooses option "#"
-  Then User should see message "You have successfully finished the test"
+  Then the Quiz should be submitted
+  And User should see message "You have successfully finished the test"
 
 
 Examples:
@@ -40,7 +40,8 @@ Scenario Outline: Student attempts a single attempt test twice
   When User chooses option "2"
   Then User should see question "2"
   When User chooses option "#"
-  Then User should see message "You have successfully finished the test"
+  Then the Quiz should be submitted
+  And User should see message "You have successfully finished the test"
 	Then User chooses option "0"
 	And User chooses test "1"
 	Then User should see message "This was single attempt test and you have already attempted the test"
@@ -66,7 +67,8 @@ Scenario Outline: Student chooses an invalid option while attempting test
   When User chooses option "2"
   Then User should see question "2"
   When User chooses option "#"
-  Then User should see message "You have successfully finished the test"
+  Then the Quiz should be submitted
+  And User should see message "You have successfully finished the test"
   Then User chooses option "5"
   Then User should see message "Invalid Option"
   

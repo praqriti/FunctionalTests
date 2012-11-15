@@ -47,3 +47,7 @@ And /^User navigates to test page and chooses test "(.*?)"$/ do |test_no|
 		And User chooses test "1"
 	}
 end
+
+Then /^the Quiz should be submitted$/ do
+  @quizzes[0].is_submitted?.should be_true
+end

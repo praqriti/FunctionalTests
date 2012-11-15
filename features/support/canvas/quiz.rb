@@ -19,6 +19,7 @@ module Canvas
       @course = course
       @assignment_group = assignment_group
       @title = title
+      @user = user
     end
 
     def create
@@ -30,6 +31,7 @@ module Canvas
           }
       })
       @id = @last_response["quiz"]["id"]
+      @assignment_id = @last_response["quiz"]["assignment_id"]
     end
 
     def add_question question
@@ -47,6 +49,16 @@ module Canvas
           :quizzes => ["#{@id}"]
       })
     end
+
+    def is_submitted?
+      submissions = JSONSpecInterface.get("#{CANVAS_URL}/api/v1/courses/#{@course.id}/assignments/#{@assignment_id}/submissions",
+                                        :headers => { "Content-Type" => "application/json", "Authorization" => CANVAS_ACCESS_TOKEN})
+      JSONSpecInterface.log(submissions)
+
+      return true if submissions.select{|s| s["user_id"] == @user.id}.any?
+      return false
+    end
+
   end
 
   class AssignmentGroup < CanvasBase
