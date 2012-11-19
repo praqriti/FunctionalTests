@@ -5,7 +5,7 @@ Feature:
   I want the questions i answer to be backed up to canvas
   So that i can resume the test from canvas
 
-Scenario Outline: Student attempts a quiz
+Scenario Outline: While a student attempts a quiz the connection is broken
 
   Given the following test data with questions exists:
     |ROLE   |COURSE  |STATUS  |TEST  |

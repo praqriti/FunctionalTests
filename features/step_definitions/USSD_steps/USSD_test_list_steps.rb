@@ -62,8 +62,6 @@ end
 
 
 Then /^User should see the "Next" option on tests list$/ do
-	user_id = CanvasUserInterface.get_user_id
-	course_id = CanvasCourseInterface.get_course_id
 	actual_response = @last_response.parsed_response["response"]
 	actual_response["response_map"]["#"]["text"].should  == "Next"
 end

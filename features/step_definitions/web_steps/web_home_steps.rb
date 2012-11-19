@@ -59,3 +59,5 @@ Then /^status message should be "([^\"]*)"$/ do |message|
   @app.home.should have_updated_status_message
   @app.home.updated_status_message.value.should == "#{message}"
 end
+
+

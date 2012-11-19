@@ -3,7 +3,7 @@ Before do
   @enrolled_courses = Array.new
 	@courses = Array.new	
   @messages = Messages.new
-  
+  @errors = Errors.new
   @users << CanvasUserInterface.create_user("camfed_user")
   
 end
