@@ -92,20 +92,15 @@ And /^User chooses the "Next" option$/ do
 	}
 end
 
-And /^User should see the "Next" option$/ do
-	actual_response = @last_response.parsed_response["response"]
-	actual_response["response_map"]["#"]["text"].should  == "Next"
-end
-
 And /^User should see the "Next" and "Previous" option$/ do
 	actual_response = @last_response.parsed_response["response"]
 	actual_response["response_map"]["*"]["text"].should == "Previous"
 	actual_response["response_map"]["#"]["text"].should  == "Next"
 end
 
-And /^User should see the "Previous" option$/ do
+And /^User should see the "([^\"]*)" option$/ do |option|
 	actual_response = @last_response.parsed_response["response"]
-	actual_response["response_map"]["*"]["text"].should  == "Previous"
+	actual_response["response_map"]["*"]["text"].should  == option
 end
 
 And /^User chooses the "Previous" option$/ do

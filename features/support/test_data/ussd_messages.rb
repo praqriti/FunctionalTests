@@ -12,7 +12,10 @@ def initialize
     :incorrect_credentials => "Incorrect Username/ Password\\n",
     :status_updated => "Status Updated",
     :something_went_wrong => "Something went wrong. Please try again",
-    :enter_password => "Enter your password"
+    :enter_password => "Enter your password",
+    :no_score => "No score available",
+    :single_attempt => "This was single attempt test and you have already attempted the test",
+    :successful_test_attempt => "You have successfully finished the test"
   }
  end
  

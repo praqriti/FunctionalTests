@@ -1,10 +1,19 @@
-And /^User chooses attempt test$/ do
-  body = @last_response.parsed_response
-  body.merge!({"message" => "2"})
-  @last_response = JSONSpecInterface.post("#{SEN_URL}",
-                                          :body => body.to_json,
-                                          :headers => { "Content-Type" => "application/json"})
+And /^User chooses "Attempt Test"$/ do
+  steps %{
+   Then User replies with option "2"   
+	}
+end
 
+And /^User chooses "View Score"$/ do
+	steps %{
+   Then User replies with option "1"   
+	}
+end
+
+Then /^User chooses "Back" option$/ do
+	steps %{
+   Then User replies with option "*"   
+	}
 end
 
 Then /^User should see question "([^\"]*)"$/ do |question_num|
@@ -16,6 +25,7 @@ Then /^User should see question "([^\"]*)"$/ do |question_num|
   for i in 1..question[:answers].count
     body["response"]["response_map"]["#{i}"]["text"].should == question[:answers]["answer_#{i-1}"]["answer_text"]
   end
+  
   steps %{
       Then the JSON at "session_id" should be "session id"
       Then the JSON at "session_type" should be "SESSION"
@@ -24,12 +34,15 @@ Then /^User should see question "([^\"]*)"$/ do |question_num|
 end
 
 When /^User chooses option "(.*?)"$/ do |option|
-  body = @last_response.parsed_response
-  body.merge!({"message" => option})
-  @last_response = JSONSpecInterface.post("#{SEN_URL}",
-                                          :body => body.to_json,
-                                          :headers => { "Content-Type" => "application/json"})
+	steps %{
+   Then User replies with option "#{option.to_i}"   
+	}
+end
 
+And /^User skips the question$/ do
+	steps %{
+   Then User replies with option "#"   
+	}
 end
 
 Then /^User should see message "(.*?)"$/ do |message|

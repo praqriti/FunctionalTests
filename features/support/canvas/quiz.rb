@@ -39,6 +39,7 @@ module Canvas
           :question => {
               :question_type=> "multiple_choice_question",
               :question_text => question[:text],
+              :points_possible => question[:points],
               :answers => question[:answers]
           }
       })

@@ -13,13 +13,13 @@ Scenario Outline: Student attempts a single attempt test once
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
   Then User should see the "<ROLE>" menu
-  When User chooses attempt test
+  When User chooses "Attempt Test"
   Then User should see question "1"
   When User chooses option "2"
   Then User should see question "2"
-  When User chooses option "#"
+  When User skips the question
   Then the Quiz should be submitted
-  And User should see message "You have successfully finished the test"
+  And User should see the message "successful_test_attempt"
 
 
 Examples:
@@ -35,16 +35,17 @@ Scenario Outline: Student attempts a single attempt test twice
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
   Then User should see the "<ROLE>" menu
-  When User chooses attempt test
+  When User chooses "Attempt Test"
   Then User should see question "1"
   When User chooses option "2"
   Then User should see question "2"
-  When User chooses option "#"
+  When User skips the question
   Then the Quiz should be submitted
-  And User should see message "You have successfully finished the test"
+  And User should see the message "successful_test_attempt"
 	Then User chooses option "0"
 	And User chooses test "1"
-	Then User should see message "This was single attempt test and you have already attempted the test"
+	When User chooses "Attempt Test"
+	Then User should see the message "single_attempt"
 	
 Examples:
   |ROLE   |COURSE |STATUS|TEST|
@@ -59,16 +60,16 @@ Scenario Outline: Student chooses an invalid option while attempting test
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
   Then User should see the "<ROLE>" menu
-  When User chooses attempt test
+  When User chooses "Attempt Test"
   Then User should see question "1"
   When User chooses option "6"
   Then User should see message "Invalid Option"
   Then User should see question "1"
   When User chooses option "2"
   Then User should see question "2"
-  When User chooses option "#"
+  When User skips the question
   Then the Quiz should be submitted
-  And User should see message "You have successfully finished the test"
+  And User should see the message "successful_test_attempt"
   Then User chooses option "5"
   Then User should see message "Invalid Option"
   
