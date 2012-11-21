@@ -12,14 +12,15 @@ module Canvas
   end
 
   class Quiz < CanvasBase
-    attr_reader :title, :id
+    attr_reader :title, :id, :due_at
 
-    def initialize user, course, assignment_group, title
+    def initialize user, course, assignment_group, title, due_at = "3000-11-30T23:59:00-07:00"
       @auth = {:username => user.login_id, :password => user.password}
       @course = course
       @assignment_group = assignment_group
       @title = title
       @user = user
+      @due_at = due_at
     end
 
     def create
@@ -27,6 +28,7 @@ module Canvas
           :quiz => {
               :title => @title,
               :quiz_type => "assignment",
+              :due_at => @due_at,
               :assignment_group_id => @assignment_group["id"]
           }
       })

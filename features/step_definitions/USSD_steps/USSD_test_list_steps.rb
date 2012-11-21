@@ -44,11 +44,12 @@ And /^User chooses test "([^\"]*)"$/ do |test_no|
 end
 
 
-Then /^User should see the "([^\"]*)" menu$/ do |role|
+Then /^User should see quiz menu for role "([^\"]*)" having "([^\"]*)" questions$/ do |role, question_count|
   actual_response = @last_response.parsed_response["response"]
+  actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59"
   if (role == "student")
     actual_response["response_map"]["2"]["text"].should == "Attempt Quiz"
-    actual_response["response_map"]["1"]["text"].should == "View Score"   
+    actual_response["response_map"]["1"]["text"].should == "View Score"
   elsif (role == "teacher")
     actual_response["response_map"]["1"]["text"].should == "View Report"
   end
