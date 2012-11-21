@@ -43,11 +43,26 @@ Scenario: Verify if a logged in user can reject his connection requests
       Then User navigates to "My Connections" page
       And User cannot see "requesting_user" on my connections page
       Then User logs out
-      	
-Scenario: Verify if a logged in user can disconnect his connections
+
+Scenario: Verify if a logged in user can disconnect his connections he has added the friend
   When User "camfed_user" is connected to:
 	|USER|
 	|requesting_user|
+  When User is on the Sign In page
+  When User "camfed_user" logs into Canvas with her credentials
+  When "camfed_user" should see the Canvas home page
+  When User navigates to "My Connections" page
+  Then User can see the "1" connections available
+  When User navigates to "My Connections" page
+  And User can "disconnect" his connection "requesting_user"
+  And User confirms the disconnection "requesting_user"
+  Then User can see the "0" connections available
+  Then User logs out
+
+Scenario: Verify if a logged in user can disconnect his connections where he was added as friend
+  When User "requesting_user" is connected to:
+    |USER|
+    |camfed_user|
   When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
   When "camfed_user" should see the Canvas home page
