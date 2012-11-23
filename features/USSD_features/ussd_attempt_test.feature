@@ -42,7 +42,7 @@ Scenario Outline: Student attempts a single attempt test twice
   When User skips the question
   Then the Quiz should be submitted
   And User should see the message "successful_test_attempt"
-	Then User chooses option "0"
+	Then User chooses option "*"
 	And User chooses test "1"
 	When User chooses "Attempt Test"
 	Then User should see the message "single_attempt"
