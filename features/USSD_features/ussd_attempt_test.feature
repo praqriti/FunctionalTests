@@ -7,12 +7,12 @@ Feature:
 Scenario Outline: Student attempts a single attempt test once
 
   Given the following test data with questions exists:
-    |ROLE   |COURSE  |STATUS  |TEST  |
-    |<ROLE> |<COURSE>|<STATUS>|<TEST>|
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
-  Then User should see quiz menu for role "<ROLE>" having "2" questions and "2" attempts
+  Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
   When User chooses "Attempt Test"
   Then User should see question "1"
   When User chooses option "2"
@@ -23,19 +23,19 @@ Scenario Outline: Student attempts a single attempt test once
 
 
 Examples:
-  |ROLE   |COURSE |STATUS|TEST|
-  |Student|Arts   |active|India|
-
+   |ROLE   |COURSE      |STATUS|TEST    |QUESTIONS|ATTEMPTS|
+   |Student|Arts        |active|India   |2        |1       |
+  
 @stage  
 Scenario Outline: Student attempts a single attempt test twice
 
 	Given the following test data with questions exists:
-    |ROLE   |COURSE  |STATUS  |TEST  |
-    |<ROLE> |<COURSE>|<STATUS>|<TEST>|
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
-  Then User should see quiz menu for role "<ROLE>" having "2" questions and "2" attempts
+  Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
   When User chooses "Attempt Test"
   Then User should see question "1"
   When User chooses option "2"
@@ -49,19 +49,19 @@ Scenario Outline: Student attempts a single attempt test twice
 	Then User should see the message "single_attempt"
 	
 Examples:
-  |ROLE   |COURSE |STATUS|TEST|
-  |Student|Anthropology|active|Pakistan|
+  |ROLE   |COURSE      |STATUS|TEST    |QUESTIONS|ATTEMPTS|
+  |Student|Anthropology|active|Pakistan|2        |1       |
 
 @stage  
 Scenario Outline: Student chooses an invalid option while attempting test
 
 	Given the following test data with questions exists:
-    |ROLE   |COURSE  |STATUS  |TEST  |
-    |<ROLE> |<COURSE>|<STATUS>|<TEST>|
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
-  Then User should see quiz menu for role "<ROLE>" having "2" questions and "2" attempts
+  Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
   When User chooses "Attempt Test"
   Then User should see question "1"
   When User chooses option "6"
@@ -75,6 +75,6 @@ Scenario Outline: Student chooses an invalid option while attempting test
   Then User chooses option "5"
   Then User should see message "Invalid Option"
   
-Examples:
-  |ROLE   |COURSE |STATUS|TEST|
-  |Student|Science|active|Space|
+  Examples:
+    |ROLE   |COURSE      |STATUS|TEST    |QUESTIONS|ATTEMPTS|
+    |Student|Science     |active|Biology |2        |2       |

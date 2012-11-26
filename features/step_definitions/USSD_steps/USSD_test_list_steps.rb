@@ -44,17 +44,11 @@ And /^User chooses test "([^\"]*)"$/ do |test_no|
 end
 
 
-Then /^User should see quiz menu for role "([^\"]*)" having "([^\"]*)" questions and "([^\"]*)" attempts$/ do |role, question_count, attempts|
-  actual_response = @last_response.parsed_response["response"]
-  if (role == "student")
-    actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}"
-    actual_response["response_map"]["2"]["text"].should == "Attempt Quiz"
-    actual_response["response_map"]["1"]["text"].should == "View Score"
-  elsif (role == "teacher")
-    actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nTotal Attempts: #{attempts}"
-    actual_response["response_map"]["1"]["text"].should == "View Report"
-  end
-    actual_response["response_map"]["0"]["text"].should == "Home"
+Then /^User should see quiz menu for Student having "([^\"]*)" questions and "([^\"]*)" attempts available$/ do |question_count, attempts|
+  actual_response = @last_response.parsed_response
+  actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}"
+    actual_response["response"]["response_map"]["2"]["text"].should == "Attempt Quiz"
+    actual_response["response"]["response_map"]["1"]["text"].should == "View Score"
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -62,6 +56,30 @@ Then /^User should see quiz menu for role "([^\"]*)" having "([^\"]*)" questions
     		}
 end
 
+Then /^User should see quiz menu for Teacher having "([^\"]*)" questions and "([^\"]*)" total attempts$/ do |question_count, attempts|
+   actual_response = @last_response.parsed_response
+   actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nTotal Attempts: #{attempts}"
+    actual_response["response"]["response_map"]["1"]["text"].should == "View Report"
+    actual_response["response"]["response_map"]["0"]["text"].should == "Home"
+  steps %{
+		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_type" should be "SESSION"
+		Then the JSON should have "access_token"
+    		}
+end
+
+Then /^User should see quiz menu for role "([^\"]*)" having "([^\"]*)" questions and "([^\"]*)" attempts$/ do |role, question_count, attempts|
+  actual_response = @last_response.parsed_response
+  if (role == "Student")
+    steps %{
+      Then User should see quiz menu for Student having "#{question_count}" questions and "#{attempts}" attempts available
+      }
+  elsif (role == "Teacher")
+    steps %{
+      Then User should see quiz menu for Teacher having "#{question_count}" questions and "#{attempts}" total attempts
+      }
+  end
+end
 
 Then /^User should see the "Next" option on tests list$/ do
 	actual_response = @last_response.parsed_response["response"]
@@ -116,6 +134,7 @@ Given /^the following test data with questions exists:$/ do |test_table|
     role = hash[:ROLE]
     course_name = hash[:COURSE]
     tests = hash[:TEST]
+    allowed_attempts = hash[:ATTEMPTS] 
 
     steps %{
        Given the following courses exist in canvas
@@ -132,7 +151,7 @@ Given /^the following test data with questions exists:$/ do |test_table|
     quizzes = tests.split(",")
     @questions = []
     quizzes.each do |quiz_name|
-      quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name)
+      quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name, allowed_attempts)
       quiz.create
       for i in 1..2
         question = QuestionData.question
@@ -147,6 +166,8 @@ Given /^the following test data with questions exists:$/ do |test_table|
   end
 end
 
-
-
-
+Then /^User should see the test report:$/ do |report_table|
+  report_table.hashes.each do |hash|
+  @last_response.parsed_response["message"].should == "Low Score: #{hash[:LOW_SCORE]}\nAverage Correct: #{hash[:AVERAGE]}\nStudents Attempted: #{hash[:STUDENTS_ATTEMPTED]}\nMean Score: #{hash[:MEAN]}\nHigh Score: #{hash[:HIGH_SCORE]}\n" 
+  end
+end

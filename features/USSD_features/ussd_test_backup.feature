@@ -14,7 +14,7 @@ Scenario Outline: While a student attempts a quiz the connection is broken
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
-  Then User should see quiz menu for role "<ROLE>" having "2" questions and "2" attempts
+  Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
   When User chooses "Attempt Test"
   Then User should see question "1"
   When User chooses option "2"
@@ -27,5 +27,5 @@ Scenario Outline: While a student attempts a quiz the connection is broken
   Then User should see option "2" choosen for question "1"
 
 Examples:
-  |ROLE   |COURSE |STATUS|TEST|
-  |Student|Arts   |active|India|
+  |ROLE   |COURSE |STATUS|TEST |QUESTIONS|ATTEMPTS|
+  |Student|Arts   |active|India|2        |2       |

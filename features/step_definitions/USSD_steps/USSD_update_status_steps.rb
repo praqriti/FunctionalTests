@@ -5,7 +5,6 @@ And /^User chooses the option to "update status"$/ do
 end
 
 Then /^User is given the option to update status or navigate back to home page$/ do
-	user = @users.find{|user| user.identifier == username}
      steps %{
      Then the JSON at "session_id" should be "session id"
      Then the JSON at "session_type" should be "SESSION"

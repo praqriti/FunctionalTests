@@ -8,8 +8,8 @@ Feature:
 @stage
 Scenario Outline: Verify Menu option is displayed with pagination for a test in a course
   Given the following test data exists:
-    |ROLE   |COURSE  |STATUS  |TESTS  |
-    |<ROLE> |<COURSE>|<STATUS>|<TESTS>|
+    |ROLE   |COURSE  |STATUS  |TESTS  |ATTEMPTS  |
+    |<ROLE> |<COURSE>|<STATUS>|<TESTS>|<ATTEMPTS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   Then User should see the USSD home page
@@ -22,14 +22,14 @@ Scenario Outline: Verify Menu option is displayed with pagination for a test in 
   When User chooses the "Previous" option
   Then User should see the tests for page "1"
   And User chooses test "1"
-  Then User should see quiz menu for role "<ROLE>" having "0" questions and "0" attempts
+  Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
   When User replies "0" from tests page to go back to home page
   Then User should see the USSD home page
 
 Examples:
- |ROLE   |COURSE |STATUS|TESTS|
- |Teacher|History|active|Indian Independence,World War 1,World War 2,World War 3,World War 4|
- |Student|Arts   |active|India,World Wars,Sculpting,Sword Fighting,Painting|
+ |ROLE   |COURSE |STATUS|TESTS                                                              |ATTEMPTS|QUESTIONS|
+ |Teacher|History|active|Indian Independence,World War 1,World War 2,World War 3,World War 4|1       |0|
+ |Student|Arts   |active|India,World Wars,Sculpting,Sword Fighting,Painting                 |1       |0|
 
 @stage
 Scenario: Verify that error is given to the user when she enters an invalid option
