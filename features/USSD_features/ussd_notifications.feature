@@ -15,6 +15,7 @@ Scenario: View notifications menu
 	Given User chooses the option "Notifications"
 	Then User should see the notifications menu
 
+@stage
 Scenario: Verify back from notifications page from ussd
 	
 	Given User chooses the option "Notifications"

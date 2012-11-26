@@ -35,10 +35,10 @@ end
 Given /^User is enrolled to the following courses:$/ do |enrollment_table|
   enrollment_table.hashes.each do |hash|
   enroll_type = "#{hash[:ROLE]}Enrollment"
-	user_id = CanvasUserInterface.get_user_id
+	user = @users.find{|user| user.identifier == username}
 		@courses.each do |course|
 			if(course.name == "#{hash[:COURSE]}")
-				CanvasEnrollmentInterface.enroll_user(course.id, user_id, enroll_type, "active")
+				CanvasEnrollmentInterface.enroll_user(course.id, user.id, enroll_type, "active")
 			@enrolled_courses << course
 			end
 		end

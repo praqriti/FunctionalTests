@@ -22,7 +22,7 @@ Examples:
 |Biology    |Student|active |student_with_no_quiz|
 |Computer   |Student|pending|student_with_pending_invitation|
 
-
+@stage
 Scenario: Verify student course info with pagination
 Given I make a new USSD login request
 When User "camfed_user" logs into USSD with correct credentials
@@ -39,6 +39,7 @@ Then User should see the USSD home page
   And User chooses the course "Biology"
   Then User should see the message "student_with_pending_invitation"
 
+@stage
 Scenario: Verify teacher course info with pagination
 Given User "camfed_user" is enrolled with following courses:
 |COURSE     |ROLE    |STATUS|

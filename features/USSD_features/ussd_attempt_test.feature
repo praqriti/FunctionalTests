@@ -25,7 +25,8 @@ Scenario Outline: Student attempts a single attempt test once
 Examples:
   |ROLE   |COURSE |STATUS|TEST|
   |Student|Arts   |active|India|
-  
+
+@stage  
 Scenario Outline: Student attempts a single attempt test twice
 
 	Given the following test data with questions exists:
@@ -50,7 +51,8 @@ Scenario Outline: Student attempts a single attempt test twice
 Examples:
   |ROLE   |COURSE |STATUS|TEST|
   |Student|Anthropology|active|Pakistan|
-  
+
+@stage  
 Scenario Outline: Student chooses an invalid option while attempting test
 
 	Given the following test data with questions exists:

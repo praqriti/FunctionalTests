@@ -57,7 +57,9 @@ And /^User resumes the quiz$/ do
 end
 
 Then /^User should see option "([^\"]*)" choosen for question "([^\"]*)"$/ do |option_number, question_number|
-  @app.one_quiz.verify_option_selected question_number, option_number
+  question_number = (question_number.to_i)-1
+  option_number = (option_number.to_i)-1
+  @app.one_quiz.questions[question_number].options[option_number].checked?
 end
 
 

@@ -11,6 +11,7 @@ When User is on the Sign In page
 And User "camfed_user" logs into Canvas with her credentials
 Then "camfed_user" should see the Canvas home page
 
+@stage
 Scenario: Verify if a logged in user can update his status
 When User "updates" the status message as "status message"
 Then User status "status message" is updated successfully
@@ -27,6 +28,7 @@ Given User "updates" the status message as "status message"
 Then User can update the status again as "new status message"
 Then User logs out
 
+@stage
 Scenario: Status updated on web must be reflected on my mobile device
  When User "updates" the status message as "status message"
  Then User status "status message" is updated successfully

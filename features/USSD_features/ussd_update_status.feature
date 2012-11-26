@@ -11,7 +11,7 @@ Background:
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
-
+@stage
 Scenario: Update and view new status update from USSD
 
 	Given User chooses the option to "update status"
@@ -47,12 +47,10 @@ Scenario: Verify back from update page from USSD
 	"""
 	1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567...
 	"""
-Scenario: Verify that error is given to the user when she enters an invalid option
-	
+Scenario: Verify that error is given to the user when she enters an invalid option	
 	Given User sends an invalid option "9"
 	Then User returns to home page with error "invalid_option"
 
-@bug
 Scenario: Verify user not allowed to continue with incorrect access token
 	Given User chooses the option to "update status" with incorrect access_token
 	Then User recieves an error and the session is ended
@@ -66,8 +64,9 @@ Scenario: status length should be limited to 100 chars if present more in length
     Then User should see his previously updated message:
     """
     1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567...
-    """
+    """"	
 
+@stage	
 Scenario: View status should be reflected on both canvas and ussd app
   Given I make a new USSD login request
   When User "camfed_user" logs into USSD with correct credentials

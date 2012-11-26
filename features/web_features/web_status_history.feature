@@ -40,6 +40,7 @@ Scenario: Verify comment box not present if status is not updated even once
 	And Comment Box is not present
 	Then User logs out
 
+@stage
 Scenario: Verify user has 7 statuses with comments and can view previous 5 statuses with comments
 
   And "camfed_user" has his status set to "status message 1"

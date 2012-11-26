@@ -1,5 +1,5 @@
 Given /^User lands on the home page$/ do
-   @app.home.wait_until_status_message_visible
+   @app.home.wait_until_header_visible
 end
 
 Then /^User navigates to canvas home page$/ do

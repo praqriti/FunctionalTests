@@ -17,6 +17,7 @@ Feature:
 	And User can view the timestamp on the status
   And User logs out
 
+@stage
   Scenario: Verify user can comment on her status message
   Given User clicks on My Wall
   Then User lands on My Wall and can view all the elements

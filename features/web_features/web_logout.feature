@@ -23,7 +23,8 @@ Scenario: logout for the social education network from CAS
   And User logs out
   And User navigates to search page
   Then User is on the Sign In page
-  
+
+@stage  
 Scenario: logout and login as another user succesfully
     Given the following users exists in canvas:
          |USER|

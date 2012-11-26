@@ -5,7 +5,6 @@ Given /^User chooses the option "Notifications"$/ do
 end
 
 Then /^User should see the notifications menu$/ do
-  user_id = CanvasUserInterface.get_user_id
   steps %{
     Then the JSON at "session_id" should be "session id"
     Then the JSON at "session_type" should be "SESSION"

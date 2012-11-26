@@ -11,6 +11,7 @@ Given the following users exists in canvas:
 	|USER|
 	|requesting_user|
 
+@stage
 Scenario: Verify if a logged in user can accept his connection requests
     When User "camfed_user" has pending connection requests from:
           |USER|
@@ -26,7 +27,8 @@ Scenario: Verify if a logged in user can accept his connection requests
     Then User navigates to "My Connections" page
     And User can see "requesting_user" on my connections page
     Then User logs out
-    
+
+@stage    
 Scenario: Verify if a logged in user can reject his connection requests
       When User "camfed_user" has pending connection requests from:
                  |USER|
@@ -44,6 +46,7 @@ Scenario: Verify if a logged in user can reject his connection requests
       And User cannot see "requesting_user" on my connections page
       Then User logs out
 
+@stage      	
 Scenario: Verify if a logged in user can disconnect his connections he has added the friend
   When User "camfed_user" is connected to:
 	|USER|
@@ -59,6 +62,7 @@ Scenario: Verify if a logged in user can disconnect his connections he has added
   Then User can see the "0" connections available
   Then User logs out
 
+@stage
 Scenario: Verify if a logged in user can disconnect his connections where he was added as friend
   When User "requesting_user" is connected to:
     |USER|

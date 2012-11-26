@@ -11,7 +11,7 @@ Background:
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
-
+@stage
 Scenario: View Courses list when User is enrolled as both teacher and student
 Given User "camfed_user" is enrolled with following courses:
  |COURSE     |ROLE    |STATUS|
@@ -52,6 +52,7 @@ Scenario: User is enrolled as an observer
    Then User should see the message "no_course_attached"
    And User should not see "Previous" and "Next" option
 
+@stage
 Scenario: Verify that error is given to the user when she enters an invalid option	
 Given User "camfed_user" is enrolled with following courses:
  |COURSE     |ROLE    |STATUS|
