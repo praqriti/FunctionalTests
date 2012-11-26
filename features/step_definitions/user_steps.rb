@@ -6,7 +6,8 @@ end
 
 And /^"(.*?)" has his status set to "(.*?)"$/ do |user_identifier, status|
   user = @users.find{|user1| user1.identifier = user_identifier}
-  UserStatusInterface.create_status user, status
+  @status = Status.create(:message => status, :user => user)
+  @statuses_to_clean << @status
 end
 
 
