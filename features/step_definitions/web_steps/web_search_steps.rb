@@ -50,7 +50,8 @@ end
 
 When /^User should see the search error$/ do  
   @app.search.wait_until_search_error_visible
-  @app.search.search_results.text.should == "Sorry!, Unable to find user with entered criteria"
+  @app.search.search_results.text.should == ""
+  @app.search.error_notice.text.should == "Sorry!, Unable to find user with entered criteria"
 end
 
 Then /^User should see "(.*?)" as an "(.*?)" connection$/ do |identifier, connection_status|
