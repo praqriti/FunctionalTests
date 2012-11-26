@@ -17,8 +17,8 @@ test:
 int:
     canvas_url: http://192.168.31.6
     sen_url: http://192.168.31.6:8383
-    access_token: Bearer alpRpz2flrNUdCEvPbdcKh6kraI6awXuHt6oldvCXWFVkhYLjST68WVyQrcaT9qy
-    dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
+    access_token: Bearer hv1OIB3hDBnJfWpVoNi2G03pLlH2uexnlrpX80KualoLAr4fS1Aeava9rRpLztiU
+    dev_key: sLoYiO53XISqSM4zbKRpW68JUsWFK8pbMcBuwpGWZadRuErqghtqCvo5YhI6XzEa
     account_id: 2
     records_per_page: 4
 
