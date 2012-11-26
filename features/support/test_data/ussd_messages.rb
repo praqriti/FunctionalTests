@@ -9,7 +9,7 @@ def initialize
     :invalid_option => "Invalid Option",
     :home_page => "Welcome to SEN!",
     :no_course_attached => "No Course Attached",
-    :incorrect_credentials => "Incorrect Username/ Password\\n",
+    :incorrect_credentials => "Incorrect Username/ Password",
     :status_updated => "Status Updated",
     :something_went_wrong => "Something went wrong. Please try again",
     :enter_password => "Enter your password",
