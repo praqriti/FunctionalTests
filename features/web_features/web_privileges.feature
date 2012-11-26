@@ -15,15 +15,7 @@ Feature:
   When User is on the Sign In page
   And User "requesting_user" logs into Canvas with her credentials
   Then "requesting_user" should see the Canvas home page
-  
-  Scenario: User must not be able to update the status of another user
-  When User tries to update status for "camfed_user" as "camfed student has updated this status" 
-  When User logs out
-  And User "camfed_user" logs into Canvas with her credentials
-  And "camfed_user" should see the Canvas home page
-  Then User status "camfed student has updated this status" is not updated 
-  Then User logs out
-    
+
   Scenario: User must not be able to view the connections of another user
   When User tries to view the connections for user "camfed_user"
   Then User is given page not found error
