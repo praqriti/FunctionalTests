@@ -9,8 +9,8 @@ Feature:
 Scenario Outline: While a student attempts a quiz the connection is broken
 
   Given the following test data with questions exists:
-    |ROLE   |COURSE  |STATUS  |TEST  |
-    |<ROLE> |<COURSE>|<STATUS>|<TEST>|
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS  |
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
@@ -27,5 +27,5 @@ Scenario Outline: While a student attempts a quiz the connection is broken
   Then User should see option "2" choosen for question "1"
 
 Examples:
-  |ROLE   |COURSE |STATUS|TEST |QUESTIONS|ATTEMPTS|
-  |Student|Arts   |active|India|2        |2       |
+  |ROLE   |COURSE |STATUS|TEST |ATTEMPTS|QUESTIONS|
+  |Student|Arts   |active|India|2       |2        |

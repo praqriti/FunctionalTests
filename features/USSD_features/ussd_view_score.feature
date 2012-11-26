@@ -21,8 +21,8 @@ Scenario Outline: Student views score without attempting the test
   Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
 
 Examples:
-  |ROLE   |COURSE |STATUS|TEST|QUESTIONS|ATTEMPTS|
-  |Student|Chemistry   |active|Hybridization|2|1|
+  |ROLE   |COURSE      |STATUS|TEST         |QUESTIONS|ATTEMPTS|
+  |Student|Chemistry   |active|Hybridization|2        |1       |
 
 @stage  
 Scenario Outline: Student views score after attempting the test

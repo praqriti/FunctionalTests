@@ -23,5 +23,5 @@ Feature:
     Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
 
   Examples:
-    |ROLE   |COURSE |STATUS|TEST|QUESTIONS|ATTEMPTS|
-    |Teacher|Chemistry   |active|Hybridization|2|1|
+    |ROLE   |COURSE      |STATUS|TEST         |ATTEMPTS |QUESTIONS|
+    |Teacher|Chemistry   |active|Hybridization|1        |2        |

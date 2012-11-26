@@ -64,7 +64,7 @@ Scenario: status length should be limited to 100 chars if present more in length
     Then User should see his previously updated message:
     """
     1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567...
-    """"	
+    """	
 
 @stage	
 Scenario: View status should be reflected on both canvas and ussd app

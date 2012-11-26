@@ -1,4 +1,4 @@
-# @javascript
+@javascript
 Feature:
 
   In order find other users
@@ -24,6 +24,7 @@ Feature:
    Then User should see the users
    |USER|
    |camfed_new_student|
+   Then User logs out   
 
 @stage
   Scenario: Verify User can navigate to users wall from search page
@@ -32,6 +33,7 @@ Feature:
            |camfed_bio_student|
    When User searches for "camfed_bio_student" and clicks search
    Then User can navigate and view the wall of user "camfed_bio_student"
+   Then User logs out   
    
   Scenario: Verify User can view unlinked user on search page
    Given the following users exists in canvas:

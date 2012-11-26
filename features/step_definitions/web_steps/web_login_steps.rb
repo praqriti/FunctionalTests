@@ -7,7 +7,6 @@ end
 
 When /^User "([^\"]*)" logs into Canvas with her credentials$/ do |identifier|
   user = @users.find{|user| user.identifier == identifier}
-
   @app.login.email.set "#{user.login_id}"
   @app.login.password.set "#{user.password}"
   @app.login.sign_in_button.click

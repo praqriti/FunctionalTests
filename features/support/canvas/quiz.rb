@@ -12,9 +12,9 @@ module Canvas
   end
 
   class Quiz < CanvasBase
-    attr_reader :title, :id, :due_at, :allowed_attempts
+    attr_accessor :title, :id, :due_at, :allowed_attempts
 
-    def initialize user, course, assignment_group, title, allowed_attempts, due_at = "3000-11-30T23:59:00-07:00"
+    def initialize user, course, assignment_group, title, allowed_attempts = "1", due_at = "3000-11-30T23:59:00-07:00"
       @auth = {:username => user.login_id, :password => user.password}
       @course = course
       @assignment_group = assignment_group

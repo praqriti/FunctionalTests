@@ -8,8 +8,8 @@ Feature:
 @stage
 Scenario Outline: Verify Menu option is displayed with pagination for a test in a course
   Given the following test data exists:
-    |ROLE   |COURSE  |STATUS  |TESTS  |ATTEMPTS  |
-    |<ROLE> |<COURSE>|<STATUS>|<TESTS>|<ATTEMPTS>|
+    |ROLE   |COURSE  |STATUS  |TESTS  |
+    |<ROLE> |<COURSE>|<STATUS>|<TESTS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   Then User should see the USSD home page
@@ -28,8 +28,8 @@ Scenario Outline: Verify Menu option is displayed with pagination for a test in 
 
 Examples:
  |ROLE   |COURSE |STATUS|TESTS                                                              |ATTEMPTS|QUESTIONS|
- |Teacher|History|active|Indian Independence,World War 1,World War 2,World War 3,World War 4|1       |0|
- |Student|Arts   |active|India,World Wars,Sculpting,Sword Fighting,Painting                 |1       |0|
+ |Teacher|History|active|Indian Independence,World War 1,World War 2,World War 3,World War 4|1       |0        |
+ |Student|Arts   |active|India,World Wars,Sculpting,Sword Fighting,Painting                 |1       |0        |
 
 @stage
 Scenario: Verify that error is given to the user when she enters an invalid option

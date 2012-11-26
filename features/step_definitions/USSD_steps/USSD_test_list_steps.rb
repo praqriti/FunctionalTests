@@ -168,6 +168,12 @@ end
 
 Then /^User should see the test report:$/ do |report_table|
   report_table.hashes.each do |hash|
-  @last_response.parsed_response["message"].should == "Low Score: #{hash[:LOW_SCORE]}\nAverage Correct: #{hash[:AVERAGE]}\nStudents Attempted: #{hash[:STUDENTS_ATTEMPTED]}\nMean Score: #{hash[:MEAN]}\nHigh Score: #{hash[:HIGH_SCORE]}\n" 
+    actual_response = @last_response.parsed_response["message"]
+  actual_response.include?("Low Score: #{hash[:LOW_SCORE]}\n").should == true
+  actual_response.include?("Average Correct: #{hash[:AVERAGE]}\n").should == true
+  actual_response.include?("Students Attempted: #{hash[:STUDENTS_ATTEMPTED]}\n").should == true
+  actual_response.include?("Mean Score: #{hash[:MEAN]}\n").should == true
+  actual_response.include?("High Score: #{hash[:HIGH_SCORE]}\n").should == true
+  
   end
 end
