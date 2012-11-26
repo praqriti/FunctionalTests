@@ -4,8 +4,9 @@ Before do
 	@courses = Array.new	
   @messages = Messages.new
   @errors = Errors.new
-  @users << CanvasUserInterface.create_user("camfed_user")
-  
+  @statuses_to_clean = []
+  @logged_in_user = CanvasUserInterface.create_user("camfed_user")
+  @users << @logged_in_user
 end
 
 After do   

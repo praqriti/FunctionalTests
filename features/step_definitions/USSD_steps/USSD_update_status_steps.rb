@@ -80,7 +80,12 @@ Then /^User recieves an error and the session is ended$/ do
  	Then the JSON at "message" should be "#{message}"
  	}
 
-end 
+end
+
+Given /^There exists a status with more than 100 chars$/ do
+    @status = Status.create(:message => "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", :user => @logged_in_user)
+    @statuses_to_clean << @status
+end
 
 
 

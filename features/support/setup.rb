@@ -4,6 +4,8 @@ ENV_CONFIG = YAML.load(File.read("features/env_profile.yml"))[profile]
 
 CANVAS_URL = "#{ENV_CONFIG['canvas_url']}"
 
+SEN_SOCIAL_URL = "#{ENV_CONFIG['sen_social_url']}"
+
 CANVAS_API = "#{ENV_CONFIG['canvas_url']}/api/v1"
 
 SEN_URL = "#{ENV_CONFIG['sen_url']}/ussd/index"

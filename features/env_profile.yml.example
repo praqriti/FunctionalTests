@@ -1,6 +1,7 @@
 default:
     canvas_url: http://localhost
     sen_url: http://localhost:3002
+    sen_social_url: http://localhost/sen
     access_token: Bearer obbSivMVhix83xUSXVZ0xe76kT3Wa8193oaIalHhxboJ5AlnxqIplShd1TBiAWYj
     dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
     account_id: 2
@@ -9,6 +10,7 @@ default:
 test:
     canvas_url: http://192.168.31.7
     sen_url: http://192.168.31.7:3001
+    sen_social_url: http://192.168.31.7/sen
     access_token: Bearer Uw9flvBP5j8l7Vd4ABztVVLB8e4yJx2A5g6EGI7j58Yd2ySJs7qWqliltROUsKcB
     dev_key: B8rX3vrqJwsM71nfEyPfVXEuoK3RJUjyEq9rNxMzF2yQUShUENJKVUivpttdyTqI
     account_id: 2
@@ -17,6 +19,7 @@ test:
 int:
     canvas_url: http://192.168.31.6
     sen_url: http://192.168.31.6:8383
+    sen_social_url: http://192.168.31.6/sen
     access_token: Bearer hv1OIB3hDBnJfWpVoNi2G03pLlH2uexnlrpX80KualoLAr4fS1Aeava9rRpLztiU
     dev_key: sLoYiO53XISqSM4zbKRpW68JUsWFK8pbMcBuwpGWZadRuErqghtqCvo5YhI6XzEa
     account_id: 2
@@ -25,6 +28,7 @@ int:
 staging:
     canvas_url: http://camfedstage
     sen_url: http://camfedstage:8383
+    sen_social_url: http://camfedstage/sen
     access_token: Bearer PP3rui3JnDFDdv6ym5JT2Rhye07zlO6nZnDUs0aayIKuivjMHJZrSwqnIUJPvh4g
     dev_key: kVZqIlxlXAYSHTOKbQR8AIVDDJ1jjM21J6gXWYgxcBlrm1Vb36BIxJYxWGUUigVL
     account_id: 2
