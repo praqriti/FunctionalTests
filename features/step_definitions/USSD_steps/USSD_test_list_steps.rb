@@ -94,8 +94,8 @@ Given /^the following test data exists:$/ do |test_table|
 
     course = @courses[0]
     @quizzes = []
-    user = CanvasUserInterface.get_user
-
+    user = @users.find{|user| user.identifier == "camfed_user"}
+  	
     enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type("Teacher"), "active")
     assignment_group = Canvas::AssignmentGroup.new(user, course).create
     quizzes = tests.split(",")
@@ -125,7 +125,7 @@ Given /^the following test data with questions exists:$/ do |test_table|
 
     course = @courses[0]
     @quizzes = []
-    user = CanvasUserInterface.get_user
+    user = @users.find{|user| user.identifier == "camfed_user"}
 
     enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type("Teacher"), "active")
     assignment_group = Canvas::AssignmentGroup.new(user, course).create

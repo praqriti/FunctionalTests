@@ -4,6 +4,7 @@ Feature:
 	As a User
 	I want to view my score of a test
 
+@stage
 Scenario Outline: Student views score without attempting the test
 
   Given the following test data with questions exists:
@@ -22,7 +23,8 @@ Scenario Outline: Student views score without attempting the test
 Examples:
   |ROLE   |COURSE |STATUS|TEST|
   |Student|Chemistry   |active|Hybridization|
-  
+
+@stage  
 Scenario Outline: Student views score after attempting the test
 
   Given the following test data with questions exists:

@@ -25,8 +25,3 @@ Scenario Outline: Student resumes the test
   Then User should see quiz menu for role "<ROLE>" having "2" questions and "2" attempts
   When User chooses "Attempt Test"
   Then User should see question "2"
-
-
-Examples:
-  |ROLE   |COURSE |STATUS|TEST|
-  |Student|Arts   |active|India|

@@ -10,6 +10,12 @@ And /^User chooses "View Score"$/ do
 	}
 end
 
+And /^User chooses "View Report"$/ do
+	steps %{
+   Then User replies with option "1"   
+	}
+end
+
 Then /^User chooses "Back" option$/ do
 	steps %{
    Then User replies with option "*"   
