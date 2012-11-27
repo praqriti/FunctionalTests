@@ -7,8 +7,8 @@ Feature:
 Scenario Outline: Student attempts a single attempt test once
 
   Given the following test data with questions exists:
-    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|
-    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|QUESTIONS|
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|<QUESTIONS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
@@ -23,15 +23,15 @@ Scenario Outline: Student attempts a single attempt test once
 
 
 Examples:
-   |ROLE   |COURSE      |STATUS|TEST    |QUESTIONS|ATTEMPTS|
-   |Student|Arts        |active|India   |2        |1       |
+   |ROLE   |COURSE      |STATUS|TEST    |ATTEMPTS|QUESTIONS|
+   |Student|Arts        |active|India   |1			 |2        |
   
 @stage  
 Scenario Outline: Student attempts a single attempt test twice
 
 	Given the following test data with questions exists:
-    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|
-    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|QUESTIONS|
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|<QUESTIONS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
@@ -49,15 +49,15 @@ Scenario Outline: Student attempts a single attempt test twice
 	Then User should see the message "single_attempt"
 	
 Examples:
-  |ROLE   |COURSE      |STATUS|TEST    |QUESTIONS|ATTEMPTS|
-  |Student|Anthropology|active|Pakistan|2        |1       |
+  |ROLE   |COURSE      |STATUS|TEST    |ATTEMPTS|QUESTIONS|
+  |Student|Anthropology|active|Pakistan|1				|2        |
 
 @stage  
 Scenario Outline: Student chooses an invalid option while attempting test
 
 	Given the following test data with questions exists:
-    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|
-    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|QUESTIONS|
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|<QUESTIONS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
@@ -76,5 +76,5 @@ Scenario Outline: Student chooses an invalid option while attempting test
   Then User should see message "Invalid Option"
   
   Examples:
-    |ROLE   |COURSE      |STATUS|TEST    |QUESTIONS|ATTEMPTS|
-    |Student|Science     |active|Biology |2        |2       |
+    |ROLE   |COURSE      |STATUS|TEST    |ATTEMPTS|QUESTIONS|
+    |Student|Science     |active|Biology |1				|2        |

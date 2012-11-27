@@ -97,44 +97,14 @@ When /^User replies "0" from tests page to go back to home page$/ do
     }
 end
 
-Given /^the following test data exists:$/ do |test_table|
-  test_table.hashes.each do |hash|
-    status = hash[:STATUS]
-    role = hash[:ROLE]
-    course_name = hash[:COURSE]
-    tests = hash[:TESTS]
-
-    steps %{
-       Given the following courses exist in canvas
-        |COURSE|
-        |#{course_name}|
-    }
-
-    course = @courses[0]
-    @quizzes = []
-    user = @users.find{|user| user.identifier == "camfed_user"}
-  	
-    enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type("Teacher"), "active")
-    assignment_group = Canvas::AssignmentGroup.new(user, course).create
-    quizzes = tests.split(",")
-    quizzes.each do |quiz_name|
-      quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name)
-      quiz.create
-      quiz.publish
-      @quizzes << quiz
-    end
-    CanvasEnrollmentInterface.conclude_enrollment course.id, enrollment_id
-    CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type(role), status)
-  end
-end
-
 Given /^the following test data with questions exists:$/ do |test_table|
   test_table.hashes.each do |hash|
     status = hash[:STATUS]
     role = hash[:ROLE]
     course_name = hash[:COURSE]
     tests = hash[:TEST]
-    allowed_attempts = hash[:ATTEMPTS] 
+    allowed_attempts = hash[:ATTEMPTS].to_i
+    question_count = hash[:QUESTIONS].to_i
 
     steps %{
        Given the following courses exist in canvas
@@ -153,10 +123,12 @@ Given /^the following test data with questions exists:$/ do |test_table|
     quizzes.each do |quiz_name|
       quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name, allowed_attempts)
       quiz.create
-      for i in 1..2
-        question = QuestionData.question
-        quiz.add_question question
-        @questions << question
+      if(question_count!=0)
+				for i in 1..(question_count)
+				  question = QuestionData.question
+				  quiz.add_question question
+				  @questions << question
+				end
       end
       quiz.publish
       @quizzes << quiz

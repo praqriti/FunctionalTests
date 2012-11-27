@@ -9,8 +9,8 @@ Feature:
 Scenario Outline: While a student attempts a quiz the connection is broken
 
   Given the following test data with questions exists:
-    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS  |
-    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS  |QUESTIONS|
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|<QUESTIONS>|
   And I make a new USSD login request
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
@@ -28,4 +28,4 @@ Scenario Outline: While a student attempts a quiz the connection is broken
 
 Examples:
   |ROLE   |COURSE |STATUS|TEST |ATTEMPTS|QUESTIONS|
-  |Student|Arts   |active|India|2       |2        |
+  |Student|Arts   |active|India|1       |2        |

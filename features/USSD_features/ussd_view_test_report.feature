@@ -8,8 +8,8 @@ Feature:
   Scenario Outline: Student views score without attempting the test
 
     Given the following test data with questions exists:
-      |ROLE   |COURSE  |STATUS  |TEST  |
-      |<ROLE> |<COURSE>|<STATUS>|<TEST>|
+      |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|QUESTIONS|
+      |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|<QUESTIONS>|
     And I make a new USSD login request
     And User "camfed_user" logs into USSD with correct credentials
     And User navigates to test page and chooses test "1"
