@@ -18,6 +18,7 @@ end
 
 Then /^User should see appropriate message$/ do
 	@app.my_wall.wait_until_no_status_message_visible
+	sleep(3)
 	@app.my_wall.no_status_message.text.should == "There are no older status messages"
 end
 
