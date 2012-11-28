@@ -11,6 +11,7 @@ Then /^I log out of my account$/ do
 end
 
 And /^User "updates" the status message as "([^\"]*)"$/ do |message|
+  @app.home.wait_until_status_message_visible
  steps %{
    When User "enters" the status message as "#{message}"
  }
