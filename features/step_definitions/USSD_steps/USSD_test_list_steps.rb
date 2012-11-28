@@ -14,10 +14,9 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 	start_index = rpp * (page_no-1)
 	end_index = start_index + (rpp-1)
 	@quizzes[start_index..end_index].each do |quiz|
-		actual_response["response_map"]["#{s_no}"]["text"].should == quiz.title
+		actual_response["message"].include?(quiz.title).should == true
 		s_no+=1
 	end
-	actual_response["response_map"]["0"]["text"].should == "Home"
 	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -46,9 +45,9 @@ end
 
 Then /^User should see quiz menu for Student having "([^\"]*)" questions and "([^\"]*)" attempts available$/ do |question_count, attempts|
   actual_response = @last_response.parsed_response
-  actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}"
-    actual_response["response"]["response_map"]["2"]["text"].should == "Attempt Quiz"
-    actual_response["response"]["response_map"]["1"]["text"].should == "View Score"
+  actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}\n1. View Score\n2. Attempt Quiz\n0. Home"
+  actual_response["message"].include?("2. Attempt Quiz").should == true
+  actual_response["message"].include?("1. View Score").should == true
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -58,9 +57,9 @@ end
 
 Then /^User should see quiz menu for Teacher having "([^\"]*)" questions and "([^\"]*)" total attempts$/ do |question_count, attempts|
    actual_response = @last_response.parsed_response
-   actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nTotal Attempts: #{attempts}"
-    actual_response["response"]["response_map"]["1"]["text"].should == "View Report"
-    actual_response["response"]["response_map"]["0"]["text"].should == "Home"
+   actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nTotal Attempts: #{attempts}\n1. View Report\n0. Home"
+   actual_response["message"].include?("0. Home").should == true
+   actual_response["message"].include?("1. View Report").should == true
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -83,12 +82,12 @@ end
 
 Then /^User should see the "Next" option on tests list$/ do
 	actual_response = @last_response.parsed_response["response"]
-	actual_response["response_map"]["#"]["text"].should  == "Next"
+  actual_response["message"].include?("#. Next").should == true
 end
 
 Then /^User should see the "Previous" option on tests list$/ do
 	actual_response = @last_response.parsed_response["response"]
-	actual_response["response_map"]["*"]["text"].should  == "Previous"
+  actual_response["message"].include?("*. Previous").should == true
 end
 
 When /^User replies "0" from tests page to go back to home page$/ do
@@ -139,13 +138,13 @@ Given /^the following test data with questions exists:$/ do |test_table|
 end
 
 Then /^User should see the test report:$/ do |report_table|
+  actual_response = @last_response.parsed_response["message"]
   report_table.hashes.each do |hash|
-    actual_response = @last_response.parsed_response["message"]
-  actual_response.include?("Low Score: #{hash[:LOW_SCORE]}\n").should == true
-  actual_response.include?("Average Correct: #{hash[:AVERAGE]}\n").should == true
-  actual_response.include?("Students Attempted: #{hash[:STUDENTS_ATTEMPTED]}\n").should == true
-  actual_response.include?("Mean Score: #{hash[:MEAN]}\n").should == true
-  actual_response.include?("High Score: #{hash[:HIGH_SCORE]}\n").should == true
-  
+    actual_response.include?("Low Score: #{hash[:LOW_SCORE]}\n").should == true
+    actual_response.include?("Average Correct: #{hash[:AVERAGE]}\n").should == true
+    actual_response.include?("Students Attempted: #{hash[:STUDENTS_ATTEMPTED]}\n").should == true
+    actual_response.include?("Mean Score: #{hash[:MEAN]}\n").should == true
+    actual_response.include?("High Score: #{hash[:HIGH_SCORE]}\n").should == true
+
   end
 end

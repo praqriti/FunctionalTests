@@ -10,8 +10,7 @@ Then /^User is given the option to update status or navigate back to home page$/
      Then the JSON at "session_type" should be "SESSION"
      Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
        }  
-     @last_response.parsed_response["response"]["response_map"]["0"]["text"].should == "Home"
-end 
+end
 
 When /^User replies with new status message "([^\"]*)"$/ do |message|
   steps %{
@@ -34,19 +33,19 @@ end
 
 Then /^User should see his previously updated message "([^\"]*)"$/ do |message|
   steps %{
-      Then the JSON at "message" should be "#{message}\\n\\nEnter your new status"
+      Then the JSON at "message" should be "#{message}\\nEnter your new status\\n0. Home"
     }
 end
 
 Then /^User should see his previously updated blank message "([^\"]*)"$/ do |message|
   steps %{
-      Then the JSON at "message" should be "#{message}Enter your new status"
+      Then the JSON at "message" should be "Enter your new status\\n0. Home"
     }
 end
 
 Then /^User should see his previously updated message:$/ do |string|
   steps %{
-      Then the JSON at "message" should be "#{string}\\n\\nEnter your new status"
+      Then the JSON at "message" should be "#{string}\\nEnter your new status\\n0. Home"
     }
 end
 

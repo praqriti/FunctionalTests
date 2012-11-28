@@ -16,11 +16,10 @@ Given /^User "(.*?)" is enrolled with following courses:$/ do |username, courses
 end
 
 When /^User chooses the course "(.*?)"$/ do |course_name|
-	actual_response = @last_response.parsed_response["response"]
-	course_no = actual_response["response_map"].find{|course| course[1]["text"] == course_name}.first
-  
-	steps %{
-     Then User replies with option "#{course_no}"
+	message = @last_response.parsed_response["message"]
+  course_no, _ = message.match(/(\d+)\. #{course_name}/i)
+  steps %{
+     Then User replies with option "#{course_no[1]}"
    }
 end
 
@@ -50,10 +49,9 @@ Then /^User should see the courses list$/ do
 	actual_response = @last_response.parsed_response
 	s_no = 1
 	@enrolled_courses.each do |enrolled_course|
-		actual_response["response"]["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
+    actual_response["message"].include?(enrolled_course.name).should == true
 	s_no+=1
 	end
-	actual_response["response"]["response_map"]["0"]["text"].should == "Home"
 	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -69,10 +67,8 @@ Then /^User should see the courses list on page "([^\"]*)"$/ do |page_no|
 	start_index = rpp * (page_no-1)
 	end_index = start_index + (rpp-1)
 	@enrolled_courses[start_index..end_index].each do |enrolled_course|
-		actual_response["response"]["response_map"]["#{s_no}"]["text"].should == enrolled_course.name
-		s_no+=1
+		actual_response["message"].include?(enrolled_course.name).should == true
 	end
-	actual_response["response"]["response_map"]["0"]["text"].should == "Home"
 	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -94,13 +90,13 @@ end
 
 And /^User should see the "Next" and "Previous" option$/ do
 	actual_response = @last_response.parsed_response["response"]
-	actual_response["response_map"]["*"]["text"].should == "Previous"
-	actual_response["response_map"]["#"]["text"].should  == "Next"
+	actual_response["message"].include?("Previous").should == true
+	actual_response["message"].include?("Next").should == true
 end
 
 And /^User should see the "([^\"]*)" option$/ do |option|
 	actual_response = @last_response.parsed_response["response"]
-	actual_response["response_map"]["*"]["text"].should  == option
+  actual_response["message"].include?(option).should == true
 end
 
 And /^User chooses the "Previous" option$/ do
@@ -113,12 +109,10 @@ When /^User replies "0" to go back to home page$/ do
   steps %{
     Then User replies with option "0"   
   }
-	@last_response.parsed_response["response"]["response_map"]["1"]["text"].should == "Notifications"
 end
 
 Then /^User should only see course "([^\"]*)"$/ do |course_name|
-	@last_response.parsed_response["response"]["response_map"]["1"]["text"].should == course_name
-	@last_response.parsed_response["response"]["response_map"]["0"]["text"].should == "Home"
+  actual_response["message"].include?("1. #{course_name}").should == true
 	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"

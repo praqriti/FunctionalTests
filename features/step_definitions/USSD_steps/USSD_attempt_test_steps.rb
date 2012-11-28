@@ -29,7 +29,7 @@ Then /^User should see question "([^\"]*)"$/ do |question_num|
   body["message"].include? "Q(#{question_num}/#{@questions.count}): #{question[:text]}"
 
   for i in 1..question[:answers].count
-    body["response"]["response_map"]["#{i}"]["text"].should == question[:answers]["answer_#{i-1}"]["answer_text"]
+    body["message"].include?(question[:answers]["answer_#{i-1}"]["answer_text"]) == true
   end
   
   steps %{
