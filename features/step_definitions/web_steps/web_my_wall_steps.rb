@@ -62,5 +62,13 @@ Then /^User comments on her status message:$/ do |string|
   @app.my_wall.wait_until_comment_box_visible
 end
 
+Then /^The Common Connections box "(.*?)" visible$/ do |arg1|
+  if arg1.include? "not"
+    @app.my_wall.should_not have_common_connections
+  else
+    @app.my_wall.should have_common_connections
+  end
+end
+
 
 
