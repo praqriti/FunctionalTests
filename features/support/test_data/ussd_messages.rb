@@ -16,7 +16,8 @@ def initialize
     :no_score => "No score available\\n*. Back",
     :single_attempt => "This was single attempt test and you have already attempted the test\\n*. Back",
     :successful_test_attempt => "You have successfully finished the test\\n*. Back",
-    :connection_menu => "1. My Connections\\n2. Connection Requests\\n0. Home"
+    :connection_menu => "1. My Connections\\n2. Connection Requests\\n0. Home",
+    :group_menu => "1. Make New Announcement\n2. View Announcements\n*. Back"
   }
  end
  

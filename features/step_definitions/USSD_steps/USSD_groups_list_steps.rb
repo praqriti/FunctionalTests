@@ -85,3 +85,8 @@ Then /^User should only see group "([^\"]*)"$/ do |group_name|
 		Then the JSON should have "access_token"
 		}
 end
+
+Then /^User should see the group menu page$/ do
+  actual_response = @last_response.parsed_response
+  actual_response["message"].should == @messages.get("group_menu")
+end
