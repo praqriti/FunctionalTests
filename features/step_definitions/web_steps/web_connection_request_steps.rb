@@ -1,8 +1,11 @@
 Given /^User "(.*?)" has pending connection requests from:$/ do |username, users_table|
-	users_table.hashes.each do |hash|
+	@requesters = []
+  users_table.hashes.each do |hash|
+  @requesters << hash[:USER]
 	steps %{
 		And "#{hash[:USER]}" has sent connection request to "#{username}"
   }
+  sleep(1)
   end
 end
 
