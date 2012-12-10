@@ -2,7 +2,7 @@ Feature:
 
 	In order to know about the social surroundings
 	As a User
-	I want to be able to view my connections on my mobile device
+	I want to be able to view my connections requests on my mobile device
 
 Background:
 

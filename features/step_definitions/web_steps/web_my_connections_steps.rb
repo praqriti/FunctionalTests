@@ -16,10 +16,13 @@ Then /^User cannot see "(.*?)" on my connections page$/ do |username|
 end
 
 Given /^User "(.*?)" is connected to:$/ do |username, users_table|
+  @connected_users = []
   users_table.hashes.each do |hash|
+  @connected_users << hash[:USER]
   steps %{
       And "#{username}" is connected to "#{hash[:USER]}"
   }
+  sleep(1)
   end
 end
 
