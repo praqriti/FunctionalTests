@@ -11,7 +11,8 @@ When /^User clicks on "search user" under connections tab$/ do
  # @app.home.menu.connections.search_users_link.click
 end
 
-When /^And User navigates to search page$/ do
+When /^User navigates to search page$/ do
+  sleep(1)
  @app.search.load 
  @app.search.wait_until_search_box_visible
 end
@@ -24,7 +25,6 @@ else
   @app.search.search_box.set "#{search_query}"
 end
 @app.search.search_button.click
-@app.search.wait_until_search_results_visible
 end
 
 
@@ -44,13 +44,9 @@ When /^User should see the users$/ do |users_table|
   end 
 end
 
-When /^User navigates to search page$/ do
-  @app.search.load
-end
-
 When /^User should see the search error$/ do  
-  @app.search.wait_until_search_error_visible
-  @app.search.search_results.text.should == ""
+  # @app.search.wait_until_search_error_visible
+  # @app.search.search_results.text.should == ""
   @app.search.error_notice.text.should == "Sorry!, Unable to find user with entered criteria"
 end
 
@@ -74,7 +70,6 @@ Then /^User should see "(.*?)" without any connection status$/ do |username|
 end
 
 When /^User searches for the Super Admin$/ do
-  # @super_admin = "get the value from config"
   @app.search.search_box.set "#{user.name}" 
   @app.search.search_button.click
   @app.search.wait_until_search_error_visible

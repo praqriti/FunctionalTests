@@ -24,28 +24,6 @@ When /^User chooses the group "(.*?)"$/ do |group_name|
    }
 end
 
-
-# Given /^the following groups exist in canvas:$/ do |groups_table|
-#   groups_table.hashes.each do |hash|
-#     @groups << Group.create(hash)
-#   end
-# end
-# 
-# 
-# Given /^User is enrolled to the following groups:$/ do |enrollment_table|
-#   enrollment_table.hashes.each do |hash|
-#   enroll_type = "#{hash[:ROLE]}Enrollment"
-#   user = @users.find{|user| user.identifier == username}
-#     @groups.each do |group|
-#       if(group.name == "#{hash[:COURSE]}")
-#         CanvasEnrollmentInterface.enroll_user(group.id, user.id, enroll_type, "active")
-#       @enrolled_groups << group
-#       end
-#     end
-#   end
-# end
-
-
 Then /^User should see the groups list$/ do
 	actual_response = @last_response.parsed_response
 	s_no = 1

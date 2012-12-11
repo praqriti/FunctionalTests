@@ -1,7 +1,7 @@
 default:
     canvas_url: http://localhost
     sen_url: http://localhost:3002
-    sen_social_url: http://localhost/sen/api/v1
+    sen_social_url: http://localhost/sen
     access_token: Bearer obbSivMVhix83xUSXVZ0xe76kT3Wa8193oaIalHhxboJ5AlnxqIplShd1TBiAWYj
     dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
     account_id: 2
@@ -11,7 +11,7 @@ default:
 test:
     canvas_url: http://192.168.31.7
     sen_url: http://192.168.31.7:3001
-    sen_social_url: http://192.168.31.7/sen/api/v1
+    sen_social_url: http://192.168.31.7/sen
     access_token: Bearer Uw9flvBP5j8l7Vd4ABztVVLB8e4yJx2A5g6EGI7j58Yd2ySJs7qWqliltROUsKcB
     dev_key: 7knvfKyBe8u0N66pKy6nNaNGj1oSxb1XuIcqghle9exsYLZUPhyJA2yLgJ2XrW0O
     account_id: 2
