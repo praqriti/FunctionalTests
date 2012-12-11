@@ -6,14 +6,14 @@ class ConnectionsInterface
 
   def self.create_connection(user, friend)
     connection_id = send_connection_request(friend, user)
-    response = JSONSpecInterface.put( "#{SEN_SOCIAL_URL}/users/#{user.id}/connections/#{connection_id}",
+    response = JSONSpecInterface.put( "#{SEN_SOCIAL_URL}/connections/#{connection_id}",
                                        :body => {},
                                        :headers => { "Authorization" => "#{user.token}"})
     response["connection_state"].should == "connected"
   end
 
   def self.send_connection_request(user, friend)
-    response = JSONSpecInterface.post("#{SEN_SOCIAL_URL}/users/#{user.id}/connections",
+    response = JSONSpecInterface.post("#{SEN_SOCIAL_URL}/connections",
                                       :body => {:friend_id => friend.id},
                                       :headers => {"Authorization" => "#{user.token}"})
     connection_id = response["id"]
