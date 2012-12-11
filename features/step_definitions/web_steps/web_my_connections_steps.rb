@@ -1,4 +1,5 @@
 When /^User navigates to "My Connections" page$/ do
+  sleep(1)
   @app.my_connections.load
   @app.my_connections.wait_until_header_message_visible 
 end
@@ -51,6 +52,7 @@ And /^User unconfirms the disconnection$/ do
 end
 
 Then /^User can see the "(.*?)" connections available$/ do |number|
+  sleep(1)
 @app.my_connections.load
 @app.my_connections.wait_until_header_message_visible
 @app.my_connections.header_message.text.should == "#{number} Connection(s) available"

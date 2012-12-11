@@ -10,6 +10,7 @@ Given /^User "(.*?)" has pending connection requests from:$/ do |username, users
 end
 
 When /^User navigates to "Connection Requests"$/ do
+  sleep(1)
   @app.connection_requests.load
   @app.connection_requests.wait_until_users_visible
 end
@@ -45,6 +46,7 @@ Then /^User can "(.*?)" the connection request from "(.*?)"$/ do |user_action, u
 end
 
 Then /^User can see the "(.*?)" pending requests$/ do |number|
+  sleep(1)
 	@app.connection_requests.load
 	@app.connection_requests.wait_until_header_message_visible
 	@app.connection_requests.header_message.text.should == "#{number} Pending Request(s)"
