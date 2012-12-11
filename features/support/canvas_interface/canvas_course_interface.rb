@@ -1,15 +1,18 @@
 class CanvasCourseInterface
 
-	def self.create_course(course)
+	def self.create_course(course, publish=true)
 		@course = Course.new(course)
+    body = {
+        :course =>
+            {
+                :name => "#{@course.name}"
+            }
+    }
+    body.merge!(:offer => true) if publish
+
 		@last_response =
 			JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/courses",
-			:body =>  {
-			  :course =>
-				  {
-				    :name => "#{@course.name}"
-				  }, :offer => true
-				  },
+			:body =>  body,
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 		@course.id =  @last_response.parsed_response["id"]
     JSONSpecInterface.log(@last_response)

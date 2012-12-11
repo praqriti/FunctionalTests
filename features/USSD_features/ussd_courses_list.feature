@@ -80,6 +80,17 @@ Given User "camfed_user" is enrolled with following courses:
 	And User should not see "Previous" and "Next" option
 	When User chooses the "Next" option
   Then User returns to home page with error "invalid_option"
-  
+
+Scenario: Verify unpublished courses are not visible
+
+  Given User "camfed_user" is enrolled with following courses:
+    |COURSE     |ROLE    |STATUS|
+    |Physics    |Teacher |active|
+  And User "camfed_user" is enrolled with following unpublished courses:
+    |COURSE     |ROLE    |STATUS|
+    |Chemistry    |Teacher |active|
+  Given User chooses the option "Courses"
+  Then User should see the courses list
+
   @manual
   Scenario: Verify that the order of courses in the list is correct with pagination

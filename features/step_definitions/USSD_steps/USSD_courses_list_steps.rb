@@ -15,6 +15,16 @@ Given /^User "(.*?)" is enrolled with following courses:$/ do |username, courses
 	end
 end
 
+Given /^User "(.*?)" is enrolled with following unpublished courses:$/ do |username, courses_table|
+  courses_table.hashes.each do |hash|
+    @courses << CanvasCourseInterface.create_course("#{hash["COURSE"]}", false)
+    enroll_type = "#{hash[:ROLE]}Enrollment"
+    user = @users.find{|user| user.identifier == username}
+    course = @courses.last
+    CanvasEnrollmentInterface.enroll_user(course.id, user.id, enroll_type, hash[:STATUS])
+  end
+end
+
 When /^User chooses the course "(.*?)"$/ do |course_name|
 	message = @last_response.parsed_response["message"]
   course_no, _ = message.match(/(\d+)\. #{course_name}/i)
