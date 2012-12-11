@@ -22,4 +22,7 @@ Scenario: Verify back from notifications page from ussd
 	And User should see the notifications menu
 	When User replies "0" from notifications page to go back to home page
 	Then User should see the USSD home page
+	
+@manual
+Scenario: Verify invalid optiont throws an appropriate error
 

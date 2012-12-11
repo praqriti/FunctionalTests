@@ -1,5 +1,5 @@
 class Group
-  attr_reader :id, :name, :join_level, :member_count
+  attr_reader :id, :name, :join_level, :member_count, :context_type
 
   def initialize( params={})
     params.symbolize_keys
@@ -14,19 +14,23 @@ class Group
     name = params[:name]
     public = params[:public] || true
     join_level = params[:join_level] || "parent_context_auto_join"
-
+    context_type = params[:type]
+    
     @last_response =
         JSONSpecInterface.post("#{CANVAS_API}/groups",
            :body =>  {
                :name => name,
                :is_public => public,
-               :join_level => join_level
+               :join_level => join_level,
+               :context_type => context_type,
+               :account_id => ACCOUNT_ID
            },
            :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"}
         )
     JSONSpecInterface.log(@last_response)
     Group.new @last_response.parsed_response
   end
+
 
   def public?
     @public

@@ -13,28 +13,28 @@ end
 
 After do   
   if (@users)
-    @users.each do |user|      
-       CanvasUserInterface.delete_user(user)
-      end
-  end
-  
-  if (@courses)
-     @courses.each do |course|      
-         CanvasCourseInterface.delete_course(course)
+      @users.each do |user|      
+         CanvasUserInterface.delete_user(user)
         end
+    end
+   
+   if (@courses)
+       @courses.each do |course|      
+           CanvasCourseInterface.delete_course(course)
+          end
+       end
+   
+    if (@groups)
+       @groups.each do |group|
+         group.delete
+        end
+    end
+    
+   if (@dummy_users)
+       @users.each do |user|      
+          CanvasUserInterface.delete_user(user)
+         end
      end
-
-  if (@groups)
-     @groups.each do |group|
-       group.delete
-      end
-  end
-  
-  if (@dummy_users)
-    @users.each do |user|      
-       CanvasUserInterface.delete_user(user)
-      end
-  end
 end
 
   

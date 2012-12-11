@@ -59,7 +59,7 @@ Feature:
    Then User logs out
    
    
-   @wip
+   @manual
    Scenario: Verify User can make a successful search with last name
    Given the following users exists in canvas:
            |USER|
@@ -72,7 +72,7 @@ Feature:
     |camfed_user_2|
     
   
-  @wip 
+  @manual 
   Scenario: Verify User cannot search for substring of first and last name
   Given User searches for "user 1" and clicks search
   When User should see the users:
@@ -80,6 +80,12 @@ Feature:
   |search user 1|
   |search user 2|
   Then User must be able to navigate to the wall of  "search user 1"
+  
+  @manual
+  Scenario: Blank search should return all users except the super admin of the system
+  
+  @manual
+  Scenario: User profile picture must be present for all search results
   
     
     

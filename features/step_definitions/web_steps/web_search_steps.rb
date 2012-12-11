@@ -73,6 +73,14 @@ Then /^User should see "(.*?)" without any connection status$/ do |username|
       @app.search.should_not have_pending_response_user 
 end
 
+When /^User searches for the Super Admin$/ do
+  # @super_admin = "get the value from config"
+  @app.search.search_box.set "#{user.name}" 
+  @app.search.search_button.click
+  @app.search.wait_until_search_error_visible
+end
+
+
 
 
 

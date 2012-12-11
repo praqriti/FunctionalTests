@@ -49,3 +49,19 @@ Scenario Outline: Student views score after attempting the test
 Examples:
   |ROLE   |COURSE |STATUS|TEST|ATTEMPTS|QUESTIONS|
   |Student|Chemistry   |active|AntiHistamines|1|2|
+  
+@manual
+Scenario: Verify invalid option throws an appropriate error
+
+@wip
+Scenario: Teacher views test info without any student attempting the test
+
+@wip
+Scenario: Teacher views test info with a student attempting the test
+
+@wip
+Scenario: Student attempts available is updated after attempting a Multiple Attempt test on test info
+
+@wip
+Scenario: Verify attempts available is updated after a student has taken the test on test info
+

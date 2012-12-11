@@ -46,5 +46,9 @@ class App
   def my_connections
       MyConnections.new
   end
+  
+  def canvas_login
+    CanvasLogin.new
+  end
    
 end

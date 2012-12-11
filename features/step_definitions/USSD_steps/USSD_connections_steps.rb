@@ -21,4 +21,3 @@ When /^User replies "0" from connections page to go back to home page$/ do
 end
 
 
-

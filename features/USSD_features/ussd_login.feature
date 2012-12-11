@@ -23,6 +23,17 @@ Scenario Outline: Verify Incorrect login details
 	| camfed_today |              |
 	|              | password_two |
 	| camfed_today | password_two |
+	
+@manual
+  Scenario: two users cannot use the same session ID
+  
+@manual
+  Scenario: expiration of access token
+  
+@manual
+  Scenario: One user cannot continue with other users access token
+
+
 
 
 

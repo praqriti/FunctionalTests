@@ -43,4 +43,4 @@ Scenario: Verify that error is given to the user when she enters an invalid opti
   And User should see the courses list
   And User chooses course "1"
   And User sends an invalid option "9"
-  Then User returns to home page with error "invalid_option"
+  Then User returns with error "invalid_option"

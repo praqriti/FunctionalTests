@@ -49,7 +49,7 @@ Scenario: Verify back from update page from USSD
 	"""
 Scenario: Verify that error is given to the user when she enters an invalid option	
 	Given User sends an invalid option "9"
-	Then User returns to home page with error "invalid_option"
+	Then User returns with error "invalid_option"
 
 Scenario: Verify user not allowed to continue with incorrect access token
 	Given User chooses the option to "update status" with incorrect access_token
@@ -96,6 +96,9 @@ Scenario: Verify one user cannot use another users access token
 
   @manual
   Scenario: Verify no error on status update longer than max allowed length from USSD
+  
+  @manual
+  Scenario: Verify a status greater than 100 characters entered from web is truncated on USSD
 
 
 

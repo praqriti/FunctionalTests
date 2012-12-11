@@ -25,25 +25,25 @@ When /^User chooses the group "(.*?)"$/ do |group_name|
 end
 
 
-Given /^the following groups exist in canvas:$/ do |groups_table|
-	groups_table.hashes.each do |hash|
-		@groups << Group.create(hash)
-	end
-end
-
-
-Given /^User is enrolled to the following groups:$/ do |enrollment_table|
-  enrollment_table.hashes.each do |hash|
-  enroll_type = "#{hash[:ROLE]}Enrollment"
-	user = @users.find{|user| user.identifier == username}
-		@groups.each do |group|
-			if(group.name == "#{hash[:COURSE]}")
-				CanvasEnrollmentInterface.enroll_user(group.id, user.id, enroll_type, "active")
-			@enrolled_groups << group
-			end
-		end
-	end
-end
+# Given /^the following groups exist in canvas:$/ do |groups_table|
+#   groups_table.hashes.each do |hash|
+#     @groups << Group.create(hash)
+#   end
+# end
+# 
+# 
+# Given /^User is enrolled to the following groups:$/ do |enrollment_table|
+#   enrollment_table.hashes.each do |hash|
+#   enroll_type = "#{hash[:ROLE]}Enrollment"
+#   user = @users.find{|user| user.identifier == username}
+#     @groups.each do |group|
+#       if(group.name == "#{hash[:COURSE]}")
+#         CanvasEnrollmentInterface.enroll_user(group.id, user.id, enroll_type, "active")
+#       @enrolled_groups << group
+#       end
+#     end
+#   end
+# end
 
 
 Then /^User should see the groups list$/ do
@@ -60,7 +60,7 @@ Then /^User should see the groups list$/ do
 		}
 end
 
-Then /^User should see the groups list on page "([^\"]*)"$/ do |page_no|
+Then /^User should see the ordered groups list on page "([^\"]*)"$/ do |page_no|
 	actual_response = @last_response.parsed_response
 	page_no = page_no.to_i
 	rpp = "#{RECORDS_PER_PAGE}".to_i
@@ -87,6 +87,7 @@ Then /^User should only see group "([^\"]*)"$/ do |group_name|
 end
 
 Then /^User should see the group menu page$/ do
-  actual_response = @last_response.parsed_response
-  actual_response["message"].should == @messages.get("group_menu")
+  steps %{    
+    Then the JSON at "message" should be "#{@messages.get("group_menu")}"
+  }
 end

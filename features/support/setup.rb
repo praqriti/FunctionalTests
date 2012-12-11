@@ -18,6 +18,11 @@ RECORDS_PER_PAGE = "#{ENV_CONFIG['records_per_page']}"
 
 DEV_KEY = "#{ENV_CONFIG['dev_key']}"
 
+SUPER_ADMIN = "#{ENV_CONFIG['super_admin']}"
+
+SUPER_ADMIN_PASSWORD = "#{ENV_CONFIG['super_admin_password']}"
+
+
 Capybara.app_host = CANVAS_URL
 Capybara.default_selector = :css
 Capybara.default_driver = :selenium_firefox

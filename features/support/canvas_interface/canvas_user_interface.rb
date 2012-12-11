@@ -50,27 +50,13 @@ def self.delete_user(user)
 end
 
 def self.assign_account_admin(user)
-  # @last_response = JSONSpecInterface.post("#{CANVAS_URL}/login",
-  #       :body => {
-  #         :pseudonym_session =>
-  #             {
-  #                 :unique_id => "#{user.login_id}",
-  #                 :password => "#{user.password}"
-  #             },
-  #         :dev_key => "#{DEV_KEY}"
-  #       },
-  #       :headers => { "Accept" => "application/json"})
-  #   JSONSpecInterface.log(@last_response)
-  #   user.token = @last_response.parsed_response["token"]    
+  @last_response = JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/admins",
+         :body => {
+                   :user_id => "#{user.id}",
+                  },
+         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
+     JSONSpecInterface.log(@last_response)
 end
-
-# def self.delete_all_users()
-#   for i in (400..500).step(1)
-#         @delete_response = JSONSpecInterface.delete("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users/#{i}",
-#         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-#         JSONSpecInterface.log(@delete_response)
-#       end
-# end
 
 end
 

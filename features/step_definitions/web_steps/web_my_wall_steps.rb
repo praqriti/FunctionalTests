@@ -68,6 +68,7 @@ Then /^The Common Connections box "(.*?)" visible$/ do |arg1|
   else
     @app.my_wall.should have_common_connections
   end
+  binding.pry
 end
 
 

@@ -64,7 +64,12 @@ Feature:
   thisisacommentwhichisgreaterthan1024characters
   """
   And User logs out
-   
+  
+  @manual
+  Scenario: Verify user profile is displayed on both public and private user wall
+  
+  @manual @bug
+  Scenario: Verify edited picture is reflected on both wall and search results
     
     
       

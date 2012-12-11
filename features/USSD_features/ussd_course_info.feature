@@ -55,4 +55,7 @@ And User chooses the option "Courses"
 When User chooses the "Next" option
 And User chooses the course "English"
 Then User should see the message "teacher_with_pending_invitation"
+
+@manual
+Scenario: Verify selecting invalid option throws appropriate error
 	    

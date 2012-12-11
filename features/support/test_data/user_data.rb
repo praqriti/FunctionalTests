@@ -25,7 +25,7 @@ class Users
   end
   
   def create_unique_login(user)  
-    login_id = "test_login"+"#{1 + rand(10000000)}"  
+    login_id = "test_login"+"#{1 + rand(10000000)}" 
     return login_id
   end
   

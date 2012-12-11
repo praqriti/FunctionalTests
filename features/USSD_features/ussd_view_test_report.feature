@@ -5,7 +5,7 @@ Feature:
 	I want to view my score of a test
 
   @stage
-  Scenario Outline: Student views score without attempting the test
+  Scenario Outline: Student views test report
 
     Given the following test data with questions exists:
       |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|QUESTIONS|
@@ -25,3 +25,9 @@ Feature:
   Examples:
     |ROLE   |COURSE      |STATUS|TEST         |ATTEMPTS |QUESTIONS|
     |Teacher|Chemistry   |active|Hybridization|1        |2        |
+    
+@manual
+Scenario: Verify decimal places on the score page
+    
+    
+  
