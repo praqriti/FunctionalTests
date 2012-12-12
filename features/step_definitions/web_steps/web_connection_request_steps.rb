@@ -57,7 +57,7 @@ end
 
 Given /^User "(.*?)" has pending connection requests from "(.*?)" users$/ do |username, user_count|
 	(1..user_count.to_i).each do |i|
-		@users << CanvasUserInterface.create_user("dummy_user_#{i}_")
+		@users << User.create("dummy_user_#{i}_")
 		current_user = @users.last
     steps %{
 			And "#{current_user.identifier}" has sent connection request to "#{username}"
@@ -69,7 +69,7 @@ end
 
 Given /^User "(.*?)" has connections from "(.*?)" users$/ do |username, user_count|
 	(1..user_count.to_i).each do |i|
-		@users << CanvasUserInterface.create_user("dummy_user_#{i}_")
+		@users << User.create("dummy_user_#{i}_")
 		current_user = @users.last
     steps %{
 			And "#{current_user.identifier}" is connected to "#{username}"

@@ -6,7 +6,7 @@ Before do
   @messages = Messages.new
   @errors = Errors.new
   @statuses_to_clean = []
-  @logged_in_user = CanvasUserInterface.create_user("camfed_user")
+  @logged_in_user = User.create("camfed_user")
   @users << @logged_in_user
   @enrolled_groups = Array.new
 end
