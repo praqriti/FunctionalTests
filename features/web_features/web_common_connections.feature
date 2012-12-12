@@ -23,6 +23,7 @@ Scenario: Verify User doesnt see common connections box on wall of not connected
   Then The Common Connections box "is not" visible
   Then User logs out
 
+@wip
 Scenario: User should be able to see the common connections on wall
   Given the following users exists in canvas:
       |USER|
