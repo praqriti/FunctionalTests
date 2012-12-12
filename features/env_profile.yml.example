@@ -35,7 +35,7 @@ staging:
     canvas_url: http://192.168.31.8
     sen_url: http://192.168.31.8:8383
     sen_social_url: http://192.168.31.8/sen
-    access_token: Bearer cwclvUL2h9Hxx5KRwN26X7TjouCgdp5W2xPeUpGvD2SMMGRCcY1b10t58wixdBet
+    access_token: Bearer 0CcMHa3SJHmiI2h28sdXXAdF4zWAfj5sj1wHqWJOUSqMbsytPr0D4v7SxSGfCIGE
     dev_key: kVZqIlxlXAYSHTOKbQR8AIVDDJ1jjM21J6gXWYgxcBlrm1Vb36BIxJYxWGUUigVL
     account_id: 2
     records_per_page: 4
