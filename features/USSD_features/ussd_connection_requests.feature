@@ -31,3 +31,19 @@ Scenario: View connections requests
     Then User should see the list of pending requests for page "1"
     When User chooses the "Next" option
     Then User should see the list of pending requests for page "2"
+
+Scenario: Accept and reject connection
+  When User chooses option "2"
+  Then User should see the list of pending requests for page "1"
+  When User chooses option "1"
+  Then User should see connection response options
+  When User chooses "Accept" option
+  Then User should see the message "connection_request_accepted" with "requesting_user5"
+  When User chooses the "Previous" option
+  Then User should see the list of pending requests for page "1"
+  When User chooses option "1"
+  Then User should see connection response options
+  When User chooses "Reject" option
+  Then User should see the message "connection_request_rejected" with "requesting_user4"
+  When User chooses the "Previous" option
+  Then User should see the list of pending requests for page "1"
