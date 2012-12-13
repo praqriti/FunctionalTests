@@ -11,7 +11,7 @@ default:
 test:
     canvas_url: http://192.168.31.7
     sen_url: http://192.168.31.7:3001
-    sen_social_url: http://192.168.31.7/sen
+    sen_social_url: http://192.168.31.7/sen/api/v1
     access_token: Bearer Uw9flvBP5j8l7Vd4ABztVVLB8e4yJx2A5g6EGI7j58Yd2ySJs7qWqliltROUsKcB
     dev_key: 7knvfKyBe8u0N66pKy6nNaNGj1oSxb1XuIcqghle9exsYLZUPhyJA2yLgJ2XrW0O
     account_id: 2
@@ -34,8 +34,8 @@ int:
 staging:
     canvas_url: http://192.168.31.8
     sen_url: http://192.168.31.8:8383
-    sen_social_url: http://192.168.31.8/sen
-    access_token: Bearer 0CcMHa3SJHmiI2h28sdXXAdF4zWAfj5sj1wHqWJOUSqMbsytPr0D4v7SxSGfCIGE
+    sen_social_url: http://192.168.31.8/sen/api/v1
+    access_token: Bearer ZukXgmKizTdfMlN6eP2EuCLBlmPfFUuzdAlx0yJXJTA2qruPK6unWBieQuEh9pLF
     dev_key: kVZqIlxlXAYSHTOKbQR8AIVDDJ1jjM21J6gXWYgxcBlrm1Vb36BIxJYxWGUUigVL
     account_id: 2
     records_per_page: 4
