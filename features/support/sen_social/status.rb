@@ -8,7 +8,7 @@ class Status < SenSocialBase
   end
 
   def self.create params
-      response = self.post("status.json", {
+      response = self.post("users/self/status.json", {
           :status => {
               :message => params[:message]
           }
