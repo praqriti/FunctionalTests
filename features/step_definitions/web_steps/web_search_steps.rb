@@ -14,10 +14,10 @@ end
 When /^User navigates to search page$/ do
   sleep(1)
  @app.search.load 
- @app.search.wait_until_search_box_visible
 end
 
 When /^User searches for "([^\"]*)" and clicks search$/ do |search_query|
+  @app.search.wait_until_search_box_visible
   user = @users.find{|user| user.identifier == search_query}
   if (user)
   @app.search.search_box.set "#{user.name}" 
