@@ -35,7 +35,6 @@ Then /^User status "([^\"]*)" is updated successfully$/ do |message|
     Then User navigates to canvas home page
     Then status message should be "#{message}"
   }
-
 end
 
 
