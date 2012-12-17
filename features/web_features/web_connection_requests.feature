@@ -41,7 +41,7 @@ Scenario: Verify if a logged in user can reject his connection requests
                  |USER|
                  |requesting_user|
       Then User can "reject" the connection request from "requesting_user"
-      And User can see the "0" pending requests
+      And User can see "0" pending requests
       Then User navigates to "My Connections" page
       And User cannot see "requesting_user" on my connections page
       Then User logs out
@@ -55,11 +55,11 @@ Scenario: Verify if a logged in user can disconnect his connections he has added
   When User "camfed_user" logs into Canvas with her credentials
   When "camfed_user" should see the Canvas home page
   When User navigates to "My Connections" page
-  Then User can see the "1" connections available
+  Then User can see "1" connections available
   When User navigates to "My Connections" page
   And User can "disconnect" his connection "requesting_user"
   And User confirms the disconnection "requesting_user"
-  Then User can see the "0" connections available
+  Then User can see "0" connections available
   Then User logs out
 
 @stage
@@ -71,11 +71,11 @@ Scenario: Verify if a logged in user can disconnect his connections where he was
   When User "camfed_user" logs into Canvas with her credentials
   When "camfed_user" should see the Canvas home page
   When User navigates to "My Connections" page
-  Then User can see the "1" connections available
+  Then User can see "1" connections available
   When User navigates to "My Connections" page
   And User can "disconnect" his connection "requesting_user"
   And User confirms the disconnection "requesting_user"
-  Then User can see the "0" connections available
+  Then User can see "0" connections available
   Then User logs out
 
 Scenario: Verify if a logged in user can unconfirm a disconnection
@@ -89,7 +89,7 @@ Scenario: Verify if a logged in user can unconfirm a disconnection
 	When User navigates to "My Connections" page
 	And User can "disconnect" his connection "requesting_user"
 	And User unconfirms the disconnection
-	Then User can see the "1" connections available
+	Then User can see "1" connections available
 	Then User logs out
 
 @wip

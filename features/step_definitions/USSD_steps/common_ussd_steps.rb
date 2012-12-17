@@ -35,6 +35,25 @@ Given /^User replies with option "(.*?)"$/ do |option|
                                            :headers => { "Content-Type" => "application/json"})
 end
 
+And /^User chooses the "Previous" option$/ do
+ steps %{
+   Then User replies with option "*"   
+ }
+end
+
+When /^User replies "0" to go back to home page$/ do
+  steps %{
+    Then User replies with option "0"   
+  }
+end
+
+And /^User chooses the "Next" option$/ do
+	steps %{
+	  Then User replies with option "#"
+	}
+end
+
+
 When /^I save the access token for user "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end

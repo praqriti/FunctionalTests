@@ -10,6 +10,8 @@ Then /^User should see the list of pending requests for page "([^\"]*)"$/ do |pa
     actual_response["message"].include?(requester).should == true
   end
 
+  actual_response["message"].include?("0. Home").should == true
+
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"

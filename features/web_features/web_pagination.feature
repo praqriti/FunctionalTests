@@ -26,9 +26,9 @@ Scenario: Verify if a logged in user can reject connection request after paginat
 	When User navigates to "Connection Requests"
 	And User clicks on "show more" on "Connections Requests" page
 	And User rejects a connection request from page "2"
-	And User can see the "3" pending requests
+	And User can see "3" pending requests
 	Then User navigates to "My Connections" page
-	Then User can see the "0" connections available
+	Then User can see "0" connections available
 	And User logs out
  
 Scenario: Verify if a logged in user can accept connection request after pagination
@@ -39,9 +39,9 @@ Scenario: Verify if a logged in user can accept connection request after paginat
 	When User navigates to "Connection Requests"
 	And User clicks on "show more" on "Connections Requests" page
 	And User accepts a connection request from page "2"
-	And User can see the "3" pending requests
+	And User can see "3" pending requests
 	Then User navigates to "My Connections" page
-	Then User can see the "1" connections available
+	Then User can see "1" connections available
 	And User logs out
 
 Scenario: Verify if a logged in user can view correct number of connected users per page
@@ -51,7 +51,7 @@ Scenario: Verify if a logged in user can view correct number of connected users 
 	And User "camfed_user" logs into Canvas with her credentials
 	When "camfed_user" should see the Canvas home page
 	And User navigates to "My Connections" page
-	Then User can see the "4" connections available
+	Then User can see "4" connections available
 	Then User can view "2" connections on "My Connections" page
 	And User clicks on "show more" on "My Connections" page
 	And User can view "4" connections on "My Connections" page
@@ -64,7 +64,7 @@ Scenario: Verify if a logged in user can disconnect a user after pagination
 	And User "camfed_user" logs into Canvas with her credentials
 	When "camfed_user" should see the Canvas home page
 	And User navigates to "My Connections" page
-	Then User can see the "4" connections available
+	Then User can see "4" connections available
 	And User clicks on "show more" on "My Connections" page
 	And User disconnects a connection
 	And User navigates to "My Connections" page

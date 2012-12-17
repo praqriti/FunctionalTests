@@ -58,6 +58,8 @@ Then /^User should get a confirmation that the status was updated successfully$/
         Then the JSON at "session_type" should be "SESSION"
         Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
       } 
+      actual_response = @last_response.parsed_response
+     
 end
 
 And /^User chooses the option to "update status" with incorrect access_token$/ do

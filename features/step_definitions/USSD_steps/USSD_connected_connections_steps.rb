@@ -9,7 +9,7 @@ Then /^User should see the list of connected users for page "([^\"]*)"$/ do |pag
   @connected_users.reverse[start_index..end_index].each do |connected_user|
     actual_response["message"].include?(connected_user).should == true
   end
-
+  actual_response["message"].include?("0. Home").should == true
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"

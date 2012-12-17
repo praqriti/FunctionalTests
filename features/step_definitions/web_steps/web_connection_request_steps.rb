@@ -31,7 +31,7 @@ end
 Then /^User can "(.*?)" the connection request from "(.*?)"$/ do |user_action, username|
   user = @users.find{|user| user.identifier == username}
   steps %{
-		Then User can see the "1" pending requests
+		Then User can see "1" pending requests
 	}
 	if(user_action == 'accept')  
 		@app.connection_requests.accept_button.click 
@@ -45,7 +45,7 @@ Then /^User can "(.*?)" the connection request from "(.*?)"$/ do |user_action, u
   end
 end
 
-Then /^User can see the "(.*?)" pending requests$/ do |number|
+Then /^User can see "(.*?)" pending requests$/ do |number|
   sleep(1)
 	@app.connection_requests.load
 	@app.connection_requests.wait_until_header_message_visible

@@ -22,6 +22,7 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
+	  actual_response["message"].include?("0. Home").should == true
 end
 
 Given /^User publishes the course "([^\"]*)"$/ do |course_name|

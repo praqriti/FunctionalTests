@@ -67,6 +67,8 @@ Then /^User should see the courses list$/ do
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
+		
+		actual_response["message"].include?("0. Home").should == true
 end
 
 Then /^User should see the courses list on page "([^\"]*)"$/ do |page_no|
@@ -92,12 +94,6 @@ And /^User should not see "Previous" and "Next" option$/ do
 	actual_response["response"]["response_map"]["#"].should  be_nil
 end
 
-And /^User chooses the "Next" option$/ do
-	steps %{
-	  Then User replies with option "#"
-	}
-end
-
 And /^User should see the "Next" and "Previous" option$/ do
 	actual_response = @last_response.parsed_response["response"]
 	actual_response["message"].include?("Previous").should == true
@@ -107,18 +103,6 @@ end
 And /^User should see the "([^\"]*)" option$/ do |option|
 	actual_response = @last_response.parsed_response["response"]
   actual_response["message"].include?(option).should == true
-end
-
-And /^User chooses the "Previous" option$/ do
- steps %{
-   Then User replies with option "*"   
- }
-end
-
-When /^User replies "0" to go back to home page$/ do
-  steps %{
-    Then User replies with option "0"   
-  }
 end
 
 Then /^User should only see course "([^\"]*)"$/ do |course_name|
