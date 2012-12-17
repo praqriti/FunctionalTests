@@ -36,7 +36,7 @@ Scenario: logout and login as another user succesfully
     Then "camfed_teacher" should see the Canvas home page  
     Then User logs out
     
-@stage  
+@stage @bug 
 Scenario: access sen social before loggin in
     Given the following users exists in canvas:
          |USER|
