@@ -10,5 +10,7 @@ class Home < SitePrism::Page
   element :updated_status_message, "input#status_message.autoclearInput.previousData"
   element :status_updated, "form#new_status.new_status input.disabled"
   section :menu, MenuSection, "ul#menu"
-    
+  element :status_updated_notification_name, "div.dashboard_notification .header .notification_name"
+  element :notification_message, "div.dashboard_notification .content .user_content.enhanced"
+
 end
