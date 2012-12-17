@@ -27,3 +27,15 @@ rescue Capybara::TimeoutError, Capybara::ElementNotFound => e
     raise
   end
 end
+
+def notifications_page_reload(n = 3, &block)
+  found = block.call
+  if !found
+    if n > 0
+      @app.home.load
+      notifications_page_reload(n - 1, &block)
+    else
+      raise "notification not found"
+    end
+  end
+end
