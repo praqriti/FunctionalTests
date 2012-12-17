@@ -1,3 +1,9 @@
+And /^"(.*?)" has his status set to "(.*?)"$/ do |user_identifier, status|
+  user = @users.find{|user1| user1.identifier == user_identifier}
+  @status = Status.create(:message => status, :user => user)
+  @statuses_to_clean << @status
+end
+
 And /^User chooses the option to "update status"$/ do
   steps %{
       Then User replies with option "2"   
@@ -22,7 +28,6 @@ When /^User replies with new status message:$/ do |string|
   steps %{
       Then User replies with option "#{string}"   
     }
-
 end
 
 When /^User replies "0" from update status page to go back to home page$/ do
@@ -83,9 +88,21 @@ Then /^User recieves an error and the session is ended$/ do
 end
 
 Given /^There exists a status with more than 100 chars$/ do
-    @status = Status.create(:message => "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", :user => @logged_in_user)
+    @status = Status.create(
+    :message => "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
+    :user => @logged_in_user)
     @statuses_to_clean << @status
 end
+
+Given /^"([^\"]*)" has a status with more than 100 characters$/ do |username|
+  user = @users.find{|user1| user1.identifier == username}
+    @status = Status.create(
+    :message => "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
+    :user => user)
+    @statuses_to_clean << @status
+end
+
+
 
 
 

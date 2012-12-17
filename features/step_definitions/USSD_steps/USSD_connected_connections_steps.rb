@@ -20,11 +20,21 @@ end
 Then /^User should see the current status of "([^\"]*)"$/ do |username|
   user = @users.find{|user| user.identifier == username}
   message =   @statuses_to_clean.find{|status| status.user.id == user.id }.message
-  actual_response = @last_response.parsed_response
-  actual_response["message"].should eql "#{message}\n*. Back to My Connections"
+  steps %{
+ 		Then the JSON at "message" should be "#{message}\\n*. Back to My Connections"
+ 		}
+end
+
+Then /^User should see the current status of "([^\"]*)" truncated at 100 characters$/ do |username|
+  message = "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567..."
+  user = @users.find{|user| user.identifier == username}
+  steps %{
+ 		Then the JSON at "message" should be "#{message}\\n*. Back to My Connections"
+ 		}
 end
 
 Then /^User should see the empty status of "([^\"]*)"$/ do |username|
-  actual_response = @last_response.parsed_response
-  actual_response["message"].should eql " \n*. Back to My Connections"
+  steps %{
+  		Then the JSON at "message" should be " \\n*. Back to My Connections"
+  		}
 end

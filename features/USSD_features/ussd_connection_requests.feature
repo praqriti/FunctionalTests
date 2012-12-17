@@ -109,6 +109,32 @@ When User chooses option "2"
  Then User should see connection response options
  When User chooses the "Previous" option
  Then User should see the list of pending requests for page "1"
+ 
+Scenario: Verify invalid option after user rejects a connection
+  When User chooses option "2"
+  Then User should see the list of pending requests for page "1"
+  When User chooses option "1"
+  Then User should see connection response options
+  When User chooses "Reject" option
+  Then User should see the message "connection_request_rejected" with "requesting_user5"
+  And User sends an invalid option "9"
+  Then User returns with error "invalid_option"
+  When User chooses the "Previous" option
+  Then User should see the list of pending requests for page "1"
+  
+Scenario: Verify invalid option after user accepts a connection
+   When User chooses option "2"
+   Then User should see the list of pending requests for page "1"
+   When User chooses option "1"
+   Then User should see connection response options
+   When User chooses "Accept" option
+   Then User should see the message "connection_request_accepted" with "requesting_user5"
+   And User sends an invalid option "9"
+   Then User returns with error "invalid_option"
+   When User chooses the "Previous" option
+   Then User should see the list of pending requests for page "1"
+  
+  
   
 
     

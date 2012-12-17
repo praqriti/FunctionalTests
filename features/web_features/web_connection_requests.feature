@@ -85,7 +85,7 @@ Scenario: Verify if a logged in user can unconfirm a disconnection
   When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
   When "camfed_user" should see the Canvas home page
-	Then User can see the "1" connections available
+	Then User can see "1" connections available
 	When User navigates to "My Connections" page
 	And User can "disconnect" his connection "requesting_user"
 	And User unconfirms the disconnection
