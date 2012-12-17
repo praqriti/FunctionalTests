@@ -5,7 +5,7 @@ Given /^the following users exists in canvas:$/ do |users_table|
 end
 
 And /^"(.*?)" has his status set to "(.*?)"$/ do |user_identifier, status|
-  user = @users.find{|user1| user1.identifier = user_identifier}
+  user = @users.find{|user1| user1.identifier == user_identifier}
   @status = Status.create(:message => status, :user => user)
   @statuses_to_clean << @status
 end

@@ -31,3 +31,15 @@ Scenario: View connected connections
     Then User should see the list of connected users for page "1"
     When User chooses the "Next" option
     Then User should see the list of connected users for page "2"
+
+Scenario: View status of a connected user
+  Given "connected_user5" has his status set to "oolala le lo"
+  And "connected_user4" has his status set to ""
+  When User chooses option "1"
+  Then User should see the list of connected users for page "1"
+  When User chooses option "1"
+  Then User should see the current status of "connected_user5"
+  When User chooses the "Previous" option
+  Then User should see the list of connected users for page "1"
+  When User chooses option "2"
+  Then User should see the empty status of "connected_user4"

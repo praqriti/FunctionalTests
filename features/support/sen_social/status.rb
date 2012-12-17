@@ -2,8 +2,8 @@ class Status < SenSocialBase
   attr_accessor :id, :message, :user
 
   def initialize params, user
-    @id = params[:id]
-    @message = params[:message]
+    @id = params["id"]
+    @message = params["message"]
     @user = user
   end
 
