@@ -12,7 +12,7 @@ test:
     canvas_url: http://192.168.31.7
     sen_url: http://192.168.31.7:3001
     sen_social_url: http://192.168.31.7/sen/api/v1
-    access_token: Bearer Uw9flvBP5j8l7Vd4ABztVVLB8e4yJx2A5g6EGI7j58Yd2ySJs7qWqliltROUsKcB
+    access_token: Bearer 0nm5HNrsjPHNXhJztOkWy9FwpaGeX00TE31wORtXuTxVQVtXJ8u86q5bL5DUiub3
     dev_key: 7knvfKyBe8u0N66pKy6nNaNGj1oSxb1XuIcqghle9exsYLZUPhyJA2yLgJ2XrW0O
     account_id: 2
     records_per_page: 4
