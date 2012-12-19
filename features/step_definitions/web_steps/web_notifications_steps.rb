@@ -11,6 +11,13 @@ Then /^Status Updated notification is visible for "(.*?)" with status:"(.*?)"$/ 
   @app.home.notification_messages[0].text.should == "#{user.name}'s new status message is \"#{message}\""
 end
 
+Then /^Comment added notification is visible for "(.*?)" with comment:"(.*?)"$/ do |user_id, message|
+  user = @users.find{|user| user.identifier == user_id}
+  notifications_page_reload do
+    @app.home.notification_messages.select {|element| element.text == "#{user.name}'s comment \"#{message}\""}.count == 1
+  end
+end
+
 
 Then /^User should see connected user notification of "(.*?)" and "(.*?)"$/ do |user1_identifier, user2_identifier|
   user1 = @users.find{|user| user.identifier == user1_identifier}
