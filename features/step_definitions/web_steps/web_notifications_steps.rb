@@ -27,3 +27,9 @@ Then /^User should see connected user notification of "(.*?)" and "(.*?)"$/ do |
     @app.home.notification_messages.select {|element| element.text == "#{user2.name} accepted #{user1.name}'s invitation to get connected."}.count == 1
   end
 end
+
+Then /^User clicks on the connected notification of "(.*?)" and "(.*?)"$/ do |user1_identifier, user2_identifier|
+  user1 = @users.find{|user| user.identifier == user1_identifier}
+  user2 = @users.find{|user| user.identifier == user2_identifier}
+  @app.home.notification_links.select {|element| element.text == "#{user1.name} and #{user2.name} are now connected."}[0].click
+end

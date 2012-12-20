@@ -12,5 +12,5 @@ class Home < SitePrism::Page
   section :menu, MenuSection, "ul#menu"
   element :status_updated_notification_name, "div.dashboard_notification .header .notification_name"
   elements :notification_messages, "div.dashboard_notification .content .user_content.enhanced"
-
+  elements :notification_links, "div.dashboard_notification .header .title"
 end
