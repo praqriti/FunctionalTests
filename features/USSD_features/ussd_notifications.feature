@@ -10,19 +10,36 @@ Background:
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
-Scenario: View notifications menu
+Scenario: View notifications menu with message when there are no message
 	
 	Given User chooses the option "Notifications"
-	Then User should see the notifications menu
+	Then User should see the notifications menu with blank notifications
 
 @stage
 Scenario: Verify back from notifications page from ussd
 	
 	Given User chooses the option "Notifications"
-	And User should see the notifications menu
+	And User should see the notifications menu with blank notifications
 	When User replies "0" from notifications page to go back to home page
 	Then User should see the USSD home page
-	
+
+Scenario: Should see the aggregated notification category list with notification count for each category
+  Given User "camfed_user" is enrolled with following courses:
+    |COURSE     |ROLE    |STATUS|
+    |History    |Student |active|
+
+  Given the following users exists in canvas:
+    |USER|
+    |camfed_user_friend|
+
+  And "camfed_user" is connected to "camfed_user_friend"
+  And "camfed_user_friend" has his status set to "status message"
+
+  Given I make a new USSD login request
+  When User "camfed_user" logs into USSD with correct credentials
+  Then User should see the USSD home page
+  Given User chooses the option "Notifications"
+  And User should see the notifications menu with "1. Connection (1)"
 @manual
 Scenario: Verify invalid optiont throws an appropriate error
 

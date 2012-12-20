@@ -1,4 +1,5 @@
 Given /^User chooses the option "Notifications"$/ do
+  sleep 5
   steps %{
      Then User replies with option "1"   
    }
@@ -19,5 +20,14 @@ When /^User replies "0" from notifications page to go back to home page$/ do
     }
 end
 
+Then /^User should see the notifications menu with blank notifications$/ do
+  steps %{
+   Then the JSON at "message" should be "There are no Notifications\\n0. Home"
+  }
+end
+
+Then /^User should see the notifications menu with "(.*?)"$/ do |notification|
+  @last_response.parsed_response["message"].include?( notification).should be_true
+end
 
 
