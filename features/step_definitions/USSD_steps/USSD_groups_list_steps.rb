@@ -4,6 +4,12 @@ Given /^User chooses the option "Groups"$/ do
  }
 end
 
+Given /^User chooses group "(.*?)"$/ do |group_number|
+ steps %{
+   Then User replies with option "#{group_number}"
+ }
+end
+
 Given /^User "(.*?)" is enrolled with following groups:$/ do |username, groups_table|
   user = @users.find{|user| user.identifier == username}
 
@@ -56,6 +62,8 @@ Then /^User should see the ordered groups list on page "([^\"]*)"$/ do |page_no|
 		Then the JSON should have "access_token"
 		}
 end
+
+
 
 Then /^User should only see group "([^\"]*)"$/ do |group_name|
   actual_response["message"].include?("1. #{group_name}").should == true

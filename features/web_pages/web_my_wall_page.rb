@@ -22,6 +22,8 @@ class Wall < SitePrism::Page
   elements :previous_status_comments, "#history_status_message .comments fieldset.comment fieldset span.comment_text"
 	element :no_status_message, "div#user_profile_panel.sen_social div#status_history"
 	element :status_with_comments, ".status_with_comments"
-	element :common_connections, "#common_connections.panel"
+	element :common_connections_panel, "#common_connections.panel"
+	
+	sections :common_connections, CommonConnections, "#common_connections.panel ul.list li"
 
 end

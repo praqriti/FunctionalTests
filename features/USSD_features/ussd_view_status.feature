@@ -24,7 +24,6 @@ Background:
 
 Scenario: View status of a connected user
         Given "connected_user5" has his status set to "oolala le lo"
-        And "connected_user4" has his status set to ""
         And I make a new USSD login request
         When User "camfed_user" logs into USSD with correct credentials
         Then User should see the USSD home page
@@ -50,3 +49,4 @@ Scenario: View status of a connected user is truncated on display
         Then User should see the list of connected users for page "1"
         When User chooses option "2"
         Then User should see the current status of "connected_user4" truncated at 100 characters
+        

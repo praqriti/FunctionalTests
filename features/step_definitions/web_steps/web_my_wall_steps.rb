@@ -64,11 +64,31 @@ end
 
 Then /^The Common Connections box "(.*?)" visible$/ do |arg1|
   if arg1.include? "not"
-    @app.my_wall.should_not have_common_connections
+    @app.my_wall.should_not have_common_connections_panel
   else
-    @app.my_wall.should have_common_connections
+    @app.my_wall.should have_common_connections_panel
   end
 end
+
+Then /^User can see "(.*?)" on the common connections sidebar$/ do |username|
+  user = @users.find{|user| user.identifier == username}
+  @app.my_wall.common_connections.first.connection_name.text.should == "#{user.name}"
+  @app.my_wall.common_connections.first.connection_image.should be_visible
+end
+
+Then /^User can navigate to the "(.*?)" wall of "(.*?)" from the common connections sidebar$/ do |authorisation,username|
+  user = @users.find{|user| user.identifier == username}
+  @app.my_wall.common_connections.first.connection_wall.click
+  @app.my_wall.wait_until_user_name_visible
+  @app.my_wall.user_name.text.should == "#{user.name}"
+  @app.my_wall.should have_status_with_comments if authorisation == "private"
+  @app.my_wall.should_not have_status_with_comments if authorisation == "public"
+end
+
+Then /^the sidebar has "(.*?)" common connections$/ do |size|
+  @app.my_wall.common_connections.size.to_s.should == size
+end
+
 
 
 

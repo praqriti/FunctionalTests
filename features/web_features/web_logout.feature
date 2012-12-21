@@ -36,7 +36,7 @@ Scenario: logout and login as another user succesfully
     Then "camfed_teacher" should see the Canvas home page  
     Then User logs out
     
-@stage @bug 
+@stage
 Scenario: access sen social before loggin in
     Given the following users exists in canvas:
          |USER|
@@ -44,7 +44,7 @@ Scenario: access sen social before loggin in
     And User is on the Sign In page
     When User navigates to search page
     And User "camfed_user" logs into Canvas with her credentials
-    And "camfed_user" should see the Canvas home page
+    Then User lands on My Wall and can view all the elements
     And "camfed_user" has his status set to "status message 1"
     And User logs out and logs into canvas as "camfed_teacher"
     Then "camfed_teacher" should see the Canvas home page  

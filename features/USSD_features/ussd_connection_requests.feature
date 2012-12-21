@@ -3,7 +3,7 @@ Feature:
 
 	In order to know about the social surroundings
 	As a User
-	I want to be able to view my connections requests on my mobile device
+	I want to be able to view pending connections requests on my mobile device
 
 Background:
     Given the following users exists in canvas:
@@ -66,7 +66,7 @@ Scenario: Accept and reject connection
   Then User logs out
 
 @integration  
-  Scenario: Verify if accepting a user from USSD app reflects on canvas
+  Scenario: Verify if rejecting a user from USSD app reflects on canvas
   When User chooses option "2"
   Then User should see the list of pending requests for page "1"
   When User chooses option "1"
