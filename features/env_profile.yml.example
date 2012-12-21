@@ -9,15 +9,15 @@ default:
     super_admin: ""
     
 test:
-    canvas_url: http://192.168.31.7
-    sen_url: http://192.168.31.7:3001
-    sen_social_url: http://192.168.31.7/sen/api/v1
+    canvas_url: http://camfedtestenv
+    sen_url: http://camfedtestenv:3001
+    sen_social_url: http://camfedtestenv/sen/api/v1
     access_token: Bearer 0nm5HNrsjPHNXhJztOkWy9FwpaGeX00TE31wORtXuTxVQVtXJ8u86q5bL5DUiub3
     dev_key: 7knvfKyBe8u0N66pKy6nNaNGj1oSxb1XuIcqghle9exsYLZUPhyJA2yLgJ2XrW0O
     account_id: 2
     records_per_page: 4
     super_admin: "camfed@thoughtworks.com"
-    super_admin_password: "password"
+    super_admin_password: "camfed"
     
 int:
     canvas_url: http://192.168.31.6
@@ -32,9 +32,9 @@ int:
     
 
 staging:
-    canvas_url: http://192.168.31.8
-    sen_url: http://192.168.31.8:8383
-    sen_social_url: http://192.168.31.8/sen/api/v1
+    canvas_url: http://camfedstage
+    sen_url: http://camfedstage:8383
+    sen_social_url: http://camfedstage/sen/api/v1
     access_token: Bearer ZukXgmKizTdfMlN6eP2EuCLBlmPfFUuzdAlx0yJXJTA2qruPK6unWBieQuEh9pLF
     dev_key: kVZqIlxlXAYSHTOKbQR8AIVDDJ1jjM21J6gXWYgxcBlrm1Vb36BIxJYxWGUUigVL
     account_id: 2
