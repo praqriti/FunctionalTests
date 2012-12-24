@@ -42,7 +42,7 @@ Scenario: Should see the aggregated notification category list with notification
   And User should see the notifications menu with "1. Connection (1)"
 
 
-
+ @wip
   Scenario: Should see the notification list for a category
     Given User "camfed_user" is enrolled with following courses:
       |COURSE     |ROLE    |STATUS|
