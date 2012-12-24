@@ -27,7 +27,7 @@ Then /^User should see the notifications menu with blank notifications$/ do
 end
 
 Then /^User should see the notifications menu with "(.*?)"$/ do |notification|
-  @last_response.parsed_response["message"].include?( notification).should be_true
+  @last_response.parsed_response["message"].include?(notification).should be_true
 end
 
 
@@ -37,6 +37,14 @@ When /^User chooses the notification "(.*?)"$/ do |notification_name|
   steps %{
      Then User replies with option "#{notification_no[1]}"
    }
+end
+
+And /^"(.*?)" should see connection notification for "(.*?)"$/ do |user1, user2|
+  user =  @users.find{|u| u.identifier == user1}
+  friend = @users.find{|u| u.identifier == user2}
+  steps %{
+    And User should see the notifications menu with "1. #{friend.name} and #{user.name} are.."
+  }
 end
 
 
