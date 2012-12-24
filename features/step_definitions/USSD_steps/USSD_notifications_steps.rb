@@ -1,5 +1,5 @@
 Given /^User chooses the option "Notifications"$/ do
-  sleep 5
+  sleep 10
   steps %{
      Then User replies with option "1"   
    }
@@ -28,6 +28,15 @@ end
 
 Then /^User should see the notifications menu with "(.*?)"$/ do |notification|
   @last_response.parsed_response["message"].include?( notification).should be_true
+end
+
+
+When /^User chooses the notification "(.*?)"$/ do |notification_name|
+  message = @last_response.parsed_response["message"]
+  notification_no, _ = message.match(/(\d+)\. #{notification_name}/i)
+  steps %{
+     Then User replies with option "#{notification_no[1]}"
+   }
 end
 
 
