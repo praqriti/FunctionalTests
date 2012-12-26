@@ -42,8 +42,9 @@ end
 And /^"(.*?)" should see connection notification for "(.*?)"$/ do |user1, user2|
   user =  @users.find{|u| u.identifier == user1}
   friend = @users.find{|u| u.identifier == user2}
+  msg = "1. #{friend.name} and #{user.name} are now connected".truncate(58)
   steps %{
-    And User should see the notifications menu with "1. #{friend.name} and #{user.name} are.."
+    And User should see the notifications menu with "#{msg}"
   }
 end
 
