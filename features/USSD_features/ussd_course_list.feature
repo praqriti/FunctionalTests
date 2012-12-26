@@ -92,5 +92,23 @@ Scenario: Verify unpublished courses are not visible
   Given User chooses the option "Courses"
   Then User should see the courses list
 
-  @manual
-  Scenario: Verify that the order of courses in the list is correct with pagination
+Scenario: Verify that the order of courses in the list is correct with pagination
+
+  Given User "camfed_user" is enrolled with following courses:
+    |COURSE     |ROLE    |STATUS|
+    |Physics1    |Teacher |active|
+    |Physics2    |Teacher |active|
+    |Physics3    |Teacher |active|
+    |Physics4    |Teacher |active|
+    |Physics5    |Teacher |active|
+    |Physics6    |Teacher |active|
+    |Physics7    |Teacher |active|
+    |Physics8    |Teacher |active|
+    |Physics9    |Teacher |active|
+    |Physics10    |Teacher |active|
+    |Physics11    |Teacher |active|
+  Given User chooses the option "Courses"
+  Then User should see home as the last option
+  When User chooses the "Next" option
+  When User chooses the "Next" option
+  Then User should see the courses list in correct order

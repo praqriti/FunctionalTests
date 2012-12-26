@@ -71,6 +71,10 @@ Then /^User should see the courses list$/ do
 		actual_response["message"].include?("0. Home").should == true
 end
 
+Then /^User should see the courses list in correct order$/ do
+  @last_response["message"].include?("9. #{@enrolled_courses[8].name}\n10. #{@enrolled_courses[9].name}\n11. #{@enrolled_courses[10].name}").should == true
+end
+
 Then /^User should see the courses list on page "([^\"]*)"$/ do |page_no|
 	actual_response = @last_response.parsed_response
 	page_no = page_no.to_i
@@ -112,4 +116,9 @@ Then /^User should only see course "([^\"]*)"$/ do |course_name|
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
+end
+
+Then /^User should see home as the last option$/ do
+  last_option = @last_response["message"].split("\n").last
+  last_option.should == "0. Home"
 end
