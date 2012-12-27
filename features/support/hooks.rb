@@ -5,6 +5,7 @@ Before do
 	@groups = Array.new
   @messages = Messages.new
   @errors = Errors.new
+  @announcements = Array.new
   @statuses_to_clean = []
   @logged_in_user = User.create("camfed_user")
   @users << @logged_in_user

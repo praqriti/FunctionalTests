@@ -29,6 +29,13 @@ Feature:
   And User can view her name "camfed_user" on the comment
 	And User can view the timestamp on the comment
   And User logs out
+  
+  Scenario: Verify user cannot enter blank comment
+  Given User clicks on My Wall
+  Then User lands on My Wall and can view all the elements
+  And User can view her latest status message "status message"
+  And User cannot enter blank comment on the status
+  And User logs out
 
   #need to figure out a way to fix this
   @wip
@@ -42,13 +49,6 @@ Feature:
   |COMMENT|
   |Hello  |
   |Good   |
-  And User logs out
-
-  Scenario: Verify user cannot enter blank comment
-  Given User clicks on My Wall
-  Then User lands on My Wall and can view all the elements
-  And User can view her latest status message "status message"
-  And User cannot enter blank comment on the status
   And User logs out
 
   @manual

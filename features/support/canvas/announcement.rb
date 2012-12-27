@@ -8,8 +8,7 @@ class Announcement
     @message = params[:message]
   end
 
-  def self.create(user, group, params={})
-    
+  def self.create(user, group, params={})    
     @last_response =
         JSONSpecInterface.post("#{CANVAS_API}/groups/#{group.id}/discussion_topics",
            :body =>  params.merge({

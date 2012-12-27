@@ -1,8 +1,24 @@
-And /^"(.*?)" has announcement "(.*?)" made by "(.*?)"$/ do |group_name, announcement, user_identifier|
+And /^Group "(.*?)" has "(.*?)" new announcements made by "(.*?)":$/ do |group_name,announcement_number,user_identifier,announcements_table|
   group = @groups.find{|group| group.name == group_name}
   user = @users.find{|u| u.identifier == user_identifier}
-  Announcement.create user, group, :title => announcement, :message => announcement
+announcements_table.hashes.each do |hash|
+  Announcement.create user, group, :title => hash[:ANNOUNCEMENTS], :message => hash[:ANNOUNCEMENTS]
 end
+end
+
+And /^Group "(.*?)" has "(.*?)" new announcements made by "(.*?)"$/ do |group_name,announcement_number,user_identifier|
+  group = @groups.find{|group| group.name == group_name}
+  user = @users.find{|u| u.identifier == user_identifier}
+announcement_number.to_i.times do |hash|
+  @announcements << 
+  Announcement.create(user, group, AnnouncementData.announcement)
+end
+end
+
+Then /^User should see "(.*?)" ordered announcements on page "(.*?)"$/ do |no_of_announcements,page_no|
+  
+end
+
 
 Given /^User chooses to view announcements$/ do
   steps %{
