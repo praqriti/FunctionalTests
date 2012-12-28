@@ -52,7 +52,7 @@ end
 
 Then /^User should see confirmation for announcement created$/ do
   body = @last_response.parsed_response
-  body["message"].include?("Announcement created").should == true
+  body["message"].include?("Announcement saved").should == true
 end
 
 Then /^User is asked to "Enter Title of Announcement"$/ do
