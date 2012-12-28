@@ -37,7 +37,11 @@ Feature:
   And User cannot enter blank comment on the status
   And User logs out
 
-  #need to figure out a way to fix this
+  Scenario: Verify birthdate, language and time zone
+  Given User clicks on My Wall
+  Then User lands on My Wall and can view birthdate, language and time_zone
+
+#need to figure out a way to fix this
   @wip
   Scenario: Verify user can comment multiple times on her status message
   Given User clicks on My Wall
@@ -70,7 +74,8 @@ Feature:
   
   @manual @bug
   Scenario: Verify edited picture is reflected on both wall and search results
-    
+
+
     
       
    

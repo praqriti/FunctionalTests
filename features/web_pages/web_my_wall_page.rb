@@ -24,6 +24,9 @@ class Wall < SitePrism::Page
 	element :common_connections_panel, "#common_connections.panel"
 	element :add_connection_button_div, ".connection-link"
 	element :add_connection_button, "#connection_request_from_wall .submit"
+	element :birthdate, ".birthdate"
+	element :language, ".language"
+	element :time_zone, ".time_zone"
 
 	sections :common_connections, CommonConnections, "#common_connections.panel ul.list li"
 

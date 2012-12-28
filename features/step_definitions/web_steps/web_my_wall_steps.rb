@@ -3,6 +3,16 @@ Given /^User lands on My Wall and can view all the elements$/ do
   my_wall.wait_until_user_name_visible
 end
 
+Given /^User lands on My Wall and can view birthdate, language and time_zone$/ do
+  my_wall = Wall.new
+  my_wall.wait_until_user_name_visible
+  
+  my_wall.has_birthdate?.should == true
+  my_wall.has_language?.should == true
+  my_wall.has_time_zone?.should == true
+end
+
+
 Given /^User clicks on My Wall$/ do
   @app.home.menu.my_wall.click
   steps %{
