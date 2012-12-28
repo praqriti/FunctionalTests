@@ -24,8 +24,14 @@ class User
     return @token
   end
 
-  def self.create identifier
+  def self.create identifier, others = {}
     user = new(identifier)
+    user_hash = {
+        :name => "#{user.name}",
+        #:sort_name => "#{user}"
+    }
+
+    user_hash.merge!(others)
     @last_response =
         JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users",
                                :body =>  {
@@ -34,11 +40,7 @@ class User
                                            :unique_id => "#{user.login_id}",
                                            :password => "#{user.password}"
                                        },
-                                   :user =>
-                                       {
-                                           :name => "#{user.name}",
-                                           #:sort_name => "#{user}"
-                                       }
+                                   :user => user_hash
                                },
                                :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
     JSONSpecInterface.log(@last_response)

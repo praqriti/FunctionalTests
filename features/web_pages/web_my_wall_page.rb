@@ -1,5 +1,4 @@
 class Wall < SitePrism::Page
-  
   element :about_page_link, "li.user_name"
   element :logout_link, "li.logout"
   
@@ -23,7 +22,13 @@ class Wall < SitePrism::Page
 	element :no_status_message, "div#user_profile_panel.sen_social div#status_history"
 	element :status_with_comments, ".status_with_comments"
 	element :common_connections_panel, "#common_connections.panel"
-	
+	element :add_connection_button_div, ".connection-link"
+	element :add_connection_button, "#connection_request_from_wall .submit"
+
 	sections :common_connections, CommonConnections, "#common_connections.panel ul.list li"
 
+  def visit_profile_page user_id
+    self.class.set_url "/sen/users/#{user_id}"
+    self.load
+  end
 end

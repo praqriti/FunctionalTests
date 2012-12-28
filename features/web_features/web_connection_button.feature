@@ -10,7 +10,6 @@ Feature:
   And  User "camfed_user" logs into Canvas with her credentials
   And "camfed_user" has his status set to "status message"
 
-@wip @394
 Scenario: View the correct status of connection button on user wall
 Given the following users exists in canvas:
    |USER|
@@ -19,17 +18,17 @@ Given the following users exists in canvas:
    |camfed_pending_request_user|
    |camfed_awaiting_response_user|
    And "camfed_user" is connected to "camfed_friend_user"
-   Then User can navigate and view my wall without a connection button
+   Then User can navigate and view "his" wall without a connection button
    When User "camfed_user" has pending connection requests from:
    |USER|
    |camfed_pending_request_user|
    When User "camfed_awaiting_response_user" has pending connection requests from:
    |USER|
    |camfed_user|
-   Then User can view the wall of "camfed_non_friend" with button "Add as a connection"
-   Then User can view the wall of "camfed_friend_user" without button "Add as a connection"
-   Then User can view the wall of "camfed_pending_request_user" with button "Awaiting Response"
-   Then User can view the wall of "camfed_awaiting_response_user" with button "Awaiting Your Response"
+   Then User can navigate and view "camfed_non_friend" wall with button "Add Connection"
+   Then User can navigate and view "camfed_friend_user" wall without a connection button
+   Then User can navigate and view "camfed_pending_request_user" wall with button "Awaiting Your Response"
+   Then User can navigate and view "camfed_awaiting_response_user" wall with button "Awaiting Response"
    And User logs out
 
 @wip @394
