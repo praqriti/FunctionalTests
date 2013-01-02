@@ -63,7 +63,8 @@ Feature:
     When User clicks on the connected notification of "Mathew" and "camfed_user"
     Then User can navigate and view the wall of user "camfed_user"
 
-  Scenario: Verify if connection accepted notification is sent to common friebds
+@stage
+  Scenario: Verify if connection accepted notification is sent to common friends
     Given User "Common_friend" is enrolled with following courses:
       |COURSE     |ROLE    |STATUS|
       |History    |Student |active|

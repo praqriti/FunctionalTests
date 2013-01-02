@@ -23,6 +23,7 @@ Feature:
     And User "Lizzie" logs into Canvas with her credentials
     Then "Lizzie" should see the Canvas home page
 
+@stage
   Scenario: Verify if comment notification is visible to the user with status
     Then User can navigate and view the "private" wall of user "camfed_user"
     Then User comments "Lizzie's Comment" on the status of "camfed_user"

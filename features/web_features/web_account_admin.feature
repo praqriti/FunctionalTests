@@ -13,7 +13,7 @@ Background:
   When User "account_admin" is assigned the role of account admin
   And "account_admin" has his status set to "single status message only"
 	
-
+@stage
 Scenario: Verify account admin can access all sen social features
 
    When User is on the Sign In page

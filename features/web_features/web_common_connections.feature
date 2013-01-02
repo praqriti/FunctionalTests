@@ -20,6 +20,7 @@ Scenario: Verify User doesnt see common connections box
   Then The Common Connections box "is not" visible
   Then User logs out
 
+@stage
 Scenario: User should be able to see the common connections on wall of non connected user
     Given the following users exists in canvas:
     |USER|
@@ -30,7 +31,8 @@ Scenario: User should be able to see the common connections on wall of non conne
     Then User can navigate and view the wall of user "camfed_user2"
     Then The Common Connections box "is" visible
     Then User can navigate to the "public" wall of "camfed_user1" from the common connections sidebar
-    
+
+@stage    
 Scenario: User should be able to see the common connections on wall of a connected user
     Given the following users exists in canvas:
     |USER|

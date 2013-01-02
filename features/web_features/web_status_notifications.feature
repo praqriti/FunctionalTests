@@ -21,6 +21,7 @@ Feature:
     And User "camfed_user" logs into Canvas with her credentials
     Then "camfed_user" should see the Canvas home page
 
+@stage
   Scenario: Verify if status update notification is sent to connections
     When User "updates" the status message as "status message"
     Then User status "status message" is updated successfully
