@@ -29,7 +29,6 @@ int:
     records_per_page: 4
     super_admin: "integration@camfed.com"
     super_admin_password: "integration"
-    
 
 staging:
     canvas_url: http://camfedstage
@@ -39,5 +38,7 @@ staging:
     dev_key: kVZqIlxlXAYSHTOKbQR8AIVDDJ1jjM21J6gXWYgxcBlrm1Vb36BIxJYxWGUUigVL
     account_id: 2
     records_per_page: 4
-    super_admin: ""
+    super_admin: "sen.camfed@gmail.com"
+    super_admin_password: "password"    
+
     
