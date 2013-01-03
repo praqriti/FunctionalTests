@@ -78,8 +78,8 @@ PLATFORMS
 
 DEPENDENCIES
   builder (~> 2.1.2)
-  capybara
-  capybara-webkit
+  capybara (= 1.1.2)
+  capybara-webkit (= 0.12.1)
   cucumber
   database_cleaner
   headless

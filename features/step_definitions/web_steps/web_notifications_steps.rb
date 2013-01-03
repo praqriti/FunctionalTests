@@ -1,35 +1,47 @@
-Then /^The Status Updated Notification "(.*?)" visible$/ do |arg1|
+Then /^The Status Activity Notification "(.*?)" visible$/ do |arg1|
   if arg1.include? "not"
-    @app.home.should_not have_status_updated_notification_name
+    @app.home.should_not have_status_notification_group
   else
-    @app.home.should have_status_updated_notification_name
+    notifications_page_reload do
+      @app.home.has_status_notification_group?
+    end
   end
 end
 
 Then /^Status Updated notification is visible for "(.*?)" with status:"(.*?)"$/ do |user_id, message|
-  user = @users.find{|user| user.identifier == user_id}
-  @app.home.notification_messages[0].text.should == "#{user.name}'s new status message is \"#{message}\""
+  steps %{
+   Then Comment added notification is visible for "#{user_id}" with comment:"#{message}"
+  }
 end
 
 Then /^Comment added notification is visible for "(.*?)" with comment:"(.*?)"$/ do |user_id, message|
+  steps %{
+   Then The Status Activity Notification "is" visible
+  }
   user = @users.find{|user| user.identifier == user_id}
+  @app.home.status_notification_group.click()
+  @app.home.wait_until_status_notification_container_visible
+  @app.home.status_notifications.select {|element| element.text.include?("#{user.name}") && element.text.include?("#{message}")}.count.should == 1
+end
+
+
+Then /^User should see connection notifications containing link of "(.*?)" profile$/ do |user_identifier|
   notifications_page_reload do
-    @app.home.notification_messages.select {|element| element.text == "#{user.name}'s comment \"#{message}\""}.count == 1
+    @app.home.has_connection_notification_group?
   end
+  user = @users.find{|user| user.identifier == user_identifier}
+
+  @app.home.connection_notification_group_links.select{|element| element.text.include? "#{user.name}"}.count.should == 1
+end
+
+When /^User clicks on connection notification group$/ do
+  @app.home.connection_notification_group.click()
+  @app.home.wait_until_connection_notification_container_visible
 end
 
 
 Then /^User should see connected user notification of "(.*?)" and "(.*?)"$/ do |user1_identifier, user2_identifier|
   user1 = @users.find{|user| user.identifier == user1_identifier}
   user2 = @users.find{|user| user.identifier == user2_identifier}
-
-  notifications_page_reload do
-    @app.home.notification_messages.select {|element| element.text == "#{user2.name} accepted #{user1.name}'s invitation to get connected."}.count == 1
-  end
-end
-
-Then /^User clicks on the connected notification of "(.*?)" and "(.*?)"$/ do |user1_identifier, user2_identifier|
-  user1 = @users.find{|user| user.identifier == user1_identifier}
-  user2 = @users.find{|user| user.identifier == user2_identifier}
-  @app.home.notification_links.select {|element| element.text == "#{user1.name} and #{user2.name} are now connected."}[0].click
+  @app.home.connection_notifications.select {|element| element.text.include? "#{user2.name} accepted #{user1.name}'s invitation to get connected."}.count.should == 1
 end

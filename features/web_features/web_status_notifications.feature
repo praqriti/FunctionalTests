@@ -29,11 +29,10 @@ Feature:
     When User is on the Sign In page
     And User "Catheryn" logs into Canvas with her credentials
     Then "Catheryn" should see the Canvas home page
-    Then The Status Updated Notification "is" visible
     Then Status Updated notification is visible for "camfed_user" with status:"status message"
     Then User logs out
     When User is on the Sign In page
     And User "Marie" logs into Canvas with her credentials
     Then "Marie" should see the Canvas home page
-    Then The Status Updated Notification "is not" visible
+    Then The Status Activity Notification "is not" visible
     Then User logs out

@@ -26,9 +26,9 @@ Feature:
     When User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
     Then "camfed_user" should see the Canvas home page
+    Then User should see connection notifications containing link of "Mathew" profile
+    When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
-    When User clicks on the connected notification of "Mathew" and "camfed_user"
-    Then User can navigate and view the wall of user "Mathew"
 
   Scenario: Verify if connection accepted notification is sent to sending user friend
     Given User "camfed_user_friend" is enrolled with following courses:
@@ -37,9 +37,9 @@ Feature:
     When User is on the Sign In page
     And User "camfed_user_friend" logs into Canvas with her credentials
     Then "camfed_user_friend" should see the Canvas home page
+    Then User should see connection notifications containing link of "camfed_user" profile
+    When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
-    When User clicks on the connected notification of "Mathew" and "camfed_user"
-    Then User can navigate and view the wall of user "Mathew"
 
   Scenario: Verify if connection accepted notification is sent to receiving user
     Given User "Mathew" is enrolled with following courses:
@@ -48,9 +48,9 @@ Feature:
     When User is on the Sign In page
     And User "Mathew" logs into Canvas with her credentials
     Then "Mathew" should see the Canvas home page
+    Then User should see connection notifications containing link of "camfed_user" profile
+    When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
-    When User clicks on the connected notification of "Mathew" and "camfed_user"
-    Then User can navigate and view the wall of user "camfed_user"
 
   Scenario: Verify if connection accepted notification is sent to receiving user friend
     Given User "Mathew_friend" is enrolled with following courses:
@@ -59,9 +59,9 @@ Feature:
     When User is on the Sign In page
     And User "Mathew_friend" logs into Canvas with her credentials
     Then "Mathew_friend" should see the Canvas home page
+    Then User should see connection notifications containing link of "Mathew" profile
+    When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
-    When User clicks on the connected notification of "Mathew" and "camfed_user"
-    Then User can navigate and view the wall of user "camfed_user"
 
 @stage
   Scenario: Verify if connection accepted notification is sent to common friends
@@ -71,6 +71,6 @@ Feature:
     When User is on the Sign In page
     And User "Common_friend" logs into Canvas with her credentials
     Then "Common_friend" should see the Canvas home page
+    Then User should see connection notifications containing link of "Mathew" profile
+    When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
-    When User clicks on the connected notification of "Mathew" and "camfed_user"
-    Then User can navigate and view the wall of user "camfed_user"

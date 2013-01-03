@@ -4,8 +4,8 @@ group :test do
  
   gem "builder", "~> 2.1.2"
   gem 'random-word'
-  gem 'capybara'
-  gem 'capybara-webkit'
+  gem 'capybara', "1.1.2"
+  gem 'capybara-webkit', "0.12.1"
   gem 'database_cleaner'
   # gem 'cucumber-rails'
   gem 'cucumber'
