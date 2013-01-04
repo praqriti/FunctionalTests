@@ -48,4 +48,14 @@ And /^"(.*?)" should see connection notification for "(.*?)"$/ do |user1, user2|
   }
 end
 
+And /^"(.*?)" should see connection notification for user "(.*?)" with page_no "(.*?)"$/ do |user1, user2, page_no|
+  page_no ||= 1
+  user =  @users.find{|u| u.identifier == user1}
+  friend = @users.find{|u| u.identifier == user2}
+  msg = "#{page_no}. #{friend.name} and #{user.name} are now connected".truncate(58)
+  steps %{
+    And User should see the notifications menu with "#{msg}"
+  }
+end
+
 

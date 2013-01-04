@@ -42,7 +42,7 @@ Scenario: Should see the aggregated notification category list with notification
   And User should see the notifications menu with "1. Connection (1)"
 
 
-Scenario: Should see the notification list for a category
+Scenario: Should see the notification list for a category with pagination
     Given User "camfed_user" is enrolled with following courses:
       |COURSE     |ROLE    |STATUS|
       |History    |Student |active|
@@ -50,17 +50,20 @@ Scenario: Should see the notification list for a category
     Given the following users exists in canvas:
       |USER|
       |camfed_user_friend|
+      |camfed_user_friend_new|
 
     And "camfed_user" is connected to "camfed_user_friend"
-    And "camfed_user_friend" has his status set to "status message"
+    And "camfed_user" is connected to "camfed_user_friend_new"
 
     Given I make a new USSD login request
     When User "camfed_user" logs into USSD with correct credentials
     Then User should see the USSD home page
     Given User chooses the option "Notifications"
-    And User should see the notifications menu with "1. Connection (1)"
+    And User should see the notifications menu with "1. Connection (2)"
     Then User replies with option "1"
-    And "camfed_user" should see connection notification for "camfed_user_friend"
+    And "camfed_user" should see connection notification for user "camfed_user_friend_new" with page_no "1"
+    Then User replies with option "#"
+    And "camfed_user" should see connection notification for user "camfed_user_friend" with page_no "2"
 
 
 @manual
