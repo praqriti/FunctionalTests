@@ -16,7 +16,7 @@ Then /^User cannot see "(.*?)" on my connections page$/ do |username|
 end
 
 Given /^User "(.*?)" is connected to:$/ do |username, users_table|
-  @connected_users = []
+  @connected_users ||= []
   users_table.hashes.each do |hash|
   @connected_users << hash[:USER]
   steps %{
@@ -33,8 +33,9 @@ end
 
 When /^User can "disconnect" his connection "(.*?)"$/ do |username|
   user = @users.find{|user| user.identifier == username}
-  @app.my_connections.username.text.should == "#{user.name}"
-  @app.my_connections.disconnect_button.click
+  connection = @app.my_connections.username.select {|c| c.text == user.name}
+  connection.size.should == 1
+  connection[0].parent.find(".delete").click()
   @app.my_connections.wait_until_dialog_visible
 end
 

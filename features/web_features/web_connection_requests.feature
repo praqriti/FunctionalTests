@@ -72,7 +72,6 @@ Scenario: Verify if a logged in user can disconnect his connections where he was
   When "camfed_user" should see the Canvas home page
   When User navigates to "My Connections" page
   Then User can see "1" connections available
-  When User navigates to "My Connections" page
   And User can "disconnect" his connection "requesting_user"
   And User confirms the disconnection "requesting_user"
   Then User can see "0" connections available

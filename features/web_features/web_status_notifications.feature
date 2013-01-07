@@ -1,4 +1,4 @@
-@javascript
+#@javascript
 Feature:
 
   In order to use canvas
@@ -34,5 +34,19 @@ Feature:
     When User is on the Sign In page
     And User "Marie" logs into Canvas with her credentials
     Then "Marie" should see the Canvas home page
+    Then The Status Activity Notification "is not" visible
+    Then User logs out
+
+  Scenario: Verify if status update notification is not sent to deleted connection(s)
+    When User navigates to "My Connections" page
+    And User can "disconnect" his connection "Catheryn"
+    And User confirms the disconnection "Catheryn"
+    Then User navigates to canvas home page
+    When User "updates" the status message as "status message"
+    Then User status "status message" is updated successfully
+    Then User logs out
+    When User is on the Sign In page
+    And User "Catheryn" logs into Canvas with her credentials
+    Then "Catheryn" should see the Canvas home page
     Then The Status Activity Notification "is not" visible
     Then User logs out

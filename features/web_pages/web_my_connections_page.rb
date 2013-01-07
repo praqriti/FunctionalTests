@@ -5,7 +5,7 @@ class MyConnections < SitePrism::Page
   element :user, ".user"
   element :disconnect_button, ".connection_action .delete" 
   element :connection_message, ".connection_action div.message"
-  element :username, ".user .title"
+  elements :username, ".user .title"
   element :connection_alert, ".notice .message"
   element :dialog, ".modal_container" 
   element :confirm_disconnect_button, ".modal_confirm_button"

@@ -113,6 +113,9 @@ And /^"(.*?)" is connected to "(.*?)"$/ do |user_identifier, friend_identifier|
   user1 = @users.find{|user| user.identifier == user_identifier}
   friend1 = @users.find{|user| user.identifier == friend_identifier}
   ConnectionsInterface.create_connection(user1, friend1)
+
+  @connected_users ||= []
+  @connected_users << friend_identifier
 end
 
 And /^User disconnects a connection$/ do
