@@ -78,3 +78,21 @@ Scenario Outline: Student chooses an invalid option while attempting test
   Examples:
     |ROLE   |COURSE      |STATUS|TEST    |ATTEMPTS|QUESTIONS|
     |Student|Science     |active|Biology |1				|2        |
+
+Scenario Outline: Student attempts a test with no questions
+
+	Given the following test data with questions exists:
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|QUESTIONS|
+    |<ROLE> |<COURSE>|<STATUS>|<TEST>|<ATTEMPTS>|<QUESTIONS>|
+  And I make a new USSD login request
+  And User "camfed_user" logs into USSD with correct credentials
+  And User navigates to test page and chooses test "1"
+  Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
+  When User chooses "Attempt Test"
+  Then User should see the message "no_question_added_to_quiz"
+  When User chooses "Back" option
+  Then User should see the tests for page "1"
+
+  Examples:
+    |ROLE   |COURSE      |STATUS|TEST    |ATTEMPTS|QUESTIONS|
+    |Student|Science     |active|Biology |1		  |0        |
