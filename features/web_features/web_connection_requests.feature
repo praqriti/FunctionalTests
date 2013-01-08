@@ -1,4 +1,4 @@
-@javascript
+#@javascript
 Feature:
 
 	In order to use canvas 
@@ -91,6 +91,22 @@ Scenario: Verify if a logged in user can unconfirm a disconnection
 	And User unconfirms the disconnection
 	Then User can see "1" connections available
 	Then User logs out
+
+Scenario: Verify if a logged in user can view his connection requests on his home page
+  Given the following users exists in canvas:
+    |USER|
+    |requesting_user1|
+  When User "camfed_user" has pending connection requests from:
+    |USER|
+    |requesting_user|
+    |requesting_user1|
+  And User is on the Sign In page
+  When User "camfed_user" logs into Canvas with her credentials
+  Then "camfed_user" should see the Canvas home page
+  And User should see connection requests from:
+    |USER|
+    |requesting_user|
+    |requesting_user1|
 
 @wip
 Scenario: Verify if a logged in user can view connection requests with pagination

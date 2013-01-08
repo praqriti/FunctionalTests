@@ -17,4 +17,5 @@ class Home < SitePrism::Page
   elements :connection_notification_group_links, "li.stream-connection .stream_header .links a"
   element :connection_notification_container, "li.stream-connection .details_container"
   elements :connection_notifications, "table#connection-details tr"
+  elements :global_messages, "div.global-message.image-block .image-block-content .message"
 end
