@@ -50,5 +50,9 @@ class App
   def canvas_login
     CanvasLogin.new
   end
+
+  def error_404_page
+    Error404Page.new
+  end
    
 end
