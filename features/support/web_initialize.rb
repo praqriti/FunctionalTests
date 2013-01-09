@@ -54,5 +54,8 @@ class App
   def error_404_page
     Error404Page.new
   end
-   
+
+  def unauthorised_error_page
+    UnauthorisedErrorPage.new
+  end
 end
