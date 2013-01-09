@@ -130,6 +130,6 @@ Then /^User should see connection requests from:$/ do |users_table|
     user_identifier = hash[:USER]
     user = @users.find{|user| user.identifier == user_identifier}
     messages = @app.home.global_messages
-    messages.collect{|c| c.text}.select{|m| m.include?("You’ve been invited to get connected to #{user.name}")}.count.should == 1
+    messages.collect{|c| c.text}.select{|m| m.include?(user.name)}.count.should == 1
   end
 end
