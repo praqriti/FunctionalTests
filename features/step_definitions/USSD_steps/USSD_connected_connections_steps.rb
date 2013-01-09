@@ -6,7 +6,7 @@ Then /^User should see the list of connected users for page "([^\"]*)"$/ do |pag
   start_index = rpp * (page_no-1)
   end_index = start_index + (rpp-1)
 
-  @connected_users.reverse[start_index..end_index].each do |connected_user|
+  @connected_users.to_a[start_index..end_index].each do |connected_user|
     actual_response["message"].include?(connected_user).should == true
   end
   actual_response["message"].include?("0. Home").should == true

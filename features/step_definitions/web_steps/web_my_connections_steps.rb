@@ -3,11 +3,11 @@ When /^User navigates to "My Connections" page$/ do
   @app.my_connections.wait_until_header_message_visible 
 end
 
-
 Then /^User can see "(.*?)" on my connections page$/ do |username|
   user = @users.find{|user| user.identifier == username}
-  @app.my_connections.username.text.should == "#{user.name}"
-  @app.my_connections.should have_disconnect_button
+  connection = @app.my_connections.username.select {|c| c.text == user.name}
+  connection.size.should == 1
+  connection[0].parent.find(".delete")
 end
 
 Then /^User cannot see "(.*?)" on my connections page$/ do |username|
@@ -16,7 +16,7 @@ Then /^User cannot see "(.*?)" on my connections page$/ do |username|
 end
 
 Given /^User "(.*?)" is connected to:$/ do |username, users_table|
-  @connected_users ||= []
+  @connected_users ||= Set.new
   users_table.hashes.each do |hash|
   @connected_users << hash[:USER]
   steps %{
