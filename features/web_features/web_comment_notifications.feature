@@ -1,4 +1,4 @@
-#@javascript
+@javascript
 Feature:
 
   As an user
