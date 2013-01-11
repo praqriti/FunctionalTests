@@ -9,7 +9,7 @@ class ConnectionsInterface
     response = JSONSpecInterface.put( "#{SEN_SOCIAL_URL}/connections/#{connection_id}",
                                        :body => {},
                                        :headers => { "Authorization" => "#{user.token}"})
-    response["connection_state"].should == "connected"
+    response["connection_state"].should == "accepted"
   end
 
   def self.send_connection_request(user, friend)
