@@ -7,7 +7,7 @@ class ConnectionsInterface
   def self.create_connection(user, friend)
     connection_id = send_connection_request(friend, user)
     response = JSONSpecInterface.put( "#{SEN_SOCIAL_URL}/connections/#{connection_id}",
-                                       :body => {},
+                                       :body => {:sub_action => "accept"},
                                        :headers => { "Authorization" => "#{user.token}"})
     response["connection_state"].should == "accepted"
   end
