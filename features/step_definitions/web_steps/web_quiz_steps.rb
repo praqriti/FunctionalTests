@@ -50,6 +50,7 @@ And /^User navigates to quiz "([^\"]*)" for course "([^\"]*)"$/ do |quiz_name, c
   quiz = @quizzes.select {|q| q.title == quiz_name}.first
   Quiz.set_page_url course.id, quiz.id
   @app.one_quiz.load
+  @app.one_quiz.wait_until_resume_visible
 end
 
 And /^User resumes the quiz$/ do
