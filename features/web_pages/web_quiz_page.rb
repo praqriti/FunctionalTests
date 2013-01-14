@@ -3,6 +3,6 @@ class Quiz < SitePrism::Page
     self.set_url "/courses/#{course_id}/quizzes/#{quiz_id}"
   end
 
-  element :resume, 'header//a[text()="Resume Quiz"]'
+  element :resume, 'header.quiz-header div a'
   sections :questions, QuestionsSection, ".question_holder"
 end
