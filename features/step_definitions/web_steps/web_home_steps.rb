@@ -9,6 +9,8 @@ Then /^User navigates to canvas home page$/ do
   retry_on_timeout do
     @app.home.load 
   end
+  @app.home.wait_until_header_visible
+  @app.home.wait_until_status_message_visible
 end
 
 Then /^I log out of my account$/ do

@@ -12,7 +12,7 @@ Background:
 	Given I make a new USSD login request
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
-	
+@wip
 Scenario: View announcements on group
 Given Group "History" has "2" new announcements made by "camfed_user":
   |ANNOUNCEMENTS|

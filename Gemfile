@@ -2,10 +2,10 @@ source "http://rubygems.org"
 
 group :test do
  
-  gem "builder", "~> 2.1.2"
+  gem "builder"
   gem 'random-word'
-  gem 'capybara', "1.1.2"
-  gem 'capybara-webkit', "0.12.1"
+  gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   # gem 'cucumber-rails'
   gem 'cucumber'

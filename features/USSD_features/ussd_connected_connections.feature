@@ -38,7 +38,7 @@ Scenario: View connected connections
     Then User should see the USSD home page
     
 
-@integration        
+@integration @wip
 Scenario: Verify if removing a user from web reflects on USSD app and no pagination is visible
        When User is on the Sign In page
        When User "camfed_user" logs into Canvas with her credentials

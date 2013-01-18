@@ -4,6 +4,7 @@ And /^User can navigate and view the wall of user "([^\"]*)"$/ do |username|
   Then User navigates to search page
   Then User searches for "#{username}" and clicks search
   }
+  @app.search.wait_until_username_visible
   @app.search.username.text.should == user.name
   @app.search.users_link.click
   @app.my_wall.wait_until_user_name_visible
@@ -17,6 +18,7 @@ end
 
 
 Then /^the comment "(.*?)" by "(.*?)" is visible on users wall$/ do |comment, username|
+  @app.my_wall.wait_until_comments_visible
   @app.my_wall.comments.each do |actual_comment|
 		actual_comment.text.should == comment
 	end
@@ -31,6 +33,7 @@ And /^User can navigate and view the "([^\"]*)" wall of user "([^\"]*)"$/ do |vi
   Then User navigates to search page
   Then User searches for "#{username}" and clicks search
   }
+  @app.search.wait_until_username_visible
   @app.search.username.text.should == user.name
   @app.search.users_link.click
   @app.my_wall.wait_until_user_name_visible

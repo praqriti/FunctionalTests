@@ -30,14 +30,14 @@ end
 
 When /^User adds the user "(.*?)" as a connection$/ do |username|
   user = @users.find{|user| user.identifier == username}
-  @app.search.wait_until_search_results_visible
+  @app.search.wait_until_username_visible
   @app.search.username.text.should == "#{user.name}"
   @app.search.unlinked_user.click
   @app.search.wait_until_connection_alert_visible
 end
 
 When /^User should see the users$/ do |users_table|
-  @app.search.wait_until_search_results_visible
+  @app.search.wait_until_username_visible
   users_table.hashes.each do |hash|  
   user = @users.find{|user| user.identifier == hash[:USER]}
   @app.search.username.text.should == "#{user.name}"
@@ -47,12 +47,13 @@ end
 When /^User should see the search error$/ do  
   # @app.search.wait_until_search_error_visible
   # @app.search.search_results.text.should == ""
+  @app.search.wait_until_error_notice_visible
   @app.search.error_notice.text.should == "Sorry!, Unable to find user with entered criteria"
 end
 
 Then /^User should see "(.*?)" as an "(.*?)" connection$/ do |identifier, connection_status|
   user = @users.find{|user| user.identifier == identifier}
-    @app.search.wait_until_search_results_visible
+    @app.search.wait_until_username_visible
     @app.search.username.text.should == "#{user.name}"
     @app.search.should have_unlinked_user if(connection_status == "unlinked")
     @app.search.should have_pending_request_user if(connection_status == "request pending")
@@ -62,7 +63,7 @@ end
 
 Then /^User should see "(.*?)" without any connection status$/ do |username|
   user = @users.find{|user| user.identifier == username}
-  @app.search.wait_until_search_results_visible
+  @app.search.wait_until_username_visible
   @app.search.username.text.should == "#{user.name}"
       @app.search.should_not have_unlinked_user 
       @app.search.should_not have_pending_request_user 

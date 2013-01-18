@@ -16,9 +16,7 @@ Then /^User cannot see "(.*?)" on my connections page$/ do |username|
 end
 
 Given /^User "(.*?)" is connected to:$/ do |username, users_table|
-  @connected_users ||= Set.new
   users_table.hashes.each do |hash|
-  @connected_users << hash[:USER]
   steps %{
       And "#{username}" is connected to "#{hash[:USER]}"
   }
@@ -46,7 +44,7 @@ And /^User confirms the disconnection "(.*?)"$/ do |username|
   @app.my_connections.wait_until_connection_alert_visible
   @app.my_connections.connection_alert.text.should == "#{user.name} and You are no longer connected"
   #for integration tests
-  @connected_users.delete("#{user.identifier}")
+  @connected_users.delete(user)
 end
 
 And /^User unconfirms the disconnection$/ do

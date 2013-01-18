@@ -11,6 +11,7 @@ Feature:
     When User "camfed_user" logs into USSD with correct credentials
     Then User should see the USSD home page
 
+@wip
   Scenario: Create an announcement on groups which user is attached
     Given User "camfed_user" is enrolled with following groups:
       |name         |
@@ -29,6 +30,7 @@ Feature:
     Then User chooses to view announcements
     Then User should see announcement "Title for Announcement" made by "camfed_user"
 
+  @wip
   Scenario: Create an announcement on groups which user is attached and change body
     Given User "camfed_user" is enrolled with following groups:
       |name         |
