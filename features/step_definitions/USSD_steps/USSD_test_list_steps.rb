@@ -22,7 +22,7 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
-	  actual_response["message"].include?("0. Home").should == true
+	  actual_response["message"].include?("0 Home").should == true
 end
 
 Given /^User publishes the course "([^\"]*)"$/ do |course_name|
@@ -46,9 +46,9 @@ end
 
 Then /^User should see quiz menu for Student having "([^\"]*)" questions and "([^\"]*)" attempts available$/ do |question_count, attempts|
   actual_response = @last_response.parsed_response
-  actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}\n1. View Score\n2. Attempt Quiz\n0. Home"
-  actual_response["message"].include?("2. Attempt Quiz").should == true
-  actual_response["message"].include?("1. View Score").should == true
+  actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}\n1 View Score\n2 Attempt Quiz\n0 Home"
+  actual_response["message"].include?("2 Attempt Quiz").should == true
+  actual_response["message"].include?("1 View Score").should == true
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -58,9 +58,9 @@ end
 
 Then /^User should see quiz menu for Teacher having "([^\"]*)" questions and "([^\"]*)" total attempts$/ do |question_count, attempts|
    actual_response = @last_response.parsed_response
-   actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nTotal Attempts: #{attempts}\n1. View Report\n0. Home"
-   actual_response["message"].include?("0. Home").should == true
-   actual_response["message"].include?("1. View Report").should == true
+   actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nTotal Attempts: #{attempts}\n1 View Report\n0 Home"
+   actual_response["message"].include?("0 Home").should == true
+   actual_response["message"].include?("1 View Report").should == true
   steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -83,12 +83,12 @@ end
 
 Then /^User should see the "Next" option on tests list$/ do
 	actual_response = @last_response.parsed_response["response"]
-  actual_response["message"].include?("#. Next").should == true
+  actual_response["message"].include?("# Next").should == true
 end
 
 Then /^User should see the "Previous" option on tests list$/ do
 	actual_response = @last_response.parsed_response["response"]
-  actual_response["message"].include?("*. Previous").should == true
+  actual_response["message"].include?("* Previous").should == true
 end
 
 When /^User replies "0" from tests page to go back to home page$/ do

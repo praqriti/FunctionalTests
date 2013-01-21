@@ -27,7 +27,7 @@ end
 
 When /^User chooses the course "(.*?)"$/ do |course_name|
 	message = @last_response.parsed_response["message"]
-  course_no, _ = message.match(/(\d+)\. #{course_name}/i)
+  course_no, _ = message.match(/(\d+) #{course_name}/i)
   steps %{
      Then User replies with option "#{course_no[1]}"
    }
@@ -68,11 +68,11 @@ Then /^User should see the courses list$/ do
 		Then the JSON should have "access_token"
 		}
 		
-		actual_response["message"].include?("0. Home").should == true
+		actual_response["message"].include?("0 Home").should == true
 end
 
 Then /^User should see the courses list in correct order$/ do
-  @last_response["message"].include?("9. #{@enrolled_courses[8].name}\n10. #{@enrolled_courses[9].name}\n11. #{@enrolled_courses[10].name}").should == true
+  @last_response["message"].include?("9 #{@enrolled_courses[8].name}\n10 #{@enrolled_courses[9].name}\n11 #{@enrolled_courses[10].name}").should == true
 end
 
 Then /^User should see the courses list on page "([^\"]*)"$/ do |page_no|
@@ -110,7 +110,7 @@ And /^User should see the "([^\"]*)" option$/ do |option|
 end
 
 Then /^User should only see course "([^\"]*)"$/ do |course_name|
-  actual_response["message"].include?("1. #{course_name}").should == true
+  actual_response["message"].include?("1 #{course_name}").should == true
 	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
@@ -120,5 +120,5 @@ end
 
 Then /^User should see home as the last option$/ do
   last_option = @last_response["message"].split("\n").last
-  last_option.should == "0. Home"
+  last_option.should == "0 Home"
 end

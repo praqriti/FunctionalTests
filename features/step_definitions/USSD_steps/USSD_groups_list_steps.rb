@@ -24,7 +24,7 @@ end
 
 When /^User chooses the group "(.*?)"$/ do |group_name|
 	message = @last_response.parsed_response["message"]
-  group_no, _ = message.match(/(\d+)\. #{group_name}/i)
+  group_no, _ = message.match(/(\d+) #{group_name}/i)
   steps %{
      Then User replies with option "#{group_no[1]}"
    }
@@ -43,7 +43,7 @@ Then /^User should see the groups list$/ do
 		Then the JSON should have "access_token"
 		}
 		
-	  actual_response["message"].include?("0. Home").should == true
+	  actual_response["message"].include?("0 Home").should == true
 end
 
 Then /^User should see the ordered groups list on page "([^\"]*)"$/ do |page_no|
@@ -66,7 +66,7 @@ end
 
 
 Then /^User should only see group "([^\"]*)"$/ do |group_name|
-  actual_response["message"].include?("1. #{group_name}").should == true
+  actual_response["message"].include?("1 #{group_name}").should == true
 	steps %{
 		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
