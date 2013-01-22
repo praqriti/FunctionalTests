@@ -24,8 +24,8 @@ Then /^User should see the current status of "([^\"]*)"$/ do |username|
  		}
 end
 
-Then /^User should see the current status of "([^\"]*)" truncated at 100 characters$/ do |username|
-  message = "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567..."
+Then /^User should see the current status of "([^\"]*)" truncated with char limit$/ do |username|
+  message = "1234567890123456789012345678901234567..."
   user = @users.find{|user| user.identifier == username}
   steps %{
  		Then the JSON at "message" should be "#{message}\\n* Back to My Connections"

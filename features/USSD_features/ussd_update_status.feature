@@ -45,7 +45,7 @@ Scenario: Verify back from update page from USSD
 	And User chooses the option to "update status"
 	Then User should see his previously updated message:
 	"""
-	1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567...
+	1234567890123456789012345678901234567...
 	"""
 Scenario: Verify that error is given to the user when she enters an invalid option	
 	Given User sends an invalid option "9"
@@ -63,7 +63,7 @@ Scenario: status length should be limited to 100 chars if present more in length
     And User chooses the option to "update status"
     Then User should see his previously updated message:
     """
-    1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567...
+    1234567890123456789012345678901234567...
     """	
 
 @stage	

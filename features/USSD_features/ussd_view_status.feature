@@ -48,5 +48,5 @@ Scenario: View status of a connected user is truncated on display
         When User chooses option "1"
         Then User should see the list of connected users for page "1"
         When User chooses option "2"
-        Then User should see the current status of "connected_user4" truncated at 100 characters
+        Then User should see the current status of "connected_user4" truncated with char limit
         
