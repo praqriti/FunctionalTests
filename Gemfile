@@ -4,7 +4,7 @@ group :test do
  
   gem "builder"
   gem 'random-word'
-  gem 'capybara'
+  gem "capybara", "~> 2"
   gem 'capybara-webkit'
   gem 'database_cleaner'
   # gem 'cucumber-rails'

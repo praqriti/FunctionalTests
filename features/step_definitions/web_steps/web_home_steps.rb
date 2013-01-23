@@ -21,14 +21,13 @@ Then /^I log out of my account$/ do
 end
 
 And /^User "updates" the status message as "([^\"]*)"$/ do |message|
-  retry_on_timeout do
-  @app.home.wait_until_status_message_visible
+  @app.home.wait_until_status_visible
  steps %{
    When User "enters" the status message as "#{message}"
  }
   @app.home.create_status_button.click
   @app.home.wait_until_status_updated_visible
-end
+
 end
 
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|
@@ -46,8 +45,8 @@ end
 
 Then /^User status "([^\"]*)" is not updated$/ do |message|
   @app.home.load 
+  @app.home.wait_until_status_visible
    retry_on_timeout do
-    @app.home.wait_until_status_message_visible
     @app.home.should have_updated_status_message
     @app.home.status_message.value.should_not == "#{message}"
   end

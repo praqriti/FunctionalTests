@@ -5,6 +5,7 @@ class Home < SitePrism::Page
   element :about_page_link, "li.user_name"
   element :header, "#header-logo"
   element :logout_link, "ul#identity li.logout a"
+  element :status, "#status"
   element :status_message, "#status_message" 
   # "input[name='status[message]']" 
   element :create_status_button, "form#new_status.new_status input.submit"
