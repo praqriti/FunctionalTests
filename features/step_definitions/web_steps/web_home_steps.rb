@@ -1,16 +1,19 @@
 Given /^User lands on the home page$/ do
   retry_on_timeout do
-   @app.home.wait_until_header_visible
-   @app.home.wait_until_status_message_visible
+  @app.home.should be_displayed
+   # @app.home.wait_until_header_visible
+   # @app.home.wait_until_status_message_visible
   end
 end
 
 Then /^User navigates to canvas home page$/ do
-  retry_on_timeout do
+  retry_on_timeout do    
     @app.home.load 
   end
-  @app.home.wait_until_header_visible
-  @app.home.wait_until_status_message_visible
+  @app.home.should be_displayed
+  
+  # @app.home.wait_until_header_visible
+  #  @app.home.wait_until_status_message_visible
 end
 
 Then /^I log out of my account$/ do
@@ -42,7 +45,12 @@ end
 
 
 Then /^User status "([^\"]*)" is not updated$/ do |message|
-   @app.home.status_message.value.should_not == "#{message}"
+  @app.home.load 
+   retry_on_timeout do
+    @app.home.wait_until_status_message_visible
+    @app.home.should have_updated_status_message
+    @app.home.status_message.value.should_not == "#{message}"
+  end
 end
 
 Then /^User can update the status again as "([^\"]*)"$/ do |message|
