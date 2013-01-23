@@ -18,20 +18,22 @@ After('@leave_the_window_open') do |scenario|
 end
 
 def retry_on_timeout(n = 3, &block)
-  block.call
-rescue Capybara::ElementNotFound => e
+  found = block.call
+if !found
   if n > 0
-    puts "Catched error: #{e.message}. #{n-1} more attempts."
+    puts "Catched error: #{n-1} more attempts."
     retry_on_timeout(n - 1, &block)
   else
-    raise
+    raise "element not found"
   end
+end
 end
 
 def notifications_page_reload(n = 3, &block)
   found = block.call
   if !found
     if n > 0
+      puts "delayed job delay: #{n-1} more attempts."
       @app.home.load
       notifications_page_reload(n - 1, &block)
     else
