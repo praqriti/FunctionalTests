@@ -1,5 +1,6 @@
 class Home < SitePrism::Page
   set_url "/"
+  set_url_matcher //
   
   element :about_page_link, "li.user_name"
   element :header, "#header-logo"

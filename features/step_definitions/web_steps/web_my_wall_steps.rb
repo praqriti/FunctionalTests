@@ -1,6 +1,6 @@
 Given /^User lands on My Wall and can view all the elements$/ do
-  my_wall = Wall.new
-  my_wall.wait_until_user_name_visible
+  @app.my_wall.load
+  @app.my_wall.wait_until_user_name_visible
 end
 
 Given /^User lands on My Wall and can view birthdate, language and time_zone$/ do

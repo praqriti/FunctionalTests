@@ -16,6 +16,7 @@ Feature:
     Then "test_user" should see the Canvas home page
     When User navigates to the url "/sen/users/qwerty"
     Then User should see "404" error page
+    Then User logs out
 
   Scenario: User must see the unauthorised page if he is not authorised to view a page
     When User is on the Sign In page
@@ -23,3 +24,5 @@ Feature:
     Then "test_user" should see the Canvas home page
     When User navigates to the url "/sen/users/2/posts"
     Then User should see "unauthorised" error page
+    Then User logs out
+    

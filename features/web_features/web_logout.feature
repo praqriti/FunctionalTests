@@ -45,9 +45,8 @@ Scenario: access sen social before loggin in
     When User navigates to search page
     And User "camfed_user" logs into Canvas with her credentials
     Then User lands on My Wall and can view all the elements
-    And "camfed_user" has his status set to "status message 1"
     And User logs out and logs into canvas as "camfed_teacher"
     Then "camfed_teacher" should see the Canvas home page  
-    Then User status "status updated" is not updated
+    Then User lands on My Wall and can view all the elements    
     Then User logs out
 

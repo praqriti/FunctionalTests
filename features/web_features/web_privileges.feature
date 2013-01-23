@@ -7,14 +7,14 @@ Feature:
   
   Background:
   Given the following users exists in canvas:
-          |USER|
-          |requesting_user|
-  Given User "camfed_user" is connected to:
-	|USER|
-	|requesting_user|
-  When User is on the Sign In page
-  And User "requesting_user" logs into Canvas with her credentials
+           |USER|
+           |requesting_user|
+  Given User is on the Sign In page
+  Given User "requesting_user" logs into Canvas with her credentials 
   Then "requesting_user" should see the Canvas home page
+  Given User "camfed_user" is connected to:
+ 	|USER|
+ 	|requesting_user|
 
   @stage
   Scenario: User must not be able to update the status of another user

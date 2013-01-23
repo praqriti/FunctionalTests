@@ -40,6 +40,8 @@ Feature:
   Scenario: Verify birthdate, language and time zone
   Given User clicks on My Wall
   Then User lands on My Wall and can view birthdate, language and time_zone
+  Then User logs out
+  
 
 #need to figure out a way to fix this
   @wip

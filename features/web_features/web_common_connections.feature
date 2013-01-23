@@ -31,6 +31,8 @@ Scenario: User should be able to see the common connections on wall of non conne
     Then User can navigate and view the wall of user "camfed_user2"
     Then The Common Connections box "is" visible
     Then User can navigate to the "public" wall of "camfed_user1" from the common connections sidebar
+    Then User logs out
+    
 
 @stage    
 Scenario: User should be able to see the common connections on wall of a connected user
@@ -45,6 +47,8 @@ Scenario: User should be able to see the common connections on wall of a connect
     Then User can navigate and view the wall of user "camfed_user2"
     Then The Common Connections box "is" visible
     Then User can navigate to the "private" wall of "camfed_user1" from the common connections sidebar
+    Then User logs out
+    
 
 Scenario: User should be able to see the common connections on wall with pagination
   Given the following users exists in canvas:

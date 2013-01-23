@@ -106,6 +106,8 @@ Scenario: Verify if a logged in user can view his connection requests on his hom
     |USER|
     |requesting_user|
     |requesting_user1|
+    Then User logs out
+    
 
 @wip
 Scenario: Verify if a logged in user can view connection requests with pagination

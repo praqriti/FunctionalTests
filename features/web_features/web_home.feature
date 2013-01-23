@@ -39,6 +39,8 @@ Scenario: Status updated on web must be reflected on my mobile device
  And User should see his previously updated message "status message"
  And User replies with new status message "new status message" 
  Then User should get a confirmation that the status was updated successfully
+ Then User logs out
+ 
 
 @manual
 Scenario: Verify that user cannot enter a status greater than 256 characters

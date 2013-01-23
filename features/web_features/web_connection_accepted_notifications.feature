@@ -29,6 +29,8 @@ Feature:
     Then User should see connection notifications containing link of "Mathew" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
+    Then User logs out
+    
 
   Scenario: Verify if connection accepted notification is sent to sending user friend
     Given User "camfed_user_friend" is enrolled with following courses:
@@ -40,6 +42,8 @@ Feature:
     Then User should see connection notifications containing link of "camfed_user" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
+    Then User logs out
+    
 
   Scenario: Verify if connection accepted notification is sent to receiving user
     Given User "Mathew" is enrolled with following courses:
@@ -51,6 +55,8 @@ Feature:
     Then User should see connection notifications containing link of "camfed_user" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
+    Then User logs out
+    
 
   Scenario: Verify if connection accepted notification is sent to receiving user friend
     Given User "Mathew_friend" is enrolled with following courses:
@@ -62,6 +68,8 @@ Feature:
     Then User should see connection notifications containing link of "Mathew" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
+    Then User logs out
+    
 
 @stage
   Scenario: Verify if connection accepted notification is sent to common friends
@@ -74,3 +82,5 @@ Feature:
     Then User should see connection notifications containing link of "Mathew" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
+    Then User logs out
+    
