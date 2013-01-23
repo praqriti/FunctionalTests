@@ -18,14 +18,13 @@ After('@leave_the_window_open') do |scenario|
 end
 
 def retry_on_timeout(n = 3, &block)
-  found = block.call  
-  if !found
+  block.call  
+  rescue Capybara::ElementNotFound => e
    if n > 0
     puts "waiting for element. #{n-1} more attempts."
     retry_on_timeout(n - 1, &block)
   else
     raise "element not found"
-  end
   end
 end
 

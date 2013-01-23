@@ -12,7 +12,7 @@ end
 When /^User navigates to "Connection Requests"$/ do
   sleep(1)
   @app.connection_requests.load
-  @app.connection_requests.wait_until_users_visible
+  @app.connection_requests.wait_for_users
 end
 
 Then /^User can see the pending connection requests sent from:$/ do |users_table|
@@ -35,12 +35,12 @@ Then /^User can "(.*?)" the connection request from "(.*?)"$/ do |user_action, u
 	}
 	if(user_action == 'accept')  
 		@app.connection_requests.accept_button.click 
-		@app.connection_requests.wait_until_connection_alert_visible
+		@app.connection_requests.wait_for_connection_alert
 		@app.connection_requests.connection_alert.text.should == "#{user.name} and You are now connected"
 	end
   if(user_action == 'reject')
     @app.connection_requests.reject_button.click 
-    @app.connection_requests.wait_until_connection_alert_visible
+    @app.connection_requests.wait_for_connection_alert
     @app.connection_requests.connection_alert.text.should == "#{user.name} and You are no longer connected"
   end
 end
@@ -48,7 +48,7 @@ end
 Then /^User can see "(.*?)" pending requests$/ do |number|
   sleep(1)
 	@app.connection_requests.load
-	@app.connection_requests.wait_until_header_message_visible
+	@app.connection_requests.wait_for_header_message
 	@app.connection_requests.header_message.text.should == "#{number} Pending Request(s)"
 	if(number!='0')
 		@app.connection_requests.wait_for_connection_details
@@ -95,12 +95,12 @@ end
 
 When /^User rejects a connection request from page "(.*?)"$/ do |user_count|
   @app.connection_requests.connection_details.last.reject_button.click
-  @app.connection_requests.wait_until_connection_alert_visible
+  @app.connection_requests.wait_for_connection_alert
 end
 
 When /^User accepts a connection request from page "(.*?)"$/ do |user_count|
   @app.connection_requests.connection_details.last.accept_button.click
-  @app.connection_requests.wait_until_connection_alert_visible
+  @app.connection_requests.wait_for_connection_alert
 end
 
 And /^"(.*?)" has sent connection request to "(.*?)"$/ do |user_identifier, friend_identifier|
@@ -119,9 +119,9 @@ end
 
 And /^User disconnects a connection$/ do
   @app.my_connections.disconnect_button.click
-  @app.my_connections.wait_until_dialog_visible
+  @app.my_connections.wait_for_dialog
   page.find("#modal_confirm_button").click
-  @app.my_connections.wait_until_connection_alert_visible
+  @app.my_connections.wait_for_connection_alert
 end
 
 Then /^User should see connection requests from:$/ do |users_table|

@@ -1,11 +1,11 @@
 Given /^User lands on My Wall and can view all the elements$/ do
   @app.my_wall.load
-  @app.my_wall.wait_until_user_name_visible
+  @app.my_wall.wait_for_user_name
 end
 
 Given /^User lands on My Wall and can view birthdate, language and time_zone$/ do
   my_wall = Wall.new
-  my_wall.wait_until_user_name_visible
+  my_wall.wait_for_user_name
   
   my_wall.has_birthdate?.should == true
   my_wall.has_language?.should == true
@@ -39,22 +39,22 @@ And /^User can view the timestamp on the comment$/ do
 end
 
 Then /^User comments "(.*?)" on her status message$/ do |arg1|
-  @app.my_wall.wait_until_comment_box_visible
+  @app.my_wall.wait_for_comment_box
   @app.my_wall.comment_box.set "#{arg1}"
   @app.my_wall.comment_submit.click
-	@app.my_wall.wait_until_comments_visible
-	@app.my_wall.wait_until_comment_box_visible
+	@app.my_wall.wait_for_comments
+	@app.my_wall.wait_for_comment_box
 end
 
 Then /^the comments are visible on My Wall$/ do |comments_table|
-  # @app.my_wall.wait_until_comment_box_visible
+  # @app.my_wall.wait_for_comment_box
 	expected_comments = comments_table.hashes.collect{|x| x["COMMENT"]}
 	actual_comments = @app.my_wall.comments.collect(&:text)
 	expected_comments.sort.should == actual_comments.sort	
 end
 
 Then /error message "(.*?)" is displayed$/ do |error1|
-  @app.my_wall.wait_until_error_message_visible
+  @app.my_wall.wait_for_error_message
   @app.my_wall.error_message.text.should == error1
 end
 
@@ -69,7 +69,7 @@ end
 Then /^User comments on her status message:$/ do |string|
   @app.my_wall.comment_box.set "#{string}"
   @app.my_wall.comment_submit.click
-  @app.my_wall.wait_until_comment_box_visible
+  @app.my_wall.wait_for_comment_box
 end
 
 Then /^The Common Connections box "(.*?)" visible$/ do |arg1|
@@ -83,13 +83,13 @@ end
 Then /^User can see "(.*?)" on the common connections sidebar$/ do |username|
   user = @users.find{|user| user.identifier == username}
   @app.my_wall.common_connections.first.connection_name.text.should == "#{user.name}"
-  @app.my_wall.common_connections.first.connection_image.should be_visible
+  @app.my_wall.common_connections.first.connection_image.should be
 end
 
 Then /^User can navigate to the "(.*?)" wall of "(.*?)" from the common connections sidebar$/ do |authorisation,username|
   user = @users.find{|user| user.identifier == username}
   @app.my_wall.common_connections.first.connection_wall.click
-  @app.my_wall.wait_until_user_name_visible
+  @app.my_wall.wait_for_user_name
   @app.my_wall.user_name.text.should == "#{user.name}"
   @app.my_wall.should have_status_with_comments if authorisation == "private"
   @app.my_wall.should_not have_status_with_comments if authorisation == "public"

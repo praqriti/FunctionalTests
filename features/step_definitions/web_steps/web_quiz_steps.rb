@@ -36,13 +36,13 @@ end
 
 Then /^User creates quiz "([^\"]*)" for group "([^\"]*)"$/ do |quiz_name,quiz_group|
     @app.quiz.load
-    @app.quiz.wait_until_new_quiz_button_visible
+    @app.quiz.wait_for_new_quiz_button
     @app.quiz.new_quiz_button.click
-    @app.quiz.wait_until_publish_button_visible
+    @app.quiz.wait_for_publish_button
     page.select "#{quiz_group}", :from => 'quiz_assignment_group_id'
     @app.quiz.quiz_name_field.set "#{quiz_name}"
     @app.quiz.publish_button.click
-    @app.quiz.wait_until_quiz_name_header_visible
+    @app.quiz.wait_for_quiz_name_header
 end
 
 And /^User navigates to quiz "([^\"]*)" for course "([^\"]*)"$/ do |quiz_name, course_name|
@@ -50,7 +50,7 @@ And /^User navigates to quiz "([^\"]*)" for course "([^\"]*)"$/ do |quiz_name, c
   quiz = @quizzes.select {|q| q.title == quiz_name}.first
   Quiz.set_page_url course.id, quiz.id
   @app.one_quiz.load
-  @app.one_quiz.wait_until_resume_visible
+  @app.one_quiz.wait_for_resume
 end
 
 And /^User resumes the quiz$/ do

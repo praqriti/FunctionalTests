@@ -20,7 +20,7 @@ Then /^Comment added notification is visible for "(.*?)" with comment:"(.*?)"$/ 
   }
   user = @users.find{|user| user.identifier == user_id}
   @app.home.status_notification_group.click()
-  @app.home.wait_until_status_notification_container_visible
+  @app.home.wait_for_status_notification_container
   @app.home.status_notifications.select {|element| element.text.include?("#{user.name}") && element.text.include?("#{message}")}.count.should == 1
 end
 
@@ -36,7 +36,7 @@ end
 
 When /^User clicks on connection notification group$/ do
   @app.home.connection_notification_group.click()
-  @app.home.wait_until_connection_notification_container_visible
+  @app.home.wait_for_connection_notification_container
 end
 
 

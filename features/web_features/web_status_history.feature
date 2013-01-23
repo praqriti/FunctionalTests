@@ -46,9 +46,10 @@ Scenario: Verify user has 7 statuses with comments and can view previous 5 statu
   And "camfed_user" has his status set to "status message 3"
 	Then User clicks on My Wall
 	And User comments "Good Status" on her status message
-	And User comments "Nice Status" on her status message
 	Then User navigates to canvas home page
   And "camfed_user" has his status set to "status message 4"
+  Then User clicks on My Wall
+  And User comments "Nice Status" on her status message
   And "camfed_user" has his status set to "status message 5"
 	Then User clicks on My Wall
 	And User comments "Wow! Incredible!" on her status message

@@ -1,7 +1,7 @@
 Then /^User is on the Sign In page$/ do
   @app = App.new
   @app.home.load
-  @app.login.wait_until_sign_in_button_visible
+  @app.login.wait_for_sign_in_button
   @app.login.should be_displayed
 end
 
@@ -13,7 +13,7 @@ When /^User "([^\"]*)" logs into Canvas with her credentials$/ do |identifier|
 end 
   
 Then /^I am given an appropriate error$/ do
-  @app.login.wait_until_message_box_visible
+  @app.login.wait_for_message_box
   @app.login.message_box.text.should == "Incorrect username or password."
 end
 
@@ -44,7 +44,7 @@ end
 Given /^Super Admin logs into Canvas$/ do
   @app = App.new
   @app.canvas_login.load
-  @app.canvas_login.wait_until_sign_in_button_visible  
+  @app.canvas_login.wait_for_sign_in_button  
   @app.canvas_login.email.set "#{SUPER_ADMIN}"
   @app.canvas_login.password.set "#{SUPER_ADMIN_PASSWORD}"
   @app.canvas_login.sign_in_button.click
@@ -62,7 +62,7 @@ Given /^Super Admin tries to login using CAS$/ do
 end
 
 Then /^Super Admin must not be allowed to login$/ do
-  @app.login.wait_until_sign_in_button_visible  
+  @app.login.wait_for_sign_in_button  
   #assert on error when bug is fixed
 end
 

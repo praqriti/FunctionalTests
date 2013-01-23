@@ -1,8 +1,8 @@
 Given /^User lands on the home page$/ do
   retry_on_timeout do
   @app.home.should be_displayed
-   # @app.home.wait_until_header_visible
-   # @app.home.wait_until_status_message_visible
+   # @app.home.wait_for_header
+   # @app.home.wait_for_status_message
   end
 end
 
@@ -12,8 +12,8 @@ Then /^User navigates to canvas home page$/ do
   end
   @app.home.should be_displayed
   
-  # @app.home.wait_until_header_visible
-  #  @app.home.wait_until_status_message_visible
+  # @app.home.wait_for_header
+  #  @app.home.wait_for_status_message
 end
 
 Then /^I log out of my account$/ do
@@ -21,16 +21,17 @@ Then /^I log out of my account$/ do
 end
 
 And /^User "updates" the status message as "([^\"]*)"$/ do |message|
-  @app.home.wait_until_status_visible
+  @app.home.wait_for_status
  steps %{
    When User "enters" the status message as "#{message}"
  }
   @app.home.create_status_button.click
-  @app.home.wait_until_status_updated_visible
+  @app.home.wait_for_status_updated
 
 end
 
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|
+  @app.home.wait_for_status
   @app.home.status_message.click
   @app.home.status_message.set "#{message}"
 end
@@ -45,7 +46,7 @@ end
 
 Then /^User status "([^\"]*)" is not updated$/ do |message|
   @app.home.load 
-  @app.home.wait_until_status_visible
+  @app.home.wait_for_status
    retry_on_timeout do
     @app.home.should have_updated_status_message
     @app.home.status_message.value.should_not == "#{message}"
@@ -56,6 +57,7 @@ Then /^User can update the status again as "([^\"]*)"$/ do |message|
   steps %{
     Then User navigates to canvas home page
   }
+  @app.home.wait_for_status
   @app.home.status_message.click
   steps %{
     Then User "updates" the status message as "#{message}"
@@ -72,7 +74,7 @@ end
 
 Then /^status message should be "([^\"]*)"$/ do |message|
   retry_on_timeout do
-  @app.home.wait_until_status_message_visible
+  @app.home.wait_for_status_message
   @app.home.should have_updated_status_message
   @app.home.updated_status_message.value.should == "#{message}"
 end
