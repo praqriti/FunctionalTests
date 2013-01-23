@@ -12,7 +12,7 @@ test:
     canvas_url: http://camfedtestenv
     sen_url: http://camfedtestenv:3001
     sen_social_url: http://camfedtestenv/sen/api/v1
-    access_token: Bearer 0nm5HNrsjPHNXhJztOkWy9FwpaGeX00TE31wORtXuTxVQVtXJ8u86q5bL5DUiub3
+    access_token: Bearer SRp3FjZPyoMqB7jv5r3OSfws2QYj16z5uXVOYyRgRxWR0yJ0Tw0GmuAQHASQZ2d1
     dev_key: 7knvfKyBe8u0N66pKy6nNaNGj1oSxb1XuIcqghle9exsYLZUPhyJA2yLgJ2XrW0O
     account_id: 2
     records_per_page: 4
