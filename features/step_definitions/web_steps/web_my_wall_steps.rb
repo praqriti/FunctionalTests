@@ -1,6 +1,11 @@
 Given /^User lands on My Wall and can view all the elements$/ do
   @app.my_wall.load
-  @app.my_wall.wait_for_user_name
+    retry_on_timeout do
+       @app.my_wall.wait_for_user_name
+       @app.my_wall.should have_birthdate
+       @app.my_wall.should have_language
+       @app.my_wall.should have_time_zone
+    end 
 end
 
 Given /^User lands on My Wall and can view birthdate, language and time_zone$/ do
@@ -21,6 +26,7 @@ Given /^User clicks on My Wall$/ do
 end
 
 Then /^User can view her latest status message "(.*?)"$/ do |arg1|
+  @app.my_wall.wait_for_status_message
   @app.my_wall.status_message.text.should == arg1
 end
 

@@ -1,9 +1,6 @@
 When /^User clicks on Show previous status messages link$/ do
+  @app.my_wall.wait_for_previous_status_link
   @app.my_wall.previous_status_link.click
-end
-
-Then /^User should see the previous statuses link$/ do
-  @app.my_wall.should have_previous_status_link
 end
 
 Then /^User should see previous "(.*?)" status messages$/ do |no_of_status, expected_status_message|

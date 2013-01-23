@@ -11,17 +11,6 @@ Background:
   And User "camfed_user" logs into Canvas with her credentials
   Then "camfed_user" should see the Canvas home page
 
-
-Scenario: Verify previous status link is visible on my wall page
-
-  And "camfed_user" has his status set to "status message 1"
-  And "camfed_user" has his status set to "status message 2"
-  And "camfed_user" has his status set to "status message 3"
-  Then User clicks on My Wall
-  And User lands on My Wall and can view all the elements
-  Then User should see the previous statuses link
-  Then User logs out
-
 Scenario: Verify appropriate message displayed if there is no history of status messages
 
 	And "camfed_user" has his status set to "single status message only"
