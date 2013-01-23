@@ -39,7 +39,7 @@ Scenario: Should see the aggregated notification category list with notification
   When User "camfed_user" logs into USSD with correct credentials
   Then User should see the USSD home page
   Given User chooses the option "Notifications"
-  And User should see the notifications menu with "1. Connection Request Accepted (1)"
+  And User should see the notifications menu with "1 Connection Request Accepted (1)"
 
 
 Scenario: Should see the notification list for a category with pagination
@@ -59,7 +59,7 @@ Scenario: Should see the notification list for a category with pagination
     When User "camfed_user" logs into USSD with correct credentials
     Then User should see the USSD home page
     Given User chooses the option "Notifications"
-    And User should see the notifications menu with "1. Connection Request Accepted (2)"
+    And User should see the notifications menu with "1 Connection Request Accepted (2)"
     Then User replies with option "1"
     And "camfed_user" should see connection notification for user "camfed_user_friend_new" with page_no "1"
     Then User replies with option "#"
