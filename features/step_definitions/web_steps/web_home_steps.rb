@@ -1,19 +1,17 @@
 Given /^User lands on the home page$/ do
   retry_on_timeout do
   @app.home.should be_displayed
-   # @app.home.wait_for_header
-   # @app.home.wait_for_status_message
+  @app.home.wait_for_header
   end
 end
 
 Then /^User navigates to canvas home page$/ do
   retry_on_timeout do    
     @app.home.load 
+    @app.home.should be_displayed
+    @app.home.wait_for_status
   end
-  @app.home.should be_displayed
   
-  # @app.home.wait_for_header
-  #  @app.home.wait_for_status_message
 end
 
 Then /^I log out of my account$/ do
@@ -21,7 +19,6 @@ Then /^I log out of my account$/ do
 end
 
 And /^User "updates" the status message as "([^\"]*)"$/ do |message|
-  @app.home.wait_for_status
  steps %{
    When User "enters" the status message as "#{message}"
  }
@@ -31,8 +28,10 @@ And /^User "updates" the status message as "([^\"]*)"$/ do |message|
 end
 
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|
-  @app.home.wait_for_status
-  @app.home.status_message.click
+  retry_on_timeout do    
+    @app.home.wait_for_status
+    @app.home.status_message.click
+  end
   @app.home.status_message.set "#{message}"
 end
 

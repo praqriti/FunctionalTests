@@ -1,4 +1,4 @@
-@javascript
+@javascript @wip
 Feature:
 
 	In order to know the announcements I have enrolled for
@@ -12,7 +12,7 @@ Background:
 	Given I make a new USSD login request
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
-@wip
+	
 Scenario: View announcements on group
 Given Group "History" has "2" new announcements made by "camfed_user":
   |ANNOUNCEMENTS|
@@ -28,7 +28,6 @@ Given Group "History" has "2" new announcements made by "camfed_user":
 	Then User should see the USSD home page
 	
 
-@wip
 Scenario: Verify no announcements on groups  
 	Given User chooses the option "Groups"
   When User chooses the group "History"
@@ -36,7 +35,6 @@ Scenario: Verify no announcements on groups
 	When User replies "0" to go back to home page
 	Then User should see the USSD home page
 
-@wip	
 Scenario: View list of announcements on group with pagination
   Given Group "History" has "7" new announcements made by "camfed_user"
   And User chooses the option "Groups"
@@ -50,7 +48,6 @@ Scenario: View list of announcements on group with pagination
   And User replies "0" to go back to home page
 	Then User should see the USSD home page
 
-@wip	
 Scenario: View that group announcement is truncated after 40 characters
   Given User "camfed_user" is enrolled with following groups:
      |name         |
@@ -63,7 +60,6 @@ Scenario: View that group announcement is truncated after 40 characters
   Then User chooses the "Previous" option
   Then User should see the ordered groups list on page "1"
 
-@wip
 Scenario: View that announcers name truncated after 15 characters
   Given User "camfed_user" is enrolled with following groups:
      |name         |

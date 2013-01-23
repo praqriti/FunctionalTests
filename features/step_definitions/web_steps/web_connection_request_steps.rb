@@ -35,12 +35,12 @@ Then /^User can "(.*?)" the connection request from "(.*?)"$/ do |user_action, u
 	}
 	if(user_action == 'accept')  
 		@app.connection_requests.accept_button.click 
-		@app.connection_requests.wait_for_connection_alert
+		@app.connection_requests.wait_until_connection_alert_visible
 		@app.connection_requests.connection_alert.text.should == "#{user.name} and You are now connected"
 	end
   if(user_action == 'reject')
     @app.connection_requests.reject_button.click 
-    @app.connection_requests.wait_for_connection_alert
+    @app.connection_requests.wait_until_connection_alert_visible
     @app.connection_requests.connection_alert.text.should == "#{user.name} and You are no longer connected"
   end
 end

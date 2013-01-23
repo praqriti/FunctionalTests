@@ -41,7 +41,7 @@ end
 And /^User confirms the disconnection "(.*?)"$/ do |username|
   user = @users.find{|user| user.identifier == username}
   page.find("#modal_confirm_button").click
-  @app.my_connections.wait_for_connection_alert
+  @app.my_connections.wait_until_connection_alert_visible
   @app.my_connections.connection_alert.text.should == "#{user.name} and You are no longer connected"
   #for integration tests
   @connected_users.delete(user)
