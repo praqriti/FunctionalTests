@@ -60,7 +60,7 @@ end
 Then /^User should see "(.*?)" as an "(.*?)" connection$/ do |identifier, connection_status|
   user = @users.find{|user| user.identifier == identifier}
   retry_on_timeout do    
-    @app.search.wait_for_username
+    @app.search.wait_for_username(10)
   end
     @app.search.username.text.should == "#{user.name}"
     @app.search.should have_unlinked_user if(connection_status == "unlinked")

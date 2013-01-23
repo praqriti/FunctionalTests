@@ -12,6 +12,9 @@ And /^User can navigate and view the wall of user "([^\"]*)"$/ do |username|
 end
 
 Then /^User comments "(.*?)" on the status of "([^\"]*)"$/ do |comment, user|
+  retry_on_timeout do
+  @app.my_wall.wait_for_comment_box
+end
   @app.my_wall.comment_box.set "#{comment}"
   @app.my_wall.comment_submit.click
 end

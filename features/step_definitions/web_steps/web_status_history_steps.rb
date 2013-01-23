@@ -1,5 +1,7 @@
 When /^User clicks on Show previous status messages link$/ do
+  retry_on_timeout do
   @app.my_wall.wait_for_previous_status_link
+end
   @app.my_wall.previous_status_link.click
 end
 

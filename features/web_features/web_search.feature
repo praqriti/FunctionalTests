@@ -42,7 +42,7 @@ Feature:
    Then User should see "unlinked_connection_user" as an "unlinked" connection
    Then User logs out
    
-
+@wip
   Scenario: Verify User can add a connection and view it on search page
    Given the following users exists in canvas:
            |USER|

@@ -26,7 +26,9 @@ Given /^User clicks on My Wall$/ do
 end
 
 Then /^User can view her latest status message "(.*?)"$/ do |arg1|
+  retry_on_timeout do
   @app.my_wall.wait_for_status_message
+end
   @app.my_wall.status_message.text.should == arg1
 end
 
@@ -45,7 +47,9 @@ And /^User can view the timestamp on the comment$/ do
 end
 
 Then /^User comments "(.*?)" on her status message$/ do |arg1|
+  retry_on_timeout do
   @app.my_wall.wait_for_comment_box
+end
   @app.my_wall.comment_box.set "#{arg1}"
   @app.my_wall.comment_submit.click
 	@app.my_wall.wait_for_comments
@@ -60,11 +64,14 @@ Then /^the comments are visible on My Wall$/ do |comments_table|
 end
 
 Then /error message "(.*?)" is displayed$/ do |error1|
-  @app.my_wall.wait_for_error_message
+  @app.my_wall.wait_until_error_message_visible
   @app.my_wall.error_message.text.should == error1
 end
 
 Then /^User cannot enter blank comment on the status$/ do
+retry_on_timeout do
+  @app.my_wall.wait_for_comment_box
+end
   @app.my_wall.comment_box.set ""
   @app.my_wall.comment_submit.click
   steps %{
