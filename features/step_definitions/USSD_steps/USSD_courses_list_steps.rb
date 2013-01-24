@@ -63,7 +63,7 @@ Then /^User should see the courses list$/ do
 	s_no+=1
 	end
 	steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
@@ -86,7 +86,7 @@ Then /^User should see the courses list on page "([^\"]*)"$/ do |page_no|
 		actual_response["message"].include?(enrolled_course.name).should == true
 	end
 	steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
@@ -112,7 +112,7 @@ end
 Then /^User should only see course "([^\"]*)"$/ do |course_name|
   actual_response["message"].include?("1 #{course_name}").should == true
 	steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}

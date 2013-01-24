@@ -12,7 +12,7 @@ end
 
 Then /^User is given the option to update status or navigate back to home page$/ do
      steps %{
-     Then the JSON at "session_id" should be "session id"
+     Then the JSON at "session_id" should be "#{@session_id}"
      Then the JSON at "session_type" should be "SESSION"
      Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
        }  
@@ -59,7 +59,7 @@ Then /^User should get a confirmation that the status was updated successfully$/
   message = @messages.get("status_updated")
      steps %{
         Then the JSON at "message" should be "#{message}"
-        Then the JSON at "session_id" should be "session id"   
+        Then the JSON at "session_id" should be "#{@session_id}"
         Then the JSON at "session_type" should be "SESSION"
         Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
       } 
@@ -80,7 +80,7 @@ end
 Then /^User recieves an error and the session is ended$/ do
   message = @messages.get("something_went_wrong") 
  	steps %{
- 	Then the JSON at "session_id" should be "session id"
+ 	Then the JSON at "session_id" should be "#{@session_id}"
  	Then the JSON at "session_type" should be "END"
  	Then the JSON at "message" should be "#{message}"
  	}

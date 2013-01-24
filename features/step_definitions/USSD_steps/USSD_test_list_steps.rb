@@ -18,7 +18,7 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 		s_no+=1
 	end
 	steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
@@ -50,7 +50,7 @@ Then /^User should see quiz menu for Student having "([^\"]*)" questions and "([
   actual_response["message"].include?("2 Attempt Quiz").should == true
   actual_response["message"].include?("1 View Score").should == true
   steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
     		}
@@ -62,10 +62,8 @@ Then /^User should see quiz menu for Teacher having "([^\"]*)" questions and "([
    actual_response["message"].include?("0 Home").should == true
    actual_response["message"].include?("1 View Report").should == true
   steps %{
-		Then the JSON at "session_id" should be "session id"
 		Then the JSON at "session_type" should be "SESSION"
-		Then the JSON should have "access_token"
-    		}
+  }
 end
 
 Then /^User should see quiz menu for role "([^\"]*)" having "([^\"]*)" questions and "([^\"]*)" attempts$/ do |role, question_count, attempts|

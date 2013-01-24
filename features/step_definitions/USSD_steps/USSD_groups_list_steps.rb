@@ -38,7 +38,7 @@ Then /^User should see the groups list$/ do
 	s_no+=1
 	end
 	steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
@@ -57,7 +57,7 @@ Then /^User should see the ordered groups list on page "([^\"]*)"$/ do |page_no|
 		actual_response["message"].include?(enrolled_group.name).should == true
 	end
 	steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
@@ -68,7 +68,7 @@ end
 Then /^User should only see group "([^\"]*)"$/ do |group_name|
   actual_response["message"].include?("1 #{group_name}").should == true
 	steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}

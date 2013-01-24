@@ -13,7 +13,7 @@ Then /^User should see the list of pending requests for page "([^\"]*)"$/ do |pa
   actual_response["message"].include?("0 Home").should == true
 
   steps %{
-		Then the JSON at "session_id" should be "session id"
+		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
 		Then the JSON should have "access_token"
 		}
@@ -24,7 +24,7 @@ Then /^User should see the message "([^\"]*)" with "([^\"]*)"$/ do |message, nam
   expected_message = @messages.get(message, ["#{user.name[0..16]}..."])
   steps %{
 	Then the JSON at "message" should be "#{expected_message}"
-	Then the JSON at "session_id" should be "session id"
+	Then the JSON at "session_id" should be "#{@session_id}"
 	Then the JSON at "session_type" should be "SESSION"
 	Then the JSON should have "access_token"
 	}

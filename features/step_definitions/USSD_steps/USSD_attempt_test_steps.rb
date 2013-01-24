@@ -33,7 +33,7 @@ Then /^User should see question "([^\"]*)"$/ do |question_num|
   end
   
   steps %{
-      Then the JSON at "session_id" should be "session id"
+      Then the JSON at "session_id" should be "#{@session_id}"
       Then the JSON at "session_type" should be "SESSION"
       Then the JSON should have "access_token"
       }
