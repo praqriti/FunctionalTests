@@ -12,7 +12,7 @@ Then /^User should see the list of connected users for page "([^\"]*)"$/ do |pag
   steps %{
 		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
-		Then the JSON should have "access_token"
+
 		}
 end
 

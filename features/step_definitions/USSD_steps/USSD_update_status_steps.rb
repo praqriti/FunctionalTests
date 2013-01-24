@@ -14,8 +14,7 @@ Then /^User is given the option to update status or navigate back to home page$/
      steps %{
      Then the JSON at "session_id" should be "#{@session_id}"
      Then the JSON at "session_type" should be "SESSION"
-     Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
-       }  
+       }
 end
 
 When /^User replies with new status message "([^\"]*)"$/ do |message|
@@ -61,8 +60,7 @@ Then /^User should get a confirmation that the status was updated successfully$/
         Then the JSON at "message" should be "#{message}"
         Then the JSON at "session_id" should be "#{@session_id}"
         Then the JSON at "session_type" should be "SESSION"
-        Then the JSON at "access_token" should be "#{@last_response.parsed_response["access_token"]}"
-      } 
+      }
       actual_response = @last_response.parsed_response
      
 end
@@ -78,7 +76,8 @@ And /^User chooses the option to "update status" with incorrect access_token$/ d
 end
   
 Then /^User recieves an error and the session is ended$/ do
-  message = @messages.get("something_went_wrong") 
+  message = @messages.get("something_went_wrong")
+  binding.pry
  	steps %{
  	Then the JSON at "session_id" should be "#{@session_id}"
  	Then the JSON at "session_type" should be "END"

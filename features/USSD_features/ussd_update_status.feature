@@ -51,21 +51,6 @@ Scenario: Verify that error is given to the user when she enters an invalid opti
 	Given User sends an invalid option "9"
 	Then User returns with error "invalid_option"
 
-Scenario: Verify user not allowed to continue with incorrect access token
-	Given User chooses the option to "update status" with incorrect access_token
-	Then User recieves an error and the session is ended
-
-Scenario: status length should be limited to 100 chars if present more in length
-    Given There exists a status with more than 100 chars
-    And I make a new USSD login request
-    When User "camfed_user" logs into USSD with correct credentials
-    Then User should see the USSD home page
-    And User chooses the option to "update status"
-    Then User should see his previously updated message:
-    """
-    12345678901234567890123456789012345678901234567890123456789012345678901234567...
-    """	
-
 @stage	
 Scenario: View status should be reflected on both canvas and ussd app
   Given I make a new USSD login request

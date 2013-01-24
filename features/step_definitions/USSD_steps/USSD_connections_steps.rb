@@ -9,7 +9,7 @@ Then /^User should see the connections menu$/ do
     Then the JSON at "message" should be "#{@messages.get("connection_menu")}"
     Then the JSON at "session_id" should be "#{@session_id}"
     Then the JSON at "session_type" should be "SESSION"
-    Then the JSON should have "access_token"
+
   }
 
 end

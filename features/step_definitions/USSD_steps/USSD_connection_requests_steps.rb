@@ -15,7 +15,7 @@ Then /^User should see the list of pending requests for page "([^\"]*)"$/ do |pa
   steps %{
 		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
-		Then the JSON should have "access_token"
+
 		}
 end
 
@@ -26,7 +26,7 @@ Then /^User should see the message "([^\"]*)" with "([^\"]*)"$/ do |message, nam
 	Then the JSON at "message" should be "#{expected_message}"
 	Then the JSON at "session_id" should be "#{@session_id}"
 	Then the JSON at "session_type" should be "SESSION"
-	Then the JSON should have "access_token"
+
 	}
   @requesters.delete(name)
 end

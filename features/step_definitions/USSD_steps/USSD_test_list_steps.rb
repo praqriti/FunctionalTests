@@ -20,7 +20,7 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 	steps %{
 		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
-		Then the JSON should have "access_token"
+
 		}
 	  actual_response["message"].include?("0 Home").should == true
 end
@@ -52,7 +52,7 @@ Then /^User should see quiz menu for Student having "([^\"]*)" questions and "([
   steps %{
 		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
-		Then the JSON should have "access_token"
+
     		}
 end
 

@@ -9,7 +9,7 @@ Then /^User should see the notifications menu$/ do
   steps %{
     Then the JSON at "session_id" should be "#{@session_id}"
     Then the JSON at "session_type" should be "SESSION"
-    Then the JSON should have "access_token"
+
   }
 
 end
