@@ -1,4 +1,4 @@
-@javascript @wip
+@javascript
 Feature:
 
   In order to use canvas
@@ -37,7 +37,6 @@ Feature:
     Then The Status Activity Notification "is not" visible
     Then User logs out
 
-  #Prakriti working on it
   Scenario: Verify if status update notification is not sent to deleted connection(s)
    When User navigates to "My Connections" page
    And User can "disconnect" his connection "Catheryn"

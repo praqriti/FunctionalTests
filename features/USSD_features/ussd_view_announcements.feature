@@ -1,4 +1,4 @@
-@javascript @wip
+@javascript
 Feature:
 
 	In order to know the announcements I have enrolled for
@@ -31,7 +31,8 @@ Given Group "History" has "2" new announcements made by "camfed_user":
 Scenario: Verify no announcements on groups  
 	Given User chooses the option "Groups"
   When User chooses the group "History"
-	Then User should see the message "No announcement on group"
+  Then User chooses to view announcements
+	Then User should see the message "no_announcement_on_group"
 	When User replies "0" to go back to home page
 	Then User should see the USSD home page
 
@@ -39,6 +40,7 @@ Scenario: View list of announcements on group with pagination
   Given Group "History" has "7" new announcements made by "camfed_user"
   And User chooses the option "Groups"
   When User chooses the group "History"
+  Then User chooses to view announcements
   Then User should see "3" ordered announcements on page "1"
   And User chooses the "Next" option
   Then User should see "3" ordered announcements on page "2"
@@ -48,6 +50,7 @@ Scenario: View list of announcements on group with pagination
   And User replies "0" to go back to home page
 	Then User should see the USSD home page
 
+@manual
 Scenario: View that group announcement is truncated after 40 characters
   Given User "camfed_user" is enrolled with following groups:
      |name         |
@@ -60,6 +63,7 @@ Scenario: View that group announcement is truncated after 40 characters
   Then User chooses the "Previous" option
   Then User should see the ordered groups list on page "1"
 
+@manual
 Scenario: View that announcers name truncated after 15 characters
   Given User "camfed_user" is enrolled with following groups:
      |name         |

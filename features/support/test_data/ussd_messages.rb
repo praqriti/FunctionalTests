@@ -21,7 +21,8 @@ def initialize
     :connection_request_accepted => "You and %s are now connected\\n* Back",
     :connection_request_rejected => "You have rejected %s's connection request\\n* Back",
     :connection_response_options => "1 Accept\n2 Reject\n* Back",
-    :no_question_added_to_quiz => "No question added to quiz\\n* Back to list of Quizzes"
+    :no_question_added_to_quiz => "No question added to quiz\\n* Back to list of Quizzes",
+    :no_announcement_on_group => "No announcement on group\\n0 Home"
   }
  end
  

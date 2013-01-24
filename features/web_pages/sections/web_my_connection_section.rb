@@ -1,6 +1,5 @@
-class MyConnectionsSection < SitePrism::Page
-  
-  element :disconnect_button, ".connection_action .delete" 
-  element :username, ".user .title"
-  element :user_image, ".user img"
+class MyConnectionsSection < SitePrism::Section
+  element :disconnect_button, ".delete" 
+  element :username, ".title"
+  element :user_image, ".img"
 end

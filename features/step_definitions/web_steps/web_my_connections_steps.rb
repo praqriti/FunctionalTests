@@ -1,6 +1,7 @@
 When /^User navigates to "My Connections" page$/ do
   @app.my_connections.load
   @app.my_connections.wait_for_header_message 
+  @app.my_connections.should have_header_message 
 end
 
 Then /^User can see "(.*?)" on my connections page$/ do |username|
@@ -31,9 +32,12 @@ end
 
 When /^User can "disconnect" his connection "(.*?)"$/ do |username|
   user = @users.find{|user| user.identifier == username}
-  connection = @app.my_connections.username.select {|c| c.text == user.name}
-  connection.size.should == 1
-  connection[0].parent.find(".delete").click()
+  retry_on_timeout do
+  @app.my_connections.wait_for_username
+  @app.my_connections.should have_username
+  end
+  connection = @app.my_connections.my_connections_details.find { |connection| connection.username.text == user.name }     
+  connection.disconnect_button.click
   @app.my_connections.wait_for_dialog
 end
 
