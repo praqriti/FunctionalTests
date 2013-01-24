@@ -1,4 +1,4 @@
-# @javascript
+@javascript
 Feature:
 
   In order to view my comments
