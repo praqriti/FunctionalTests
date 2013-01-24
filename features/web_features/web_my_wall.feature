@@ -1,4 +1,4 @@
-@javascript
+# @javascript
 Feature:
 
   In order to view my comments
@@ -12,7 +12,6 @@ Feature:
 
   Scenario: Verify the elements on My Wall
   Given User clicks on My Wall
-  Then User lands on My Wall and can view all the elements
   And User can view her latest status message "status message"
 	And User can view the timestamp on the status
   And User logs out
@@ -20,7 +19,6 @@ Feature:
 @stage
   Scenario: Verify user can comment on her status message
   Given User clicks on My Wall
-  Then User lands on My Wall and can view all the elements
   And User can view her latest status message "status message"
   And User comments "Good Status" on her status message
   Then the comments are visible on My Wall
@@ -32,7 +30,6 @@ Feature:
   
   Scenario: Verify user cannot enter blank comment
   Given User clicks on My Wall
-  Then User lands on My Wall and can view all the elements
   And User can view her latest status message "status message"
   And User cannot enter blank comment on the status
   And User logs out
@@ -41,7 +38,6 @@ Feature:
   @wip
   Scenario: Verify user can comment multiple times on her status message
   Given User clicks on My Wall
-  Then User lands on My Wall and can view all the elements
   And User can view her latest status message "status message"
   And User comments "Hello" on her status message
   And User comments "Good" on her status message
@@ -54,7 +50,6 @@ Feature:
   @manual
   Scenario: Verify user cannot enter a comment greater than 1024 characters
   Given User clicks on My Wall
-  Then User lands on My Wall and can view all the elements
   And User comments on her status message:
   """
   thisisacommentwhichisgreaterthan1024characterswhichshouldnotbeallowed

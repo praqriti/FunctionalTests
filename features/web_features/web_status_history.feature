@@ -16,7 +16,6 @@ Scenario: Verify appropriate message displayed if there is no history of status 
 
 	And "camfed_user" has his status set to "single status message only"
 	Then User clicks on My Wall
-	And User lands on My Wall and can view all the elements
 	Then User clicks on Show previous status messages link
 	Then User should see appropriate message
 	Then User logs out
@@ -47,7 +46,6 @@ Scenario: Verify user has 7 statuses with comments and can view previous 5 statu
   And "camfed_user" has his status set to "status message 6"
 	And "camfed_user" has his status set to "status message 7"
   Then User clicks on My Wall
-  And User lands on My Wall and can view all the elements
   Then User clicks on Show previous status messages link
   Then User should see previous "5" status messages
   |STATUS|
@@ -62,7 +60,6 @@ Scenario: Verify user has 7 statuses with comments and can view previous 5 statu
   |Good Status|
 	|Nice Status|
   Then User logs out
-
 
 Scenario: Verify user has 3 statuses with comments and can view previous 2 statuses with comments
 

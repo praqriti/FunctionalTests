@@ -77,7 +77,7 @@ end
   @app.my_wall.comment_box.set ""
   @app.my_wall.comment_submit.click
   steps %{
-    Then error message "Can not post an empty comment Please re-enter comment before posting" is displayed
+    Then error message "Can not post an empty comment. Please re-enter comment before posting" is displayed
   }
 end
 

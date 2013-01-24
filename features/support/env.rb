@@ -22,8 +22,7 @@ def retry_on_timeout(n = 3, &block)
   rescue Exception => e
    if n > 0
      p "************"
-     p "#{e}"
-    puts "waiting for element. #{n-1} more attempts."
+     p "Exception Thrown : #{e}\\n"
     retry_on_timeout(n - 1, &block)
   else
     raise "element not found"
