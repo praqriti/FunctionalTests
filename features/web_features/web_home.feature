@@ -1,4 +1,4 @@
-@javascript @wip
+@javascript
 Feature:
 
   In order to use canvas 

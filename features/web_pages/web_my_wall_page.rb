@@ -21,7 +21,7 @@ class Wall < SitePrism::Page
   element :previous_status_link, "a#status_history_link"
   elements :previous_status_message_details, "#history_status_message em.status_details"
   elements :previous_status_comments, "#history_status_message .comments fieldset.comment fieldset span.comment_text"
-	element :no_status_message, "div#user_profile_panel.sen_social div#status_history"
+	element :no_status_message, "#status_history"
 	element :status_with_comments, ".status_with_comments"
 	element :common_connections_panel, "#common_connections.panel"
 	element :add_connection_button_div, ".connection-link"

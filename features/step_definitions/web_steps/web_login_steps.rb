@@ -1,7 +1,6 @@
 Then /^User is on the Sign In page$/ do
   @app = App.new
   @app.home.load
-  @app.login.wait_for_sign_in_button
   @app.login.should be_displayed
 end
 

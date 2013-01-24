@@ -2,9 +2,6 @@ Given /^User lands on the search page$/ do
   steps %{
   Then User navigates to search page
         }
-  retry_on_timeout do
-  @app.search.wait_for_search_box
-end
   @app.search.all_there?
 end
 
@@ -14,13 +11,13 @@ When /^User clicks on "search user" under connections tab$/ do
 end
 
 When /^User navigates to search page$/ do
-  sleep(1)
  @app.search.load 
 end
 
 When /^User searches for "([^\"]*)" and clicks search$/ do |search_query|
   retry_on_timeout do
   @app.search.wait_for_search_box
+  @app.search.should have_search_box
 end
   user = @users.find{|user| user.identifier == search_query}
   if (user)
@@ -36,6 +33,7 @@ When /^User adds the user "(.*?)" as a connection$/ do |username|
   user = @users.find{|user| user.identifier == username}
   retry_on_timeout do    
   @app.search.wait_for_username
+  @app.search.should have_username
   end
   @app.search.username.text.should == "#{user.name}"
   @app.search.unlinked_user.click
@@ -45,6 +43,7 @@ end
 When /^User should see the users$/ do |users_table|
   retry_on_timeout do    
   @app.search.wait_for_username
+  @app.search.should have_username
 end
   users_table.hashes.each do |hash|  
   user = @users.find{|user| user.identifier == hash[:USER]}
@@ -61,6 +60,7 @@ Then /^User should see "(.*?)" as an "(.*?)" connection$/ do |identifier, connec
   user = @users.find{|user| user.identifier == identifier}
   retry_on_timeout do    
     @app.search.wait_for_username(10)
+    @app.search.should have_username
   end
     @app.search.username.text.should == "#{user.name}"
     @app.search.should have_unlinked_user if(connection_status == "unlinked")
@@ -73,6 +73,7 @@ Then /^User should see "(.*?)" without any connection status$/ do |username|
   user = @users.find{|user| user.identifier == username}
   retry_on_timeout do    
   @app.search.wait_for_username
+  @app.search.should have_username
 end
   @app.search.username.text.should == "#{user.name}"
       @app.search.should_not have_unlinked_user 
@@ -83,6 +84,7 @@ end
 When /^User searches for the Super Admin$/ do
   retry_on_timeout do
     @app.search.wait_for_search_box
+    @app.search.should have_search_box
   end
   @app.search.search_box.set "#{user.name}" 
   @app.search.search_button.click

@@ -1,4 +1,4 @@
-@javascript @wip
+@javascript
 Feature:
 
   In order to view my comments
@@ -36,11 +36,6 @@ Feature:
   And User can view her latest status message "status message"
   And User cannot enter blank comment on the status
   And User logs out
-
-  Scenario: Verify birthdate, language and time zone
-  Given User clicks on My Wall
-  Then User lands on My Wall and can view all the elements
-  Then User logs out
   
 #need to figure out a way to fix this
   @wip

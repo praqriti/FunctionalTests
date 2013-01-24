@@ -1,4 +1,4 @@
-@javascript @wip
+@javascript
 Feature:
 
   In order to know my past statuses
@@ -11,6 +11,7 @@ Background:
   And User "camfed_user" logs into Canvas with her credentials
   Then "camfed_user" should see the Canvas home page
 
+@wip
 Scenario: Verify appropriate message displayed if there is no history of status messages
 
 	And "camfed_user" has his status set to "single status message only"
@@ -61,6 +62,7 @@ Scenario: Verify user has 7 statuses with comments and can view previous 5 statu
   |Good Status|
 	|Nice Status|
   Then User logs out
+
 
 Scenario: Verify user has 3 statuses with comments and can view previous 2 statuses with comments
 

@@ -19,8 +19,10 @@ end
 
 def retry_on_timeout(n = 3, &block)
   block.call  
-  rescue Capybara::ElementNotFound => e
+  rescue Exception => e
    if n > 0
+     p "************"
+     p "#{e}"
     puts "waiting for element. #{n-1} more attempts."
     retry_on_timeout(n - 1, &block)
   else
