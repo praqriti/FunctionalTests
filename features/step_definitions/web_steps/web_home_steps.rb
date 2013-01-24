@@ -30,8 +30,8 @@ end
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|
   retry_on_timeout do    
     @app.home.wait_for_status
-    @app.home.status_message.click
   end
+  @app.home.status_message.click
   @app.home.status_message.set "#{message}"
 end
 
