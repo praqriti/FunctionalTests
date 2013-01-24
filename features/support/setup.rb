@@ -8,7 +8,7 @@ SEN_SOCIAL_URL = "#{ENV_CONFIG['sen_social_url']}"
 
 CANVAS_API = "#{ENV_CONFIG['canvas_url']}/api/v1"
 
-SEN_URL = "#{ENV_CONFIG['sen_url']}/ussd/index"
+SEN_URL = "#{ENV_CONFIG['sen_url']}/ussd/default/index"
 
 CANVAS_ACCESS_TOKEN = "#{ENV_CONFIG['access_token']}"
 
