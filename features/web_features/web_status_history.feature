@@ -1,4 +1,4 @@
-@javascript
+@javascript @wip
 Feature:
 
   In order to know my past statuses

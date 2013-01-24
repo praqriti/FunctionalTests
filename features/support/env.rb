@@ -17,7 +17,7 @@ After('@leave_the_window_open') do |scenario|
   end
 end
 
-def retry_on_timeout(n = 3, &block)
+def retry_on_timeout(n = 2, &block)
   block.call  
   rescue Exception => e
    if n > 0
