@@ -8,7 +8,6 @@ Feature:
   Background:
   When User is on the Sign In page
   And  User "camfed_user" logs into Canvas with her credentials
-  And "camfed_user" has his status set to "status message"
 
 Scenario: View the correct status of connection button on user wall
 Given the following users exists in canvas:
@@ -31,51 +30,88 @@ Given the following users exists in canvas:
    Then User can navigate and view "camfed_awaiting_response_user" wall with button "Awaiting Response"
    And User logs out
 
+@394
+Scenario: Verify that connection is added by using add connection button
+Given the following users exists in canvas:
+  |USER|
+  |camfed_friend_user|
+  Then User can navigate and view "camfed_friend_user" wall with button "Add Connection"
+  When User clicks on "Add Connection" button
+  Then User can navigate and view "camfed_friend_user" wall with button "Awaiting Response"
+  And User logs out
+  When User is on the Sign In page
+  And  User "camfed_friend_user" logs into Canvas with her credentials
+  When User can see the pending connection requests sent from:
+  |USER|
+  |camfed_user|
+  And User logs out
+
 @wip @394
 Scenario: View the correct status of connection button on user wall
 Given the following users exists in canvas:
   |USER|
   |camfed_user_1|
   |camfed_user_2|
-  Then User can view the basic user information of "camfed_user_1"
+  Then User can view all the basic user information of "camfed_user_1"
   And "camfed_user" is connected to "camfed_user_2"
-  Then User can view the basic user information of "camfed_user_2"
+  Then User can view all the basic user information of "camfed_user_1"
   And User logs out
    
-@wip @394
-Scenario: View the pending connection button changes correctly on user wall
+Scenario: View the Awaiting your response button updates correctly on user wall
 Given the following users exists in canvas:
    |USER|
-   |camfed_test_user|
    |camfed_pending_request_user|
-   Then User can view the wall of "camfed_non_friend" with button "Add as a connection"
-   And "camfed_user" is connected to "camfed_test_user"
-   Then User can view the wall of "camfed_friend_user" without button "Add as a connection"
-   Then User can navigate and view my wall without a connection button
    When User "camfed_user" has pending connection requests from:
    |USER|
    |camfed_pending_request_user|
-   Then User can view the wall of "camfed_pending_request_user" with button "Awaiting Your Response"
+   Then User can navigate and view "camfed_pending_request_user" wall with button "Awaiting Your Response"
    When User navigates to "Connection Requests"
    Then User can "accept" the connection request from "camfed_pending_request_user"
-   Then User can view the wall of "camfed_pending_request_user" without button "Add as a connection"
+   Then User can navigate and view "camfed_pending_request_user" wall without a connection button
    And User logs out
    
-@wip @394
-Scenario: View the pending connection button changes correctly on user wall
+Scenario: Verify the Awaiting response button updates correctly on user wall
 Given the following users exists in canvas:
   |USER|
-  |camfed_test_user|
   |camfed_pending_request_user|
-  Then User can view the wall of "camfed_non_friend" with button "Add as a connection"
-  And "camfed_user" is connected to "camfed_test_user"
-  Then User can view the wall of "camfed_friend_user" without button "Add as a connection"
-  Then User can navigate and view my wall without a connection button
   When User "camfed_pending_request_user" has pending connection requests from:
   |USER|
   |camfed_user|
-  Then User can view the wall of "camfed_pending_request_user" with button "Awaiting Response"
-  When User navigates to "Connection Requests"
-  Then User can "accept" the connection request from "camfed_pending_request_user"
-  Then User can view the wall of "camfed_pending_request_user" without button "Add as a connection"
+  Then User can navigate and view "camfed_pending_request_user" wall with button "Awaiting Response"
   And User logs out
+  When User is on the Sign In page
+  And  User "camfed_pending_request_user" logs into Canvas with her credentials
+  When User navigates to "Connection Requests"
+  Then User can "accept" the connection request from "camfed_user"
+  And User logs out
+  When User is on the Sign In page
+  And User "camfed_user" logs into Canvas with her credentials
+  Then User can navigate and view "camfed_pending_request_user" wall without a connection button
+  And User logs out
+  
+Scenario: Verify the Add Connection button updates correctly after "disconnect"
+Given the following users exists in canvas:
+   |USER|
+   |camfed_test_user|
+   Then User can navigate and view "camfed_test_user" wall with button "Add Connection"
+   And "camfed_user" is connected to "camfed_test_user"
+   When User navigates to "My Connections" page
+   And User can "disconnect" his connection "camfed_test_user"
+   And User confirms the disconnection "camfed_test_user"
+   Then User can navigate and view "camfed_test_user" wall with button "Add Connection"
+   And User logs out
+   
+Scenario: Verify the Add Connection button updates correctly after "Reject"
+Given the following users exists in canvas:
+  |USER|
+  |camfed_test_user|
+  When User "camfed_user" has pending connection requests from:
+  |USER|
+  |camfed_test_user|
+  Then User can navigate and view "camfed_test_user" wall without a connection button
+  When User navigates to "Connection Requests"
+  Then User can "reject" the connection request from "requesting_user"
+  Then User can navigate and view "camfed_test_user" wall with button "Add Connection"
+  And User logs out
+  
+  

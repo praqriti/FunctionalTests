@@ -133,6 +133,14 @@ Scenario: Verify invalid option after user accepts a connection
    Then User returns with error "invalid_option"
    When User chooses the "Previous" option
    Then User should see the list of pending requests for page "1"
+   
+@wip
+Scenario: Verify that accepting connection request reflects on web
+
+@wip
+Scenario: Verify that rejecting connection request reflects on web
+
+
   
   
   

@@ -9,7 +9,6 @@ Feature:
    When User is on the Sign In page
    And User "camfed_user" logs into Canvas with her credentials
    Then "camfed_user" should see the Canvas home page
-   And User navigates to search page
    
   Scenario: Verify User can make an incorrect search   
    When User searches for "!adadsindl!" and clicks search

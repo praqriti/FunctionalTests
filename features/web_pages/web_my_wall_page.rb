@@ -29,6 +29,7 @@ class Wall < SitePrism::Page
 	element :birthdate, ".birthdate"
 	element :language, ".language"
 	element :time_zone, ".time_zone"
+	element :success_message, ".notice .message"
 
 	sections :common_connections, CommonConnections, "#common_connections.panel ul.list li"
 

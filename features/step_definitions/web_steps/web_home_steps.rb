@@ -1,8 +1,6 @@
 Given /^User lands on the home page$/ do
   retry_on_timeout do
   @app.home.should be_displayed
-  @app.home.wait_for_header
-  @app.home.should have_header
   end
 end
 
@@ -30,8 +28,7 @@ end
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|
   retry_on_timeout do    
     @app.home.wait_for_status_message
-    @app.home.should have_status_message
-  end
+    end
   @app.home.status_message.click
   @app.home.status_message.set "#{message}"
 end

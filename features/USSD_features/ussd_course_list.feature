@@ -105,8 +105,8 @@ Scenario: Verify that the order of courses in the list is correct with paginatio
     |Physics7    |Teacher |active|
     |Physics8    |Teacher |active|
     |Physics9    |Teacher |active|
-    |Physics10    |Teacher |active|
-    |Physics11    |Teacher |active|
+    |Physics10   |Teacher |active|
+    |Physics11   |Teacher |active|
   Given User chooses the option "Courses"
   Then User should see home as the last option
   When User chooses the "Next" option

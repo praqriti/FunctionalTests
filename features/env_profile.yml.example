@@ -39,6 +39,6 @@ staging:
     account_id: 2
     records_per_page: 4
     super_admin: "sen.camfed@gmail.com"
-    super_admin_password: "password"    
+    super_admin_password: "staging"    
 
     

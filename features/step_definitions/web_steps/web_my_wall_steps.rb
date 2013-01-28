@@ -92,11 +92,11 @@ end
 
 Then /^The Common Connections box "(.*?)" visible$/ do |arg1|
   if arg1.include? "not"
-    @app.my_wall.should_not have_common_connections_panel
+    @app.my_wall.should_not have_common_connections
   else
     retry_on_timeout do
     @app.my_wall.wait_for_common_connections
-    @app.my_wall.should have_common_connections_panel
+    @app.my_wall.should have_common_connections
     end
   end
 end

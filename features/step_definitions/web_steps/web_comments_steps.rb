@@ -1,7 +1,6 @@
 And /^User can navigate and view the wall of user "([^\"]*)"$/ do |username|
   user = @users.find{|user| user.identifier == "#{username}"}
   steps %{
-  Then User navigates to search page
   Then User searches for "#{username}" and clicks search
   }
   @app.search.wait_for_username
@@ -33,7 +32,6 @@ end
 And /^User can navigate and view the "([^\"]*)" wall of user "([^\"]*)"$/ do |view,username|
   user = @users.find{|user| user.identifier == "#{username}"}
   steps %{
-  Then User navigates to search page
   Then User searches for "#{username}" and clicks search
   }
   @app.search.wait_for_username

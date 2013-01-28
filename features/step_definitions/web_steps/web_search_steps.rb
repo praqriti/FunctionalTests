@@ -1,21 +1,19 @@
-Given /^User lands on the search page$/ do
-  steps %{
-  Then User navigates to search page
-        }
-  @app.search.all_there?
-end
-
 When /^User clicks on "search user" under connections tab$/ do
  page.find("#{@app.home.menu.connections}").trigger(:mouseover)
  # @app.home.menu.connections.search_users_link.click
 end
 
-When /^User navigates to search page$/ do
- @app.search.load 
-end
+# When /^User navigates to search page$/ do
+#   retry_on_timeout do
+#     @app.home.load
+#    @app.home.wait_until_header_visible
+#    @app.search.load 
+#   end 
+# end
 
 When /^User searches for "([^\"]*)" and clicks search$/ do |search_query|
   retry_on_timeout do
+  @app.search.load 
   @app.search.wait_for_search_box
   @app.search.should have_search_box
 end

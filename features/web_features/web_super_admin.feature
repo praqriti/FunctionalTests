@@ -12,7 +12,7 @@ Scenario: Verify Super Admin cannot login using CAS
   Then Super Admin must not be allowed to login
   
 @manual @bug
-Scenario: Verify account admin cannot access all sen social features
+Scenario: Verify account admin can access all sen social features if he has a cas login
 
    Given Super Admin logs into Canvas
    Then User must not see the wall
@@ -20,7 +20,7 @@ Scenario: Verify account admin cannot access all sen social features
    And User must not be able able to see connections
 
 @manual @bug
-Scenario: Verify account admin is not visible in search results
+Scenario: Verify account admin is visible in search results if he has a cas login
   Given User is on the Sign In page
   And User "camfed_user" logs into Canvas with her credentials
   And "camfed_user" should see the Canvas home page

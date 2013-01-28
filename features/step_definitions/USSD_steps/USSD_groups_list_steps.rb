@@ -48,6 +48,7 @@ end
 
 Then /^User should see the ordered groups list on page "([^\"]*)"$/ do |page_no|
 	actual_response = @last_response.parsed_response
+	p actual_response
 	page_no = page_no.to_i
 	rpp = "#{RECORDS_PER_PAGE}".to_i
 	s_no = (rpp * (page_no-1)) + 1

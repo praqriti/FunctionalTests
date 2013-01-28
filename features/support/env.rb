@@ -21,8 +21,7 @@ def retry_on_timeout(n = 2, &block)
   block.call  
   rescue Exception => e
    if n > 0
-     p "************"
-     p "Exception Thrown : #{e}\\n"
+     p "Exception Thrown : #{e}"
     retry_on_timeout(n - 1, &block)
   else
     raise "element not found"

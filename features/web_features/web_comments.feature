@@ -22,8 +22,7 @@ Scenario: Verify that a user can comment on the status of other user
 	Then User can navigate and view the "private" wall of user "camfed_user"
 	Then User comments "Nice status" on the status of "camfed_user"
 	Then the comment "Nice status" by "test_user" is visible on users wall
-	Then User logs out
-  
+	And User logs out
 
 @stage	
 Scenario: User must see only the public profile for a non connected user
@@ -32,8 +31,6 @@ Scenario: User must see only the public profile for a non connected user
    When User is on the Sign In page
    And User "camfed_user" logs into Canvas with her credentials
    Then "camfed_user" should see the Canvas home page
-   And User navigates to search page 
    When User searches for "test_user" and clicks search
  	 Then User can navigate and view the "public" wall of user "test_user"
- 	 Then User logs out
-   
+ 	 And User logs out

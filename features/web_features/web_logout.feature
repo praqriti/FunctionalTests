@@ -21,7 +21,6 @@ Scenario: logout for the social education network from CAS
   And User "camfed_user" logs into Canvas with her credentials
   And "camfed_user" should see the Canvas home page
   And User logs out
-  And User navigates to search page
   Then User is on the Sign In page
 
 @stage  
@@ -42,7 +41,6 @@ Scenario: access sen social before loggin in
          |USER|
          |camfed_teacher|
     And User is on the Sign In page
-    When User navigates to search page
     And User "camfed_user" logs into Canvas with her credentials
     Then User lands on My Wall and can view all the elements
     And User logs out and logs into canvas as "camfed_teacher"

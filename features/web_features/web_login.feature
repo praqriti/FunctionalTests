@@ -11,3 +11,7 @@ Feature:
   And User "camfed_user" logs into Canvas with her credentials
   Then "camfed_user" should see the Canvas home page
   Then User logs out
+  
+  @manual
+  Scenario: User has a valid email id , he must recieve a mail on registration
+  
