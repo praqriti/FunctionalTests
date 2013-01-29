@@ -13,7 +13,7 @@ module JSONSpecInterface
 
   def self.log last_response
     if (!last_response.response.kind_of? Net::HTTPSuccess)
-        scenario.fail("Request failed at #{last_response.request.path.to_s} with error: #{last_response.to_json}")
+        p "Request failed at #{last_response.request.path.to_s} with error: #{last_response.to_json}"
     end
   end
 end
