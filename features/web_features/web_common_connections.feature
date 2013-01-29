@@ -13,7 +13,7 @@ Scenario: Verify User doesnt see common connections box
   Given the following users exists in canvas:
   |USER|
   |camfed_user1|
-  Then User can navigate and view the "public" wall of user"public" wall of user "camfed_user1"
+  Then User can navigate and view the "public" wall of user "camfed_user1"
   Then The Common Connections box "is not" visible
   Then User logs out
 

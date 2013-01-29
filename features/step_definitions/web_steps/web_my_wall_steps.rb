@@ -155,7 +155,7 @@ Then /^User can navigate and view "(.*?)" wall without a connection button$/ do 
     user = @users.find{|user| user.identifier == user_identifier}
   end
   steps %{
-     Then User can navigate and view the "public" wall of the user "#{user.name}"
+     Then User can navigate and view the "public" wall of user "#{user.identifier}"
    }
 @app.my_wall.should_not have_add_connection_button
 end
@@ -163,7 +163,7 @@ end
 Then /^User can navigate and view "(.*?)" wall with button "(.*?)"$/ do |user_identifier, button_text|
   user = @users.find{|user| user.identifier == user_identifier}
   steps %{
-     Then User can navigate and view the "public" wall of the user "#{user.name}"
+     Then User can navigate and view the "public" wall of user "#{user.identifier}"
    }
   retry_on_timeout do
   @app.my_wall.wait_for_add_connection_button
