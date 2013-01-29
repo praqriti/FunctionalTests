@@ -3,17 +3,9 @@ When /^User clicks on "search user" under connections tab$/ do
  # @app.home.menu.connections.search_users_link.click
 end
 
-# When /^User navigates to search page$/ do
-#   retry_on_timeout do
-#     @app.home.load
-#    @app.home.wait_until_header_visible
-#    @app.search.load 
-#   end 
-# end
-
 When /^User searches for "([^\"]*)" and clicks search$/ do |search_query|
-  retry_on_timeout do
   @app.search.load 
+  retry_on_timeout do
   @app.search.wait_for_search_box
   @app.search.should have_search_box
 end
@@ -57,7 +49,7 @@ end
 Then /^User should see "(.*?)" as an "(.*?)" connection$/ do |identifier, connection_status|
   user = @users.find{|user| user.identifier == identifier}
   retry_on_timeout do    
-    @app.search.wait_for_username(10)
+    @app.search.wait_for_username
     @app.search.should have_username
   end
     @app.search.username.text.should == "#{user.name}"

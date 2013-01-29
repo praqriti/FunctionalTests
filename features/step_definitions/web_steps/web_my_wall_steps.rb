@@ -84,9 +84,9 @@ Then /^User comments on her status message:$/ do |string|
   retry_on_timeout do
   @app.my_wall.wait_for_comment_box
   @app.my_wall.should have_comment_box
+end
   @app.my_wall.comment_box.set "#{string}"
   @app.my_wall.comment_submit.click
-end
 end
 
 Then /^The Common Connections box "(.*?)" visible$/ do |arg1|

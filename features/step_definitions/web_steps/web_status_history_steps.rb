@@ -2,12 +2,10 @@ When /^User clicks on Show previous status messages link$/ do
   retry_on_timeout do
   @app.my_wall.wait_for_previous_status_link
   @app.my_wall.should have_previous_status_link
-end
   @app.my_wall.previous_status_link.click
-  retry_on_timeout do
   @app.my_wall.wait_until_previous_status_link_invisible(10)
+  @app.my_wall.should_not have_previous_status_link
 end
-@app.my_wall.should_not have_previous_status_link
 end
 
 Then /^User should see previous "(.*?)" status messages$/ do |no_of_status, expected_status_message|

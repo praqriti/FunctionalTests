@@ -24,6 +24,7 @@ end
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|
   retry_on_timeout do    
     @app.home.wait_for_status_message
+    @app.home.should have_status_message
     end
   @app.home.status_message.click
   @app.home.status_message.set "#{message}"
@@ -42,9 +43,8 @@ Then /^User status "([^\"]*)" is not updated$/ do |message|
    retry_on_timeout do
     @app.home.wait_for_status
     @app.home.should have_status
-    @app.home.should have_updated_status_message
-    @app.home.status_message.value.should_not == "#{message}"
   end
+    @app.home.status_message.value.should_not == "#{message}"
 end
 
 Then /^User can update the status again as "([^\"]*)"$/ do |message|
@@ -66,9 +66,9 @@ Then /^status message should be "([^\"]*)"$/ do |message|
   retry_on_timeout do
   @app.home.wait_for_status
   @app.home.should have_status
+end
   @app.home.should have_updated_status_message
   @app.home.updated_status_message.value.should == "#{message}"
-end
 end
 
 Then /^User must see the connection request of "([^\"]*)" on the home page$/ do |username|
@@ -83,8 +83,10 @@ Then /^User must see the connection request of "([^\"]*)" on the home page$/ do 
 end
 
 Then /^User can navigate to the connection request page from the connection alert$/ do
+  retry_on_timeout do
   @app.home.wait_for_connection_alert
   @app.home.should have_connection_alert
+end
   @app.home.connection_alert.alert_links.last.click
   steps %{
     Then User can see "1" pending requests
@@ -93,7 +95,10 @@ end
 
 Then /^User does not see the connection request alert$/ do
   @app.home.load
-  @app.home.wait_for_status_message(5)
+  retry_on_timeout do
+    @app.home.wait_for_connection_alert
+    @app.home.should have_connection_alert
+  end
   @app.home.connection_alert.should_not have_image
 end
 
