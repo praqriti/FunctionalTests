@@ -21,7 +21,7 @@ def retry_on_timeout(n = 3, &block)
   block.call  
   rescue Exception => e
    if n > 0
-     p "Retry :#{n} \\n"
+     p "Attempts left :#{n-1}"
      p "#{e}"
     retry_on_timeout(n - 1, &block)
   else

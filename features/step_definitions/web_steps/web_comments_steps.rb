@@ -1,15 +1,3 @@
-And /^User can navigate and view the "public" wall of user "([^\"]*)"$/ do |username|
-  user = @users.find{|user| user.identifier == "#{username}"}
-  steps %{
-  Then User searches for "#{username}" and clicks search
-  }
-  @app.search.wait_for_username
-  @app.search.username.text.should == user.name
-  @app.search.users_link.click
-  @app.my_wall.wait_for_user_name
-  @app.my_wall.user_name.text.should == "#{user.name}"
-end
-
 Then /^User comments "(.*?)" on the status of "([^\"]*)"$/ do |comment, user|
   retry_on_timeout do
   @app.my_wall.wait_for_comment_box
