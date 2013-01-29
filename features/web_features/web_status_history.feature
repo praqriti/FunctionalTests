@@ -1,4 +1,4 @@
-@wip @javascript
+@javascript
 Feature:
 
   In order to know my past statuses
@@ -9,9 +9,7 @@ Background:
 
   When User is on the Sign In page
   And User "camfed_user" logs into Canvas with her credentials
-  Then 
 
-@wip
 Scenario: Verify appropriate message displayed if there is no history of status messages
 
 	And "camfed_user" has his status set to "single status message only"
