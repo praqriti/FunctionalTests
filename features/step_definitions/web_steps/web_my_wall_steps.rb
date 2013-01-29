@@ -45,31 +45,27 @@ Then /^User comments "(.*?)" on her status message$/ do |arg1|
   @app.my_wall.wait_for_comment_box
   @app.my_wall.should have_comment_box
 end
+
+  initial_comment_count = @app.my_wall.comments.size
   @app.my_wall.comment_box.set "#{arg1}"
   @app.my_wall.comment_submit.click
-	@app.my_wall.wait_for_comment_box(10)
-	@app.my_wall.wait_until_comments_visible
-  # @app.my_wall.comments.last.text.should == "#{arg1}"
-  @app.my_wall.comments.each do |comment|
-    p comment.text
-  end
-end
-
-Then /^the comments are visible on My Wall$/ do |comments_table|
-   retry_on_timeout do
-    @app.my_wall.wait_for_comments
-    @app.my_wall.should have_comments
-  end	
   
-  # comments_table.hashes.each do |comment|
-  #    binding.pry
-  #  end
-  #  
-  expected_comments = comments_table.hashes.collect{|x| x["COMMENT"]}
-  actual_comments = @app.my_wall.comments.collect(&:text)
-  expected_comments.sort.should == actual_comments.sort 
+  retry_on_timeout do
+	sleep(2)
+	@app.my_wall.should have(initial_comment_count+1).comments
+end
 end
 
+Then /^the comments are visible on My Wall in order of the date$/ do |comments_table|  
+  expected_comments = comments_table.hashes.collect{|x| x["COMMENT"]}
+  
+  retry_on_timeout do
+    @app.my_wall.wait_for_comments(expected_comments.size)
+    @app.my_wall.should have(expected_comments.size).comments
+  end	
+  @app.my_wall.comment_values.map {|comment| comment.text }.should == expected_comments
+end
+   
 Then /error message "(.*?)" is displayed$/ do |error1|
   @app.my_wall.wait_until_error_message_visible
   @app.my_wall.error_message.text.should == error1
@@ -185,6 +181,10 @@ When /^User clicks on "Add Connection" button$/ do
   @app.my_wall.add_connection_button.click
   @app.my_wall.wait_until_success_message_visible
   @app.my_wall.success_message.text.should == "Connection request sent"
+end
+
+Then /^$/ do
+  pending # express the regexp above with the code you wish you had
 end
 
 

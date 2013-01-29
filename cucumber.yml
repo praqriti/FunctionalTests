@@ -4,7 +4,7 @@ wip: --format pretty -r features -r features/step_definitions --tags @wip
 
 # chrome: --format pretty -r features/support/profiles/chrome.rb -r features -r features/step_definitions
 # 
-# firefox: --format pretty -r features/support/profiles/firefox.rb -r features -r features/step_definitions
+firefox: --format pretty -r features/support/profiles/firefox.rb -r features -r features/step_definitions
 # 
 # celerity: --format pretty -r features/support/profiles/celerity.rb -r features -r features/step_definitions
 

@@ -16,6 +16,7 @@ class CanvasCourseInterface
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
 		@course.id =  @last_response.parsed_response["id"]
     JSONSpecInterface.log(@last_response)
+    @last_response.parsed_response["name"].should == "#{@course.name}"
     sleep(2)
 		return @course
 	end 

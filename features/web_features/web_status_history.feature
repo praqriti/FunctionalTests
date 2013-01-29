@@ -26,13 +26,12 @@ Scenario: Verify comment box not present if status is not updated even once
 
 @stage @wip
 Scenario: Verify user has 7 statuses with comments and can view previous 5 statuses with comments
-
+  # Given "camfed_user" has a history of "3" status messages
   And "camfed_user" has his status set to "status message 1"
   And "camfed_user" has his status set to "status message 2"
   And "camfed_user" has his status set to "status message 3"
 	Then User clicks on My Wall
 	And User comments "Good Status" on her status message
-	Then User navigates to canvas home page
   And "camfed_user" has his status set to "status message 4"
   Then User clicks on My Wall
   And User comments "Nice Status" on her status message
@@ -51,13 +50,14 @@ Scenario: Verify user has 7 statuses with comments and can view previous 5 statu
   |status message 4|
   |status message 3|
   |status message 2|
-	And the comments are visible on My Wall
+	And the comments are visible on My Wall in order of the date
   |COMMENT|
   |Wow! Incredible!|
   |Good Status|
 	|Nice Status|
   Then User logs out
 
+@wip
 Scenario: Verify user has 3 statuses with comments and can view previous 2 statuses with comments
 
   And "camfed_user" has his status set to "status message 1"
@@ -74,7 +74,7 @@ Scenario: Verify user has 3 statuses with comments and can view previous 2 statu
   |STATUS|
 	|status message 2|
   |status message 1|
-	And the comments are visible on My Wall
+	And the comments are visible on My Wall in order of the date
   |COMMENT|
   |Wow! Env Setup is Fun!|
   |Good Status|

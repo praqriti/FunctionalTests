@@ -21,7 +21,7 @@ Feature:
   Given User clicks on My Wall
   And User can view her latest status message "status message"
   And User comments "Good Status" on her status message
-  Then the comments are visible on My Wall
+  Then the comments are visible on My Wall in order of the date
   |COMMENT|
   |Good Status|
   And User can view her name "camfed_user" on the comment
@@ -40,7 +40,7 @@ Feature:
   And User can view her latest status message "status message"
   And User comments "Hello" on her status message
   And User comments "Good" on her status message
-  Then the comments are visible on My Wall
+  Then the comments are visible on My Wall in order of the date
   |COMMENT|
   |Hello  |
   |Good   |
