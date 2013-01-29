@@ -62,7 +62,6 @@ Scenario: View status should be reflected on both canvas and ussd app
 
 	When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
-  Then "camfed_user" should see the Canvas home page
   And status message should be "new status message"
 
 @wip @manual

@@ -17,14 +17,15 @@ After('@leave_the_window_open') do |scenario|
   end
 end
 
-def retry_on_timeout(n = 2, &block)
+def retry_on_timeout(n = 3, &block)
   block.call  
   rescue Exception => e
    if n > 0
-     p "Exception Thrown : #{e}"
+     p "Retry :#{n} \\n"
+     p "#{e}"
     retry_on_timeout(n - 1, &block)
   else
-    raise "element not found"
+    raise "Retries failed"
   end
 end
 

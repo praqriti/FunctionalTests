@@ -17,7 +17,6 @@ Scenario: Verify that a user can comment on the status of other user
 
 	When User is on the Sign In page
 	And User "test_user" logs into Canvas with her credentials
-	Then "test_user" should see the Canvas home page
 	And "test_user" is connected to "camfed_user"
 	Then User can navigate and view the "private" wall of user "camfed_user"
 	Then User comments "Nice status" on the status of "camfed_user"
@@ -30,7 +29,6 @@ Scenario: User must see only the public profile for a non connected user
    Given "camfed_user" has his status set to "camfed user cant see my status" 
    When User is on the Sign In page
    And User "camfed_user" logs into Canvas with her credentials
-   Then "camfed_user" should see the Canvas home page
    When User searches for "test_user" and clicks search
  	 Then User can navigate and view the "public" wall of user "test_user"
  	 And User logs out

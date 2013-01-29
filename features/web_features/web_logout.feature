@@ -9,7 +9,7 @@ Scenario: logout for the canvas network from CAS
 
 When User is on the Sign In page
 And User "camfed_user" logs into Canvas with her credentials
-And "camfed_user" should see the Canvas home page
+And 
 And User logs out
 And User navigates to canvas home page
 Then User is on the Sign In page
@@ -19,7 +19,7 @@ Scenario: logout for the social education network from CAS
  
   When User is on the Sign In page
   And User "camfed_user" logs into Canvas with her credentials
-  And "camfed_user" should see the Canvas home page
+  And 
   And User logs out
   Then User is on the Sign In page
 
@@ -30,9 +30,8 @@ Scenario: logout and login as another user succesfully
          |camfed_teacher|
     And User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
-    And "camfed_user" should see the Canvas home page
+    And 
     And User logs out and logs into canvas as "camfed_teacher"
-    Then "camfed_teacher" should see the Canvas home page  
     Then User logs out
     
 @stage
@@ -44,7 +43,6 @@ Scenario: access sen social before loggin in
     And User "camfed_user" logs into Canvas with her credentials
   	Then User clicks on My Wall
     And User logs out and logs into canvas as "camfed_teacher"
-    Then "camfed_teacher" should see the Canvas home page  
     Then User clicks on My Wall    
     Then User logs out
 

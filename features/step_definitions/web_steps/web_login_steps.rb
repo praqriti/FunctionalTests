@@ -9,6 +9,10 @@ When /^User "([^\"]*)" logs into Canvas with her credentials$/ do |identifier|
   @app.login.email.set "#{user.login_id}"
   @app.login.password.set "#{user.password}"
   @app.login.sign_in_button.click
+  
+  steps %{
+    Then "#{user.name}" should see the Canvas home page
+    }
 end 
   
 Then /^I am given an appropriate error$/ do
@@ -16,13 +20,11 @@ Then /^I am given an appropriate error$/ do
   @app.login.message_box.text.should == "Incorrect username or password."
 end
 
-Then /^"([^\"]*)" should see the Canvas home page$/ do |username|
-  user = @users.find{|user| user.identifier == username}
-  
-  steps %{
-    Then User lands on the home page
-  }   
-  @app.home.about_page_link.text.should == user.name
+Then /^"([^\"]*)" should see the Canvas home page$/ do |username|  
+  retry_on_timeout do
+   @app.home.should be_displayed
+  end
+  @app.home.about_page_link.text.should == username
 end
 
 When /^I wait (\d+) seconds?$/ do |seconds|
@@ -30,7 +32,8 @@ When /^I wait (\d+) seconds?$/ do |seconds|
 end
 
 Given /^User logs out and logs into canvas as "(.*?)"$/ do |username|
-  steps %{Then User logs out
+  steps %{
+    Then User logs out
     Then User "#{username}" logs into Canvas with her credentials
     }
 end

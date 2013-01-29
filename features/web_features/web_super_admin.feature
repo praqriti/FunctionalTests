@@ -23,6 +23,6 @@ Scenario: Verify account admin can access all sen social features if he has a ca
 Scenario: Verify account admin is visible in search results if he has a cas login
   Given User is on the Sign In page
   And User "camfed_user" logs into Canvas with her credentials
-  And "camfed_user" should see the Canvas home page
+  And 
   When User searches for the Super Admin
   Then User should see the search error

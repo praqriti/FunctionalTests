@@ -42,7 +42,6 @@ Scenario: View connected connections
 Scenario: Verify if removing a user from web reflects on USSD app and no pagination is visible
        When User is on the Sign In page
        When User "camfed_user" logs into Canvas with her credentials
-       When "camfed_user" should see the Canvas home page
        When User navigates to "My Connections" page
        Then User can see "5" connections available
        When User navigates to "My Connections" page

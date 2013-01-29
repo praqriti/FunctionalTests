@@ -11,7 +11,6 @@ Feature:
            |requesting_user|
   Given User is on the Sign In page
   Given User "requesting_user" logs into Canvas with her credentials 
-  Then "requesting_user" should see the Canvas home page
   Given User "camfed_user" is connected to:
  	|USER|
  	|requesting_user|

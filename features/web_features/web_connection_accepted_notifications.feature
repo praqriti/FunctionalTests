@@ -25,7 +25,6 @@ Feature:
       |History    |Student |active|
     When User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
-    Then "camfed_user" should see the Canvas home page
     Then User should see connection notifications containing link of "Mathew" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
@@ -38,7 +37,6 @@ Feature:
       |History    |Student |active|
     When User is on the Sign In page
     And User "camfed_user_friend" logs into Canvas with her credentials
-    Then "camfed_user_friend" should see the Canvas home page
     Then User should see connection notifications containing link of "camfed_user" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
@@ -51,7 +49,6 @@ Feature:
       |History    |Student |active|
     When User is on the Sign In page
     And User "Mathew" logs into Canvas with her credentials
-    Then "Mathew" should see the Canvas home page
     Then User should see connection notifications containing link of "camfed_user" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
@@ -64,7 +61,6 @@ Feature:
       |History    |Student |active|
     When User is on the Sign In page
     And User "Mathew_friend" logs into Canvas with her credentials
-    Then "Mathew_friend" should see the Canvas home page
     Then User should see connection notifications containing link of "Mathew" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"
@@ -78,7 +74,6 @@ Feature:
       |History    |Student |active|
     When User is on the Sign In page
     And User "Common_friend" logs into Canvas with her credentials
-    Then "Common_friend" should see the Canvas home page
     Then User should see connection notifications containing link of "Mathew" profile
     When User clicks on connection notification group
     Then User should see connected user notification of "Mathew" and "camfed_user"

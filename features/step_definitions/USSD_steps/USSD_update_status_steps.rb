@@ -77,7 +77,6 @@ end
   
 Then /^User recieves an error and the session is ended$/ do
   message = @messages.get("something_went_wrong")
-  binding.pry
  	steps %{
  	Then the JSON at "session_id" should be "#{@session_id}"
  	Then the JSON at "session_type" should be "END"

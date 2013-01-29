@@ -19,7 +19,6 @@ Feature:
     And "Lizzie" is connected to "camfed_user"
     When User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
-    Then "camfed_user" should see the Canvas home page
 
 @stage
   Scenario: Verify if status update notification is sent to connections
@@ -28,12 +27,10 @@ Feature:
     Then User logs out
     When User is on the Sign In page
     And User "Catheryn" logs into Canvas with her credentials
-    Then "Catheryn" should see the Canvas home page
     Then Status Updated notification is visible for "camfed_user" with status:"status message"
     Then User logs out
     When User is on the Sign In page
     And User "Marie" logs into Canvas with her credentials
-    Then "Marie" should see the Canvas home page
     Then The Status Activity Notification "is not" visible
     Then User logs out
 
@@ -41,12 +38,10 @@ Feature:
    When User navigates to "My Connections" page
    And User can "disconnect" his connection "Catheryn"
    And User confirms the disconnection "Catheryn"
-   Then User navigates to canvas home page
    When User "updates" the status message as "status message"
    Then User status "status message" is updated successfully
    Then User logs out
    When User is on the Sign In page
    And User "Catheryn" logs into Canvas with her credentials
-   Then "Catheryn" should see the Canvas home page
    Then The Status Activity Notification "is not" visible
    Then User logs out

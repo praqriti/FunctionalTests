@@ -31,7 +31,6 @@ Given /^User publishes the course "([^\"]*)"$/ do |course_name|
   steps %{
           When User is on the Sign In page
           And User "camfed_student" logs into Canvas with her credentials
-          Then "camfed_student" should see the Canvas home page
           And User publishes the "#{course_name}" course
         }
 end

@@ -9,7 +9,7 @@ Background:
 
 When User is on the Sign In page
 And User "camfed_user" logs into Canvas with her credentials
-Then "camfed_user" should see the Canvas home page
+Then 
 
 @stage
 Scenario: Verify if a logged in user can update his status

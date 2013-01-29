@@ -18,7 +18,6 @@ Scenario: Verify account admin can access all sen social features
 
    When User is on the Sign In page
    And User "account_admin" logs into Canvas with her credentials
-   Then "account_admin" should see the Canvas home page
    Then User status "single status message only" is updated successfully
    Then User can navigate and view the "public" wall of user "test_user"
    When User clicks on My Wall

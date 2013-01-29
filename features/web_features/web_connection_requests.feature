@@ -18,7 +18,7 @@ Scenario: Verify if a logged in user can accept his connection requests
           |requesting_user|
     When User is on the Sign In page
     When User "camfed_user" logs into Canvas with her credentials
-    When "camfed_user" should see the Canvas home page
+    
     When User navigates to "Connection Requests"
     When User can see the pending connection requests sent from:
           |USER|
@@ -34,8 +34,7 @@ Scenario: Verify if a logged in user can reject his connection requests
                  |USER|
                  |requesting_user|
       When User is on the Sign In page
-      When User "camfed_user" logs into Canvas with her credentials
-      When "camfed_user" should see the Canvas home page
+      When User "camfed_user" logs into Canvas with her credentials      
       When User navigates to "Connection Requests"
       When User can see the pending connection requests sent from:
                  |USER|
@@ -52,8 +51,7 @@ Scenario: Verify if a logged in user can disconnect his connections he has added
 	|USER|
 	|requesting_user|
   When User is on the Sign In page
-  When User "camfed_user" logs into Canvas with her credentials
-  When "camfed_user" should see the Canvas home page
+  When User "camfed_user" logs into Canvas with her credentials  
   When User navigates to "My Connections" page
   Then User can see "1" connections available
   When User navigates to "My Connections" page
@@ -68,8 +66,7 @@ Scenario: Verify if a logged in user can disconnect his connections where he was
     |USER|
     |camfed_user|
   When User is on the Sign In page
-  When User "camfed_user" logs into Canvas with her credentials
-  When "camfed_user" should see the Canvas home page
+  When User "camfed_user" logs into Canvas with her credentials  
   When User navigates to "My Connections" page
   Then User can see "1" connections available
   And User can "disconnect" his connection "requesting_user"
@@ -82,8 +79,7 @@ Scenario: Verify if a logged in user can unconfirm a disconnection
 	|USER|
 	|requesting_user|
   When User is on the Sign In page
-  When User "camfed_user" logs into Canvas with her credentials
-  When "camfed_user" should see the Canvas home page
+  When User "camfed_user" logs into Canvas with her credentials 
 	Then User can see "1" connections available
 	When User navigates to "My Connections" page
 	And User can "disconnect" his connection "requesting_user"
@@ -101,7 +97,7 @@ Scenario: Verify if a logged in user can view his connection requests on his hom
     |requesting_user1|
   And User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
-  Then "camfed_user" should see the Canvas home page
+  Then 
   And User should see connection requests from:
     |USER|
     |requesting_user|

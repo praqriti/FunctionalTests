@@ -58,7 +58,6 @@ Scenario: Accept and reject connection
   Then User should see the message "connection_request_accepted" with "requesting_user5"
   When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
-  When "camfed_user" should see the Canvas home page
   When User navigates to "My Connections" page
   Then User can see "1" connections available
   When User navigates to "Connection Requests"
@@ -75,7 +74,6 @@ Scenario: Accept and reject connection
   Then User should see the message "connection_request_rejected" with "requesting_user5"
   When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
-  When "camfed_user" should see the Canvas home page
   When User navigates to "My Connections" page
   Then User can see "0" connections available
   When User navigates to "Connection Requests"

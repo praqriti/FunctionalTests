@@ -8,7 +8,6 @@ Feature:
   Background:
   When User is on the Sign In page
   And  User "camfed_user" logs into Canvas with her credentials
-  Then "camfed_user" should see the Canvas home page
 
 Scenario: View the correct status of connection button on user wall
 Given the following users exists in canvas:
@@ -66,26 +65,26 @@ Given the following users exists in canvas:
 Scenario: Verify the Add Connection button updates correctly after "disconnect"
 Given the following users exists in canvas:
    |USER|
-   |camfed_test_user|
-   Then User can navigate and view "camfed_test_user" wall with button "Add Connection"
-   And "camfed_user" is connected to "camfed_test_user"
+   |camfed_friend_user|
+   Then User can navigate and view "camfed_friend_user" wall with button "Add Connection"
+   And "camfed_user" is connected to "camfed_friend_user"
    When User navigates to "My Connections" page
-   And User can "disconnect" his connection "camfed_test_user"
-   And User confirms the disconnection "camfed_test_user"
-   Then User can navigate and view "camfed_test_user" wall with button "Add Connection"
+   And User can "disconnect" his connection "camfed_friend_user"
+   And User confirms the disconnection "camfed_friend_user"
+   Then User can navigate and view "camfed_friend_user" wall with button "Add Connection"
    And User logs out
    
 Scenario: Verify the Add Connection button updates correctly after "Reject"
 Given the following users exists in canvas:
   |USER|
-  |camfed_test_user|
+  |camfed_friend_user|
   When User "camfed_user" has pending connection requests from:
   |USER|
-  |camfed_test_user|
-  Then User can navigate and view "camfed_test_user" wall without a connection button
+  |camfed_friend_user|
+  Then User can navigate and view "camfed_friend_user" wall with button "Awaiting Your Response"
   When User navigates to "Connection Requests"
-  Then User can "reject" the connection request from "requesting_user"
-  Then User can navigate and view "camfed_test_user" wall with button "Add Connection"
+  Then User can "reject" the connection request from "camfed_friend_user"
+  Then User can navigate and view "camfed_friend_user" wall with button "Add Connection"
   And User logs out
   
 Scenario: Verify that connection is added by using add connection button

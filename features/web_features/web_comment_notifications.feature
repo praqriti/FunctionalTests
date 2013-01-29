@@ -1,4 +1,4 @@
-@javascript
+# @javascript
 Feature:
 
   As an user
@@ -21,7 +21,6 @@ Feature:
     And "Lizzie" is connected to "camfed_user"
     When User is on the Sign In page
     And User "Lizzie" logs into Canvas with her credentials
-    Then "Lizzie" should see the Canvas home page
 
 @stage
   Scenario: Verify if comment notification is visible to the user with status
@@ -31,18 +30,15 @@ Feature:
     Then User logs out
     When User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
-    Then "camfed_user" should see the Canvas home page
     Then Comment added notification is visible for "Lizzie" with comment:"Lizzie's Comment"
     Then User logs out
     When User is on the Sign In page
     And User "Catheryn" logs into Canvas with her credentials
-    Then "Catheryn" should see the Canvas home page
     Then User can navigate and view the "private" wall of user "camfed_user"
     Then User comments "Catheryn's Comment" on the status of "camfed_user"
     Then User logs out
     When User is on the Sign In page
     And User "Lizzie" logs into Canvas with her credentials
-    Then "Lizzie" should see the Canvas home page
     Then Comment added notification is visible for "Catheryn" with comment:"Catheryn's Comment"
     Then User logs out
 
@@ -60,12 +56,10 @@ Feature:
 
    When User is on the Sign In page
    And User "Catheryn" logs into Canvas with her credentials
-   Then "Catheryn" should see the Canvas home page
    Then User can navigate and view the "private" wall of user "camfed_user"
    Then User comments "Catheryn's Comment" on the status of "camfed_user"
    Then User logs out
    When User is on the Sign In page
    And User "Lizzie" logs into Canvas with her credentials
-   Then "Lizzie" should see the Canvas home page
    Then The Status Activity Notification "is not" visible
    Then User logs out

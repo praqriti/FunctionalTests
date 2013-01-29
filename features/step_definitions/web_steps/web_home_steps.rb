@@ -1,9 +1,3 @@
-Given /^User lands on the home page$/ do
-  retry_on_timeout do
-  @app.home.should be_displayed
-  end
-end
-
 Then /^User navigates to canvas home page$/ do
   retry_on_timeout do    
     @app.home.load 

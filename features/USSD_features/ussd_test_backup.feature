@@ -21,7 +21,6 @@ Scenario Outline: While a student attempts a quiz the connection is broken
   Then User should see question "2"
   When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
-  Then "camfed_user" should see the Canvas home page
   And User navigates to quiz "<TEST>" for course "<COURSE>"
   And User resumes the quiz
   Then User should see option "2" choosen for question "1"
