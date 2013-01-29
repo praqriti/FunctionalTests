@@ -8,7 +8,6 @@ Feature:
   Background:   
    When User is on the Sign In page
    And User "camfed_user" logs into Canvas with her credentials
-   Then 
    
   Scenario: Verify User can make an incorrect search   
    When User searches for "!adadsindl!" and clicks search

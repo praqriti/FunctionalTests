@@ -48,8 +48,11 @@ end
   @app.my_wall.comment_box.set "#{arg1}"
   @app.my_wall.comment_submit.click
 	@app.my_wall.wait_for_comment_box(10)
-	@app.my_wall.should have_comment_box
-	@app.my_wall.wait_until_error_message_invisible
+	@app.my_wall.wait_until_comments_visible
+  # @app.my_wall.comments.last.text.should == "#{arg1}"
+  @app.my_wall.comments.each do |comment|
+    p comment.text
+  end
 end
 
 Then /^the comments are visible on My Wall$/ do |comments_table|
@@ -58,9 +61,13 @@ Then /^the comments are visible on My Wall$/ do |comments_table|
     @app.my_wall.should have_comments
   end	
   
+  # comments_table.hashes.each do |comment|
+  #    binding.pry
+  #  end
+  #  
   expected_comments = comments_table.hashes.collect{|x| x["COMMENT"]}
-	actual_comments = @app.my_wall.comments.collect(&:text)
-	expected_comments.sort.should == actual_comments.sort	
+  actual_comments = @app.my_wall.comments.collect(&:text)
+  expected_comments.sort.should == actual_comments.sort 
 end
 
 Then /error message "(.*?)" is displayed$/ do |error1|
