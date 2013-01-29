@@ -13,7 +13,10 @@ Then /^User can navigate and view "(.*?)" wall with button "(.*?)"$/ do |user_id
   user_id = @users.find{|user| user.identifier == user_identifier}.id
   @app.my_wall.visit_profile_page user_id
   @app.my_wall.wait_for_user_name
-  @app.my_wall.has_add_connection_button?.should == true
+  retry_on_timeout do
+    @app.my_wall.wait_for_add_connection_button
+  end
+  @app.my_wall.should have_add_connection_button
   @app.my_wall.add_connection_button.value.should == button_text
 end
 

@@ -20,4 +20,6 @@ class Home < SitePrism::Page
   element :connection_notification_container, "li.stream-connection .details_container"
   elements :connection_notifications, "table#connection-details tr"
   elements :global_messages, "div.global-message.image-block .image-block-content .message"
+  
+  section :connection_alert, ConnectionAlert, ".image-block-content"
 end

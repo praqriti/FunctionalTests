@@ -28,6 +28,7 @@ class Group
            :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"}
         )
     JSONSpecInterface.log(@last_response)
+    sleep(2)
     Group.new @last_response.parsed_response
   end
 

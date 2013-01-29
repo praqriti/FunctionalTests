@@ -23,7 +23,6 @@ Scenario: Verify appropriate message displayed if there is no history of status 
 Scenario: Verify comment box not present if status is not updated even once
 
 	Then User clicks on My Wall
-	And User lands on My Wall and can view all the elements
 	And Comment Box is not present
 	Then User logs out
 

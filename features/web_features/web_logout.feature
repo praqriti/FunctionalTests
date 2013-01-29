@@ -42,9 +42,9 @@ Scenario: access sen social before loggin in
          |camfed_teacher|
     And User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
-    Then User lands on My Wall and can view all the elements
+  	Then User clicks on My Wall
     And User logs out and logs into canvas as "camfed_teacher"
     Then "camfed_teacher" should see the Canvas home page  
-    Then User lands on My Wall and can view all the elements    
+    Then Then User clicks on My Wall    
     Then User logs out
 

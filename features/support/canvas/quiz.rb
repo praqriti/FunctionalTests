@@ -36,6 +36,7 @@ module Canvas
       })
       @id = @last_response["quiz"]["id"]
       @assignment_id = @last_response["quiz"]["assignment_id"]
+      sleep(2)
     end
 
     def add_question question

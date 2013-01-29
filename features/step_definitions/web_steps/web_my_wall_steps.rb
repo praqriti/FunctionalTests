@@ -1,5 +1,4 @@
 Given /^User lands on My Wall and can view all the elements$/ do
-  @app.my_wall.load
     retry_on_timeout do
        @app.my_wall.wait_for_user_name
        @app.my_wall.should have_user_name

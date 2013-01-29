@@ -75,4 +75,32 @@ Then /^status message should be "([^\"]*)"$/ do |message|
 end
 end
 
+Then /^User must see the connection request of "([^\"]*)" on the home page$/ do |username|
+  user = @users.find{|user| user.identifier == "#{username}"}
+  
+  @app.home.wait_for_connection_alert
+  @app.home.should have_connection_alert
+  @app.home.connection_alert.alert_links.first.click
+  steps %{
+    Then User can view the "public" wall of the user "#{user.name}"
+  }
+end
+
+Then /^User can navigate to the connection request page from the connection alert$/ do
+  @app.home.wait_for_connection_alert
+  @app.home.should have_connection_alert
+  @app.home.connection_alert.alert_links.last.click
+  steps %{
+    Then User can see "1" pending requests
+  }
+end
+
+Then /^User does not see the connection request alert$/ do
+  @app.home.load
+  @app.home.wait_for_status_message(5)
+  @app.home.connection_alert.should_not have_image
+end
+
+
+
 

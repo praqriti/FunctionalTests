@@ -113,5 +113,9 @@ Given the following users exists in canvas:
   Then User can "reject" the connection request from "requesting_user"
   Then User can navigate and view "camfed_test_user" wall with button "Add Connection"
   And User logs out
+ 
+Scenario: Verify the add connection action updates correctly on USSD app
+ 
+
   
   

@@ -37,8 +37,17 @@ And /^User can navigate and view the "([^\"]*)" wall of user "([^\"]*)"$/ do |vi
   @app.search.wait_for_username
   @app.search.username.text.should == user.name
   @app.search.users_link.click
-  @app.my_wall.wait_for_user_name
-  @app.my_wall.user_name.text.should == "#{user.name}"
-  @app.my_wall.should have_status_with_comments if view == "private"
-  @app.my_wall.should_not have_status_with_comments if view == "public"
+  steps %{
+    Then User can view the "#{view}" wall of the user "#{user.name}"
+  }
+ 
+end
+
+Then /^User can view the "([^\"]*)" wall of the user "([^\"]*)"$/ do |view,username|
+  retry_on_timeout do
+   @app.my_wall.wait_for_user_name
+  end
+   @app.my_wall.user_name.text.should == "#{username}"
+   @app.my_wall.should have_status_with_comments if view == "private"
+   @app.my_wall.should_not have_status_with_comments if view == "public"
 end

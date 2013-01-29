@@ -22,5 +22,4 @@ Scenario: Verify account admin can access all sen social features
    Then User status "single status message only" is updated successfully
    Then User can navigate and view the "public" wall of user "test_user"
    When User clicks on My Wall
-   Then User lands on My Wall and can view all the elements
    Then User logs out
