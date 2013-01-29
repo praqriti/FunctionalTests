@@ -38,6 +38,7 @@ Feature:
    When User navigates to "My Connections" page
    And User can "disconnect" his connection "Catheryn"
    And User confirms the disconnection "Catheryn"
+   And User navigates to canvas home page
    When User "updates" the status message as "status message"
    Then User status "status message" is updated successfully
    Then User logs out

@@ -1,4 +1,4 @@
-And /^User can navigate and view the wall of user "([^\"]*)"$/ do |username|
+And /^User can navigate and view the "public" wall of user "([^\"]*)"$/ do |username|
   user = @users.find{|user| user.identifier == "#{username}"}
   steps %{
   Then User searches for "#{username}" and clicks search

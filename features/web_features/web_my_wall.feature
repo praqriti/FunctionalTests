@@ -1,4 +1,4 @@
-@javascript @wip
+@javascript
 Feature:
 
   In order to view my comments
@@ -16,7 +16,7 @@ Feature:
 	And User can view the timestamp on the status
   And User logs out
 
-@stage
+@stage @bug
   Scenario: Verify user can comment on her status message
   Given User clicks on My Wall
   And User can view her latest status message "status message"
@@ -34,8 +34,7 @@ Feature:
   And User cannot enter blank comment on the status
   And User logs out
   
-#need to figure out a way to fix this
-  @wip
+  @bug
   Scenario: Verify user can comment multiple times on her status message
   Given User clicks on My Wall
   And User can view her latest status message "status message"

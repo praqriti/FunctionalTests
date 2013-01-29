@@ -23,8 +23,8 @@ end
 
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|
   retry_on_timeout do    
-    @app.home.wait_for_status_message
-    @app.home.should have_status_message
+    @app.home.wait_for_status
+    @app.home.should have_status
     end
   @app.home.status_message.click
   @app.home.status_message.set "#{message}"
@@ -64,10 +64,9 @@ end
 
 Then /^status message should be "([^\"]*)"$/ do |message|
   retry_on_timeout do
-  @app.home.wait_for_status
-  @app.home.should have_status
-end
+  @app.home.wait_for_updated_status_message
   @app.home.should have_updated_status_message
+end
   @app.home.updated_status_message.value.should == "#{message}"
 end
 

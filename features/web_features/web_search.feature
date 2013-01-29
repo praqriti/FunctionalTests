@@ -30,7 +30,7 @@ Feature:
    Given the following users exists in canvas:
            |USER|
            |camfed_bio_student|
-           Then User can navigate and view the wall of user "camfed_bio_student"
+           Then User can navigate and view the "public" wall of user "camfed_bio_student"
    Then User logs out   
    
   Scenario: Verify User can view unlinked user on search page
