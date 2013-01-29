@@ -47,9 +47,9 @@ Then /^User comments "(.*?)" on her status message$/ do |arg1|
 end
   @app.my_wall.comment_box.set "#{arg1}"
   @app.my_wall.comment_submit.click
-	@app.my_wall.wait_for_comment_box
+	@app.my_wall.wait_for_comment_box(10)
 	@app.my_wall.should have_comment_box
-	@app.my_wall.should_not have_error_message
+	@app.my_wall.wait_until_error_message_invisible
 end
 
 Then /^the comments are visible on My Wall$/ do |comments_table|
