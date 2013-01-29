@@ -12,7 +12,10 @@ end
 When /^User navigates to "Connection Requests"$/ do
   sleep(1)
   @app.connection_requests.load
+  retry_on_timeout do
   @app.connection_requests.wait_for_users
+  @app.connection_requests.should have_users
+end
 end
 
 Then /^User can see the pending connection requests sent from:$/ do |users_table|

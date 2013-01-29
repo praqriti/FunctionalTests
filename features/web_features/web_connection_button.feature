@@ -8,6 +8,7 @@ Feature:
   Background:
   When User is on the Sign In page
   And  User "camfed_user" logs into Canvas with her credentials
+  Then "camfed_user" should see the Canvas home page
 
 Scenario: View the correct status of connection button on user wall
 Given the following users exists in canvas:
@@ -29,33 +30,6 @@ Given the following users exists in canvas:
    Then User can navigate and view "camfed_pending_request_user" wall with button "Awaiting Your Response"
    Then User can navigate and view "camfed_awaiting_response_user" wall with button "Awaiting Response"
    And User logs out
-
-@394
-Scenario: Verify that connection is added by using add connection button
-Given the following users exists in canvas:
-  |USER|
-  |camfed_friend_user|
-  Then User can navigate and view "camfed_friend_user" wall with button "Add Connection"
-  When User clicks on "Add Connection" button
-  Then User can navigate and view "camfed_friend_user" wall with button "Awaiting Response"
-  And User logs out
-  When User is on the Sign In page
-  And  User "camfed_friend_user" logs into Canvas with her credentials
-  When User can see the pending connection requests sent from:
-  |USER|
-  |camfed_user|
-  And User logs out
-
-@wip @394
-Scenario: View the correct status of connection button on user wall
-Given the following users exists in canvas:
-  |USER|
-  |camfed_user_1|
-  |camfed_user_2|
-  Then User can view all the basic user information of "camfed_user_1"
-  And "camfed_user" is connected to "camfed_user_2"
-  Then User can view all the basic user information of "camfed_user_1"
-  And User logs out
    
 Scenario: View the Awaiting your response button updates correctly on user wall
 Given the following users exists in canvas:
@@ -113,7 +87,24 @@ Given the following users exists in canvas:
   Then User can "reject" the connection request from "requesting_user"
   Then User can navigate and view "camfed_test_user" wall with button "Add Connection"
   And User logs out
- 
+  
+Scenario: Verify that connection is added by using add connection button
+Given the following users exists in canvas:
+  |USER|
+  |camfed_friend_user|
+  Then User can navigate and view "camfed_friend_user" wall with button "Add Connection"
+  When User clicks on "Add Connection" button
+  Then User can navigate and view "camfed_friend_user" wall with button "Awaiting Response"
+  And User logs out
+  When User is on the Sign In page
+  And  User "camfed_friend_user" logs into Canvas with her credentials
+  And User navigates to "Connection Requests"
+  Then User can see the pending connection requests sent from:
+  |USER|
+  |camfed_user|
+  And User logs out
+
+@wip 
 Scenario: Verify the add connection action updates correctly on USSD app
  
 

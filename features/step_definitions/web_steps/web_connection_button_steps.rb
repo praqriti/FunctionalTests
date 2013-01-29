@@ -1,26 +1,33 @@
 Then /^User can navigate and view "(.*?)" wall without a connection button$/ do |user_identifier|
   if user_identifier == "his"
-    user_id = @logged_in_user.id
+    user = @logged_in_user
   else
-    user_id = @users.find{|user| user.identifier == user_identifier}.id
+    user = @users.find{|user| user.identifier == user_identifier}
   end
-  @app.my_wall.visit_profile_page user_id
-  @app.my_wall.wait_for_user_name
-  @app.my_wall.has_add_connection_button_div?.should == false
+  @app.my_wall.visit_profile_page user.id
+  steps %{
+     Then User can view the "public" wall of the user "#{user.name}"
+   }
+@app.my_wall.should_not have_add_connection_button
 end
 
 Then /^User can navigate and view "(.*?)" wall with button "(.*?)"$/ do |user_identifier, button_text|
-  user_id = @users.find{|user| user.identifier == user_identifier}.id
-  @app.my_wall.visit_profile_page user_id
-  @app.my_wall.wait_for_user_name
+  user = @users.find{|user| user.identifier == user_identifier}
+  @app.my_wall.visit_profile_page user.id
+  steps %{
+     Then User can view the "public" wall of the user "#{user.name}"
+   }
   retry_on_timeout do
-    @app.my_wall.wait_for_add_connection_button
-  end
+  @app.my_wall.wait_for_add_connection_button
   @app.my_wall.should have_add_connection_button
+end
   @app.my_wall.add_connection_button.value.should == button_text
 end
 
-When /^User clicks on "(.*?)" button$/ do |arg1|
+When /^User clicks on "Add Connection" button$/ do
+  @app.my_wall.should have_add_connection_button
+  @app.my_wall.add_connection_button.value.should == "Add Connection"
+  @app.my_wall.add_connection_button.click
   @app.my_wall.wait_until_success_message_visible
-  @app.my_wall.success_message.text.should == "blah"
+  @app.my_wall.success_message.text.should == "Connection request sent"
 end

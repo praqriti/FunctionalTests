@@ -21,8 +21,10 @@ And /^User "updates" the status message as "([^\"]*)"$/ do |message|
    When User "enters" the status message as "#{message}"
  }
   @app.home.create_status_button.click
+  retry_on_timeout do
   @app.home.wait_for_status_updated
-
+  @app.home.should have_status_updated
+end
 end
 
 And /^User "enters" the status message as "([^\"]*)"$/ do |message|

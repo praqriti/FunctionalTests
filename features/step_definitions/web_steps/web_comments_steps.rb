@@ -46,6 +46,7 @@ end
 Then /^User can view the "([^\"]*)" wall of the user "([^\"]*)"$/ do |view,username|
   retry_on_timeout do
    @app.my_wall.wait_for_user_name
+   @app.my_wall.should have_user_name
   end
    @app.my_wall.user_name.text.should == "#{username}"
    @app.my_wall.should have_status_with_comments if view == "private"

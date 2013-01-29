@@ -26,7 +26,6 @@ Feature:
     Then User should see "unauthorised" error page
     Then User logs out
   
-  @wip
   Scenario: On any exception user must see 404 error page
     When User is on the Sign In page
     And User "test_user" logs into Canvas with her credentials

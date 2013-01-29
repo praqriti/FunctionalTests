@@ -45,6 +45,6 @@ Scenario: access sen social before loggin in
   	Then User clicks on My Wall
     And User logs out and logs into canvas as "camfed_teacher"
     Then "camfed_teacher" should see the Canvas home page  
-    Then Then User clicks on My Wall    
+    Then User clicks on My Wall    
     Then User logs out
 

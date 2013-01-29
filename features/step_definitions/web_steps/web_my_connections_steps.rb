@@ -1,7 +1,9 @@
 When /^User navigates to "My Connections" page$/ do
   @app.my_connections.load
+  retry_on_timeout do
   @app.my_connections.wait_for_header_message 
   @app.my_connections.should have_header_message 
+end
 end
 
 Then /^User can see "(.*?)" on my connections page$/ do |username|
@@ -56,12 +58,9 @@ And /^User unconfirms the disconnection$/ do
 end
 
 Then /^User can see "(.*?)" connections available$/ do |number|
-  sleep(1)
-@app.my_connections.load
-@app.my_connections.wait_for_header_message
+steps %{
+  When User navigates to "My Connections" page
+}
 @app.my_connections.header_message.text.should == "#{number} Connection(s) available"
-if (number!='0')
-@app.my_connections.wait_for_my_connections_details
-end
 end
 
