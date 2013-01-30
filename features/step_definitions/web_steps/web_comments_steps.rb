@@ -9,8 +9,8 @@ end
 
 Then /^the comment "(.*?)" by "(.*?)" is visible on users wall$/ do |comment, username|
   @app.my_wall.wait_for_comments
-  @app.my_wall.comments.each do |actual_comment|
-		actual_comment.text.should == comment
+  @app.my_wall.comment_values.each do |actual_comment|
+	actual_comment.text.should == comment
 	end
   steps %{
 	Then User can view her name "#{username}" on the comment

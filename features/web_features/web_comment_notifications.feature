@@ -42,7 +42,7 @@ Feature:
     Then Comment added notification is visible for "Catheryn" with comment:"Catheryn's Comment"
     Then User logs out
 
-@wip
+# @wip
   Scenario: Verify if comment notification is not visible to the disconnected user
    Then User can navigate and view the "private" wall of user "camfed_user"
    Then User comments "Lizzie's Comment" on the status of "camfed_user"
@@ -53,7 +53,6 @@ Feature:
    And User can "disconnect" his connection "Lizzie"
    And User confirms the disconnection "Lizzie"
    Then User logs out
-
    When User is on the Sign In page
    And User "Catheryn" logs into Canvas with her credentials
    Then User can navigate and view the "private" wall of user "camfed_user"
