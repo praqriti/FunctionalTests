@@ -16,7 +16,7 @@ module JSONSpecInterface
         fail("Request failed at #{last_response.request.path.to_s} with error: #{last_response.to_json}")
     
     elsif (last_response.parsed_response["id"].nil?)
-        fail("Unexpected Failure on data creationat #{last_response.request.path.to_s} with error: #{last_response.parsed_response.to_json}")
+        fail("Unexpected Failure on data creation at #{last_response.request.path.to_s} with error: #{last_response.parsed_response}")
     end
   end
 end
