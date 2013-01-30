@@ -44,6 +44,15 @@ Scenario: Should see the aggregated notification category list with notification
 
 Scenario: Should see the notification list for a category with pagination
     # Given User "" has "" new course invitations
+    #   Given User "" has "" accepted connection requests
+    #   Given User "" has "" announcements on groups
+    #   Given User "" has "" announcements on courses
+    #   Given User "" has "" status update notifications
+    #   Given User "" has "" status update notifications
+    #   
+    #   
+    #   
+    #   
     Given User "camfed_user" is enrolled with following courses:
       |COURSE     |ROLE    |STATUS|
       |History    |Student |active|

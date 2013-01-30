@@ -1,3 +1,34 @@
+Given /^User has "(.*?)" new course invitations$/ do |course_count|
+  s
+  steps %{
+    Given User "camfed_user" is enrolled with following courses:
+     |COURSE     |ROLE    |STATUS|
+     |History    |Student |pending|
+     |Physics    |Student |active|
+     |Geography  |Student |active|
+     |Maths      |Student |active|
+     |Biology    |Student |pending|
+  }
+end
+
+Given /^User "(.*?)" has "(.*?)" accepted connection requests$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^User "(.*?)" has "(.*?)" announcements on groups$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^User "(.*?)" has "(.*?)" announcements on courses$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^User "(.*?)" has "(.*?)" status update notifications$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+
+
 Given /^User chooses the option "Notifications"$/ do
   sleep 10
   steps %{
