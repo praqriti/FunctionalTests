@@ -6,7 +6,7 @@ module Canvas
                              :body =>  body.to_json,
                              :headers => { "Content-Type" => "application/json"},
                              :basic_auth => @auth)
-      JSONSpecInterface.log(response)
+      JSONSpecInterface.raise_error(response)
       return response
     end
   end
@@ -34,6 +34,7 @@ module Canvas
               :allowed_attempts => @allowed_attempts
       }
       })
+      JSONSpecInterface.raise_error(last_response)
       @id = @last_response["quiz"]["id"]
       @assignment_id = @last_response["quiz"]["assignment_id"]
       sleep(2)
@@ -59,7 +60,7 @@ module Canvas
     def is_submitted?
       submissions = JSONSpecInterface.get("#{CANVAS_URL}/api/v1/courses/#{@course.id}/assignments/#{@assignment_id}/submissions",
                                         :headers => { "Content-Type" => "application/json", "Authorization" => CANVAS_ACCESS_TOKEN})
-      JSONSpecInterface.log(submissions)
+      JSONSpecInterface.raise_error(submissions)
 
       return true if submissions.select{|s| s["user_id"] == @user.id && s["workflow_state"] == "graded" }.any?
       return false

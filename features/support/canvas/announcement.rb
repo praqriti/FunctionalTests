@@ -17,7 +17,7 @@ class Announcement
            :headers => { "Authorization" => "Bearer #{user.token}"}
         )
     sleep(2)
-    JSONSpecInterface.log(@last_response)
+    JSONSpecInterface.raise_error(@last_response)
     Announcement.new @last_response.parsed_response
   end
 end

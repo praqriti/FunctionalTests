@@ -19,7 +19,7 @@ class User
                                                 :dev_key => "#{DEV_KEY}"
                                             },
                                             :headers => { "Accept" => "application/json"})
-    JSONSpecInterface.log(@last_response)
+    JSONSpecInterface.raise_error(@last_response)
     @token = @last_response.parsed_response["token"]
     return @token
   end
@@ -43,7 +43,7 @@ class User
                                    :user => user_hash
                                },
                                :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-    JSONSpecInterface.log(@last_response)
+    JSONSpecInterface.raise_error(@last_response)
     user.id =  @last_response.parsed_response["id"]
     return user
   end

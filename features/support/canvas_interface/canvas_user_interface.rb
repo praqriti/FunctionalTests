@@ -7,7 +7,7 @@ class CanvasUserInterface
 def self.delete_user(user)
         @delete_response = JSONSpecInterface.delete("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/users/#{user.id}",
         :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-        JSONSpecInterface.log(@delete_response)
+        JSONSpecInterface.raise_error(@delete_response)
 end
 
 def self.assign_account_admin(user)
@@ -16,7 +16,7 @@ def self.assign_account_admin(user)
                    :user_id => "#{user.id}",
                   },
          :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-     JSONSpecInterface.log(@last_response)
+     JSONSpecInterface.raise_error(@last_response)
 end
 
 end

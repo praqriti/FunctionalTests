@@ -7,7 +7,7 @@ class SenSocialBase
                                     "Content-Type" => "application/json",
                                     "AUTHORIZATION" => "Bearer #{user.token}"
                                  })
-    JSONSpecInterface.log(response)
+    JSONSpecInterface.raise_error(response)
     return response
   end
 end

@@ -13,7 +13,7 @@ class CanvasEnrollmentInterface
 				  }
 				  },
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-    JSONSpecInterface.log(@last_response)
+    JSONSpecInterface.raise_error(@last_response)
 	    	return @last_response.parsed_response["id"]
 	end
 
@@ -24,7 +24,7 @@ class CanvasEnrollmentInterface
                           :task => "delete"
                                },
                                :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-        JSONSpecInterface.log(@last_response)
+        JSONSpecInterface.raise_error(@last_response)
   end
 
   def self.enroll_type type

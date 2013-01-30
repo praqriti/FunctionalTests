@@ -27,7 +27,7 @@ class Group
            },
            :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"}
         )
-    JSONSpecInterface.log(@last_response)
+    JSONSpecInterface.raise_error(@last_response)
     sleep(2)
     Group.new @last_response.parsed_response
   end
@@ -45,7 +45,7 @@ class Group
            },
            :headers => { "Authorization" => "Bearer #{user.token}"}
         )
-    JSONSpecInterface.log(@last_response)
+    JSONSpecInterface.raise_error(@last_response)
   end
 
   def delete
@@ -54,7 +54,7 @@ class Group
         :event => "delete"
       },
       :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-    JSONSpecInterface.log(@last_response)
+    JSONSpecInterface.raise_error(@last_response)
   end
 
 end

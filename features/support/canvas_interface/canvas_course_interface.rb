@@ -14,9 +14,8 @@ class CanvasCourseInterface
 			JSONSpecInterface.post("#{CANVAS_API}/accounts/#{ACCOUNT_ID}/courses",
 			:body =>  body,
 			:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
+		JSONSpecInterface.raise_error(@last_response)
 		@course.id =  @last_response.parsed_response["id"]
-    JSONSpecInterface.log(@last_response)
-    @last_response.parsed_response["name"].should == "#{@course.name}"
     sleep(2)
 		return @course
 	end 
@@ -27,6 +26,6 @@ class CanvasCourseInterface
 			:event => "delete"
 			},
 		:headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
-    JSONSpecInterface.log(@last_response)
+    JSONSpecInterface.raise_error(@last_response)
 	end		   
 end    

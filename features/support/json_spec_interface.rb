@@ -11,9 +11,12 @@ module JSONSpecInterface
     @last_response.body
   end
 
-  def self.log last_response
+  def self.raise_error last_response
     if (!last_response.response.kind_of? Net::HTTPSuccess)
-        p "Request failed at #{last_response.request.path.to_s} with error: #{last_response.to_json}"
+        fail("Request failed at #{last_response.request.path.to_s} with error: #{last_response.to_json}")
+    
+    elsif (last_response.parsed_response["id"].nil?)
+        fail("Unexpected Failure on data creationat #{last_response.request.path.to_s} with error: #{last_response.parsed_response.to_json}")
     end
   end
 end
