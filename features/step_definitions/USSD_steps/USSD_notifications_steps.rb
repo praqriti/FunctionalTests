@@ -3,7 +3,7 @@ Given /^User has "(.*?)" new course invitations$/ do |course_count|
   steps %{
     Given User "camfed_user" is enrolled with following courses:
      |COURSE     |ROLE    |STATUS|
-     |History    |Student |pending|
+     |Physics    |Student |pending|
      |Physics    |Student |active|
      |Geography  |Student |active|
      |Maths      |Student |active|
