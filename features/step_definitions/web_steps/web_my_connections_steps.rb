@@ -3,6 +3,7 @@ When /^User navigates to "My Connections" page$/ do
   retry_on_timeout do
   @app.my_connections.wait_for_header_message 
   @app.my_connections.should have_header_message 
+  sleep(2)
 end
 end
 
