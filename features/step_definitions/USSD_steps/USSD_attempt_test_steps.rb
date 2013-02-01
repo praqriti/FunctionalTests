@@ -26,10 +26,10 @@ Then /^User should see question "([^\"]*)"$/ do |question_num|
   body = @last_response.parsed_response
   question = @questions[question_num.to_i - 1]
 
-  body["message"].include? "Q(#{question_num}/#{@questions.count}): #{question[:text]}"
+  body["message"].include?("Q(#{question_num}/#{@questions.count}): #{question[:text]}").should == true
 
   for i in 1..question[:answers].count
-    body["message"].include?(question[:answers]["answer_#{i-1}"]["answer_text"]) == true
+    body["message"].include?(question[:answers]["answer_#{i-1}"]["answer_text"]).should == true
   end
   
   steps %{
@@ -53,7 +53,7 @@ end
 
 Then /^User should see message "(.*?)"$/ do |message|
   body = @last_response.parsed_response
-  body["message"].include? message
+  body["message"].include?(message).should == true
 end
 
 And /^User navigates to test page and chooses test "(.*?)"$/ do |test_no|

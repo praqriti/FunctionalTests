@@ -14,6 +14,7 @@ Scenario Outline: Student resumes the test
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
   Then User should see quiz menu for role "<ROLE>" having "2" questions and "2" attempts
+  Then User should see message "Attempt Quiz"
   When User chooses "Attempt Test"
   Then User should see question "1"
   When User chooses option "2"
@@ -23,6 +24,7 @@ Scenario Outline: Student resumes the test
   And User "camfed_user" logs into USSD with correct credentials
   And User navigates to test page and chooses test "1"
   Then User should see quiz menu for role "<ROLE>" having "2" questions and "2" attempts
+  Then User should see message "Resume Quiz"
   When User chooses "Attempt Test"
   Then User should see question "2"
 

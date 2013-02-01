@@ -45,8 +45,7 @@ end
 
 Then /^User should see quiz menu for Student having "([^\"]*)" questions and "([^\"]*)" attempts available$/ do |question_count, attempts|
   actual_response = @last_response.parsed_response
-  actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}\n1 View Score\n2 Attempt Quiz\n0 Home"
-  actual_response["message"].include?("2 Attempt Quiz").should == true
+  actual_response["message"].include?("Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}").should == true
   actual_response["message"].include?("1 View Score").should == true
   steps %{
 		Then the JSON at "session_id" should be "#{@session_id}"
