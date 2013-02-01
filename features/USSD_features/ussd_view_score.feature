@@ -41,7 +41,7 @@ Scenario Outline: Student views score after attempting the test
   When User skips the question
   Then the Quiz should be submitted
   And User should see the message "successful_test_attempt"
-  Then User chooses option "0"
+  Then User chooses "Back" option
   And User chooses test "1"
   Then User chooses "View Score"
   Then User should see message "Score: 1 out of 2"
