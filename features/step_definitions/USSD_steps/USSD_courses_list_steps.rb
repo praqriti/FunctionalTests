@@ -27,6 +27,9 @@ end
 
 When /^User chooses the course "(.*?)"$/ do |course_name|
 	message = @last_response.parsed_response["message"]
+	p "************ added for debugging ************"
+	p message
+	p "************"
   course_no, _ = message.match(/(\d+) #{course_name}/i)
   steps %{
      Then User replies with option "#{course_no[1]}"
