@@ -1,14 +1,13 @@
 Given /^User has "(.*?)" new course invitations$/ do |course_count|
-  s
+  for i in 1..course_count.to_i
+  course_name = "camfed_course_"+"#{i}"
   steps %{
     Given User "camfed_user" is enrolled with following courses:
-     |COURSE     |ROLE    |STATUS|
-     |Physics    |Student |pending|
-     |Physics    |Student |active|
-     |Geography  |Student |active|
-     |Maths      |Student |active|
-     |Biology    |Student |pending|
-  }
+     |COURSE              |ROLE    |STATUS|
+     |#{course_name}      |Student |active|
+     }
+     
+   end
 end
 
 Given /^User "(.*?)" has "(.*?)" accepted connection requests$/ do |arg1, arg2|

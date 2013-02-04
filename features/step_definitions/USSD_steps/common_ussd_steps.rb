@@ -59,6 +59,10 @@ Given /^User replies with option "(.*?)"$/ do |option|
                                            :headers => { "Content-Type" => "application/json"})
 end
 
+Then /^User waits for "(.*?)" seconds$/ do |seconds|
+  sleep(seconds.to_i)
+end
+
 
 When /^I save the access token for user "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had

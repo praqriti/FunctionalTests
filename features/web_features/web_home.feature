@@ -24,6 +24,7 @@ Then User logs out
 
 Scenario: Verify that user can update status multiple times
 Given User "updates" the status message as "status message"
+Then User waits for "2" seconds
 Then User can update the status again as "new status message"
 Then User logs out
 
