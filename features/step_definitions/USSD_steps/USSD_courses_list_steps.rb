@@ -26,6 +26,7 @@ Given /^User "(.*?)" is enrolled with following unpublished courses:$/ do |usern
 end
 
 When /^User chooses the course "(.*?)"$/ do |course_name|
+  message = @last_response.parsed_response["message"]
   course_no, _ = message.match(/(\d+) #{course_name}/i)
   steps %{
      Then User replies with option "#{course_no[1]}"
