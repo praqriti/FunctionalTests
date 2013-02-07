@@ -24,7 +24,7 @@ Then /^"([^\"]*)" should see the Canvas home page$/ do |username|
   retry_on_timeout do
    @app.home.should be_displayed
    @app.home.wait_for_username_link
-   @app.home.should have_user1name_link
+   @app.home.should have_username_link
   end
   @app.home.username_link.text.should == username
 end
