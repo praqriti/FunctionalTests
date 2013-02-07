@@ -93,7 +93,6 @@ end
 
 And /^User should not see "Previous" and "Next" option$/ do
 	actual_response = @last_response.parsed_response
-	binding.pry
 	actual_response["response"]["response_map"]["*"].should  be_nil
 	actual_response["response"]["response_map"]["#"].should  be_nil
 end
