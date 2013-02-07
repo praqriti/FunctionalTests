@@ -23,9 +23,9 @@ def retry_on_timeout(n = 3, &block)
    if n > 0
      p "Attempts left :#{n-1}"
      p "#{e}"
-    retry_on_timeout(n - 1, &block)
+     retry_on_timeout(n - 1, &block)
   else
-    raise "Retries failed"
+    raise "****Retries failed****"
   end
 end
 
@@ -37,7 +37,7 @@ def notifications_page_reload(n = 3, &block)
       @app.home.load
       notifications_page_reload(n - 1, &block)
     else
-      raise "notification not found"
+      raise "****Notification not found*****"
     end
   end
 end

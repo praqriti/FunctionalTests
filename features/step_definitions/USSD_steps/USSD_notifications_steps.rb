@@ -1,29 +1,71 @@
-Given /^User has "(.*?)" new course invitations$/ do |course_count|
+Given /^User has "(.*?)" new assignments$/ do |course_count|
   for i in 1..course_count.to_i
-  course_name = "camfed_course_"+"#{i}"
-  steps %{
-    Given User "camfed_user" is enrolled with following courses:
-     |COURSE              |ROLE    |STATUS|
-     |#{course_name}      |Student |active|
-     }
-     
+  test_name = "camfed_test_"+"#{i}"
+   steps %{
+    Given the following test data with questions exists:
+    |ROLE   |COURSE  |STATUS  |TEST  |ATTEMPTS|QUESTIONS|
+    |Teacher |test_course|active|#{test_name}|1|0|
+          }    
    end
 end
 
-Given /^User "(.*?)" has "(.*?)" accepted connection requests$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Given /^User has "(.*?)" new group announcement notifications$/ do |announcement_count|
+  steps %{
+  Given Group "camfed_group" has "#{announcement_count}" new announcements made by "camfed_user"  
+  }
 end
 
-Given /^User "(.*?)" has "(.*?)" announcements on groups$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Given /^User has "(.*?)" new course announcement notifications$/ do |announcement_count|
+  steps %{
+  Given Course "camfed_course" has "#{announcement_count}" new announcements made by "camfed_user"  
+  }
 end
 
-Given /^User "(.*?)" has "(.*?)" announcements on courses$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+
+Given /^User has "(.*?)" accepted connection requests$/ do |connections|
+  for i in 1..connections.to_i  
+  friend = "camfed_friend_"+"#{i}"
+  steps %{
+    Given the following users exists in canvas:
+    |USER|
+    |#{friend}|
+    And "camfed_user" is connected to "#{friend}"
+  }
+end
 end
 
-Given /^User "(.*?)" has "(.*?)" status update notifications$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+
+Given /^User has "(.*?)" comment notifications$/ do |comment_count|
+  user =  @users.last 
+  steps %{
+    And "camfed_user" has his status set to "status_update_for_comment"
+    When User is on the Sign In page
+    And User "#{user.identifier}" logs into Canvas with her credentials
+    And User can navigate and view the "private" wall of user "camfed_user"
+  }
+  for i in 1..comment_count.to_i
+    steps %{
+       Then User comments "Comment_#{i}" on the status of "#{user.identifier}"
+    }
+    sleep(1)
+   end
+   steps %{
+    Then User logs out   
+  }
+end
+
+Given /^User has "(.*?)" status notifications$/ do |number_of_statuses|
+  steps %{
+     Given the following users exists in canvas:
+       |USER|
+       |camfed_friend|
+     And "camfed_friend" is connected to "camfed_user"
+   }
+  for i in 1..number_of_statuses.to_i  
+    steps %{
+      And "camfed_friend" has his status set to "status_update_#{i}"
+    }
+end
 end
 
 
@@ -57,7 +99,9 @@ Then /^User should see the notifications menu with blank notifications$/ do
 end
 
 Then /^User should see the notifications menu with "(.*?)"$/ do |notification|
-  @last_response.parsed_response["message"].include?(notification).should be_true
+  if (!@last_response.parsed_response["message"].include?(notification))
+    raise "notification mismatch: #{@last_response.parsed_response["message"]}"
+  end    
 end
 
 When /^User chooses the notification "(.*?)"$/ do |notification_name|
@@ -85,6 +129,12 @@ And /^"(.*?)" should see connection notification for user "(.*?)" with page_no "
   steps %{
     And User should see the notifications menu with "#{msg}"
   }
+end
+
+Then /^User should see announcement notification "(.*?)" made by "(.*?)"$/ do |announcement, user_identifier|
+  user = @users.find{|u| u.identifier == user_identifier}
+  body = @last_response.parsed_response
+  body["message"].include?("#{announcement.truncate 55}").should == true
 end
 
 

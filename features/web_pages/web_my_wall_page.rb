@@ -1,9 +1,6 @@
 class Wall < SitePrism::Page
   set_url "/sen/wall"
-  
-  element :about_page_link, "li.user_name"
-  element :logout_link, "li.logout"
-  
+
   section :menu, MenuSection, "ul#menu"
     
   element :user_name, ".profile_headings"

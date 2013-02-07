@@ -1,9 +1,9 @@
 @javascript
 Feature:
 
-	In order to know the announcements I have enrolled for
+	In order to know the announcements 
 	As a User
-	I want to be able to view the list of my groups on my mobile device
+	I want to be able to view the course announcement on my mobile device
 
 Background:
 	Given I make a new USSD login request
@@ -11,7 +11,7 @@ Background:
 	Then User should see the USSD home page
 	
 Scenario: View announcements on group
-Given Group "History" has "2" new announcements made by "camfed_user":
+Given Course "History" has "2" new announcements made by "camfed_user":
   |ANNOUNCEMENTS|
   |My father trained to be a fighter pilot in South Africa|
   
@@ -66,6 +66,5 @@ Scenario: View that announcers name truncated after 15 characters
   Then User should see only 15 characters in the announcement
   Then User chooses the "Previous" option
   Then User should see the ordered groups list on page "1"
-  
   
   

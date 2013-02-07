@@ -23,10 +23,10 @@ end
 Then /^"([^\"]*)" should see the Canvas home page$/ do |username|  
   retry_on_timeout do
    @app.home.should be_displayed
-   @app.home.wait_for_about_page_link
-   @app.home.should have_about_page_link
+   @app.home.wait_for_username_link
+   @app.home.should have_user1name_link
   end
-  @app.home.about_page_link.text.should == username
+  @app.home.username_link.text.should == username
 end
 
 When /^I wait (\d+) seconds?$/ do |seconds|
@@ -53,7 +53,7 @@ Given /^Super Admin logs into Canvas$/ do
   @app.canvas_login.password.set "#{SUPER_ADMIN_PASSWORD}"
   @app.canvas_login.sign_in_button.click
   
-  @app.home.about_page_link.text.should == SUPER_ADMIN
+  @app.home.username_link.text.should == SUPER_ADMIN
 end
 
 Given /^Super Admin tries to login using CAS$/ do

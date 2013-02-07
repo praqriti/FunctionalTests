@@ -26,10 +26,6 @@ Given /^User "(.*?)" is enrolled with following unpublished courses:$/ do |usern
 end
 
 When /^User chooses the course "(.*?)"$/ do |course_name|
-	message = @last_response.parsed_response["message"]
-	p "************ added for debugging ************"
-	p message
-	p "************"
   course_no, _ = message.match(/(\d+) #{course_name}/i)
   steps %{
      Then User replies with option "#{course_no[1]}"
@@ -97,6 +93,7 @@ end
 
 And /^User should not see "Previous" and "Next" option$/ do
 	actual_response = @last_response.parsed_response
+	binding.pry
 	actual_response["response"]["response_map"]["*"].should  be_nil
 	actual_response["response"]["response_map"]["#"].should  be_nil
 end

@@ -1,12 +1,37 @@
 And /^Group "(.*?)" has "(.*?)" new announcements made by "(.*?)":$/ do |group_name,announcement_number,user_identifier,announcements_table|
+  steps %{
+    Given User "#{user_identifier}" is enrolled with following groups:
+     |name            |
+     |#{group_name}   |
+  }
+  
   group = @groups.find{|group| group.name == group_name}
   user = @users.find{|u| u.identifier == user_identifier}
 announcements_table.hashes.each do |hash|
-  Announcement.create user, group, :title => hash[:ANNOUNCEMENTS], :message => hash[:ANNOUNCEMENTS]
+  Announcement.create user, group, :title => hash["ANNOUNCEMENTS"], :message => hash["ANNOUNCEMENTS"]
+end
+end
+
+And /^Course "(.*?)" has "(.*?)" new announcements made by "(.*?)":$/ do |course_name,announcement_number,user_identifier,announcements_table|
+  steps %{
+      Given User "#{user_identifier}" is enrolled with following courses:
+       |COURSE              |ROLE    |STATUS|
+       |#{course_name}      |Teacher |active|
+    }
+    
+  course = @courses[0]
+  user = @users.find{|u| u.identifier == user_identifier}
+announcements_table.hashes.each do |hash|
+  Announcement.create_for_course user, course, :title => hash["ANNOUNCEMENTS"], :message => hash["ANNOUNCEMENTS"]
 end
 end
 
 And /^Group "(.*?)" has "(.*?)" new announcements made by "(.*?)"$/ do |group_name,announcement_number,user_identifier|
+  steps %{
+     Given User "#{user_identifier}" is enrolled with following groups:
+      |name            |
+      |#{group_name}   |
+   }
   group = @groups.find{|group| group.name == group_name}
   user = @users.find{|u| u.identifier == user_identifier}
 announcement_number.to_i.times do |hash|
@@ -15,10 +40,19 @@ announcement_number.to_i.times do |hash|
 end
 end
 
-Then /^User should see "(.*?)" ordered announcements on page "(.*?)"$/ do |no_of_announcements,page_no|
-  
+And /^Course "(.*?)" has "(.*?)" new announcements made by "(.*?)"$/ do |course_name,announcement_number,user_identifier|
+  steps %{
+     Given User "#{user_identifier}" is enrolled with following courses:
+      |COURSE           |ROLE    |STATUS|
+      |#{course_name}      |Teacher |active|
+   }    
+  course = @courses[0]
+  user = @users.find{|u| u.identifier == user_identifier}
+announcement_number.to_i.times do |hash|
+  @announcements << 
+  Announcement.create_for_course(user,course, AnnouncementData.announcement)
 end
-
+end
 
 Given /^User chooses to view announcements$/ do
   steps %{
