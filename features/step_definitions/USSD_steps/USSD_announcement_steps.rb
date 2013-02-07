@@ -100,5 +100,8 @@ Then /^User is asked to "Enter the edit body of announcement or continue"$/ do
   sleep(4)
 end
 
+Then /^User should see "(.*?)" ordered announcements on page "(.*?)"$/ do |no_of_announcements,page_no|
+end
+
 
 

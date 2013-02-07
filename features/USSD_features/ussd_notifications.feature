@@ -86,9 +86,9 @@ Scenario: View announcements notifications with truncation on group
           Then User should see announcement notification "2.My father trained to be a fighter pilot in Asia" made by "camfed_user"
           When User chooses the "Next" option
           Then User should see announcement notification "1.My father trained to be a fighter pilot in South Africa" made by "camfed_user"
-           When User chooses the "Next" option
-           Then User returns with error "invalid_option"
-           Then User replies "0" to go back to home page
+          When User chooses the "Next" option
+          Then User returns with error "invalid_option"
+          Then User replies "0" to go back to home page
 
 
 

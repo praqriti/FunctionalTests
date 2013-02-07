@@ -10,22 +10,30 @@ Background:
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 	
-Scenario: View announcements on group
-Given Group "History" has "2" new announcements made by "camfed_user":
-  |ANNOUNCEMENTS|
-  |My father trained to be a fighter pilot in South Africa|
-  
+Scenario: View announcements on group with truncation
+  Given the following users exists in canvas:
+   |USER|
+   |camfed_user with_truncation|
+  Given Group "History" has "1" new announcements made by "camfed_user with_truncation":
+   |ANNOUNCEMENTS|
+   |My father trained to be a fighter pilot in South Africa|
+  Given I make a new USSD login request
+  When User "camfed_user with_truncation" logs into USSD with correct credentials
+  Then User should see the USSD home page
   Given User chooses the option "Groups"
   Then User should see the ordered groups list on page "1"
   When User chooses the group "History"
   Then User chooses to view announcements
-  Then User should see announcement "My father trained to be a fighter pilot in South Africa" made by "camfed_user"
+  Then User should see announcement "My father trained to be a fighter pilot in South Africa" made by "camfed_user with_truncation"
   Then User should not see "Previous" and "Next" option 
   When User replies "0" to go back to home page
 	Then User should see the USSD home page
 	
 
 Scenario: Verify no announcements on groups  
+Given User "camfed_user" is enrolled with following groups:
+  |name         |
+  |History      |
 	Given User chooses the option "Groups"
   When User chooses the group "History"
   Then User chooses to view announcements
@@ -34,38 +42,27 @@ Scenario: Verify no announcements on groups
 	Then User should see the USSD home page
 
 Scenario: View list of announcements on group with pagination
-  Given Group "History" has "7" new announcements made by "camfed_user"
-  And User chooses the option "Groups"
-  When User chooses the group "History"
-  Then User chooses to view announcements
-  Then User should see "3" ordered announcements on page "1"
-  And User chooses the "Next" option
-  Then User should see "3" ordered announcements on page "2"
-	And User should see the "Next" and "Previous" option
-	And User chooses the "Next" option
-  Then User should see "1" ordered announcements on page "3"
-  And User replies "0" to go back to home page
-	Then User should see the USSD home page
-
-@manual
-Scenario: View that group announcement is truncated after 40 characters
-  And Group "History" has a new announcement with more than 40 characters
-  And User chooses the option "Groups"
-  When User chooses the group "History"
-  Then User should see "1" ordered announcements on page "1"
-  Then User should see only 40 characters in the announcement
-  Then User chooses the "Previous" option
-  Then User should see the ordered groups list on page "1"
-
-@manual
-Scenario: View that announcers name truncated after 15 characters
-  And Group "History" has a new announcement with more than 15 characters
-  And User chooses the option "Groups"
-  When User chooses the group "History"
-  Then User should see "1" ordered announcements on page "1"
-  Then User should see only 15 characters in the announcement
-  Then User chooses the "Previous" option
-  Then User should see the ordered groups list on page "1"
-  
+    Given Group "History" has "5" new announcements made by "camfed_user":
+    |ANNOUNCEMENTS|
+    |Announcement 1|
+    |Announcement 2|
+    |Announcement 3|
+    |Announcement 4|
+    |Announcement 5| 
+    And User chooses the option "Groups"
+    When User chooses the group "History"
+    Then User chooses to view announcements
+    Then User should see announcement "Announcement 5" made by "camfed_user"
+    And User chooses the "Next" option
+    Then User should see announcement "Announcement 4" made by "camfed_user"
+    And User chooses the "Next" option
+    Then User should see announcement "Announcement 3" made by "camfed_user"
+    And User chooses the "Next" option
+    Then User should see announcement "Announcement 2" made by "camfed_user"
+    And User chooses the "Next" option
+    Then User should see announcement "Announcement 1" made by "camfed_user"
+    And User chooses the "Next" option
+    Then User returns with error "invalid_option"
+    Then User replies "0" to go back to home page
   
   
