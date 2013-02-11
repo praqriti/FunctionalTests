@@ -183,9 +183,6 @@ When /^User clicks on "Add Connection" button$/ do
   @app.my_wall.success_message.text.should == "Connection request sent"
 end
 
-Then /^$/ do
-  pending # express the regexp above with the code you wish you had
-end
 
 
 
