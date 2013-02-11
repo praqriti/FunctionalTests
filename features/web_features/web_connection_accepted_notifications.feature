@@ -79,7 +79,7 @@ Feature:
     Then User should see connected user notification of "Mathew" and "camfed_user"
     Then User logs out
     
-@integration
+@integration @wip
   Scenario: Verify if connection accepted notification is sent to common friends
     Given User "Common_friend" is enrolled with following courses:
       |COURSE     |ROLE    |STATUS|
