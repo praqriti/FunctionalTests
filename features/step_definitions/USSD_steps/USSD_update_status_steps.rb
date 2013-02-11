@@ -29,12 +29,6 @@ When /^User replies with new status message:$/ do |string|
     }
 end
 
-When /^User replies "0" from update status page to go back to home page$/ do
-  steps %{
-      Then User replies with option "0"   
-    }
-end
-
 Then /^User should see his previously updated message "([^\"]*)"$/ do |message|
   steps %{
       Then the JSON at "message" should be "#{message}\\nEnter your new status\\n0 Home"

@@ -14,10 +14,4 @@ Then /^User should see the connections menu$/ do
 
 end
 
-When /^User replies "0" from connections page to go back to home page$/ do
-  steps %{
-      Then User replies with option "0"   
-    }
-end
-
 

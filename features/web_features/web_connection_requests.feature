@@ -97,7 +97,6 @@ Scenario: Verify if a logged in user can view his connection requests on his hom
     |requesting_user1|
   And User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
-  Then 
   And User should see connection requests from:
     |USER|
     |requesting_user|

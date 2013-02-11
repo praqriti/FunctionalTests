@@ -87,11 +87,6 @@ Then /^User should see the "Previous" option on tests list$/ do
   actual_response["message"].include?("* Previous").should == true
 end
 
-When /^User replies "0" from tests page to go back to home page$/ do
-  steps %{
-      Then User replies with option "0"   
-    }
-end
 
 Given /^the following test data with questions exists:$/ do |test_table|
   test_table.hashes.each do |hash|

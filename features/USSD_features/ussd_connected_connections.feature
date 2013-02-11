@@ -34,7 +34,7 @@ Scenario: View connected connections
     Then User should see the list of connected users for page "2"
     When User chooses the "Previous" option
     Then User should see the list of connected users for page "1"
-    And User replies "0" from connections page to go back to home page
+    And User replies "0" to go back to home page
     Then User should see the USSD home page
     
 

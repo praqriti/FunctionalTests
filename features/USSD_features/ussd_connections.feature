@@ -13,7 +13,7 @@ Background:
 	And User should see the connections menu
 
 Scenario: Verify back from connections page from ussd	
-	When User replies "0" from connections page to go back to home page
+	When User replies "0" to go back to home page
 	Then User should see the USSD home page
 	
 Scenario: Verify back from connections page from ussd

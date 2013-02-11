@@ -33,7 +33,7 @@ Scenario: Verify blank status update from USSD
 Scenario: Verify back from update page from USSD
 	
 	Given User chooses the option to "update status"
-	When User replies "0" from update status page to go back to home page
+	When User replies "0" to go back to home page
 	Then User should see the USSD home page
 
 	Given User chooses the option to "update status"

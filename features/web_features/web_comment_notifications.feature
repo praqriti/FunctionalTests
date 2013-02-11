@@ -5,56 +5,56 @@ Feature:
   I am on the home page of canvas
   I get notifications for different actions of my connection
 
-  Background:
-    Given the following users exists in canvas:
+  Background:  
+   Given the following users exists in canvas:
       |USER|
-      |Catheryn|
-      |Lizzie|
-   Given User "camfed_user" is enrolled with following courses:
-      |COURSE     |ROLE    |STATUS|
-      |History    |Student |active|
-    When User is on the Sign In page
-    And User "Lizzie" logs into Canvas with her credentials
-    Given User "Lizzie" is enrolled with following courses:
-      |COURSE     |ROLE    |STATUS|
-      |History    |Student |active|
-    And "camfed_user" has his status set to "status message"
-    And "camfed_user" is connected to "Catheryn"
-    And "Lizzie" is connected to "camfed_user"
-    Then User can navigate and view the "private" wall of user "camfed_user"
-    Then User comments "Lizzie's Comment" on the status of "camfed_user"
-    # Then the comment "Lizzie's Comment" by "Lizzie" is visible on users wall
-    Then User logs out
-    When User is on the Sign In page
+      |camfed_friend_1|
+      |camfed_friend_2|
+    Given User has the following comment notifications:
+      |COMMENTED_BY   |COMMENT|
+      |camfed_friend_1|camfed friend 1 has something to say|
+      |camfed_friend_2|camfed friend 2 has something to say|
 
-@stage @wip
-  Scenario: Verify if comment notification is visible to the user with status  
+@stage
+  Scenario: Verify if comment notification is visible to all users
+    When User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
-    Then Comment added notification is visible for "Lizzie" with comment:"Lizzie's Comment"
+    Then home page has the following comment notifications:
+        |COMMENTED_BY     |COMMENT|
+        |camfed_friend_1  |camfed friend 1 has something to say|
+        |camfed_friend_2  |camfed friend 2 has something to say|
+    Given User clicks on My Wall
+    And User comments "Hello friends" on her status message
     Then User logs out
     When User is on the Sign In page
-    And User "Catheryn" logs into Canvas with her credentials
-    Then User can navigate and view the "private" wall of user "camfed_user"
-    Then User comments "Catheryn's Comment" on the status of "camfed_user"
+    And User "camfed_friend_2" logs into Canvas with her credentials
+    Then home page has the following comment notifications:
+      |COMMENTED_BY   |COMMENT|
+      |camfed_user|Hello|
     Then User logs out
     When User is on the Sign In page
-    And User "Lizzie" logs into Canvas with her credentials
-    Then Comment added notification is visible for "Catheryn" with comment:"Catheryn's Comment"
+    And User "camfed_friend_1" logs into Canvas with her credentials
+    Then home page has the following comment notifications:
+      |COMMENTED_BY     |COMMENT|
+      |camfed_friend_1  |camfed friend 1 has something to say|
+      |camfed_friend_2  |camfed friend 2 has something to say|
+      |camfed_user      |Hello friends|
     Then User logs out
 
-@wip
-  Scenario: Verify if comment notification is not visible to the disconnected user
+
+  Scenario: Verify if comment notification is not visible to the disconnected user  
+   When User is on the Sign In page
    And User "camfed_user" logs into Canvas with her credentials
    When User navigates to "My Connections" page
-   And User can "disconnect" his connection "Lizzie"
-   And User confirms the disconnection "Lizzie"
+   And User can "disconnect" his connection "camfed_friend_1"
+   And User confirms the disconnection "camfed_friend_1"
+   Given User clicks on My Wall
+   And User comments "Hello friends" on her status message
    Then User logs out
    When User is on the Sign In page
-   And User "Catheryn" logs into Canvas with her credentials
-   Then User can navigate and view the "private" wall of user "camfed_user"
-   Then User comments "Catheryn's Comment" on the status of "camfed_user"
+   And User "camfed_friend_1" logs into Canvas with her credentials
+   Then home page does not have the following comment notifications:
+       |COMMENTED_BY       |COMMENT|
+       |camfed_user        |Hello friends|
    Then User logs out
-   When User is on the Sign In page
-   And User "Lizzie" logs into Canvas with her credentials
-   Then The Status Activity Notification "is not" visible
-   Then User logs out
+ 

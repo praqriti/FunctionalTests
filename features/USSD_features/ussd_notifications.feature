@@ -15,7 +15,7 @@ Background:
 Scenario: Verify back from notifications page from ussd	
         	Given User chooses the option "Notifications"
         	And User should see the notifications menu with blank notifications
-        	When User replies "0" from notifications page to go back to home page
+        	When User replies "0" to go back to home page
         	Then User should see the USSD home page
 
 
@@ -89,6 +89,34 @@ Scenario: View announcements notifications with truncation on group
           When User chooses the "Next" option
           Then User returns with error "invalid_option"
           Then User replies "0" to go back to home page
+          
+ 
+  @integration
+    Scenario: Verify if comment notification is visible to the user on both web and ussd 
+      Given the following users exists in canvas:
+         |USER|
+         |camfed_friend|
+      Given User has comment notifications from "camfed_friend": 
+         |COMMENTS|
+         |comment 1 from camfed_friend|
+         |comment 2 from camfed_friend|
+         |comment 3 from camfed_friend|
+      Given User chooses the option "Notifications"
+      When User should see the notifications menu with "1 Comment Added (3)"
+      Then User replies with option "1"
+      Then User should see comment notifications:
+          |COMMENTED_BY |COMMENTED_TO|
+          |camfed_friend|camfed_user|
+          |camfed_friend|camfed_user|
+          |camfed_friend|camfed_user|
+      When User is on the Sign In page
+      And User "camfed_user" logs into Canvas with her credentials
+      Then home page has the following comment notifications:
+       |COMMENTED_BY|COMMENT|
+       |camfed_friend|comment 3 from camfed_friend|
+       |camfed_friend|comment 2 from camfed_friend|
+       |camfed_friend|comment 1 from camfed_friend|
+      Then User logs out
 
 
 

@@ -35,23 +35,22 @@ end
 end
 
 
-Given /^User has "(.*?)" comment notifications$/ do |comment_count|
-  user =  @users.last 
-  steps %{
-    And "camfed_user" has his status set to "status_update_for_comment"
-    When User is on the Sign In page
-    And User "#{user.identifier}" logs into Canvas with her credentials
-    And User can navigate and view the "private" wall of user "camfed_user"
-  }
-  for i in 1..comment_count.to_i
-    steps %{
-       Then User comments "Comment_#{i}" on the status of "#{user.identifier}"
-    }
-    sleep(1)
-   end
+Then /^User should see comment notifications:$/ do |comments_table|  
+  comments_table.hashes.each do |hash|
+   user_by = @users.find{|u| u.identifier == hash["COMMENTED_BY"]}
+   user_to = @users.find{|u| u.identifier == hash["COMMENTED_TO"]}
+   
+   recieved_message = @last_response.parsed_response["message"]
+   actual_comment = "#{user_by.name} commented on #{user_to.name}".truncate(55)
+   
+   recieved_message.include?(actual_comment).should == true
+   
+   if (recieved_message.include?("Next"))
    steps %{
-    Then User logs out   
-  }
+     When User chooses the "Next" option
+    }
+   end
+ end
 end
 
 Given /^User has "(.*?)" status notifications$/ do |number_of_statuses|
@@ -86,11 +85,6 @@ Then /^User should see the notifications menu$/ do
 
 end
 
-When /^User replies "0" from notifications page to go back to home page$/ do
-  steps %{
-      Then User replies with option "0"   
-    }
-end
 
 Then /^User should see the notifications menu with blank notifications$/ do
   steps %{

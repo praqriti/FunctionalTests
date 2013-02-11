@@ -79,3 +79,24 @@ Feature:
     Then User should see connected user notification of "Mathew" and "camfed_user"
     Then User logs out
     
+@integration
+  Scenario: Verify if connection accepted notification is sent to common friends
+    Given User "Common_friend" is enrolled with following courses:
+      |COURSE     |ROLE    |STATUS|
+      |History    |Student |active|
+    When User is on the Sign In page
+    And User "Common_friend" logs into Canvas with her credentials
+    Then User should see connection notifications containing link of "Mathew" profile
+    When User clicks on connection notification group
+    Then User should see connected user notification of "Mathew" and "camfed_user"
+    Then User logs out
+    
+    And I make a new USSD login request
+    When User "Common_friend" logs into USSD with correct credentials
+    Then User should see the USSD home page
+    Given User chooses the option "Notifications"
+    When User should see the notifications menu with "1 Connection Request Accepted (2)"
+    Then User replies with option "1"
+    And "camfed_user" should see connection notification for user "Mathew" with page_no "1"
+    When User chooses the "Next" option
+    And "camfed_user" should see connection notification for user "camfed_user" with page_no "2"
