@@ -37,7 +37,7 @@ end
 
 When /^User replies "0" to go back to home page$/ do
   steps %{
-    Then User replies "0" to go back to home page  
+    Then User replies with option "0"
     Then User should see the message "home_page" 
   }
 end
