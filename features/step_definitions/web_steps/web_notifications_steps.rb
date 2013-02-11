@@ -123,7 +123,7 @@ Given /^User has the following comment notifications:$/ do |comments_table|
     When User is on the Sign In page
     And User "#{hash["COMMENTED_BY"]}" logs into Canvas with her credentials
     And User can navigate and view the "private" wall of user "camfed_user"
-    Then User comments "#{hash["COMMENT"]}" on the status of "#{hash["COMMENTED_BY"]}"
+    Then User comments "#{hash["COMMENT"]}" on the status of "camfed_user"
     }
     sleep(1)
     steps %{

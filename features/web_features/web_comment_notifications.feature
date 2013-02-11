@@ -15,7 +15,7 @@ Feature:
       |camfed_friend_1|camfed friend 1 has something to say|
       |camfed_friend_2|camfed friend 2 has something to say|
 
-@stage
+@stage @wip
   Scenario: Verify if comment notification is visible to all users
     When User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
