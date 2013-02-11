@@ -56,6 +56,8 @@ Scenario: Verify if removing a user from web reflects on USSD app and no paginat
        When User chooses option "1"
        Then User should see the list of connected users for page "1"
        And User should not see "Previous" and "Next" option
+       Then User logs out
+       
    
 Scenario: Verify invalid option from connected connections page from ussd
        And I make a new USSD login request
@@ -67,5 +69,6 @@ Scenario: Verify invalid option from connected connections page from ussd
        And User should see the list of connected users for page "1"
        And User sends an invalid option "9"
        Then User returns with error "invalid_option"
+       
        
 

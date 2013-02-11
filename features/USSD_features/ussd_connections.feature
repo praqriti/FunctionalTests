@@ -15,8 +15,10 @@ Background:
 Scenario: Verify back from connections page from ussd	
 	When User replies "0" to go back to home page
 	Then User should see the USSD home page
+  
 	
 Scenario: Verify back from connections page from ussd
     When User sends an invalid option "9"
     Then User returns with error "invalid_option"
+    
 

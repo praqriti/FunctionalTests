@@ -63,6 +63,7 @@ Scenario: View status should be reflected on both canvas and ussd app
 	When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
   And status message should be "new status message"
+  Then User logs out
 
 @wip @manual
 Scenario: Verify one user cannot use another users access token
