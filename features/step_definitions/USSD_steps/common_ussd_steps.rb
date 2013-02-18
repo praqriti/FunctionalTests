@@ -74,4 +74,10 @@ Given /^User "(.*?)" sends an invalid option "(.*?)" from "(.*?)" page$/ do |arg
   pending # express the regexp above with the code you wish you had
 end
 
+Then /^"(.*?)" comments "(.*?)" on the status$/ do |user1_identifier, comment|
+  user1 = @users.find{|user| user.identifier == user1_identifier}
+  status = @statuses_to_clean.last
+  Comment.create :status => status, :user => user1, :message => comment
+end
+
 
