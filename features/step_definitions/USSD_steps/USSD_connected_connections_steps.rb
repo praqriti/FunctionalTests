@@ -33,5 +33,5 @@ Then /^User should see the empty status of "([^\"]*)"$/ do |username|
 end
 
 Then /^User should see "(.*?)"$/ do |arg1|
-  @last_response.parsed_response["message"].include?(arg1)
+  @last_response.parsed_response["message"].include?(arg1).should == true
 end
