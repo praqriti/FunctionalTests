@@ -6,6 +6,6 @@ class Login < SitePrism::Page
   element :email, "input#username"
   element :password, "input#password"
   element :message_box, "div.messagebox"
-  element :sign_in_button, "input.button"
+  element :sign_in_button, "input.submit"
   element :message, ".messagebox"  
 end

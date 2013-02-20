@@ -9,7 +9,7 @@ class Wall < SitePrism::Page
   element :profile_picture, "div.profile_headings img"
   element :status_message, "div#status_message em"
 	element :timestamp_status, "div#status_message span.created_at"
-  element :comment_box, "textarea#comment_message.autoclearInput"
+  element :comment_box, "textarea#comment_message"
   element :comment_submit, "form#new_comment.new_comment input.submit"
   elements :comments, ".comment"
   elements :comment_values, ".comment_text"
