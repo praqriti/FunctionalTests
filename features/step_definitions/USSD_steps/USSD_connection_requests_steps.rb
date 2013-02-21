@@ -1,13 +1,12 @@
-Then /^User should see the list of pending requests for page "([^\"]*)"$/ do |page_no|
+Then /^User should see ordered pending requests on page "([^\"]*)"$/ do |page_no|
   actual_response = @last_response.parsed_response
   page_no = page_no.to_i
   rpp = "#{RECORDS_PER_PAGE}".to_i
-  s_no = (rpp * (page_no-1)) + 1
   start_index = rpp * (page_no-1)
   end_index = start_index + (rpp-1)
-
+    
   @requesters.reverse[start_index..end_index].each do |requester|
-    actual_response["message"].include?(requester).should == true
+    actual_response["message"].include?(requester.name.truncate 20).should == true
   end
 
   actual_response["message"].include?("0 Home").should == true
@@ -28,7 +27,7 @@ Then /^User should see the message "([^\"]*)" with "([^\"]*)"$/ do |message, nam
 	Then the JSON at "session_type" should be "SESSION"
 
 	}
-  @requesters.delete(name)
+  @requesters.delete(user)
 end
 
 Then /^User should see connection response options$/ do

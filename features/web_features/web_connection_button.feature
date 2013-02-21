@@ -16,7 +16,7 @@ Given the following users exists in canvas:
    |camfed_non_friend|
    |camfed_pending_request_user|
    |camfed_awaiting_response_user|
-   And "camfed_user" is connected to "camfed_friend_user"
+   And "camfed_user" has accepted connection request from "camfed_friend_user"
    Then User can navigate and view "his" wall without a connection button
    When User "camfed_user" has pending connection requests from:
    |USER|
@@ -67,7 +67,7 @@ Given the following users exists in canvas:
    |USER|
    |camfed_friend_user|
    Then User can navigate and view "camfed_friend_user" wall with button "Add Connection"
-   And "camfed_user" is connected to "camfed_friend_user"
+   And "camfed_user" has accepted connection request from "camfed_friend_user"
    When User navigates to "My Connections" page
    And User can "disconnect" his connection "camfed_friend_user"
    And User confirms the disconnection "camfed_friend_user"

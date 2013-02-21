@@ -28,31 +28,31 @@ Background:
 
 Scenario: View connections requests
     When User chooses option "2"
-    Then User should see the list of pending requests for page "1"
+    Then User should see ordered pending requests on page "1"
     When User chooses the "Next" option
-    Then User should see the list of pending requests for page "2"
+    Then User should see ordered pending requests on page "2"
 
 Scenario: Accept and reject connection
   When User chooses option "2"
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Accept" option
   Then User should see the message "connection_request_accepted" with "requesting_user5"
   When User chooses the "Previous" option
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Reject" option
   Then User should see the message "connection_request_rejected" with "requesting_user4"
   When User chooses the "Previous" option
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   
 
 @integration  
   Scenario: Verify if accepting a user from USSD app reflects on canvas
   When User chooses option "2"
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Accept" option
@@ -68,7 +68,7 @@ Scenario: Accept and reject connection
 @integration  
   Scenario: Verify if rejecting a user from USSD app reflects on canvas
   When User chooses option "2"
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Reject" option
@@ -83,21 +83,21 @@ Scenario: Accept and reject connection
   
 Scenario: Verify back from connection requests page
   When User chooses option "2"
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
 	And User replies "0" to go back to home page
 	Then User should see the USSD home page
   
 
 Scenario: Verify invalid option from connection requests page
   When User chooses option "2"
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   And User sends an invalid option "9"
   Then User returns with error "invalid_option"
   
   
 Scenario: Verify invalid option from connection request action page
   When User chooses option "2"
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   When User chooses option "1"
   Then User should see connection response options
   And User sends an invalid option "9"
@@ -106,16 +106,16 @@ Scenario: Verify invalid option from connection request action page
   
 Scenario: Verify back from connection request action page  
 When User chooses option "2"
- Then User should see the list of pending requests for page "1"
+ Then User should see ordered pending requests on page "1"
  When User chooses option "1"
  Then User should see connection response options
  When User chooses the "Previous" option
- Then User should see the list of pending requests for page "1"
+ Then User should see ordered pending requests on page "1"
  
  
 Scenario: Verify invalid option after user rejects a connection
   When User chooses option "2"
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Reject" option
@@ -123,12 +123,12 @@ Scenario: Verify invalid option after user rejects a connection
   And User sends an invalid option "9"
   Then User returns with error "invalid_option"
   When User chooses the "Previous" option
-  Then User should see the list of pending requests for page "1"
+  Then User should see ordered pending requests on page "1"
   
   
 Scenario: Verify invalid option after user accepts a connection
    When User chooses option "2"
-   Then User should see the list of pending requests for page "1"
+   Then User should see ordered pending requests on page "1"
    When User chooses option "1"
    Then User should see connection response options
    When User chooses "Accept" option
@@ -136,7 +136,7 @@ Scenario: Verify invalid option after user accepts a connection
    And User sends an invalid option "9"
    Then User returns with error "invalid_option"
    When User chooses the "Previous" option
-   Then User should see the list of pending requests for page "1"
+   Then User should see ordered pending requests on page "1"
    
    
 @wip

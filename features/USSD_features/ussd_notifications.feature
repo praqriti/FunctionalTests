@@ -46,12 +46,11 @@ Scenario: Should be able to navigate within the notifications with pagination
           Given User chooses the option "Notifications"
           When User should see the notifications menu with "1 Connection Request Accepted (3)"
           Then User replies with option "1"
-          And "camfed_user" should see connection notification for user "camfed_friend_3" with page_no "1"
-          When User chooses the "Next" option
-          And "camfed_user" should see connection notification for user "camfed_friend_2" with page_no "2"
-          When User chooses the "Next" option
-          And "camfed_user" should see connection notification for user "camfed_friend_1" with page_no "3"
-          When User chooses the "Next" option
+          Then User should see connection notifications on USSD:
+            |REQUESTING_FRIEND    |ACCEPTING_FRIEND|
+            |camfed_friend_3|camfed_user|
+            |camfed_friend_2|camfed_user| 
+            |camfed_friend_1|camfed_user| 
           Then User returns with error "invalid_option"
           Then User replies "0" to go back to home page
           

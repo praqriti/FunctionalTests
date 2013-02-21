@@ -11,7 +11,7 @@ Feature:
            |requesting_user|
   Given User is on the Sign In page
   Given User "requesting_user" logs into Canvas with her credentials 
-  Given User "camfed_user" is connected to:
+  Given User "camfed_user" has accepted connection request from:
  	|USER|
  	|requesting_user|
 

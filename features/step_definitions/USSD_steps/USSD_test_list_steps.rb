@@ -104,13 +104,11 @@ Given /^the following test data with questions exists:$/ do |test_table|
     }
 
     course = @courses[0]
-    @quizzes = []
     user = @users.find{|user| user.identifier == "camfed_user"}
 
     enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type("Teacher"), "active")
     assignment_group = Canvas::AssignmentGroup.new(user, course).create
     quizzes = tests.split(",")
-    @questions = []
     quizzes.each do |quiz_name|
       quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name, allowed_attempts)
       quiz.create

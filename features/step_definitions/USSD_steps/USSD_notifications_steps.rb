@@ -29,7 +29,7 @@ Given /^User has "(.*?)" accepted connection requests$/ do |connections|
     Given the following users exists in canvas:
     |USER|
     |#{friend}|
-    And "camfed_user" is connected to "#{friend}"
+    And "camfed_user" has accepted connection request from "#{friend}"
   }
 end
 end
@@ -58,7 +58,7 @@ Given /^User has "(.*?)" status notifications$/ do |number_of_statuses|
      Given the following users exists in canvas:
        |USER|
        |camfed_friend|
-     And "camfed_friend" is connected to "camfed_user"
+     And "camfed_friend" has accepted connection request from "camfed_user"
    }
   for i in 1..number_of_statuses.to_i  
     steps %{
@@ -93,6 +93,7 @@ Then /^User should see the notifications menu with blank notifications$/ do
 end
 
 Then /^User should see the notifications menu with "(.*?)"$/ do |notification|
+  p notification
   if (!@last_response.parsed_response["message"].include?(notification))
     raise "notification mismatch: #{@last_response.parsed_response["message"]}"
   end    
@@ -115,14 +116,16 @@ And /^"(.*?)" should see connection notification for "(.*?)"$/ do |user1, user2|
   }
 end
 
-And /^"(.*?)" should see connection notification for user "(.*?)" with page_no "(.*?)"$/ do |user1, user2, page_no|
-  page_no ||= 1
-  user =  @users.find{|u| u.identifier == user1}
-  friend = @users.find{|u| u.identifier == user2}
-  msg = "#{friend.name} and #{user.name} are now connected".truncate(55)
-  steps %{
-    And User should see the notifications menu with "#{msg}"
-  }
+Then /^User should see connection notifications on USSD:$/ do |connections_table|
+  connections_table.hashes.each do |hash|
+   requesting_friend =  @users.find{|u| u.identifier == "#{hash["REQUESTING_FRIEND"]}"}
+   accepting_friend = @users.find{|u| u.identifier == "#{hash["ACCEPTING_FRIEND"]}"}
+   msg = "#{requesting_friend.name} and #{accepting_friend.name} are now connected".truncate(55)
+   steps %{
+     Then User should see the notifications menu with "#{msg}"
+     When User chooses the "Next" option
+   }
+  end
 end
 
 Then /^User should see announcement notification "(.*?)" made by "(.*?)"$/ do |announcement, user_identifier|

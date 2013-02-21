@@ -17,7 +17,7 @@ Scenario: Verify that a user can comment on the status of other user
 
 	When User is on the Sign In page
 	And User "camfed_friend_user" logs into Canvas with her credentials
-	And "camfed_friend_user" is connected to "camfed_user"
+	And "camfed_friend_user" has accepted connection request from "camfed_user"
 	Then User can navigate and view the "private" wall of user "camfed_user"
 	Then User comments "Nice status" on the status of "camfed_user"
 	Then the comment "Nice status" by "camfed_friend_user" is visible on users wall

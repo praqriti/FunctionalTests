@@ -72,14 +72,27 @@ end
 
 Then /^User must see the connection request of "([^\"]*)" on the home page$/ do |username|
   user = @users.find{|user| user.identifier == "#{username}"}
-  
+  retry_on_timeout do
   @app.home.wait_for_connection_alert
   @app.home.should have_connection_alert
+end
   @app.home.connection_alert.alert_links.first.click
   steps %{
     Then User can view the "public" wall of the user "#{user.name}"
   }
 end
+
+Then /^User must see the connection request alerts on home page:$/ do |connections_table|
+   retry_on_timeout do
+    @app.home.wait_for_connection_alert
+    @app.home.should have_connection_alert
+  end
+  connections_table.hashes.each do |hash|
+  requesting_friend = @users.find{|user| user.identifier == "#{hash["REQUESTING_FRIEND"]}"}
+  @app.home.connection_alert.alert_links.text.should.include? "#{requesting_friend.name}"
+end
+end
+
 
 Then /^User can navigate to the connection request page from the connection alert$/ do
   retry_on_timeout do

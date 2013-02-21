@@ -19,10 +19,19 @@ Then /^User cannot see "(.*?)" on my connections page$/ do |username|
   @app.my_connections.should_not have_disconnect_button
 end
 
-Given /^User "(.*?)" is connected to:$/ do |username, users_table|
+Given /^User "(.*?)" has accepted connection request from:$/ do |username, users_table|
   users_table.hashes.each do |hash|
   steps %{
-      And "#{username}" is connected to "#{hash[:USER]}"
+      And "#{username}" has accepted connection request from "#{hash[:USER]}"
+  }
+  sleep(1)
+  end
+end
+
+Given /^the following connections exist:$/ do |connections_table|
+  connections_table.hashes.each do |hash|
+  steps %{
+      And "#{hash["ACCEPTING_FRIEND"]}" has accepted connection request from "#{hash["REQUESTING_FRIEND"]}"
   }
   sleep(1)
   end

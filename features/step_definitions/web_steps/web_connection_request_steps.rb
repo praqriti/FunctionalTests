@@ -1,7 +1,5 @@
 Given /^User "(.*?)" has pending connection requests from:$/ do |username, users_table|
-	@requesters = []
   users_table.hashes.each do |hash|
-  @requesters << hash[:USER]
 	steps %{
 		And "#{hash[:USER]}" has sent connection request to "#{username}"
   }
@@ -27,8 +25,16 @@ Then /^User can see the pending connection requests sent from:$/ do |users_table
 	end
 end
 
-Then /^User can view the connection requests in alphabetical order$/ do
-	pending # express the regexp above with the code you wish you had
+Then /^User has "(.*?)" pending connection requests$/ do |requests|
+   for i in 1..requests.to_i  
+    friend = "camfed_requesting_friend_"+"#{i}"
+    steps %{
+      Given the following users exists in canvas:
+      |USER|
+      |#{friend}|
+      And "#{friend}" has sent connection request to "camfed_user"
+    }
+  end
 end
 
 Then /^User can "(.*?)" the connection request from "(.*?)"$/ do |user_action, username|
@@ -75,7 +81,7 @@ Given /^User "(.*?)" has connections from "(.*?)" users$/ do |username, user_cou
 		@users << User.create("dummy_user_#{i}_")
 		current_user = @users.last
     steps %{
-			And "#{current_user.identifier}" is connected to "#{username}"
+			And "#{current_user.identifier}" has accepted connection request from "#{username}"
 		}
 		sleep 1
 		p "connection created by user #{current_user.login_id}"
@@ -110,13 +116,13 @@ And /^"(.*?)" has sent connection request to "(.*?)"$/ do |user_identifier, frie
   user1 = @users.find{|user| user.identifier == user_identifier}
   friend1 = @users.find{|user| user.identifier == friend_identifier}
   ConnectionsInterface.send_connection_request(user1, friend1)
+  @requesters << @users.find{|user| user.identifier == user_identifier}
 end
 
-And /^"(.*?)" is connected to "(.*?)"$/ do |user_identifier, friend_identifier|
+And /^"(.*?)" has accepted connection request from "(.*?)"$/ do |user_identifier, friend_identifier|
   user1 = @users.find{|user| user.identifier == user_identifier}
   friend1 = @users.find{|user| user.identifier == friend_identifier}
   ConnectionsInterface.create_connection(user1, friend1)
-  @connected_users ||= []
   @connected_users << @users.find{|user| user.identifier == friend_identifier}
 end
 
@@ -135,3 +141,4 @@ Then /^User should see connection requests from:$/ do |users_table|
     messages.collect{|c| c.text}.select{|m| m.include?(user.name)}.count.should == 1
   end
 end
+

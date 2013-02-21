@@ -7,6 +7,10 @@ Before do
   @errors = Errors.new
   @announcements = Array.new
   @statuses_to_clean = []
+  @requesters = []
+  @quizzes = []
+  @questions = []
+  @connected_users = []
   @logged_in_user = User.create("camfed_user")
   @users << @logged_in_user
   @enrolled_groups = Array.new

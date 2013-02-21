@@ -15,8 +15,8 @@ Feature:
     Given User "Catheryn" is enrolled with following courses:
       |COURSE     |ROLE    |STATUS|
       |History    |Student |active|
-    And "camfed_user" is connected to "Catheryn"
-    And "Lizzie" is connected to "camfed_user"
+    And "camfed_user" has accepted connection request from "Catheryn"
+    And "Lizzie" has accepted connection request from "camfed_user"
     When User is on the Sign In page
     And User "camfed_user" logs into Canvas with her credentials
 

@@ -47,7 +47,7 @@ Scenario: Verify if a logged in user can reject his connection requests
 
 @stage      	
 Scenario: Verify if a logged in user can disconnect his connections he has added the friend
-  When User "camfed_user" is connected to:
+  When User "camfed_user" has accepted connection request from:
 	|USER|
 	|requesting_user|
   When User is on the Sign In page
@@ -62,7 +62,7 @@ Scenario: Verify if a logged in user can disconnect his connections he has added
 
 @stage
 Scenario: Verify if a logged in user can disconnect his connections where he was added as friend
-  When User "requesting_user" is connected to:
+  When User "requesting_user" has accepted connection request from:
     |USER|
     |camfed_user|
   When User is on the Sign In page
@@ -75,7 +75,7 @@ Scenario: Verify if a logged in user can disconnect his connections where he was
   Then User logs out
 
 Scenario: Verify if a logged in user can unconfirm a disconnection
-	When User "camfed_user" is connected to:
+	When User "camfed_user" has accepted connection request from:
 	|USER|
 	|requesting_user|
   When User is on the Sign In page

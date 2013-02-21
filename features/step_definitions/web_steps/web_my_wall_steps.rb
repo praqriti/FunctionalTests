@@ -92,7 +92,7 @@ end
   @app.my_wall.comment_submit.click
 end
 
-Then /^The Common Connections box "(.*?)" visible$/ do |arg1|
+Then /^the common connections box "(.*?)" visible$/ do |arg1|
   if arg1.include? "not"
     @app.my_wall.should_not have_common_connections
   else
@@ -109,8 +109,10 @@ Then /^User can see "(.*?)" on the common connections sidebar$/ do |username|
    @app.my_wall.wait_for_common_connections
    @app.my_wall.should have_common_connections
    end
-  @app.my_wall.common_connections.first.connection_name.text.should == "#{user.name}"
-  @app.my_wall.should have_common_connections.first.connection_image
+  @app.my_wall.common_connections.collect do |common_connection|
+    common_connection.text.include? "#{user.name}"
+    common_connection.should have_connection_image
+  end
 end
 
 Then /^User can navigate to the "(.*?)" wall of "(.*?)" from the common connections sidebar$/ do |authorisation,username|
@@ -182,6 +184,54 @@ When /^User clicks on "Add Connection" button$/ do
   @app.my_wall.wait_until_success_message_visible
   @app.my_wall.success_message.text.should == "Connection request sent"
 end
+
+Given /^User "(.*?)" and "(.*?)" have "(.*?)" common connections$/ do |user1,user2,connections|
+  steps %{
+   Given the following users exists in canvas:
+    |USER|
+    |#{user1}|
+    |#{user2}|
+  }
+  for i in 1..connections.to_i  
+  friend = "camfed_friend_"+"#{i}"
+  steps %{
+    Given the following users exists in canvas:
+    |USER|
+    |#{friend}|
+    And "#{user1}" has accepted connection request from "#{friend}"
+    And "#{user2}" has accepted connection request from "#{friend}"
+  }
+end
+end
+
+
+
+Given /^User "(.*?)" and "(.*?)" have the following common connections:$/ do |user1, user2, connections_table|
+   steps %{
+     Given the following users exists in canvas:
+      |USER|
+      |#{user1}|
+      |#{user2}|
+    }
+   connections_table.hashes.each do |hash|
+    steps %{
+      Given the following users exists in canvas:
+      |USER|
+      |#{hash["COMMON_CONNECTIONS"]}|
+      And "#{user1}" has accepted connection request from "#{hash["COMMON_CONNECTIONS"]}"
+      And "#{user2}" has accepted connection request from "#{hash["COMMON_CONNECTIONS"]}"
+    }
+  end
+end
+
+Then /^User can view the common connections:$/ do |table|
+  table.hashes.each do |hash|
+ steps %{
+   Then User can see "#{hash["COMMON_CONNECTIONS"]}" on the common connections sidebar
+ }
+ end
+end
+
 
 
 

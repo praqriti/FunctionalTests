@@ -13,7 +13,7 @@ Background:
       |connected_user3|
       |connected_user4|
       |connected_user5|
-    And User "camfed_user" is connected to:
+    And User "camfed_user" has accepted connection request from:
       |USER|
       |connected_user1|
       |connected_user2|
@@ -30,11 +30,11 @@ Scenario: View status of a connected user
         Given User chooses the option "Connections"
         Then User should see the connections menu
         When User chooses option "1"
-        Then User should see the list of connected users for page "1"
+        Then User should see ordered connections list on page "1"
         When User chooses option "1"
         Then User should see the current status of "connected_user5"
         When User chooses the "Previous" option
-        Then User should see the list of connected users for page "1"
+        Then User should see ordered connections list on page "1"
         When User chooses option "2"
         Then User should see the empty status of "connected_user4"
 
@@ -46,7 +46,7 @@ Scenario: View status of a connected user is truncated on display
         Given User chooses the option "Connections"
         Then User should see the connections menu
         When User chooses option "1"
-        Then User should see the list of connected users for page "1"
+        Then User should see ordered connections list on page "1"
         When User chooses option "2"
         Then User should see the current status of "connected_user4" truncated with char limit
 
