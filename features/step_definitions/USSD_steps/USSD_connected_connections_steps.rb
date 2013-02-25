@@ -32,6 +32,7 @@ Then /^User should see the empty status of "([^\"]*)"$/ do |username|
   @last_response.parsed_response["message"].index(/\s*\n/).should == 0
 end
 
-Then /^User should see "(.*?)"$/ do |arg1|
-  @last_response.parsed_response["message"].include?(arg1).should == true
+Then /^User should(.*?) see "(.*?)"$/ do |arg1, arg2|
+  affirmation = arg1 != " not"
+  @last_response.parsed_response["message"].include?(arg2).should == affirmation
 end
