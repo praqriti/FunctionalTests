@@ -1,7 +1,7 @@
 And /^"(.*?)" has his status set to "(.*?)"$/ do |user_identifier, status|
   user = @users.find{|user1| user1.identifier == user_identifier}
   @status = StatusInterface.create(:message => status, :user => user)
-  @statuses_to_clean << @status
+  @statuses << @status
 end
 
 And /^User chooses the option to "update status"$/ do
@@ -83,7 +83,7 @@ Given /^There exists a status with more than 100 chars$/ do
     @status = StatusInterface.create(
     :message => "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
     :user => @logged_in_user)
-    @statuses_to_clean << @status
+    @statuses << @status
 end
 
 Given /^"([^\"]*)" has a status with more than 100 characters$/ do |username|
@@ -91,7 +91,7 @@ Given /^"([^\"]*)" has a status with more than 100 characters$/ do |username|
     @status = StatusInterface.create(
     :message => "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
     :user => user)
-    @statuses_to_clean << @status
+    @statuses << @status
 end
 
 When /^User replies with "([^\"]*)"$/ do |message|

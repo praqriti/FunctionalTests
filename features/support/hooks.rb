@@ -6,7 +6,7 @@ Before do
   @messages = Messages.new
   @errors = Errors.new
   @announcements = Array.new
-  @statuses_to_clean = []
+  @statuses = []
   @requesters = []
   @quizzes = []
   @questions = []

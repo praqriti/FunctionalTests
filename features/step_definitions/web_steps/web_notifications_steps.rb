@@ -56,78 +56,40 @@ end
 end
 
 Given /^User has "(.*?)" comment notifications$/ do |comment_count|
-  user =  @users.last 
+  user = @users.last
   steps %{
-    And "camfed_user" has his status set to "status_update_for_comment"
-    When User is on the Sign In page
-    And User "#{user.identifier}" logs into Canvas with her credentials
-    And User can navigate and view the "private" wall of user "camfed_user"
-  }
+     And "camfed_user" has his status set to "status_update_for_comment"
+     And "camfed_user" has accepted connection request from "#{user.identifier}"
+   	
+    }
   for i in 1..comment_count.to_i
     steps %{
-       Then User comments "Comment_#{i}" on the status of "#{user.identifier}"
+      Then "#{user.identifier}" comments "Comment_#{i}" on the status
     }
-    sleep(1)
-   end
-   steps %{
-    Then User logs out   
-  }
+  end
 end
 
-
-Given /^User has "(.*?)" comment notifications from "(.*?)"$/ do |comment_count,user_identifier|
+Given /^User "(.*?)" has comment notifications from "(.*?)":$/ do |user_identifier,commenting_user,comments_table| 
   steps %{
-    Given "camfed_user" has accepted connection request from "#{user_identifier}"
-    And "camfed_user" has his status set to "status_update_for_comment"
-    When User is on the Sign In page
-    And User "#{user_identifier}" logs into Canvas with her credentials
-    And User can navigate and view the "private" wall of user "camfed_user"
-  }
-  for i in 1..comment_count.to_i
-    steps %{
-       Then User comments "Comment_#{i}" on the status of "#{user_identifier}"
-    }
-    sleep(1)
-   end
-   steps %{
-    Then User logs out   
-  }
-end
-
-Given /^User has comment notifications from "(.*?)":$/ do |user_identifier,comments_table|
-  steps %{
-    Given "camfed_user" has accepted connection request from "#{user_identifier}"
-    And "camfed_user" has his status set to "status_update_for_comment"
-    When User is on the Sign In page
-    And User "#{user_identifier}" logs into Canvas with her credentials
-    And User can navigate and view the "private" wall of user "camfed_user"
-  }
+    And "#{user_identifier}" has his status set to "status_update_for_comment"
+    And "#{user_identifier}" has accepted connection request from "#{commenting_user}"
+    
+   }
 comments_table.hashes.each do |hash|
     steps %{
-       Then User comments "#{hash["COMMENTS"]}" on the status of "#{user_identifier}"
+      Then "#{commenting_user}" comments "#{hash["COMMENTS"]}" on the status
     }
-    sleep(1)
    end
-   steps %{
-    Then User logs out   
-  }
 end
 
-Given /^User has the following comment notifications:$/ do |comments_table|
+Given /^User "(.*?)" has the following comment notifications:$/ do |user_identifier,comments_table|
   steps %{
-   And "camfed_user" has his status set to "status_update_for_comment"
+   And "#{user_identifier}" has his status set to "status_update_for_comment"  
   }
   comments_table.hashes.each do |hash|
   steps %{
-    Given "camfed_user" has accepted connection request from "#{hash["COMMENTED_BY"]}"   
-    When User is on the Sign In page
-    And User "#{hash["COMMENTED_BY"]}" logs into Canvas with her credentials
-    And User can navigate and view the "private" wall of user "camfed_user"
-    Then User comments "#{hash["COMMENT"]}" on the status of "camfed_user"
-    }
-    sleep(1)
-    steps %{
-    Then User logs out   
+    And "#{user_identifier}" has accepted connection request from "#{hash["COMMENTED_BY"]}"
+    Then "#{hash["COMMENTED_BY"]}" comments "#{hash["COMMENT"]}" on the status
   }
 end
 end

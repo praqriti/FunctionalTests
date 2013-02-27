@@ -49,23 +49,6 @@ Scenario: User should be able to see the common connections on wall of a connect
 
 Scenario: User should be able to see the common connections on wall with pagination
   Given User "camfed_user" and "camfed_friend" have "6" common connections
-  
-  # Given the following connections exist:
-  #    |REQUESTING_FRIEND|ACCEPTING_FRIEND|
-  #    |camfed_friend_1  |camfed_user|
-  #    |camfed_friend_2  |camfed_user|
-  #    |camfed_friend_3  |camfed_user|
-  #    |camfed_friend_4  |camfed_user|
-  #    |camfed_friend_5  |camfed_user|
-  #    |camfed_friend_6  |camfed_user|
-  # Given the following connections exist:
-  #   |REQUESTING_FRIEND|ACCEPTING_FRIEND|
-  #   |camfed_friend_1  |camfed_friend|
-  #   |camfed_friend_2  |camfed_friend|
-  #   |camfed_friend_3  |camfed_friend|
-  #   |camfed_friend_4  |camfed_friend|
-  #   |camfed_friend_5  |camfed_friend|
-  #   |camfed_friend_6  |camfed_friend|  
   Then User can navigate and view the "public" wall of user "camfed_friend"
   Then the common connections box "is" visible
   Then the sidebar has "6" common connections

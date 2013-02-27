@@ -98,6 +98,11 @@ And /^User should not see "Previous" and "Next" option$/ do
 	actual_response["response"]["response_map"]["#"].should  be_nil
 end
 
+And /^User should not see "(.*?)"$/ do |option|
+	actual_response = @last_response.parsed_response
+	actual_response["response"]["response_map"]["#{option}"].should  be_nil
+end
+
 And /^User should see the "Next" and "Previous" option$/ do
 	actual_response = @last_response.parsed_response["response"]
 	actual_response["message"].include?("Previous").should == true

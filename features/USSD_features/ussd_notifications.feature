@@ -95,7 +95,7 @@ Scenario: View announcements notifications with truncation on group
       Given the following users exists in canvas:
          |USER|
          |camfed_friend|
-      Given User has comment notifications from "camfed_friend": 
+      Given User "camfed_user" has comment notifications from "camfed_friend": 
          |COMMENTS|
          |comment 1 from camfed_friend|
          |comment 2 from camfed_friend|

@@ -18,7 +18,7 @@ end
 
 Then /^User should see the current status of "([^\"]*)"$/ do |username|
   user = @users.find{|user| user.identifier == username}
-  message =   @statuses_to_clean.find{|status| status.user.id == user.id }.message
+  message =   @statuses.find{|status| status.user.id == user.id }.message
   @last_response.parsed_response["message"].index(message).should == 0
 end
 

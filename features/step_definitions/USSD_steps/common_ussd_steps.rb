@@ -76,9 +76,15 @@ end
 
 Then /^"(.*?)" comments "(.*?)" on the status$/ do |user1_identifier, comment|
   user1 = @users.find{|user| user.identifier == user1_identifier}
-  status = @statuses_to_clean.last
+  status = @statuses.last
   Comment.create :status => status, :user => user1, :message => comment
   sleep(1)
 end
+
+
+Then /^User should see "(.*?)"$/ do |arg1|
+  @last_response.parsed_response["message"].include?(arg1).should == true
+end
+
 
 

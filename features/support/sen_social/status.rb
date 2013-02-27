@@ -1,4 +1,4 @@
-class Status < SenSocialBase
+class StatusInterface < SenSocialBase
   attr_accessor :id, :message, :user
 
   def initialize params, user
