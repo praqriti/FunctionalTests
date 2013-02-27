@@ -23,6 +23,7 @@ Scenario: View announcements on group with truncation
   Given User chooses the option "Groups"
   Then User should see the ordered groups list on page "1"
   When User chooses the group "History"
+  Then User should see "View Announcements[1]"
   Then User chooses to view announcements
   Then User should see announcement "My father trained to be a fighter pilot in South Africa" made by "camfed_user with_truncation"
   Then User should not see "Previous" and "Next" option 
@@ -30,16 +31,14 @@ Scenario: View announcements on group with truncation
 	Then User should see the USSD home page
 	
 
-Scenario: Verify no announcements on groups  
+Scenario: verify that user should not see view announcement option and see no announcement message if no announcement on group
 Given User "camfed_user" is enrolled with following groups:
   |name         |
   |History      |
 	Given User chooses the option "Groups"
-  When User chooses the group "History"
-  Then User chooses to view announcements
-	Then User should see the message "no_announcement_on_group"
-	When User replies "0" to go back to home page
-	Then User should see the USSD home page
+    When User chooses the group "History"
+    Then User should see "No announcements on this group"
+    Then User should not see "View Announcements"
 
 Scenario: View list of announcements on group with pagination
     Given Group "History" has "5" new announcements made by "camfed_user":
@@ -51,6 +50,7 @@ Scenario: View list of announcements on group with pagination
     |Announcement 5| 
     And User chooses the option "Groups"
     When User chooses the group "History"
+    Then User should see "View Announcements[5]"
     Then User chooses to view announcements
     Then User should see announcement "Announcement 5" made by "camfed_user"
     And User chooses the "Next" option
