@@ -3,7 +3,7 @@ Feature:
 
 	In order to know about the social surroundings
 	As a User
-	I want to be able to comment on status of my connection
+	I want to be able to view comment on status of my connection
 
 Background:
     Given the following users exists in canvas:

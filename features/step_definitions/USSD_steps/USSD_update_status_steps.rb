@@ -94,6 +94,12 @@ Given /^"([^\"]*)" has a status with more than 100 characters$/ do |username|
     @statuses_to_clean << @status
 end
 
+When /^User replies with "([^\"]*)"$/ do |message|
+  steps %{
+      Then User replies with option "#{message}"
+    }
+end
+
 
 
 
