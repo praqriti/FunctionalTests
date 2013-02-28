@@ -40,7 +40,7 @@ Scenario: Verify dynamic update for sen social notifications list
           Given User has "1" accepted connection requests
           Given User has "1" status notifications
           Then User replies "0" to go back to home page  
-           Given User chooses the option "Notifications"        
+          Given User chooses the option "Notifications"        
           And User should see the notifications menu with "1 Connection Request Accepted (3)"
           When User chooses the "Next" option
           And User should see the notifications menu with "2 Status Updated (1)"
@@ -52,7 +52,7 @@ Scenario: Verify dynamic update for sen social notifications list
            Given User chooses the option "Notifications" 
           And User should see the notifications menu with "1 Comment Added (1)"
           When User chooses the "Next" option        
-          And User should see the notifications menu with "2 Connection Request Accepted (5)"
+          And User should see the notifications menu with "2 Connection Request Accepted (6)"
           When User chooses the "Next" option
           And User should see the notifications menu with "3 Status Updated (2)"
           

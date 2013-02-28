@@ -51,7 +51,7 @@ Scenario: Verify that error is given to the user when she enters an invalid opti
 	Given User sends an invalid option "9"
 	Then User returns with error "invalid_option"
 
-@stage	
+@stage @integration	
 Scenario: View status should be reflected on both canvas and ussd app
   Given I make a new USSD login request
   When User "camfed_user" logs into USSD with correct credentials
