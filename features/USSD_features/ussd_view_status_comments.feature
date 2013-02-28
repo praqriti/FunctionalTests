@@ -6,19 +6,29 @@ Feature:
 	I want to be able to view comment on status of my connection
 
 Background:
-    Given the following users exists in canvas:
+  Given the following users exists in canvas:
       |USER|
       |camfed_friend_1|  
       |camfed_friend_2|  
       |camfed_friend_3|  
-    Given User "camfed_friend_1" has the following comment notifications:
-                 |COMMENTED_BY   |COMMENT|
-                 |camfed_user    |first comment|
-                 |camfed_friend_2|second comment|
-                 |camfed_friend_3|third comment|
+    
+
+Scenario: Verify correct notification is given to user when there are no comments
+  And I make a new USSD login request
+  When User "camfed_user" logs into USSD with correct credentials
+  Then User should see the USSD home page
+  Given User chooses the option "Connections"
+  Then User should see the connections menu
+  When User chooses option "1"
+  When User chooses option "1"
                        
 
 Scenario: View "View comments" option on connections status with count of comments
+  Given User "camfed_friend_1" has the following comment notifications:
+             |COMMENTED_BY   |COMMENT|
+             |camfed_user    |first comment|
+             |camfed_friend_2|second comment|
+             |camfed_friend_3|third comment|
   And I make a new USSD login request
   When User "camfed_user" logs into USSD with correct credentials
   Then User should see the USSD home page

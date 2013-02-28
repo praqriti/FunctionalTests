@@ -7,7 +7,6 @@ Then /^User should see ordered connections list on page "([^\"]*)"$/ do |page_no
   end_index = start_index + (rpp-1)
   
   @connected_users.reverse[start_index..end_index].each do |connected_user|
-    binding.pry
     actual_response["message"].include?(connected_user.name.truncate 20).should == true
   end
   actual_response["message"].include?("0 Home").should == true
