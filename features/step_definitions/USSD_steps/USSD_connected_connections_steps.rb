@@ -1,11 +1,13 @@
 Then /^User should see ordered connections list on page "([^\"]*)"$/ do |page_no|
   actual_response = @last_response.parsed_response
+  p actual_response
   page_no = page_no.to_i
   rpp = "#{RECORDS_PER_PAGE}".to_i
   start_index = rpp * (page_no-1)
   end_index = start_index + (rpp-1)
   
   @connected_users.reverse[start_index..end_index].each do |connected_user|
+    binding.pry
     actual_response["message"].include?(connected_user.name.truncate 20).should == true
   end
   actual_response["message"].include?("0 Home").should == true

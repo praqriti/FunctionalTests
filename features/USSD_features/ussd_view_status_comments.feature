@@ -25,7 +25,6 @@ Scenario: View "View comments" option on connections status with count of commen
   Given User chooses the option "Connections"
   Then User should see the connections menu
   When User chooses option "1"
-  Then User should see ordered connections list on page "1"
   When User chooses option "1"
   Then User should see the current status of "camfed_friend_1"
   Then User should see "View Comments[3]"
@@ -36,6 +35,6 @@ Scenario: View "View comments" option on connections status with count of commen
   Then User should see comment "second comment" made by "camfed_friend_2"
   Then User should see the "Next" and "Previous" option
   When User chooses the "Next" option
-  Then User should see comment "third comment" made by "camfed_user"
+  Then User should see comment "first comment" made by "camfed_user"
   Then User should not see "Next"
   Then User should see "Previous"
