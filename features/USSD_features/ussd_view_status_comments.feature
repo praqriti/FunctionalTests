@@ -12,7 +12,7 @@ Background:
       |camfed_friend_2|  
       |camfed_friend_3|  
     
-
+@wip
 Scenario: Verify correct notification is given to user when there are no comments
   And I make a new USSD login request
   When User "camfed_user" logs into USSD with correct credentials
@@ -21,6 +21,7 @@ Scenario: Verify correct notification is given to user when there are no comment
   Then User should see the connections menu
   When User chooses option "1"
   When User chooses option "1"
+  Then User should see "No comments added yet"
                        
 
 Scenario: View "View comments" option on connections status with count of comments
