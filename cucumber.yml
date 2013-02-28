@@ -1,4 +1,4 @@
-default: --format pretty -r features -r features/step_definitions --tags ~@wip --tags ~@manual --tags ~@bug
+default: --format pretty -r features -r features/step_definitions --tags ~@wip --tags ~@manual --tags ~@bug --tags ~@integration
 
 wip: --format pretty -r features -r features/step_definitions --tags @wip
 
