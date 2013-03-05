@@ -70,13 +70,13 @@ end
   @app.home.updated_status_message.value.should == "#{message}"
 end
 
-Then /^User must see the connection request of "([^\"]*)" on the home page$/ do |username|
+Then /^User can navigate from alert and accept the request of "([^\"]*)"$/ do |username|
   user = @users.find{|user| user.identifier == "#{username}"}
   retry_on_timeout do
   @app.home.wait_for_connection_alert
   @app.home.should have_connection_alert
 end
-  @app.home.connection_alert.alert_links.first.click
+  @app.home.connection_alert.alert_links.find {|user_link| user_link.text == user.name}.click
   steps %{
     Then User can view the "public" wall of the user "#{user.name}"
   }
@@ -89,7 +89,7 @@ Then /^User must see the connection request alerts on home page:$/ do |connectio
   end
   connections_table.hashes.each do |hash|
   requesting_friend = @users.find{|user| user.identifier == "#{hash["REQUESTING_FRIEND"]}"}
-  @app.home.connection_alert.alert_links.text.should.include? "#{requesting_friend.name}"
+  @app.home.connection_alert.alert_links.map {|user| user.text == "#{requesting_friend.name}"}
 end
 end
 

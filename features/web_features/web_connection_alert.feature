@@ -26,10 +26,20 @@ Feature:
     When User "camfed_user" logs into Canvas with her credentials
     
 Scenario: User must be able to navigate to connection request page from the alert
-    Given User must see the connection request of "camfed_friend" on the home page
-    When User navigates to canvas home page
-    Then User can navigate to the connection request page from the connection alert
-    Then User can "accept" the connection request from "camfed_friend"
-    Then User does not see the connection request alert
-
+    Given User navigates to canvas home page
+    Given User must see the connection request alerts on home page:
+     |REQUESTING_FRIEND|
+      |camfed_friend_1|
+      |camfed_friend_2|
+      |camfed_friend_3|
+      |camfed_friend_4|
+      |camfed_friend_5|
+    When User can navigate from alert and accept the request of "camfed_friend_3"   
+    And User navigates to canvas home page
+    Then User must see the connection request alerts on home page:
+     |REQUESTING_FRIEND|
+     |camfed_friend_1|
+     |camfed_friend_2|
+     |camfed_friend_4|
+     |camfed_friend_5|
     
