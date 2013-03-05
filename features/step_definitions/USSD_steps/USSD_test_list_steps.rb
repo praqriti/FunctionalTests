@@ -45,8 +45,13 @@ end
 
 Then /^User should see quiz menu for Student having "([^\"]*)" questions and "([^\"]*)" attempts available$/ do |question_count, attempts|
   actual_response = @last_response.parsed_response
-  actual_response["message"].include?("Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nAttempts Available: #{attempts}").should == true
-  actual_response["message"].include?("1 View Score").should == true
+  message_parts = actual_response["message"].split("\n")
+  message_parts[0].index("Questions: #{question_count}").should == 0
+  message_parts[1].index("Points Possible: #{question_count}").should == 0
+  message_parts[2].index("Due Date:").should == 0
+  message_parts[3].index("Attempts Available: #{attempts}").should == 0
+  message_parts[4].index("1 View Score").should == 0
+  message_parts[6].index("0 Home").should == 0
   steps %{
 		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
@@ -56,9 +61,13 @@ end
 
 Then /^User should see quiz menu for Teacher having "([^\"]*)" questions and "([^\"]*)" total attempts$/ do |question_count, attempts|
    actual_response = @last_response.parsed_response
-   actual_response["message"].should == "Questions: #{question_count}\nPoints Possible: #{question_count}\nDue Date: Nov 30, 3000 at 23:59\nTotal Attempts: #{attempts}\n1 View Report\n0 Home"
-   actual_response["message"].include?("0 Home").should == true
-   actual_response["message"].include?("1 View Report").should == true
+   message_parts = actual_response["message"].split("\n")
+   message_parts[0].index("Questions: #{question_count}").should == 0
+   message_parts[1].index("Points Possible: #{question_count}").should == 0
+   message_parts[2].index("Due Date:").should == 0
+   message_parts[3].index("Total Attempts: #{attempts}").should == 0
+   message_parts[4].index("1 View Report").should == 0
+   message_parts[5].index("0 Home").should == 0
   steps %{
 		Then the JSON at "session_type" should be "SESSION"
   }
@@ -104,13 +113,15 @@ Given /^the following test data with questions exists:$/ do |test_table|
     }
 
     course = @courses[0]
+    @quizzes = []
     user = @users.find{|user| user.identifier == "camfed_user"}
 
     enrollment_id = CanvasEnrollmentInterface.enroll_user(course.id, user.id, CanvasEnrollmentInterface.enroll_type("Teacher"), "active")
     assignment_group = Canvas::AssignmentGroup.new(user, course).create
     quizzes = tests.split(",")
-    quizzes.each do |quiz_name|
-      quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name, allowed_attempts)
+    @questions = []
+    quizzes.each_with_index do |quiz_name, index|
+      quiz = Canvas::Quiz.new(user, course, assignment_group, quiz_name, allowed_attempts, Time.now + index*3600)
       quiz.create
       if(question_count!=0)
 				for i in 1..(question_count)
