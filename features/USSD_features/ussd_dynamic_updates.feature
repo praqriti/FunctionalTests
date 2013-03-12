@@ -15,8 +15,8 @@ Scenario: Verify dynamic update for updating status
           Given "camfed_user" has his status set to "status message"
           When User chooses the option to "update status"
         	Then User should see his previously updated message "status message"
-        	When User replies "0" to go back to home page
         	When "camfed_user" has his status set to "new status message"
+        	When User replies "0" to go back to home page
         	When User chooses the option to "update status"
         	Then User should see his previously updated message "new status message"
 
