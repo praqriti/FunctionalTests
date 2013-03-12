@@ -33,10 +33,15 @@ Scenario Outline: Verify Incorrect login details
 @manual
   Scenario: One user cannot continue with other users access token
 
+Scenario: User should see the ussd app in language of his preference
+  Given the following users exists in canvas:
+  |     USER      | LOCALE|
+  | camfed_user_1 | sw    |
+  | camfed_user   | en    |
 
-
-
-
-
-
-
+  Given I make a new USSD login request
+  When User "camfed_user_1" logs into USSD with correct credentials
+  Then User should see the USSD home page in "sw"
+  Given I make a new USSD login request
+  When User "camfed_user" logs into USSD with correct credentials
+  Then User should see the USSD home page in "en"

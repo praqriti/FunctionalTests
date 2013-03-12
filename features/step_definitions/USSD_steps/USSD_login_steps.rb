@@ -69,7 +69,12 @@ Then /^User should see the USSD home page$/ do
       Then the JSON at "message" should be "#{expected_message}"
       Then the JSON at "session_type" should be "SESSION"
     }
-    
-   
 end
 
+Then /^User should see the USSD home page in "(.*?)"$/ do |locale|
+  expected_message = @messages.get("home_page", [], locale)
+  steps %{
+      Then the JSON at "message" should be "#{expected_message}"
+      Then the JSON at "session_type" should be "SESSION"
+    }
+end
