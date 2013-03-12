@@ -34,9 +34,9 @@ staging:
     canvas_url: http://camfedstage
     sen_url: http://camfedstage:8383
     sen_social_url: http://camfedstage/sen/api/v1
-    access_token: Bearer ZukXgmKizTdfMlN6eP2EuCLBlmPfFUuzdAlx0yJXJTA2qruPK6unWBieQuEh9pLF
-    dev_key: kVZqIlxlXAYSHTOKbQR8AIVDDJ1jjM21J6gXWYgxcBlrm1Vb36BIxJYxWGUUigVL
-    account_id: 2
+    access_token: Bearer O5Q9hqvYP76V8cPeda5ubFC4umRAxtJ31JMsQq0G24GyN9ZIV6iNshCBCeIs4UNh
+    dev_key: cyXwNT5VW3oJqjMveA52vc5yQPhlUcCJuE0wpRChm9tlDcu14AR1KxvaTU0y972O
+    account_id: 1
     records_per_page: 4
     super_admin: "sen.camfed@gmail.com"
     super_admin_password: "staging"    
