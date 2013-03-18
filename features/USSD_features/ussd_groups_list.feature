@@ -11,7 +11,7 @@ Background:
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
-@bug  
+@wip
 Scenario: View list of groups to which user is attached with pagination
   Given User "camfed_user" is enrolled with following groups:
    |name         |

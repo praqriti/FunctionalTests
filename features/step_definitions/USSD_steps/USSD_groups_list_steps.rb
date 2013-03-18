@@ -53,7 +53,8 @@ Then /^User should see the ordered groups list on page "([^\"]*)"$/ do |page_no|
 	s_no = (rpp * (page_no-1)) + 1
 	start_index = rpp * (page_no-1)
   end_index = start_index + (rpp-1)
-	@enrolled_groups.reverse[start_index..end_index].each do |enrolled_group|
+	@enrolled_groups[start_index..end_index].each do |enrolled_group|
+	 
 		actual_response["message"].include?(enrolled_group.name).should == true
 	end
 	steps %{

@@ -24,24 +24,19 @@ Scenario Outline: Verify Incorrect login details
 	|              | password_two |
 	| camfed_today | password_two |
 	
-@manual
-  Scenario: two users cannot use the same session ID
-  
-@manual
-  Scenario: expiration of access token
-  
-@manual
-  Scenario: One user cannot continue with other users access token
 
-Scenario: User should see the ussd app in language of his preference
+Scenario Outline: User should see the ussd app in language of his preference
   Given the following users exists in canvas:
-  |     USER      | LOCALE|
-  | camfed_user_1 | sw    |
-  | camfed_user   | en    |
-
+  | USER          | LOCALE      |
+  | <USER>        | <LOCALE>    |
   Given I make a new USSD login request
-  When User "camfed_user_1" logs into USSD with correct credentials
-  Then User should see the USSD home page in "sw"
-  Given I make a new USSD login request
-  When User "camfed_user" logs into USSD with correct credentials
-  Then User should see the USSD home page in "en"
+  When User "<USER>" logs into USSD with correct credentials
+  Then User should see the USSD home page in "<LOCALE>"  
+  Examples:
+   |     USER      | LOCALE|
+   | camfed_user_1 | sw    |
+   | camfed_user   | en    |
+   
+@manual
+ Scenario: One user cannot continue with other users access token
+ 
