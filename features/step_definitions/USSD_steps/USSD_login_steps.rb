@@ -72,6 +72,7 @@ Then /^User should see the USSD home page$/ do
 end
 
 Then /^User should see the USSD home page in "(.*?)"$/ do |locale|
+  p @last_response
   expected_message = @messages.get("home_page", [], locale)
   steps %{
       Then the JSON at "message" should be "#{expected_message}"
