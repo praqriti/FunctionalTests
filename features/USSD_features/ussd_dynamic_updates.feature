@@ -11,6 +11,7 @@ Background:
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
+@wip
 Scenario: Verify dynamic update for updating status
           Given "camfed_user" has his status set to "status message"
           When User chooses the option to "update status"
