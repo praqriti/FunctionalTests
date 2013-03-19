@@ -37,5 +37,5 @@ Background:
     When User chooses option "1"
     Then User should see "Enter a new comment"
     When User replies with ""
-    Then User should see "Comment cannot be blank."
+    Then User should see "Unable to save a blank comment"
     Then User should see "Enter a new comment"
