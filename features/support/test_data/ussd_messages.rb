@@ -26,7 +26,9 @@ def initialize
       :no_announcement_on_group => "No announcement on group\\n0 Home"
     },
     :sw => {
-      :home_page => "Karibu sen!\\n\\n1 Ujulisho\\n2 Kubadilisha hadhi\\n3 Rafiki\\n4 Vikundi\\n5 Kozi"
+      :home_page => "Karibu sen!\\n\\n1 Ujulisho\\n2 Kubadilisha hadhi\\n3 Rafiki\\n4 Vikundi\\n5 Kozi" ,
+      :status_update => "कृपया अपना संदेश दर्ज करें\\n0 Home" ,
+      :connections_menu => ""
     }
   }
  end
