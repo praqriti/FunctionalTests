@@ -17,4 +17,5 @@ group :test do
   gem "json_spec"
   gem "pry"
   gem 'headless'
+  gem 'magic_encoding'
 end

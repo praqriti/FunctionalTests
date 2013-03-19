@@ -36,6 +36,7 @@ GEM
       rspec (~> 2.0)
     launchy (2.2.0)
       addressable (~> 2.3)
+    magic_encoding (0.0.2)
     method_source (0.8.1)
     mime-types (1.20.1)
     multi_json (1.5.0)
@@ -85,6 +86,7 @@ DEPENDENCIES
   httparty
   json_spec
   launchy
+  magic_encoding
   pry
   random-word
   site_prism
