@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Messages
   
 def initialize
