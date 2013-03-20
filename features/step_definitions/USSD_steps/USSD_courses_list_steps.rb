@@ -68,7 +68,7 @@ Then /^User should see the courses list$/ do
 
 		}
 		
-		actual_response["message"].include?("0 Home").should == true
+		actual_response["message"].include?("0 Previous Menu").should == true
 end
 
 Then /^User should see the courses list in correct order$/ do
@@ -125,5 +125,5 @@ end
 
 Then /^User should see home as the last option$/ do
   last_option = @last_response["message"].split("\n").last
-  last_option.should == "0 Home"
+  last_option.include?( "Home").should == true
 end

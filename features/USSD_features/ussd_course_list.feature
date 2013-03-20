@@ -35,7 +35,7 @@ Given User "camfed_user" is enrolled with following courses:
 	When User chooses the "Previous" option
 	Then User should see the courses list on page "2"
 	And User should see the "Next" and "Previous" option
-	When User replies "0" to go back to home page
+    And User replies to go back to previous menu
 	Then User should see the USSD home page
 
 Scenario: User is not enrolled to any course
@@ -73,12 +73,12 @@ Given User "camfed_user" is enrolled with following courses:
  |Physics    |Teacher |active|
  |Geography  |Student |active|
  |Maths      |Teacher |active|
-	Given User chooses the option "Courses"
-	Then User replies "0" to go back to home page
-	And User chooses the option "Courses"
-	Then User should see the courses list
-	And User should not see "Previous" and "Next" option
-	When User chooses the "Next" option
+  Given User chooses the option "Courses"
+  And User replies to go back to previous menu
+  And User chooses the option "Courses"
+  Then User should see the courses list
+  And User should not see "Previous" and "Next" option
+  When User chooses the "Next" option
   Then User returns with error "invalid_option"
 
 Scenario: Verify unpublished courses are not visible
@@ -108,7 +108,6 @@ Scenario: Verify that the order of courses in the list is correct with paginatio
     |Physics10   |Teacher |active|
     |Physics11   |Teacher |active|
   Given User chooses the option "Courses"
-  Then User should see home as the last option
   When User chooses the "Next" option
   When User chooses the "Next" option
   Then User should see the courses list in correct order

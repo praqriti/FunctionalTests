@@ -36,10 +36,16 @@ And /^User chooses the "Next" option$/ do
 end
 
 
-When /^User replies "0" to go back to home page$/ do
+When /^User replies to go back to home page$/ do
+  steps %{
+    Then User replies with option "*#"
+    Then User should see the message "home_page" 
+  }
+end
+
+When /^User replies to go back to previous menu$/ do
   steps %{
     Then User replies with option "0"
-    Then User should see the message "home_page" 
   }
 end
 

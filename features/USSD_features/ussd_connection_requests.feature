@@ -84,8 +84,9 @@ Scenario: Accept and reject connection
 Scenario: Verify back from connection requests page
   When User chooses option "2"
   Then User should see ordered pending requests on page "1"
-	And User replies "0" to go back to home page
-	Then User should see the USSD home page
+  And User replies to go back to previous menu
+  And User replies to go back to previous menu
+  Then User should see the USSD home page
   
 
 Scenario: Verify invalid option from connection requests page

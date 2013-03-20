@@ -15,7 +15,7 @@ Background:
 Scenario: Verify back from notifications page from ussd	
         	Given User chooses the option "Notifications"
         	And User should see the notifications menu with blank notifications
-        	When User replies "0" to go back to home page
+            And User replies to go back to previous menu
         	Then User should see the USSD home page
 
 
@@ -38,8 +38,9 @@ Scenario: Should see the notification list for a category with pagination
            Then User should see the "Previous" option
            When User chooses the "Next" option
            Then User returns with error "invalid_option"
-           Then User replies "0" to go back to home page
-               
+           And User replies to go back to previous menu
+          Then User should see the USSD home page
+
 
 Scenario: Should be able to navigate within the notifications with pagination
           Given User has "3" accepted connection requests
@@ -52,8 +53,9 @@ Scenario: Should be able to navigate within the notifications with pagination
             |camfed_friend_2|camfed_user| 
             |camfed_friend_1|camfed_user| 
           Then User returns with error "invalid_option"
-          Then User replies "0" to go back to home page
-          
+          And User replies to go back to previous menu
+          Then User should see the USSD home page
+
 Scenario: Should be able to view notificications for course and group announcements
           Given User has "3" new course announcement notifications
           Given User has "3" new group announcement notifications
@@ -61,7 +63,8 @@ Scenario: Should be able to view notificications for course and group announceme
           And User should see the notifications menu with "1 Announcement (6)"
           When User chooses the "Next" option
           Then User returns with error "invalid_option"
-          Then User replies "0" to go back to home page
+          And User replies to go back to previous menu
+          Then User should see the USSD home page
 
 
 Scenario: View announcements notifications with truncation on group
@@ -87,8 +90,9 @@ Scenario: View announcements notifications with truncation on group
           Then User should see announcement notification "1.My father trained to be a fighter pilot in South Africa" made by "camfed_user"
           When User chooses the "Next" option
           Then User returns with error "invalid_option"
-          Then User replies "0" to go back to home page
-          
+          And User replies to go back to previous menu
+          Then User should see the USSD home page
+
  
   @integration
     Scenario: Verify if comment notification is visible to the user on both web and ussd 

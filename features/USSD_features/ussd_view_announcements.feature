@@ -26,10 +26,8 @@ Scenario: View announcements on group with truncation
   Then User should see "View Announcements[1]"
   Then User chooses to view announcements
   Then User should see announcement "My father trained to be a fighter pilot in South Africa" made by "camfed_user with_truncation"
-  Then User should not see "Previous" and "Next" option 
-  When User replies "0" to go back to home page
-	Then User should see the USSD home page
-	
+  Then User should not see "Previous" and "Next" option
+
 
 Scenario: verify that user should not see view announcement option and see no announcement message if no announcement on group
 Given User "camfed_user" is enrolled with following groups:
@@ -63,6 +61,5 @@ Scenario: View list of announcements on group with pagination
     Then User should see announcement "Announcement 1" made by "camfed_user"
     And User chooses the "Next" option
     Then User returns with error "invalid_option"
-    Then User replies "0" to go back to home page
-  
+
   

@@ -41,7 +41,7 @@ Scenario: View list of groups to which user is attached with pagination
 	When User chooses the "Previous" option
 	Then User should see the ordered groups list on page "3"
 	And User should see the "Next" and "Previous" option
-	When User replies "0" to go back to home page
+    And User replies to go back to previous menu
 	Then User should see the USSD home page
 
 Scenario: View the group menu when user selects the group

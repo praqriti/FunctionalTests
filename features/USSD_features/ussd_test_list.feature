@@ -23,7 +23,7 @@ Scenario Outline: Verify Menu option is displayed with pagination for a test in 
   Then User should see the tests for page "1"
   And User chooses test "1"
   Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
-  When User replies "0" to go back to home page
+  When User replies to go back to previous menu
   Then User should see the USSD home page
 
 Examples:

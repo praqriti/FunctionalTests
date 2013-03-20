@@ -16,7 +16,8 @@ Scenario: Verify dynamic update for updating status
           When User chooses the option to "update status"
         	Then User should see his previously updated message "status message"
         	When "camfed_user" has his status set to "new status message"
-        	When User replies "0" to go back to home page
+            When User replies with "0"
+            Then User should see the USSD home page
         	When User chooses the option to "update status"
         	Then User should see his previously updated message "new status message"
 
@@ -26,7 +27,8 @@ Scenario: Verify dynamic update for canvas notifications list
           And User should see the notifications menu with "1 Announcement (1)"
           Given User has "1" new assignments
           Given User has "1" new group announcement notifications
-          Then User replies "0" to go back to home page
+          And User replies to go back to previous menu
+          Then User should see the USSD home page
           Given User chooses the option "Notifications"
           And User should see the notifications menu with "1 Announcement (2)"
           When User chooses the "Next" option
@@ -39,7 +41,8 @@ Scenario: Verify dynamic update for sen social notifications list
           
           Given User has "1" accepted connection requests
           Given User has "1" status notifications
-          Then User replies "0" to go back to home page  
+          And User replies to go back to previous menu
+          Then User should see the USSD home page
           Given User chooses the option "Notifications"        
           And User should see the notifications menu with "1 Connection Request Accepted (3)"
           When User chooses the "Next" option
@@ -48,7 +51,8 @@ Scenario: Verify dynamic update for sen social notifications list
           Given User has "1" accepted connection requests
           Given User has "1" status notifications
           Given User has "1" comment notifications
-          Then User replies "0" to go back to home page 
+          And User replies to go back to previous menu
+          Then User should see the USSD home page
            Given User chooses the option "Notifications" 
           And User should see the notifications menu with "1 Comment Added (1)"
           When User chooses the "Next" option        
@@ -65,7 +69,9 @@ Scenario: Verify dynamic update for my connections list
            When User chooses the "Next" option
            Then User returns with error "invalid_option"
            Given User has "1" accepted connection requests
-           Then User replies "0" to go back to home page
+           And User replies to go back to previous menu
+           And User replies to go back to previous menu
+           Then User should see the USSD home page
            Given User chooses the option "Connections"
            When User chooses option "1"
            Then User should see ordered connections list on page "1"
@@ -82,7 +88,9 @@ Scenario: Verify dynamic update for connection request list
           When User chooses the "Next" option
           Then User returns with error "invalid_option"
           Given User has "1" pending connection requests
-          Then User replies "0" to go back to home page
+          And User replies to go back to previous menu
+          And User replies to go back to previous menu
+          Then User should see the USSD home page
           Given User chooses the option "Connections"
           When User chooses option "2"
           Then User should see ordered pending requests on page "1"

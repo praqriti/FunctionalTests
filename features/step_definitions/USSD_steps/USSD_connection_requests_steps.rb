@@ -9,7 +9,7 @@ Then /^User should see ordered pending requests on page "([^\"]*)"$/ do |page_no
     actual_response["message"].include?(requester.name.truncate 20).should == true
   end
 
-  actual_response["message"].include?("0 Home").should == true
+  actual_response["message"].include?("0 Previous Menu").should == true
 
   steps %{
 		Then the JSON at "session_id" should be "#{@session_id}"

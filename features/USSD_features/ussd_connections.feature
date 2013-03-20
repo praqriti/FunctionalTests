@@ -12,9 +12,10 @@ Background:
 	And User chooses the option "Connections"
 	And User should see the connections menu
 
-Scenario: Verify back from connections page from ussd	
-	When User replies "0" to go back to home page
-	Then User should see the USSD home page
+Scenario: Verify back from connections page from ussd
+  And User replies to go back to previous menu
+  When User replies to go back to home page
+  Then User should see the USSD home page
   
 	
 Scenario: Verify back from connections page from ussd

@@ -43,7 +43,7 @@ Then /^User should see the groups list$/ do
 
 		}
 		
-	  actual_response["message"].include?("0 Home").should == true
+	  actual_response["message"].include?("Previous Menu").should == true
 end
 
 Then /^User should see the ordered groups list on page "([^\"]*)"$/ do |page_no|

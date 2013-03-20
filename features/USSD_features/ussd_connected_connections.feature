@@ -34,9 +34,10 @@ Scenario: View connected connections
     Then User should see ordered connections list on page "2"
     When User chooses the "Previous" option
     Then User should see ordered connections list on page "1"
-    And User replies "0" to go back to home page
+    And User replies to go back to previous menu
+    And User replies to go back to previous menu
     Then User should see the USSD home page
-    
+
 @integration
 Scenario: Verify if removing a user from web reflects on USSD app and no pagination is visible
        When User is on the Sign In page
