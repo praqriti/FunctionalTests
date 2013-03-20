@@ -4,10 +4,10 @@ class Messages
 def initialize
  @messages = {
     :en => {
-      :teacher_with_no_quiz => "Attached to course as Teacher\\nNo Quiz Attached\\n0 Home",
-      :teacher_with_pending_invitation => "Attached to course as Teacher\\nPlease log in to Web, to respond to Course request\\n0 Home",
-      :student_with_no_quiz => "Attached to course as Student\\nNo Quiz Attached\\n0 Home",
-      :student_with_pending_invitation => "Attached to course as Student\\nPlease log in to Web, to respond to Course request\\n0 Home",
+      :teacher_with_no_quiz => "Attached to course as Teacher\\nNo Quiz Attached\\n0 Previous Menu",
+      :teacher_with_pending_invitation => "Attached to course as Teacher\\nPlease log in to Web, to respond to Course request\\n0 Previous Menu",
+      :student_with_no_quiz => "Attached to course as Student\\nNo Quiz Attached\\n0 Previous Menu",
+      :student_with_pending_invitation => "Attached to course as Student\\nPlease log in to Web, to respond to Course request\\n0 Previous Menu",
       :invalid_option => "Invalid Option",
       :home_page => "Welcome to SEN!\\n\\n1 Notifications\\n2 Update Status\\n3 Connections\\n4 Groups\\n5 Courses",
       :no_course_attached => "No Course Attached\\n0 Previous Menu",

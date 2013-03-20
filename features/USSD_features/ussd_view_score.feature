@@ -16,8 +16,7 @@ Scenario Outline: Student views score without attempting the test
   Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
   Then User chooses "View Score"
   Then User should see the message "no_score"
-  And User should see the "Back" option
-  Then User chooses "Back" option
+  Then User replies to go back to previous menu
   Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
 
 Examples:
@@ -41,7 +40,7 @@ Scenario Outline: Student views score after attempting the test
   When User skips the question
   Then the Quiz should be submitted
   And User should see the message "successful_test_attempt"
-  Then User chooses "Back" option
+  Then User replies to go back to previous menu
   And User chooses test "1"
   Then User chooses "View Score"
   Then User should see message "Score: 1 out of 2"

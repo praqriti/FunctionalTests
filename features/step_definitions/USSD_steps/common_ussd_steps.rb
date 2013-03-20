@@ -90,6 +90,7 @@ end
 
 
 Then /^User should see "(.*?)"$/ do |arg1|
+  p @last_response.parsed_response["message"]
   @last_response.parsed_response["message"].include?(arg1).should == true
 end
 
