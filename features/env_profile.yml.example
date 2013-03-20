@@ -1,7 +1,7 @@
 default:
     canvas_url: http://localhost
     sen_url: http://localhost:3002
-    sen_social_url: http://localhost/sen
+    sen_social_url: http://localhost/sen/api/v1
     access_token: Bearer obbSivMVhix83xUSXVZ0xe76kT3Wa8193oaIalHhxboJ5AlnxqIplShd1TBiAWYj
     dev_key: JTIFwEOW4wDIsByWXLiFHlcT1jTN7HpgA34Cqk6KzyonjQLlQIChCIfCCk4NJzD5
     account_id: 2

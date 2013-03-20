@@ -93,5 +93,24 @@ Then /^User should see "(.*?)"$/ do |arg1|
   @last_response.parsed_response["message"].include?(arg1).should == true
 end
 
+Then /^User should see update status message in "(.*?)"$/ do |locale|
+  expected_message = @messages.get("status_update", [], locale)
+
+  steps %{
+      Then the JSON at "message" should be "#{expected_message}"
+
+    }
+  end
+
+Then /^User should see connections menu in "(.*?)"$/ do |locale|
+
+  steps %{
+         Then the JSON at "locale" should be "#{locale}"
+
+  }
+end
+
+
+
 
 

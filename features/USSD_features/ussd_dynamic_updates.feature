@@ -11,6 +11,7 @@ Background:
 	When User "camfed_user" logs into USSD with correct credentials
 	Then User should see the USSD home page
 
+@wip
 Scenario: Verify dynamic update for updating status
           Given "camfed_user" has his status set to "status message"
           When User chooses the option to "update status"
@@ -18,6 +19,7 @@ Scenario: Verify dynamic update for updating status
         	When "camfed_user" has his status set to "new status message"
             When User replies with "0"
             Then User should see the USSD home page
+            Then User waits for "2" seconds
         	When User chooses the option to "update status"
         	Then User should see his previously updated message "new status message"
 

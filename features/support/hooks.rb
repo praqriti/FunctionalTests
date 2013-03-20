@@ -6,6 +6,7 @@ Before do
   @messages = Messages.new
   @errors = Errors.new
   @announcements = Array.new
+  @announcement_comments = Array.new
   @statuses = []
   @requesters = []
   @quizzes = []
