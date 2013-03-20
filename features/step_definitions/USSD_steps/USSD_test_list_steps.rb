@@ -22,7 +22,7 @@ Then /^User should see the tests for page "([^\"]*)"$/ do |page_no|
 		Then the JSON at "session_type" should be "SESSION"
 
 		}
-	  #actual_response["message"].include?("Home").should == true
+	actual_response["message"].include?("Previous Menu").should == true
 end
 
 Given /^User publishes the course "([^\"]*)"$/ do |course_name|
@@ -51,7 +51,7 @@ Then /^User should see quiz menu for Student having "([^\"]*)" questions and "([
   message_parts[2].index("Due Date:").should == 0
   message_parts[3].index("Attempts Available: #{attempts}").should == 0
   message_parts[4].index("1 View Score").should == 0
-  message_parts[6].index("0 Home").should == 0
+  message_parts[6].index("0 Previous Menu").should == 0
   steps %{
 		Then the JSON at "session_id" should be "#{@session_id}"
 		Then the JSON at "session_type" should be "SESSION"
@@ -67,7 +67,7 @@ Then /^User should see quiz menu for Teacher having "([^\"]*)" questions and "([
    message_parts[2].index("Due Date:").should == 0
    message_parts[3].index("Total Attempts: #{attempts}").should == 0
    message_parts[4].index("1 View Report").should == 0
-   message_parts[5].index("0 Home").should == 0
+   message_parts[5].index("0 Previous Menu").should == 0
   steps %{
 		Then the JSON at "session_type" should be "SESSION"
   }
