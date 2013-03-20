@@ -14,8 +14,11 @@ Given /^User "(.*?)" is enrolled with following groups:$/ do |username, groups_t
   user = @users.find{|user| user.identifier == username}
 
   groups_table.hashes.each do |hash|
-    group = Group.create(hash)
-    @groups << group
+    group = @groups.find{|grp| grp.name == hash["name"]}
+    if group.nil?
+      group = Group.create(hash)
+      @groups << group
+    end
 
     group.join user
   	@enrolled_groups << group
