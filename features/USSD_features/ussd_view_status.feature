@@ -33,7 +33,7 @@ Scenario: View status of a connected user
         Then User should see ordered connections list on page "1"
         When User chooses option "1"
         Then User should see the current status of "connected_user5"
-        When User chooses the "Previous" option
+        And User replies to go back to previous menu
         Then User should see ordered connections list on page "1"
         When User chooses option "2"
         Then User should see the empty status of "connected_user4"

@@ -54,7 +54,7 @@ Scenario: View the group menu when user selects the group
 	Then User should see the ordered groups list on page "1"
   When User chooses the group "History"
   Then User should see the group menu page
-  When User chooses the "Previous" option
+  And User replies to go back to previous menu
   Then User should see the ordered groups list on page "1"
   
   Scenario: Verify the account level groups on the groups list page
@@ -67,7 +67,7 @@ Scenario: View the group menu when user selects the group
   	When User should see the ordered groups list on page "1"
     When User chooses the group "Sports"
     And User should see the group menu page
-    Then User chooses the "Previous" option
+    And User replies to go back to previous menu
     Then User should see the ordered groups list on page "1"
   
 Scenario: Verify invalid option on the group menu page
@@ -82,7 +82,7 @@ Scenario: Verify invalid option on the group menu page
     Then User should see the group menu page
     When User sends an invalid option "9"
     Then User returns with error "invalid_option"
-    When User chooses the "Previous" option
+    And User replies to go back to previous menu
     Then User should see the ordered groups list on page "1"
     
 Scenario: Verify invalid option on the group list page

@@ -110,7 +110,7 @@ When User chooses option "2"
  Then User should see ordered pending requests on page "1"
  When User chooses option "1"
  Then User should see connection response options
- When User chooses the "Previous" option
+ And User replies to go back to previous menu
  Then User should see ordered pending requests on page "1"
  
  

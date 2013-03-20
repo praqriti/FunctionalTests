@@ -14,7 +14,6 @@ Background:
 
 Scenario: Verify back from connections page from ussd
   And User replies to go back to previous menu
-  When User replies to go back to home page
   Then User should see the USSD home page
   
 	
