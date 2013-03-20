@@ -18,8 +18,7 @@ Feature:
     Then User should see the test report:
     |HIGH_SCORE|LOW_SCORE|AVERAGE|MEAN|STUDENTS_ATTEMPTED|
     |0.0       |0.0      |0      |0.0 |0                 |
-    And User should see the "Back" option
-    Then User chooses "Back" option
+    And User replies to go back to previous menu
     Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
 
   Examples:

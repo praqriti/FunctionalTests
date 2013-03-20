@@ -43,7 +43,7 @@ Scenario Outline: Student attempts a single attempt test twice
   When User skips the question
   Then the Quiz should be submitted
   And User should see the message "successful_test_attempt"
-	Then User chooses "Back" option
+	Then User replies to go back to previous menu
 	And User chooses test "1"
 	When User chooses "Attempt Test"
 	Then User should see the message "single_attempt"
@@ -90,7 +90,7 @@ Scenario Outline: Student attempts a test with no questions
   Then User should see quiz menu for role "<ROLE>" having "<QUESTIONS>" questions and "<ATTEMPTS>" attempts
   When User chooses "Attempt Test"
   Then User should see the message "no_question_added_to_quiz"
-  When User chooses "Back" option
+  When User replies to go back to previous menu
   Then User should see the tests for page "1"
 
   Examples:
