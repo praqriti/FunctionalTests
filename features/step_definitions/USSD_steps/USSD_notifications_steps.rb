@@ -88,7 +88,7 @@ end
 
 Then /^User should see the notifications menu with blank notifications$/ do
   steps %{
-   Then the JSON at "message" should be "There are no Notifications\\n0 Previous Menu"
+   Then the JSON at "message" should be "No notifications available\\n0 Previous Menu"
   }
 end
 
