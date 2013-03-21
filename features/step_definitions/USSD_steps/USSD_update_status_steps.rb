@@ -31,19 +31,19 @@ end
 
 Then /^User should see his previously updated message "([^\"]*)"$/ do |message|
   steps %{
-      Then the JSON at "message" should be "#{message}\\nEnter your new status\\n0 Home"
+      Then the JSON at "message" should be "#{message}\\nEnter your new status\\n0 Previous Menu"
     }
 end
 
 Then /^User should see his previously updated blank message "([^\"]*)"$/ do |message|
   steps %{
-      Then the JSON at "message" should be "Enter your new status\\n0 Home"
+      Then the JSON at "message" should be "Enter your new status\\n0 Previous Menu"
     }
 end
 
 Then /^User should see his previously updated message:$/ do |string|
   steps %{
-      Then the JSON at "message" should be "#{string}\\nEnter your new status\\n0 Home"
+      Then the JSON at "message" should be "#{string}\\nEnter your new status\\n0 Previous Menu"
     }
 end
 
