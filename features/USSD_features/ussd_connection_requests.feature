@@ -21,10 +21,10 @@ Background:
       |requesting_user4|
       |requesting_user5|
     And I make a new USSD login request
-	  When User "camfed_user" logs into USSD with correct credentials
-	  Then User should see the USSD home page
+    When User "camfed_user" logs into USSD with correct credentials
+    Then User should see the USSD home page
     Given User chooses the option "Connections"
-    Then User should see the connections menu
+    Then User should see the connections menu with 0 connections and 5 requests
 
 Scenario: View connections requests
     When User chooses option "2"

@@ -18,7 +18,7 @@ Scenario: Verify correct notification is given to user when there are no comment
   When User "camfed_user" logs into USSD with correct credentials
   Then User should see the USSD home page
   Given User chooses the option "Connections"
-  Then User should see the connections menu
+  Then User should see the connections menu with 0 connections and 0 requests
   When User chooses option "1"
   When User chooses option "1"
   Then User should see "No comments added yet"
@@ -34,7 +34,7 @@ Scenario: View "View comments" option on connections status with count of commen
   When User "camfed_user" logs into USSD with correct credentials
   Then User should see the USSD home page
   Given User chooses the option "Connections"
-  Then User should see the connections menu
+  Then User should see the connections menu with 1 connections and 0 requests
   When User chooses option "1"
   When User chooses option "1"
   Then User should see the current status of "camfed_friend_1"

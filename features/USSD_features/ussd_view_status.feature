@@ -28,7 +28,7 @@ Scenario: View status of a connected user
         When User "camfed_user" logs into USSD with correct credentials
         Then User should see the USSD home page
         Given User chooses the option "Connections"
-        Then User should see the connections menu
+        Then User should see the connections menu with 5 connections and 0 requests
         When User chooses option "1"
         Then User should see ordered connections list on page "1"
         When User chooses option "1"
@@ -44,7 +44,7 @@ Scenario: View status of a connected user is truncated on display
         When User "camfed_user" logs into USSD with correct credentials
         Then User should see the USSD home page
         Given User chooses the option "Connections"
-        Then User should see the connections menu
+        Then User should see the connections menu with 5 connections and 0 requests
         When User chooses option "1"
         Then User should see ordered connections list on page "1"
         When User chooses option "2"
@@ -57,7 +57,7 @@ Scenario: View the correct count of comments on when viewing a connection status
         When User "camfed_user" logs into USSD with correct credentials
         Then User should see the USSD home page
         Given User chooses the option "Connections"
-        Then User should see the connections menu
+        Then User should see the connections menu with 5 connections and 0 requests
         When User chooses option "1"
         Then User should see ordered connections list on page "1"
         When User chooses option "1"

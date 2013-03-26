@@ -27,7 +27,7 @@ Scenario: View connected connections
     When User "camfed_user" logs into USSD with correct credentials
     Then User should see the USSD home page
     Given User chooses the option "Connections"
-    Then User should see the connections menu
+    Then User should see the connections menu with 5 connections and 0 requests
     When User chooses option "1"
     Then User should see ordered connections list on page "1"
     When User chooses the "Next" option
@@ -53,7 +53,7 @@ Scenario: Verify if removing a user from web reflects on USSD app and no paginat
    	   When User "camfed_user" logs into USSD with correct credentials
    	   Then User should see the USSD home page
        Given User chooses the option "Connections"
-       Then User should see the connections menu
+       Then User should see the connections menu with 4 connections and 0 requests
        When User chooses option "1"
        Then User should see ordered connections list on page "1"
        And User should not see "Previous" and "Next" option
@@ -64,7 +64,7 @@ Scenario: Verify invalid option from connected connections page from ussd
        When User "camfed_user" logs into USSD with correct credentials
        Then User should see the USSD home page
        Given User chooses the option "Connections"
-       Then User should see the connections menu
+       Then User should see the connections menu with 5 connections and 0 requests
        When User chooses option "1"
        And User should see ordered connections list on page "1"
        And User sends an invalid option "9"

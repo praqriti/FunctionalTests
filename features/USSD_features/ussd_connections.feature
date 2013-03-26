@@ -10,7 +10,7 @@ Background:
 	And User "camfed_user" logs into USSD with correct credentials
 	And User should see the USSD home page
 	And User chooses the option "Connections"
-	And User should see the connections menu
+	And User should see the connections menu with 0 connections and 0 requests
 
 Scenario: Verify back from connections page from ussd
   And User replies to go back to previous menu

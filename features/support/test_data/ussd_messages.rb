@@ -18,7 +18,7 @@ def initialize
       :no_score => "No score available\\n0 Previous Menu\\n*# Home",
       :single_attempt => "No attempts left for this quiz\\n0 Previous Menu\\n*# Home",
       :successful_test_attempt => "Successfully finished the test\\n0 Previous Menu\\n*# Home",
-      :connection_menu => "1 My Connections\\n2 Connection Requests\\n0 Previous Menu",
+      :connection_menu => "1 My Connections[%s]\\n2 Connection Requests[%s]\\n0 Previous Menu",
       :group_menu => "No announcements on this group\\n1 Make New Announcement\\n0 Previous Menu\\n*# Home",
       :connection_request_accepted => "You and %s are now connected\\n* Back",
       :connection_request_rejected => "You have rejected %s's connection request\\n* Back",
