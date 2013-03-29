@@ -64,6 +64,12 @@ end
 
 
 Then /^User should see the USSD home page$/ do
+   if @last_response["message"].include?("Resume")
+     steps %{
+       Then User replies with option "2"
+     }
+   end
+
    expected_message = @messages.get("home_page")
    steps %{
       Then the JSON at "message" should be "#{expected_message}"
