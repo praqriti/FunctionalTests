@@ -54,7 +54,7 @@ Scenario: Should be able to navigate within the notifications with pagination
             |camfed_friend_1|camfed_user| 
           Then User returns with error "invalid_option"
           And User replies to go back to previous menu
-          Then User should see the USSD home page
+          Then User should see the notifications menu with "1 Connection Request Accepted (3)"
 
 Scenario: Should be able to view notificications for course and group announcements
           Given User has "3" new course announcement notifications
@@ -91,7 +91,7 @@ Scenario: View announcements notifications with truncation on group
           When User chooses the "Next" option
           Then User returns with error "invalid_option"
           And User replies to go back to previous menu
-          Then User should see the USSD home page
+          Then User should see the notifications menu with "1 Announcement (4)"
 
  
   @integration
