@@ -36,7 +36,7 @@ staging:
     sen_social_url: http://camfedstage/sen/api/v1
     access_token: Bearer lojIshSA2MMq9tLstghghaDHAElisnqxnI7LEnG55JRqsafZKQFjCD9eDJQT5k3l
     dev_key: SL73z55pBRr5tx3MyhesT4ZNboM9j1xQEUyBrtP9JhBMtkpBu2GvMGcehtD2YWf0
-    account_id: 2
+    account_id: 1
     records_per_page: 4
     super_admin: "sen.camfed@gmail.com"
     super_admin_password: "staging"    
