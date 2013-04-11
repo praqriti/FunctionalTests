@@ -1,4 +1,3 @@
-@wip
 @javascript
 Feature:
 
@@ -39,14 +38,12 @@ Scenario: Accept and reject connection
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Accept" option
-  Then User should see the message "connection_request_accepted" with "requesting_user5"
-  When User chooses the "Previous" option
+  Then User should see the notice "connection_request_accepted" with "requesting_user5"
   Then User should see ordered pending requests on page "1"
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Reject" option
-  Then User should see the message "connection_request_rejected" with "requesting_user4"
-  When User chooses the "Previous" option
+  Then User should see the notice "connection_request_rejected" with "requesting_user4"
   Then User should see ordered pending requests on page "1"
   
 
@@ -57,7 +54,7 @@ Scenario: Accept and reject connection
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Accept" option
-  Then User should see the message "connection_request_accepted" with "requesting_user5"
+  Then User should see the notice "connection_request_accepted" with "requesting_user5"
   When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
   When User navigates to "My Connections" page
@@ -73,7 +70,7 @@ Scenario: Accept and reject connection
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Reject" option
-  Then User should see the message "connection_request_rejected" with "requesting_user5"
+  Then User should see the notice "connection_request_rejected" with "requesting_user5"
   When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
   When User navigates to "My Connections" page
@@ -121,7 +118,7 @@ Scenario: Verify invalid option after user rejects a connection
   When User chooses option "1"
   Then User should see connection response options
   When User chooses "Reject" option
-  Then User should see the message "connection_request_rejected" with "requesting_user5"
+  Then User should see the notice "connection_request_rejected" with "requesting_user5"
   And User sends an invalid option "9"
   Then User returns with error "invalid_option"
   When User chooses the "Previous" option
@@ -134,7 +131,7 @@ Scenario: Verify invalid option after user accepts a connection
    When User chooses option "1"
    Then User should see connection response options
    When User chooses "Accept" option
-   Then User should see the message "connection_request_accepted" with "requesting_user5"
+   Then User should see the notice "connection_request_accepted" with "requesting_user5"
    And User sends an invalid option "9"
    Then User returns with error "invalid_option"
    When User chooses the "Previous" option

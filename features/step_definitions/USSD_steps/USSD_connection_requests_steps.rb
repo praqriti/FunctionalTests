@@ -30,6 +30,21 @@ Then /^User should see the message "([^\"]*)" with "([^\"]*)"$/ do |message, nam
   @requesters.delete(user)
 end
 
+Then /^User should see the notice "([^\"]*)" with "([^\"]*)"$/ do |message, name|
+  user = @users.find{|user| user.identifier == name}
+  expected_message = @messages.get(message, ["#{user.name[0..16]}..."])
+  actual_response = @last_response.parsed_response
+  actual_response["message"].include?(expected_message).should == true
+  actual_response["message"].include?(@messages.get("previous_menu_option")).should == true
+
+  steps %{
+	Then the JSON at "session_id" should be "#{@session_id}"
+	Then the JSON at "session_type" should be "SESSION"
+
+	}
+  @requesters.delete(user)
+end
+
 Then /^User should see connection response options$/ do
   body = @last_response.parsed_response
   body["message"].should eql @messages.get("connection_response_options")
