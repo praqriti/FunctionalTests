@@ -1,13 +1,9 @@
 default: --format pretty -r features -r features/step_definitions --tags ~@wip --tags ~@manual --tags ~@bug --tags ~@integration
 
-integration: --format pretty -r features -r features/step_definitions --tags @integration
+integration: --format pretty -r features -r features/step_definitions --tags @integration --tags ~@wip
 
 # chrome: --format pretty -r features/support/profiles/chrome.rb -r features -r features/step_definitions
 # 
 firefox: --format pretty -r features/support/profiles/firefox.rb -r features -r features/step_definitions
 # 
 # celerity: --format pretty -r features/support/profiles/celerity.rb -r features -r features/step_definitions
-
-test: PROFILE=test --format pretty
-
-stage: PROFILE=stage --format pretty
