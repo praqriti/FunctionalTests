@@ -29,7 +29,7 @@ def initialize
       :previous_menu_option => "0 Previous Menu"
     },
     :sw => {
-      :home_page => "Karibu sen!\\n\\n1 Ujulisho\\n2 Kubadilisha hadhi\\n3 Rafiki\\n4 Vikundi\\n5 Kozi" ,
+      :home_page => "Karibu sen!\\n\\n1 Ujulisho\\n2 My Hali\\n3 Rafiki\\n4 Vikundi\\n5 Kozi" ,
       :status_update => "कृपया अपना संदेश दर्ज करें\\n0 Previous Menu" ,
       :connections_menu => ""
     }
