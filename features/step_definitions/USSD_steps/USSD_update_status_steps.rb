@@ -4,9 +4,15 @@ And /^"(.*?)" has his status set to "(.*?)"$/ do |user_identifier, status|
   @statuses << @status
 end
 
+And /^User chooses the option to view "my status"$/ do
+  steps %{
+      Then User replies with option "2"
+    }
+end
+
 And /^User chooses the option to "update status"$/ do
   steps %{
-      Then User replies with option "2"   
+      Then User replies with option "1"
     }
 end
 
@@ -31,7 +37,7 @@ end
 
 Then /^User should see his previously updated message "([^\"]*)"$/ do |message|
   steps %{
-      Then the JSON at "message" should be "#{message}\\nEnter your new status\\n0 Previous Menu"
+      Then the JSON at "message" should be "#{message}\\n\\n1 Update Status\\n2 Add Comment\\n3 View Comments[0]\\n0 Previous Menu"
     }
 end
 
@@ -50,12 +56,13 @@ end
 
 Then /^User should get a confirmation that the status was updated successfully$/ do
   message = @messages.get("status_updated")
-     steps %{
-        Then the JSON at "message" should be "#{message}"
-        Then the JSON at "session_id" should be "#{@session_id}"
-        Then the JSON at "session_type" should be "SESSION"
-      }
-      actual_response = @last_response.parsed_response
+  @last_response.parsed_response["message"].include?( message).should be_true
+
+  steps %{
+    Then the JSON at "session_id" should be "#{@session_id}"
+    Then the JSON at "session_type" should be "SESSION"
+  }
+  actual_response = @last_response.parsed_response
      
 end
 

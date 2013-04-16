@@ -35,8 +35,9 @@ Scenario: Status updated on web must be reflected on my mobile device
  Given I make a new USSD login request
  When User "camfed_user" logs into USSD with correct credentials
  Then User should see the USSD home page 
- And User chooses the option to "update status"
+ And User chooses the option to view "my status"
  And User should see his previously updated message "status message"
+ When User chooses the option to "update status"
  And User replies with new status message "new status message" 
  Then User should get a confirmation that the status was updated successfully
  Then User logs out
