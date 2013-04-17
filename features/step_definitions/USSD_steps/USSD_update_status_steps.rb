@@ -37,32 +37,28 @@ end
 
 Then /^User should see his previously updated message "([^\"]*)"$/ do |message|
   steps %{
-      Then the JSON at "message" should be "#{message}\\n\\n1 Update Status\\n2 Add Comment\\n3 View Comments[0]\\n0 Previous Menu"
-    }
-end
-
-Then /^User should see his previously updated blank message "([^\"]*)"$/ do |message|
-  steps %{
-      Then the JSON at "message" should be "Enter your new status\\n0 Previous Menu"
-    }
+    Then User should see "#{message}"
+  }
 end
 
 Then /^User should see his previously updated message:$/ do |string|
   steps %{
-      Then the JSON at "message" should be "#{string}\\nEnter your new status\\n0 Previous Menu"
-    }
+    Then User should see "#{string}"
+  }
 end
 
 
 Then /^User should get a confirmation that the status was updated successfully$/ do
   message = @messages.get("status_updated")
-  @last_response.parsed_response["message"].include?( message).should be_true
+  actual_response = @last_response.parsed_response
+
+  actual_response["message"].include?( message).should be_true
 
   steps %{
     Then the JSON at "session_id" should be "#{@session_id}"
     Then the JSON at "session_type" should be "SESSION"
   }
-  actual_response = @last_response.parsed_response
+  actual_response
      
 end
 

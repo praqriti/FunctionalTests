@@ -1,6 +1,3 @@
-@wip
-
-
 @javascript
 Feature:
 
@@ -17,27 +14,28 @@ Background:
 @stage
 Scenario: Update and view new status update from USSD
 
-	Given User chooses the option to "update status"
-	When User is given the option to update status or navigate back to home page
-	And User replies with new status message "new status"
-	And User should get a confirmation that the status was updated successfully
+    Given User chooses the option to view "my status"
 	And User chooses the option to "update status"
-	Then User should see his previously updated message "new status"
+	Then User is given the option to update status or navigate back to home page
+	When User replies with new status message "new status"
+	Then User should get a confirmation that the status was updated successfully
+	And User should see his previously updated message "new status"
 
 Scenario: Verify blank status update from USSD
 
-	Given User chooses the option to "update status"
-	When User replies with new status message " "
-	And User should get a confirmation that the status was updated successfully
+	Given User chooses the option to view "my status"
 	And User chooses the option to "update status"
-	Then User should see his previously updated blank message ""
+	When User replies with new status message " "
+	Then User should get a confirmation that the status was updated successfully
+	And User should see his previously updated message ""
 
 
 Scenario: Verify back from update page from USSD
 	
-	Given User chooses the option to "update status"
+	Given User chooses the option to view "my status"
+	And User chooses the option to "update status"
 	When User replies with "0"
-	Then User should see the USSD home page
+	Then User should see the USSD my status page
 
 	Given User chooses the option to "update status"
 	When User replies with new status message: 
@@ -45,8 +43,7 @@ Scenario: Verify back from update page from USSD
 	12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 	"""
 	Then User should get a confirmation that the status was updated successfully
-	And User chooses the option to "update status"
-	Then User should see his previously updated message:
+	And User should see his previously updated message:
 	"""
 	12345678901234567890123456789012345678901234567890123456789012345678901234567...
 	"""
@@ -59,11 +56,12 @@ Scenario: View status should be reflected on both canvas and ussd app
   Given I make a new USSD login request
   When User "camfed_user" logs into USSD with correct credentials
   Then User should see the USSD home page
+  When User chooses the option to view "my status"
   And User chooses the option to "update status"
-  And User replies with new status message "new status message" 
+  When User replies with new status message "new status message"
   Then User should get a confirmation that the status was updated successfully
 
-	When User is on the Sign In page
+  When User is on the Sign In page
   When User "camfed_user" logs into Canvas with her credentials
   And status message should be "new status message"
   Then User logs out

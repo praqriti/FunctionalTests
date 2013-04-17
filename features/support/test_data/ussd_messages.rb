@@ -26,7 +26,8 @@ def initialize
       :no_question_added_to_quiz => "No question added to quiz\\n0 Previous Menu\\n*# Home",
       :no_announcement_on_group => "No announcement on group\\n0 Previous Menu",
       :resume_menu => "1 Resume\\n2 Home",
-      :previous_menu_option => "0 Previous Menu"
+      :previous_menu_option => "0 Previous Menu",
+      :my_status_page => "\n1 Update Status\n2 Add Comment\n3 View Comments[0]\n0 Previous Menu"
     },
     :sw => {
       :home_page => "Karibu sen!\\n\\n1 Ujulisho\\n2 My Hali\\n3 Rafiki\\n4 Vikundi\\n5 Kozi" ,
