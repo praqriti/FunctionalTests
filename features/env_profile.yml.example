@@ -8,11 +8,11 @@ default:
     records_per_page: 4 
     super_admin: ""
     
-test:
+qa:
     canvas_url: http://camfedtestenv
     sen_url: http://camfedtestenv:3001
     sen_social_url: http://camfedtestenv/sen/api/v1
-    access_token: Bearer pqzh0ZlGUOKp0hcilzWpcfYix5UnbI3Hvgfpsfb2NoYXiPJL5Q4IwVG7NbbDrZ0h
+    access_token: Bearer jcChZCpptZqMz1vDtzchvorvPp6EumbtHk6qbktjSA6T7ZCOp2EypQyXIOzidPCZ
     dev_key: AFYlu7mMO0XDFD31z2kITEnkGpntn2lY6FE1uO3440BOb0kyjAMEKwyI9t4FMybE
     account_id: 2
     records_per_page: 4

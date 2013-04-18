@@ -45,9 +45,14 @@ Scenario: Accept and reject connection
   When User chooses "Reject" option
   Then User should see the notice "connection_request_rejected" with "requesting_user4"
   Then User should see ordered pending requests on page "1"
-  
+  And User chooses option "0"
+  Then User should see the connections menu with 1 connections and 3 requests
 
-@integration  
+
+
+
+
+  @integration
   Scenario: Verify if accepting a user from USSD app reflects on canvas
   When User chooses option "2"
   Then User should see ordered pending requests on page "1"
