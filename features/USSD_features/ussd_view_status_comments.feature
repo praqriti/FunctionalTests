@@ -21,7 +21,7 @@ Scenario: Verify correct notification is given to user when there are no comment
   Then User should see the connections menu with 0 connections and 0 requests
   When User chooses option "1"
   When User chooses option "1"
-  Then User should see "No comments added yet"
+  Then User should see "View Comments[0]"
                        
 
 Scenario: View "View comments" option on connections status with count of comments
