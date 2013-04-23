@@ -47,3 +47,13 @@ Scenario: User tries to view comments when there are no comments
   When User chooses the option to view "comments on the status"
   Then User should see no comments message
 
+Scenario: Add comments on status from USSD
+  Given "camfed_user" has his status set to "status_update_for_comment"
+  And User chooses the option to view "my status"
+  Then User should see the current status of "camfed_user"
+  And User should see the add comments menu option
+  When User replies with "2"
+  Then User should see "Enter a new comment"
+  When User replies with "My First Comment"
+  Then User should see "Comment added"
+  And User should see "View Comments[1]"

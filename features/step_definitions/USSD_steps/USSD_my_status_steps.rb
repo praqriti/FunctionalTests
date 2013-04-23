@@ -1,3 +1,8 @@
+Then /^User should see the add comments menu option$/ do
+  message = @messages.get("my_status_add_comment")
+  @last_response.parsed_response["message"].include?(message).should be_true
+end
+
 Then /^User should see the view comments menu option with "([^\"]*)" comments$/ do |comment_count|
   message = "View Comments[#{comment_count}]"
   @last_response.parsed_response["message"].include?(message).should be_true
