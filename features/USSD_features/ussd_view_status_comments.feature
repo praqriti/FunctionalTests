@@ -11,7 +11,7 @@ Background:
       |camfed_friend_1|  
       |camfed_friend_2|  
       |camfed_friend_3|  
-    
+
 @wip
 Scenario: Verify correct notification is given to user when there are no comments
   And I make a new USSD login request
