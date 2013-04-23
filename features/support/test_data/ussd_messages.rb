@@ -27,7 +27,9 @@ def initialize
       :no_announcement_on_group => "No announcement on group\\n0 Previous Menu",
       :resume_menu => "1 Resume\\n2 Home",
       :previous_menu_option => "0 Previous Menu",
-      :my_status_page => "1 Update Status\n2 Add Comment\n3 View Comments[0]\n0 Previous Menu"
+      :my_status_page => "1 Update Status\n2 Add Comment\n3 View Comments[0]\n0 Previous Menu",
+      :zero_comments => "View Comments[0]",
+      :no_comments_msg => "No comments on status"
     },
     :sw => {
       :home_page => "Karibu sen!\\n\\n1 Ujulisho\\n2 My Hali\\n3 Rafiki\\n4 Vikundi\\n5 Kozi" ,

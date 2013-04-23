@@ -39,3 +39,11 @@ Scenario: View comments on status from USSD
   Then User should see comment "first comment" made by "camfed_friend_1"
   Then User should not see "Next"
   Then User should see "Previous"
+
+Scenario: User tries to view comments when there are no comments
+  Given "camfed_user" has his status set to "status_update_for_comment"
+  Given User chooses the option to view "my status"
+  And User has no comments on his status
+  When User chooses the option to view "comments on the status"
+  Then User should see no comments message
+
