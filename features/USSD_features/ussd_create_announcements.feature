@@ -21,7 +21,7 @@ Feature:
     Then User chooses to make announcements
     Then User is asked to "Enter Title of Announcement"
     And  User enters "Title for Announcement"
-    Then User is asked to "Enter the edit body of announcement or continue"
+    Then User is asked to "to edit the body of announcement or continue"
     And User chooses "Skip to Groups" option
     Then User should see confirmation for announcement created
     Then User should see the ordered groups list on page "1"
@@ -39,7 +39,7 @@ Feature:
     Then User chooses to make announcements
     Then User is asked to "Enter Title of Announcement"
     And  User enters "Title for Announcement"
-    Then User is asked to "Enter the edit body of announcement or continue"
+    Then User is asked to "to edit the body of announcement or continue"
     And  User enters "Body for Announcement"
     Then User should see confirmation for announcement created
     Then User should see the ordered groups list on page "1"

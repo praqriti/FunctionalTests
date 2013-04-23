@@ -94,7 +94,7 @@ Then /^User is asked to "Enter Title of Announcement"$/ do
   body["message"].include?("Enter Title of Announcement").should == true
 end
 
-Then /^User is asked to "Enter the edit body of announcement or continue"$/ do
+Then /^User is asked to "to edit the body of announcement or continue"$/ do
   body = @last_response.parsed_response
   body["message"].include?("Announcement created with body same as title.").should == true
   sleep(4)
