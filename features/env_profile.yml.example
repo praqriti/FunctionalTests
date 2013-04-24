@@ -19,7 +19,7 @@ qa:
     super_admin: "camfed@thoughtworks.com"
     super_admin_password: "camfed"
     
-int:
+integration:
     canvas_url: http://192.168.31.6
     sen_url: http://192.168.31.6:8383
     sen_social_url: http://192.168.31.6/sen/api/v1
