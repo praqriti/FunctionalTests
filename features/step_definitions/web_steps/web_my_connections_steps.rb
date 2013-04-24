@@ -74,3 +74,11 @@ steps %{
 @app.my_connections.header_message.text.should == "#{number} Connection(s) available"
 end
 
+Then /^User chooses the user "(.*?)"$/ do |number|
+  steps %{
+   Then User replies with option "1"
+	}
+end
+
+
+

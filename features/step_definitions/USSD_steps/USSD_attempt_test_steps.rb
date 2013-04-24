@@ -41,7 +41,7 @@ end
 
 When /^User chooses option "(.*?)"$/ do |option|
 	steps %{
-   Then User replies with option "#{option.to_i}"   
+   Then User replies with option "#{option.to_i}"
 	}
 end
 
