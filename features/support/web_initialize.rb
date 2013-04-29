@@ -58,4 +58,12 @@ class App
   def unauthorised_error_page
     UnauthorisedErrorPage.new
   end
+
+  def account
+    Account.new
+  end
+
+  def canvas_user_profile
+    UserPage.new
+  end
 end

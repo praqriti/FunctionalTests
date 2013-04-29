@@ -4,6 +4,62 @@ Then /^User is on the Sign In page$/ do
   @app.login.should be_displayed
 end
 
+When /^User visits the account page$/ do
+  Account.set_page_url ACCOUNT_ID
+  @app.account.load
+end
+
+Then /^User chooses to add a new user to the account$/ do
+  @app.account.add_user_button.click
+end
+
+Then /^User should see the add user dialog$/ do
+  @app.account.wait_for_add_user
+end
+
+Then /^User enters the name for user "(.*?)"$/ do |user|
+  @app.account.add_user.full_name.set user
+end
+
+Then /^User enters the email for user "(.*?)"$/ do |email|
+  @app.account.add_user.email.set email
+end
+
+Then /^User enters the login for user "(.*?)"$/ do |login|
+  @app.account.add_user.login.set login
+end
+
+Then /^User chooses the country for user "(.*?)"$/ do |country|
+  @app.account.add_user.country.select(country)
+  sleep 1
+end
+
+Then /^User chooses the district for user "(.*?)"$/ do |district|
+  @app.account.add_user.district.select(district)
+end
+
+Then /^User confirms the creation$/ do
+  @app.account.add_user.send_email?.click
+  @app.account.add_user.submit_button.click
+end
+
+Then /^User should see success message for creating user$/ do
+  @app.account.wait_for_success_message
+end
+
+Then /^User navigates to page of "(.*?)"$/ do |name|
+  @app.account.user_link.click
+  @app.canvas_user_profile.wait_for_name
+end
+
+Then /^User has name set to "(.*?)"$/ do |user|
+  @app.canvas_user_profile.name.text.should == user
+end
+
+Then /^User has location set to "(.*?)"$/ do |location|
+  @app.canvas_user_profile.location.text.should == location
+end
+
 When /^User "([^\"]*)" logs into Canvas with her credentials$/ do |identifier|
   user = @users.find{|user| user.identifier == identifier}
   @app.login.email.set "#{user.login_id}"
