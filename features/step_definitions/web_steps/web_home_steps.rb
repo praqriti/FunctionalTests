@@ -12,6 +12,7 @@ end
 
 And /^User "updates" the status message as "([^\"]*)"$/ do |message|
  steps %{
+   Given User waits for "1" seconds
    When User "enters" the status message as "#{message}"
  }
   @app.home.create_status_button.click
