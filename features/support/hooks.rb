@@ -20,7 +20,7 @@ end
 After do   
   if (@users)
       @users.each do |user|      
-         CanvasUserInterface.delete_user(user)
+         CanvasUserInterface.delete_user(user) unless user.id.nil?
         end
     end
    

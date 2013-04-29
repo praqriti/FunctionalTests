@@ -49,15 +49,34 @@ end
 
 Then /^User navigates to page of "(.*?)"$/ do |name|
   @app.account.user_link.click
+  3.times do
+    visit(current_path) and sleep(1) if @app.canvas_user_profile.name.nil?
+  end
   @app.canvas_user_profile.wait_for_name
 end
 
-Then /^User has name set to "(.*?)"$/ do |user|
-  @app.canvas_user_profile.name.text.should == user
+Then /^User has name set for "(.*?)"$/ do |username|
+  user = @users.find{|user| user.identifier == username}
+  @app.canvas_user_profile.name.text.should == user.name
 end
 
 Then /^User has location set to "(.*?)"$/ do |location|
   @app.canvas_user_profile.location.text.should == location
+end
+
+Then /^admin creates the user:$/ do |users_table|
+  users_table.hashes.each do |hash|
+    user = User.new(hash["NAME"], :country => hash["COUNTRY"], :district => hash["DISTRICT"], :email => "email"+"#{1 + rand(10000000)}")
+    steps %{
+      Then User enters the name for user "#{user.name}"
+      Then User enters the email for user "#{user.email}"
+      Then User enters the login for user "#{user.login_id}"
+      Then User chooses the country for user "#{user.country}"
+      Then User chooses the district for user "#{user.district}"
+      Then User confirms the creation
+    }
+    @users << user
+  end
 end
 
 When /^User "([^\"]*)" logs into Canvas with her credentials$/ do |identifier|

@@ -1,10 +1,14 @@
 class User
-  attr_accessor :name , :login_id , :password, :id, :identifier, :token
-  def initialize(identifier)
+  attr_accessor :name , :login_id , :password, :id, :identifier, :token, :country, :district, :location, :email
+  def initialize(identifier, params = {})
     @identifier = identifier
     @name = create_unique_name(identifier)
     @login_id = create_unique_login
     @password = create_unique_password
+    @email = params[:email]
+    @country = params[:country]
+    @district = params[:district]
+    @location = params[:location]
   end
 
   def token
