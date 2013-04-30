@@ -16,6 +16,12 @@ Given /^User clicks on My Wall$/ do
   }
 end
 
+Then /^User should see his location on my wall as "(.*?)"$/ do |location|
+  steps %{
+    Then User should see the location as "#{location}"
+  }
+end
+
 Then /^User can view her latest status message "(.*?)"$/ do |message|
   retry_on_timeout do
   @app.my_wall.wait_for_status_message
@@ -140,7 +146,10 @@ And /^User can navigate and view the "([^\"]*)" wall of user "([^\"]*)"$/ do |vi
   steps %{
     Then User can view the "#{view}" wall of the user "#{user.name}"
   }
- 
+end
+
+Then /^User should see the location as "(.*?)"$/ do |location|
+  @app.my_wall.location.text.should == location
 end
 
 Then /^User can view the "([^\"]*)" wall of the user "([^\"]*)"$/ do |view,username|

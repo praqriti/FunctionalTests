@@ -29,5 +29,6 @@ Scenario: User must see only the public profile for a non connected user
    Given "camfed_user" has his status set to "camfed user cant see my status" 
    When User is on the Sign In page
    And User "camfed_user" logs into Canvas with her credentials
- 	 Then User can navigate and view the "public" wall of user "camfed_friend_user"
- 	 And User logs out
+   Then User can navigate and view the "public" wall of user "camfed_friend_user"
+  Then User should see the location as "None"
+  And User logs out

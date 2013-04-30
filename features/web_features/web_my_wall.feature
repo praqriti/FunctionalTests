@@ -16,7 +16,12 @@ Feature:
 	And User can view the timestamp on the status
   And User logs out
 
-@stage @bug
+
+  Scenario: Verify the user has his location set
+  Given User clicks on My Wall
+  Then User should see his location on my wall as "None"
+
+  @stage @bug
   Scenario: Verify user can comment on her status message
   Given User clicks on My Wall
   And User can view her latest status message "status message"

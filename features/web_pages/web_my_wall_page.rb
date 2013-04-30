@@ -6,6 +6,7 @@ class Wall < SitePrism::Page
   element :user_name, ".profile_headings"
   element :full_name, "table.profile_table tbody tr td.name"
   element :display_name, "table.profile_table tbody tr td.short_name"
+  element :location, "table.profile_table tbody tr td.location"
   element :profile_picture, "div.profile_headings img"
   element :status_message, "div#status_message em"
 	element :timestamp_status, "div#status_message span.created_at"
