@@ -1,7 +1,9 @@
 Given /^the following users exists in canvas:$/ do |users_table|
     users_table.hashes.each do |hash|
       locale = hash["LOCALE"] || "en"
-      @users << User.create("#{hash["USER"]}", :locale => locale)
+      country = hash["COUNTRY"]
+      district = hash["DISTRICT"]
+      @users << User.create("#{hash["USER"]}", :locale => locale, :country => country, :district => district)
     end
 end
 
