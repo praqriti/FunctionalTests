@@ -4,10 +4,6 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_globa
 
-# Ignore config files
-features/env_profile.yml
-features/support/user_data.yml
-
 # Ignore all logfiles and tempfiles.
 /.idea
 
