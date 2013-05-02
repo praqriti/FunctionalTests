@@ -5,11 +5,6 @@ Feature:
   As a user
   I want to access my wall
 
-  Background:
-    Given the following users exists in canvas:
-      | USER | COUNTRY  | DISTRICT |
-      | anuj | Zimbabwe | Harare   |
-
   Scenario: Verify the elements on My Wall
     When User is on the Sign In page
     And  User "camfed_user" logs into Canvas with her credentials
@@ -28,8 +23,11 @@ Feature:
     Given User clicks on My Wall
     Then User should see his location on my wall as "None"
 
-
+  @wip
   Scenario: Verify the user has his location set
+    Given the following users exists in canvas:
+      | USER | COUNTRY  | DISTRICT |
+      | anuj | Zimbabwe | Harare   |
     When User is on the Sign In page
     And  User "anuj" logs into Canvas with her credentials
     And "anuj" has his status set to "status message"
