@@ -6,8 +6,8 @@ class User
     @login_id = create_unique_login
     @password = create_unique_password
     @email = params[:email]
-    @country = params[:country]
-    @district = params[:district]
+    @country = Country.all.select{|country| params[:country] == country.name}.first unless params[:country].nil?
+    @district = @country.districts.select{|district| params[:district] == district.name}.first unless @country.nil?
     @location = params[:location]
   end
 

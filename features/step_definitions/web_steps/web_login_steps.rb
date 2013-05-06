@@ -71,8 +71,8 @@ Then /^admin creates the user:$/ do |users_table|
       Then User enters the name for user "#{user.name}"
       Then User enters the email for user "#{user.email}"
       Then User enters the login for user "#{user.login_id}"
-      Then User chooses the country for user "#{user.country}"
-      Then User chooses the district for user "#{user.district}"
+      Then User chooses the country for user "#{hash["COUNTRY"]}"
+      Then User chooses the district for user "#{hash["DISTRICT"]}"
       Then User confirms the creation
     }
     @users << user

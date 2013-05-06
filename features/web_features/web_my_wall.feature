@@ -22,17 +22,29 @@ Feature:
     And "camfed_user" has his status set to "status message"
     Given User clicks on My Wall
     Then User should see his location on my wall as "None"
+    And User logs out
 
-  @wip
-  Scenario: Verify the user has his location set
+  Scenario: Verify the user has his location set for only country
     Given the following users exists in canvas:
-      | USER | COUNTRY  | DISTRICT |
-      | anuj | Zimbabwe | Harare   |
+      | USER | COUNTRY  |
+      | anuj | Zimbabwe |
+    When User is on the Sign In page
+    And  User "anuj" logs into Canvas with her credentials
+    And "anuj" has his status set to "status message"
+    Given User clicks on My Wall
+    Then User should see his location on my wall as "Zimbabwe"
+    And User logs out
+
+  Scenario: Verify the user has his location set for both country and district info available
+    Given the following users exists in canvas:
+      | USER | COUNTRY  | DISTRICT|
+      | anuj | Zimbabwe | Harare  |
     When User is on the Sign In page
     And  User "anuj" logs into Canvas with her credentials
     And "anuj" has his status set to "status message"
     Given User clicks on My Wall
     Then User should see his location on my wall as "Zimbabwe | Harare"
+    And User logs out
 
   @stage @bug
 
@@ -80,8 +92,8 @@ Feature:
   @manual
   Scenario: Verify user cannot enter a comment greater than 1024 characters
     When User is on the Sign In page
-    And  User "camfed_user" logs into Canvas with her credentials
     And "camfed_user" has his status set to "status message"
+    And  User "camfed_user" logs into Canvas with her credentials
 
     Given User clicks on My Wall
     And User comments on her status message:

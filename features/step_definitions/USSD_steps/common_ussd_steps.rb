@@ -1,9 +1,13 @@
 Given /^the following users exists in canvas:$/ do |users_table|
     users_table.hashes.each do |hash|
-      locale = hash["LOCALE"] || "en"
-      country = hash["COUNTRY"]
-      district = hash["DISTRICT"]
-      @users << User.create("#{hash["USER"]}", :locale => locale, :country => country, :district => district)
+      user_hash = {}
+      user_hash[:locale] = hash["LOCALE"] || "en"
+      @countries = Country.all
+      country = @countries.select {|coun| hash["COUNTRY"] == coun.name}.first
+      district = country.districts.select {|dist| hash["DISTRICT"] == dist.name}.first unless country.nil?
+      user_hash[:country_id] = country.id rescue nil
+      user_hash[:district_id] = district.id rescue nil
+      @users << User.create("#{hash["USER"]}", user_hash)
     end
 end
 
