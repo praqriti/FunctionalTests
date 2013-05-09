@@ -28,6 +28,26 @@ Scenario: View "View comments" option on announcement with count of comments
   When User chooses option "1"
   Then User should see "View Comments[1]"
 
+Scenario: Should see announcement body when user selects the announcement
+  Given Group "History" has "1" new announcements made by "camfed_user_2":
+    |ANNOUNCEMENTS|BODY|
+    |My father trained to be a fighter pilot in South Africa|I too wanna fly|
+  Given Group "History" with announcement "My father trained to be a fighter pilot in South Africa" has "1" new comments made by "camfed_user"
+    |COMMENTS|
+    |Comment 1 on announcement|
+  Given I make a new USSD login request
+  When User "camfed_user_2" logs into USSD with correct credentials
+  Then User should see the USSD home page
+  Given User chooses the option "Groups"
+  Then User should see the ordered groups list on page "1"
+  When User chooses the group "History"
+  Then User should see "View Announcements[1]"
+  Then User chooses to view announcements
+  Then User should see announcement "My father trained to be a fighter pilot in South Africa" made by "camfed_user_2"
+  When User chooses option "1"
+  Then User should see "I too wanna fly"
+  Then User should see "View Comments[1]"
+
 Scenario: View "Comments" on announcement by selecting View Comment option
   Given Group "History" has "1" new announcements made by "camfed_user_2":
     |ANNOUNCEMENTS|
@@ -66,6 +86,7 @@ Scenario: View "View comments[0]" on announcement should present user with no co
   Then User chooses to view announcements
   Then User should see announcement "My father trained to be a fighter pilot in South Africa" made by "camfed_user_2"
   When User chooses option "1"
+  Then User should see "My father trained to be a fighter pilot in South Africa"
   Then User should see "View Comments[0]"
   When User chooses option "2"
   Then User should see "No comments on announcement"

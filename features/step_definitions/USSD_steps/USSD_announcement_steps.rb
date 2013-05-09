@@ -8,7 +8,9 @@ And /^Group "(.*?)" has "(.*?)" new announcements made by "(.*?)":$/ do |group_n
   group = @groups.find{|group| group.name == group_name}
   user = @users.find{|u| u.identifier == user_identifier}
   announcements_table.hashes.each do |hash|
-    @announcements << Announcement.create(user, group, :title => hash["ANNOUNCEMENTS"], :message => hash["ANNOUNCEMENTS"])
+    announcement_hash = {:title => hash["ANNOUNCEMENTS"]}
+    announcement_hash[:message] = hash["BODY"].nil?  ? hash["ANNOUNCEMENTS"] : hash["BODY"]
+    @announcements << Announcement.create(user, group, announcement_hash)
   end
 end
 
