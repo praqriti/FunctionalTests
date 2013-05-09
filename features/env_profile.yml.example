@@ -6,5 +6,5 @@ integration:
     dev_key: NnwTbhq8F685boGzBycGnJKruTi6TzvipW88ApbZugYu2SEnsVi9OTMaG80xvhbt
     account_id: 2
     records_per_page: 4
-    super_admin: "integration@camfed.com"
-    super_admin_password: "integration"
+    super_admin: "sen.camfed@gmail.com"
+    super_admin_password: "p@ssw0rd"
