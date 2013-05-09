@@ -43,7 +43,7 @@ Feature:
     And  User "anuj" logs into Canvas with her credentials
     And "anuj" has his status set to "status message"
     Given User clicks on My Wall
-    Then User should see his location on my wall as "Zimbabwe | Harare"
+    Then User should see his location on my wall as "Harare, Zimbabwe"
     And User logs out
 
   @stage @bug

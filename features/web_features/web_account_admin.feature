@@ -34,5 +34,5 @@ Scenario: Verify admin can add a user with country and district
   Then User should see success message for creating user
   Then User navigates to page of "Norah Jones"
   Then User has name set for "Norah Jones"
-  Then User has location set to "Zimbabwe | Binga"
+  Then User has location set to "Binga, Zimbabwe"
   Then User logs out
