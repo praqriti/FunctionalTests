@@ -2,8 +2,8 @@ integration:
     canvas_url: http://ec2-50-19-13-246.compute-1.amazonaws.com
     sen_url: http://ec2-50-19-13-246.compute-1.amazonaws.com/ussd
     sen_social_url: http://ec2-50-19-13-246.compute-1.amazonaws.com/sen/api/v1
-    access_token: Bearer hv1OIB3hDBnJfWpVoNi2G03pLlH2uexnlrpX80KualoLAr4fS1Aeava9rRpLztiU
-    dev_key: sLoYiO53XISqSM4zbKRpW68JUsWFK8pbMcBuwpGWZadRuErqghtqCvo5YhI6XzEa
+    access_token: Bearer JfYFjybzsbhtn3aOPm2yoHqPWRkpqDqzjFnKPRlZYckJjNpWHtiECv5gV5Vs5IBi
+    dev_key: NnwTbhq8F685boGzBycGnJKruTi6TzvipW88ApbZugYu2SEnsVi9OTMaG80xvhbt
     account_id: 2
     records_per_page: 4
     super_admin: "integration@camfed.com"
