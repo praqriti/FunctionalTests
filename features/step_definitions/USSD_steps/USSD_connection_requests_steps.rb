@@ -47,7 +47,7 @@ end
 
 Then /^User should see connection response options$/ do
   body = @last_response.parsed_response
-  body["message"].should eql @messages.get("connection_response_options")
+  body["message"].include?(@messages.get("connection_response_options")).should == true
 end
 
 When /^User chooses "Accept" option$/ do
