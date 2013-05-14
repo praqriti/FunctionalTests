@@ -26,7 +26,7 @@ Feature:
     Then User should see "Add Comment"
     Then User should see "View Comments[0]"
     And User chooses option "1"
-    Then User should see "Enter a comment"
+    Then User should see "Enter a new comment"
     And User replies with "My First Comment"
     Then User should see "Comment added"
     Then User should see "View Comments[1]"
@@ -49,9 +49,9 @@ Feature:
     Then User should see "Add Comment"
     Then User should see "View Comments[0]"
     And User chooses option "1"
-    Then User should see "Enter a comment"
+    Then User should see "Enter a new comment"
     And User replies with ""
     Then User should see "Unable to save a blank comment"
-    Then User should see "Enter a comment"
+    Then User should see "Enter a new comment"
 
 
