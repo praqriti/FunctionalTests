@@ -4,7 +4,7 @@ integration:
     sen_social_url: http://ec2-50-19-13-246.compute-1.amazonaws.com/sen/api/v1
     access_token: Bearer A9ps2zi8fr36Q6of32gu0pf8HQGR7akr4ddllGUzwzQAB5WTdndvUBOoeffA5QOV
     dev_key: NnwTbhq8F685boGzBycGnJKruTi6TzvipW88ApbZugYu2SEnsVi9OTMaG80xvhbt
-    account_id: 2
+    account_id: 1
     records_per_page: 4
     super_admin: "sen.camfed@gmail.com"
     super_admin_password: "p@ssw0rd"
