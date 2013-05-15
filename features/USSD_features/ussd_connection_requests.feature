@@ -7,12 +7,12 @@ Feature:
 
 Background:
     Given the following users exists in canvas:
-      |USER|
-      |requesting_user1|
-      |requesting_user2|
-      |requesting_user3|
-      |requesting_user4|
-      |requesting_user5|
+      |USER            |COUNTRY|DISTRICT|
+      |requesting_user1|||
+      |requesting_user2|||
+      |requesting_user3|||
+      |requesting_user4|||
+      |requesting_user5|Ghana  |Kumbungu|
     And User "camfed_user" has pending connection requests from:
       |USER|
       |requesting_user1|
@@ -141,8 +141,13 @@ Scenario: Verify invalid option after user accepts a connection
    Then User returns with error "invalid_option"
    When User chooses the "Previous" option
    Then User should see ordered pending requests on page "1"
-   
-   
+
+Scenario: Verify the profile information is displayed on connection details
+  When User chooses option "2"
+  Then User should see ordered pending requests on page "1"
+  When User chooses option "1"
+  Then User should see location of "requesting_user5" in connection profile
+
 @wip
 Scenario: Verify that accepting connection request reflects on web
 

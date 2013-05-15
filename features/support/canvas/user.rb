@@ -49,6 +49,7 @@ class User
                                # p @last_response
     JSONSpecInterface.raise_error(@last_response)
     user.id =  @last_response.parsed_response["id"]
+    user.location = @last_response.parsed_response["location"]
     return user
   end
   

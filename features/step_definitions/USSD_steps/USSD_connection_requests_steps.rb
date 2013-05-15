@@ -50,6 +50,12 @@ Then /^User should see connection response options$/ do
   body["message"].include?(@messages.get("connection_response_options")).should == true
 end
 
+Then /^User should see location of "([^\"]*)" in connection profile$/ do |name|
+  user = @users.find{|user| user.identifier == name}
+  body = @last_response.parsed_response
+  body["message"].start_with?(@messages.get("connection_location", user.location)).should == true
+end
+
 When /^User chooses "Accept" option$/ do
   steps %{
    Then User replies with option "1"

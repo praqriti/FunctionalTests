@@ -23,6 +23,7 @@ def initialize
       :connection_request_accepted => "You and %s are now connected",
       :connection_request_rejected => "You have rejected %s's connection request",
       :connection_response_options => "1 Accept\n2 Reject\n0 Previous Menu\n*# Home",
+      :connection_location => "Location: %s",
       :no_question_added_to_quiz => "No question added to quiz\\n0 Previous Menu\\n*# Home",
       :no_announcement_on_group => "No announcement on group\\n0 Previous Menu",
       :resume_menu => "1 Resume\\n2 Home",
