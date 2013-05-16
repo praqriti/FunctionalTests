@@ -2,7 +2,7 @@ integration:
     canvas_url: http://ec2-50-19-202-186.compute-1.amazonaws.com
     sen_url: http://ec2-50-19-202-186.compute-1.amazonaws.com/ussd
     sen_social_url: http://ec2-50-19-202-186.compute-1.amazonaws.com/sen/api/v1
-    access_token: Bearer XMhzpX2Cy6V0xskL9lywPXracEHYgeCL7K9FheGIV01C4iqsL64L42T3leWaU16l
+    access_token: "Bearer hKOoJw3r8GwAPhmnZXO1Q9FLc9VnoYAwBzVU7GbsmOgkl8AbRhMjQ3nIFP0Tud78"
     dev_key: SBtWPGuYJM7cX3YVVLCvEuPCRQY06MLXcfpxTp0zzJ8gMqUC5XgtTyITaXPwIg80
     account_id: 1
     records_per_page: 4
