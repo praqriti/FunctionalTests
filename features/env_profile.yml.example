@@ -1,9 +1,9 @@
 integration:
-    canvas_url: http://ec2-50-19-13-246.compute-1.amazonaws.com
-    sen_url: http://ec2-50-19-13-246.compute-1.amazonaws.com/ussd
-    sen_social_url: http://ec2-50-19-13-246.compute-1.amazonaws.com/sen/api/v1
-    access_token: Bearer A9ps2zi8fr36Q6of32gu0pf8HQGR7akr4ddllGUzwzQAB5WTdndvUBOoeffA5QOV
-    dev_key: NnwTbhq8F685boGzBycGnJKruTi6TzvipW88ApbZugYu2SEnsVi9OTMaG80xvhbt
+    canvas_url: http://ec2-54-242-138-63.compute-1.amazonaws.com
+    sen_url: http://ec2-54-242-138-63.compute-1.amazonaws.com/ussd
+    sen_social_url: http://ec2-54-242-138-63.compute-1.amazonaws.com/sen/api/v1
+    access_token: Bearer m20RKHwSrxyvZlPOwWfvBB8mSyPLkRie3k35UTZZSgLT2KHLqXGHdt9vUyA1meBx
+    dev_key: YZZugRYpHYJEHcFt1LXX1zhDLWSV0oWF3iwuyuMFQQRbrASyciYzcpDvqlm5Ib8e
     account_id: 1
     records_per_page: 4
     super_admin: "sen.camfed@gmail.com"
