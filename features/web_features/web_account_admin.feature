@@ -35,4 +35,8 @@ Scenario: Verify admin can add a user with country and district
   Then User navigates to page of "Norah Jones"
   Then User has name set for "Norah Jones"
   Then User has location set to "Binga, Zimbabwe"
+  Then admin edits the user
+  And sets location as "Ghana" and "Tolon"
+  And admin updates the user
+  Then User has location set to "Tolon, Ghana"
   Then User logs out
