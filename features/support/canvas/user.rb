@@ -47,6 +47,7 @@ class User
                                },
                                :headers => { "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
                                # p @last_response
+    sleep 4
     JSONSpecInterface.raise_error(@last_response)
     user.id =  @last_response.parsed_response["id"]
     user.location = @last_response.parsed_response["location"]
