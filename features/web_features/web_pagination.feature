@@ -7,14 +7,14 @@ Feature:
 
 Scenario: Verify if a logged in user can view the correct number of connections per page
 
-	Given User "camfed_user" has pending connection requests from "4" users
+	Given User "camfed_user" has pending connection requests from "6" users
 	When User is on the Sign In page
 	And User "camfed_user" logs into Canvas with her credentials
 	
 	When User navigates to "Connection Requests"
-	Then User can view "2" connection requests on "Connections Requests" page
+	Then User can view "4" connection requests on "Connections Requests" page
 	And User clicks on "show more" on "Connections Requests" page
-	And User can view "4" connection requests on "Connections Requests" page
+	And User can view "2" connection requests on "Connections Requests" page
 	And User logs out    
     
 Scenario: Verify if a logged in user can reject connection request after pagination
@@ -46,15 +46,15 @@ Scenario: Verify if a logged in user can accept connection request after paginat
 
 Scenario: Verify if a logged in user can view correct number of connected users per page
 
-	Given User "camfed_user" has connections from "4" users
+	Given User "camfed_user" has connections from "6" users
 	When User is on the Sign In page
 	And User "camfed_user" logs into Canvas with her credentials
 	
 	And User navigates to "My Connections" page
-	Then User can see "4" connections available
-	Then User can view "2" connections on "My Connections" page
+	Then User can see "6" connections available
+	Then User can view "4" connections on "My Connections" page
 	And User clicks on "show more" on "My Connections" page
-	And User can view "4" connections on "My Connections" page
+	And User can view "2" connections on "My Connections" page
 	And User logs out
 
 Scenario: Verify if a logged in user can disconnect a user after pagination
