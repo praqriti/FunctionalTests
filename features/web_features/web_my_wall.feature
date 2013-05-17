@@ -63,16 +63,6 @@ Feature:
     And User can view the timestamp on the comment
     And User logs out
 
-  Scenario: Verify user cannot enter blank comment
-    When User is on the Sign In page
-    And  User "camfed_user" logs into Canvas with her credentials
-    And "camfed_user" has his status set to "status message"
-
-    Given User clicks on My Wall
-    And User can view her latest status message "status message"
-    And User cannot enter blank comment on the status
-    And User logs out
-
   @bug
   Scenario: Verify user can comment multiple times on her status message
     When User is on the Sign In page

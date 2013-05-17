@@ -12,6 +12,7 @@ class Country
     last_response = JSONSpecInterface.get("#{CANVAS_API}/countries",
         :headers => { "Accept" => "application/json", "Authorization" => "#{CANVAS_ACCESS_TOKEN}"})
     response = last_response.parsed_response
+    response = response.class != Array ? [] : response
     @@countries = []
     response.each do |country|
       @@countries << new(country)
