@@ -7,3 +7,4 @@
 # Ignore all logfiles and tempfiles.
 /.idea
 features/*.yml
+/.DS_*

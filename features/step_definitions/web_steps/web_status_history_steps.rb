@@ -27,9 +27,6 @@ Then /^User should see appropriate message$/ do
 	@app.my_wall.should have_no_status_message
   end
   sleep(2)
-  @app.my_wall.no_status_message.text.should == "There are no older status messages"
+  @app.my_wall.no_status_message.text.should == "Hi, I am new to SEN less than a minute ago"
 end
 
-And /^Comment Box is not present$/ do
-	@app.my_wall.should_not have_comment_box
-end

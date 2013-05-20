@@ -9,6 +9,7 @@ Feature:
   When User is on the Sign In page
   And  User "camfed_user" logs into Canvas with her credentials
 
+@wip
 Scenario: View the correct status of connection button on user wall
 Given the following users exists in canvas:
    |USER|
@@ -42,7 +43,8 @@ Given the following users exists in canvas:
    Then User can "accept" the connection request from "camfed_pending_request_user"
    Then User can navigate and view "camfed_pending_request_user" wall without a connection button
    And User logs out
-   
+
+ @wip
 Scenario: Verify the Awaiting response button updates correctly on user wall
 Given the following users exists in canvas:
   |USER|

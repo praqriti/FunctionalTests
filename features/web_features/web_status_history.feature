@@ -18,12 +18,6 @@ Scenario: Verify appropriate message displayed if there is no history of status 
 	Then User should see appropriate message
 	Then User logs out
 
-Scenario: Verify comment box not present if status is not updated even once
-
-	Then User clicks on My Wall
-	And Comment Box is not present
-	Then User logs out
-
 @stage @wip
 Scenario: Verify user has 7 statuses with comments and can view previous 5 statuses with comments
   # Given "camfed_user" has a history of "3" status messages
