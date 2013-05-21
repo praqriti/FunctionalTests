@@ -1,12 +1,22 @@
 Then /^The Status Activity Notification "(.*?)" visible$/ do |arg1|
   if arg1.include? "not"
     @app.home.should_not have_status_notification_group
+
   else
     notifications_page_reload do
       @app.home.has_status_notification_group?
     end
   end
 end
+
+Then /^only default status notification is visible$/ do
+   retry_on_timeout do    
+    @app.home.load 
+    @app.home.has_status_notification_group?
+  end
+      @app.home.status_notification_group.text.include? '1 Status Activity'
+
+end 
 
 Then /^Status Updated notification is visible for "(.*?)" with status:"(.*?)"$/ do |user_id, message|
   steps %{

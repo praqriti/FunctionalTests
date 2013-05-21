@@ -1,4 +1,4 @@
-@javascript
+
 Feature:
 
   In order to use canvas
@@ -12,19 +12,12 @@ Feature:
       |Marie|
       |Catheryn|
       |Lizzie|
-    Given User "Catheryn" is enrolled with following courses:
-      |COURSE     |ROLE    |STATUS|
-      |History    |Student |active|
     And "camfed_user" has accepted connection request from "Catheryn"
     And "Lizzie" has accepted connection request from "camfed_user"
-    When User is on the Sign In page
-    And User "camfed_user" logs into Canvas with her credentials
 
 @stage
   Scenario: Verify if status update notification is sent to connections
-    When User "updates" the status message as "status message"
-    Then User status "status message" is updated successfully
-    Then User logs out
+    And "camfed_user" has his status set to "status message"
     When User is on the Sign In page
     And User "Catheryn" logs into Canvas with her credentials
     Then Status Updated notification is visible for "camfed_user" with status:"status message"
@@ -35,14 +28,14 @@ Feature:
     Then User logs out
 
   Scenario: Verify if status update notification is not sent to deleted connection(s)
+   When User is on the Sign In page
+   And User "camfed_user" logs into Canvas with her credentials
    When User navigates to "My Connections" page
    And User can "disconnect" his connection "Catheryn"
    And User confirms the disconnection "Catheryn"
-   And User navigates to canvas home page
-   When User "updates" the status message as "status message"
-   Then User status "status message" is updated successfully
+   And "camfed_user" has his status set to "status message"
    Then User logs out
    When User is on the Sign In page
    And User "Catheryn" logs into Canvas with her credentials
-   Then The Status Activity Notification "is not" visible
+   Then only default status notification is visible
    Then User logs out
