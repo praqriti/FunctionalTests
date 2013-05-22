@@ -66,4 +66,8 @@ class App
   def canvas_user_profile
     UserPage.new
   end
+
+  def canvas_user_settings
+    UserSettingsPage.new
+  end
 end
