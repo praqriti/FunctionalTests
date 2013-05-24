@@ -15,4 +15,5 @@ class StatusInterface < SenSocialBase
       }, params[:user])
     new(response, params[:user])
   end
+  sleep(4)
 end

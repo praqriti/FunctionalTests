@@ -10,6 +10,7 @@ class ConnectionsInterface
                                        :body => {:sub_action => "accept"},
                                        :headers => { "Authorization" => "#{user.token}"})
     response["connection_state"].should == "accepted"
+    sleep(4)
   end
 
   def self.send_connection_request(user, friend)

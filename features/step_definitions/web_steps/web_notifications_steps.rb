@@ -140,7 +140,6 @@ Then /^User should see connection notifications on web:$/ do |connections_table|
   accepting_friend = @users.find{|user| user.identifier == hash["ACCEPTING_FRIEND"]}
   requesting_friend = @users.find{|user| user.identifier == hash["REQUESTING_FRIEND"]}
     @app.home.connection_notifications.select {|element|
-      sleep(2)
     element.text.include? "#{accepting_friend.name} accepted #{requesting_friend.name}'s invitation to get connected."}
     .count.should == 1
 end
