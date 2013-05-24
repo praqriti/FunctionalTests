@@ -26,6 +26,7 @@ Then /^User can view her latest status message "(.*?)"$/ do |message|
   retry_on_timeout do
   @app.my_wall.wait_for_status_message
   @app.my_wall.should have_status_message
+    sleep(2)
 end
   @app.my_wall.status_message.text.should == message
 end

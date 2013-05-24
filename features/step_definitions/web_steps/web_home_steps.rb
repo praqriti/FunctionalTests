@@ -44,7 +44,8 @@ Then /^User status "([^\"]*)" is not updated$/ do |message|
    retry_on_timeout do
     @app.home.wait_for_status
     @app.home.should have_status
-  end
+   end
+  sleep(2)
     @app.home.status_message.value.should_not == "#{message}"
 end
 
