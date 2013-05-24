@@ -70,7 +70,7 @@ Feature:
     Then User should see connection notifications on web:
     | REQUESTING_FRIEND    | ACCEPTING_FRIEND |
     |camfed_user           |camfed_friend_1|
-    Then User logs out 
+    Then User logs out
     
 Scenario: Verify if connection accepted notification is sent to common friends
     Given the following users exists in canvas:
