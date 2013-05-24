@@ -91,7 +91,6 @@ Then /^"(.*?)" comments "(.*?)" on the status$/ do |user1_identifier, comment|
   user1 = @users.find{|user| user.identifier == user1_identifier}
   status = @statuses.last
   Comment.create :status => status, :user => user1, :message => comment
-  sleep(1)
 end
 
 

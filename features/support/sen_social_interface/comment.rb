@@ -15,5 +15,6 @@ class Comment < SenSocialBase
         }
     }, params[:user])
     new(response, status)
+    sleep(4)
   end
 end
