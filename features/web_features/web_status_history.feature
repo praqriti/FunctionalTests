@@ -13,6 +13,7 @@ Background:
 Scenario: Verify appropriate message displayed if there is no history of status messages
 
 	And "camfed_user" has his status set to "single status message only"
+    Then User waits for "4" seconds
 	Then User clicks on My Wall
 	Then User clicks on Show previous status messages link
 	Then User should see appropriate message
