@@ -1,4 +1,5 @@
 #!/bin/bash
 ####Script to stop Xvfb
-kill -9 `ps -C Xvfb -o pid --no-heading`
+XvfbPid=`ps -C Xvfb -o pid --no-heading`
+kill -9 $XvfbPid
 exit 0
