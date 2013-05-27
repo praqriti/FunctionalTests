@@ -1,4 +1,4 @@
-Script to stop Xvfb
 #!/bin/bash
+####Script to stop Xvfb
 kill -9 `ps -C Xvfb -o pid --no-heading`
 exit 0
