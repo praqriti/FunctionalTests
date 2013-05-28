@@ -4,7 +4,6 @@ Then /^User should see ordered connections list on page "([^\"]*)"$/ do |page_no
   rpp = "#{RECORDS_PER_PAGE}".to_i
   start_index = rpp * (page_no-1)
   end_index = start_index + (rpp-1)
-  
   @connected_users.reverse[start_index..end_index].each do |connected_user|
     actual_response["message"].include?(connected_user.name.truncate 20).should == true
   end

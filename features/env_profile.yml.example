@@ -5,6 +5,6 @@ integration:
     access_token: "Bearer XMhzpX2Cy6V0xskL9lywPXracEHYgeCL7K9FheGIV01C4iqsL64L42T3leWaU16l"
     dev_key: SBtWPGuYJM7cX3YVVLCvEuPCRQY06MLXcfpxTp0zzJ8gMqUC5XgtTyITaXPwIg80
     account_id: 1
-    records_per_page: 2
+    records_per_page: 4
     super_admin: "sen.camfed@gmail.com"
     super_admin_password: "C@psL0ck"
