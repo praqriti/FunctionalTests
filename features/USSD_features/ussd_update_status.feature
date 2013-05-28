@@ -18,6 +18,7 @@ Scenario: Update and view new status update from USSD
 	And User chooses the option to "update status"
 	Then User is given the option to update status or navigate back to home page
 	When User replies with new status message "new status"
+    And User waits for "4" seconds
 	Then User should get a confirmation that the status was updated successfully
 	And User should see his previously updated message "new status"
 
@@ -42,6 +43,7 @@ Scenario: Verify back from update page from USSD
 	"""
 	12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 	"""
+    And User waits for "4" seconds
 	Then User should get a confirmation that the status was updated successfully
 	And User should see his previously updated message:
 	"""
