@@ -24,7 +24,7 @@ Scenario Outline: Verify Incorrect login details
 	|              | password_two |
 	| camfed_today | password_two |
 	
-
+@wip
 Scenario Outline: User should see the ussd app in language of his preference
   Given the following users exists in canvas:
   | USER          | LOCALE      |

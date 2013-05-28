@@ -27,6 +27,3 @@ Then /^User should see the current status of "([^\"]*)" truncated with char limi
   @last_response.parsed_response["message"].index(message).should == 0
 end
 
-Then /^User should see the empty status of "([^\"]*)"$/ do |username|
-  @last_response.parsed_response["message"].start_with?("1 Add Comment").should == true
-end

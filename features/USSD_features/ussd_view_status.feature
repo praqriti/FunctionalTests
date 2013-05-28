@@ -36,7 +36,7 @@ Scenario: View status of a connected user
         And User replies to go back to previous menu
         Then User should see ordered connections list on page "1"
         When User chooses option "2"
-        Then User should see the empty status of "connected_user4"
+
 
 Scenario: View status of a connected user is truncated on display
         Given "connected_user4" has a status with more than 100 characters

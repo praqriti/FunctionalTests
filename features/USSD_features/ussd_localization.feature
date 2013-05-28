@@ -3,6 +3,7 @@ Feature:
   As an user
   I would like to have it in the corresponding language
 
+@wip
 Scenario:
   Given the following users exists in canvas:
     |     USER      | LOCALE|
